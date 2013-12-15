@@ -1,0 +1,9 @@
+# Ignore the root packages directory
+/packages/
+
+# Ignore any packages symlinks
+packages
+
+# Ignore the build directories
+/build/
+/.buildlog
