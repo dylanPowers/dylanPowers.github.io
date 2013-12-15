@@ -34,9 +34,12 @@ find . -not -empty \( -name 'build' -prune -o -name '.git' -prune \
                       -o -name '.*' -o -name 'packages' -prune \) \
        -o -prune -print0 | xargs -0 rm -r
 
+# Put the deployable files into place
 cp -R build/* .
+git checkout $build_rev_hash -- CNAME
+
 git add -A
-git commit -m "Revision $build_rev_hash"
+git commit -m "Autobuild at revision $build_rev_hash"
 
 echo "\nPublishing to origin master"
 git push origin master
