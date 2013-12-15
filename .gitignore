@@ -1,8 +1,5 @@
-# Ignore the root packages directory
-/packages/
-
 # Ignore any packages symlinks
-packages
+*/packages
 
 # Ignore the build directories
 /build/
