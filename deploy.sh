@@ -46,8 +46,10 @@ git push origin master
 if [ $? -ne 0 ]; then
   echo "\n\nPublishing failed"
   git checkout $build_rev_branch
+  pub upgrade
   exit 1
 fi
 
 git checkout $build_rev_branch
+pub upgrade
 echo "\n\nDeployment succeeded!"
