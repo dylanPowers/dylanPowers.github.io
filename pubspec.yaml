@@ -3,8 +3,7 @@ author: Dylan Powers
 homepage: me.dylankpowers.com
 description: A dart app showcasing a little about me
 dependencies:
-  barback: any
   polymer: any
 transformers:
 - polymer:
-    entry_points: index.html
+    entry_points: web/index.html
