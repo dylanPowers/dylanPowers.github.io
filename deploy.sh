@@ -1,29 +1,29 @@
 #!/bin/sh
 
-echo "Backing up the source with a git push"
+echo "\nBacking up the source with a git push"
 git push
-if [$? -ne 0]; then
-  echo "git push failed"
+if [ $? -ne 0 ]; then
+  echo "\n\ngit push failed"
   exit 1
 fi
 
 
-echo "Running pub build..."
+echo "\nRunning pub build..."
 pub build
-if [$? -ne 0]; then
-  echo "Pub build failed"
+if [ $? -ne 0 ]; then
+  echo "\n\nPub build failed"
   exit 1
 fi
 
 
-echo "Attempting to commit new build to master..."
+echo "\nAttempting to commit new build into master..."
 
 build_rev_hash=`git rev-parse HEAD`
 build_rev_branch=`git rev-parse --abbrev-ref HEAD`
 
 git checkout master
-if [$? -ne 0]; then 
-  echo "Checking out master failed"
+if [ $? -ne 0 ]; then 
+  echo "\n\nChecking out master failed"
   exit 1
 fi
 
@@ -36,15 +36,15 @@ find . -not -empty \( -name 'build' -prune -o -name '.git' -prune \
 
 cp -R build/* .
 git add -A
-git commit -m 'Revision $build_rev_hash'
+git commit -m "Revision $build_rev_hash"
 
-echo "Publishing to origin master"
+echo "\nPublishing to origin master"
 git push origin master
-if [$? -ne 0]; then
-  echo "Publishing failed"
+if [ $? -ne 0 ]; then
+  echo "\n\nPublishing failed"
   git checkout $build_rev_branch
   exit 1
 fi
 
 git checkout $build_rev_branch
-echo "Deployment succeeded!"
+echo "\n\nDeployment succeeded!"
