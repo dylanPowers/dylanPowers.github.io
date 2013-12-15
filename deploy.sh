@@ -27,11 +27,11 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-# Clean the directory while ignoring build/ .git/ /packages and any hidden .* files
+# Clean the directory while ignoring build/ .git/ and any hidden .* files
 # Note that this is a potentially dangerous operation!!!! If the .git directory gets 
 # clobbered, you're SOL
 find . -not -empty \( -name 'build' -prune -o -name '.git' -prune \
-                      -o -name '.*' -o -name 'packages' -prune \) \
+                      -o -name '.*' \) \
        -o -prune -print0 | xargs -0 rm -r
 
 # Put the deployable files into place
