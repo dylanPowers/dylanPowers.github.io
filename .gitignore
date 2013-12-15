@@ -1,6 +1,8 @@
-# Ignore any packages symlinks
+# Master branch .gitignore
+
+# Ignore any subdirectory packages dirs/symlinks
 */packages
 
-# Ignore the build directories
+# Ignore the build stuff
 /build/
 /.buildlog
