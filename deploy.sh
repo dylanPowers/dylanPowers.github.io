@@ -52,4 +52,4 @@ fi
 
 git checkout $build_rev_branch
 pub upgrade
-echo "\n\nDeployment succeeded!"
+echo "\nDeployment succeeded!"
