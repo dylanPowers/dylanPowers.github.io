@@ -1,11 +1,16 @@
+library me_app;
+
 import 'package:polymer/polymer.dart';
 
-@CustomTag('about-me')
-class AboutMe extends PolymerElement {
+part 'welcome_element.dart';
+
+
+@CustomTag('me-app')
+class MeApp extends PolymerElement {
 
   // Until Dartium/Chromium/Chrome supports CSS editing of shadow dom objects
   // all HTML templates will use the global style sheet.
   bool get applyAuthorStyles => true;
   
-  AboutMe.created() : super.created();
+  MeApp.created() : super.created();
 }
