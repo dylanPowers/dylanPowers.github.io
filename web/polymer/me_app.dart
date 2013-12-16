@@ -2,9 +2,6 @@ library me_app;
 
 import 'package:polymer/polymer.dart';
 
-part 'welcome_element.dart';
-
-
 @CustomTag('me-app')
 class MeApp extends PolymerElement {
 
