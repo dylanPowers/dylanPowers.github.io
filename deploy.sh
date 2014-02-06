@@ -35,7 +35,7 @@ find . -not -empty \( -name 'build' -prune -o -name '.git' -prune \
        -o -prune -print0 | xargs -0 rm -r
 
 # Put the deployable files into place
-cp -R build/* .
+cp -R build/web/* .
 git checkout $build_rev_hash -- CNAME
 
 git add -A
