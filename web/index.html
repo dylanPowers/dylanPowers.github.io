@@ -2,14 +2,17 @@
 <html>
 <head>
   <title>Dylan Powers</title>
-  <link rel="stylesheet" href="style/about_me.css">
-  <link rel="stylesheet" href="style/web_fonts/roboto_regular_macroman/stylesheet.css">
-  <link rel="import" href="polymer/me_app.html">
-  
-  <script type="application/dart">export 'package:polymer/init.dart';</script>
+  <script src="packages/web_components/platform.js"></script>
+  <script src="packages/web_components/dart_support.js"></script>
   <script src="packages/browser/dart.js"></script>
+  
+  <link rel="stylesheet" href="style/font/stylesheet.css">
+  <link rel="stylesheet" href="style/about_me.css">
+
+  <link rel="import" href="polymer/introduction_header.html">
 </head>
 <body>
-  <me-app></me-app>
+  <introduction-header></introduction-header>
+  <script type="application/dart">export 'package:polymer/init.dart';</script>
 </body>
 </html>
