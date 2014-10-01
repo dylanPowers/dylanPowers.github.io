@@ -21,7 +21,7 @@ h1 {
 }
 
 :host {
-  background-color: #e51c23;
+  background-color: #e81c23;
 }
 
 .center-ref-center {
@@ -97,13 +97,10 @@ h1 {
   height: 32px;
   margin-bottom: 19px;
   position: absolute;
-  /* right: 200px; */
   width: 100%;
 }
 
 #title {
-  /* display: block; */
-  /* height: 234px; */
   left: -100%;
   position: relative;
   text-align: center;
