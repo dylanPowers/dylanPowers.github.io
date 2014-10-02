@@ -1,12 +1,13 @@
 <link rel="import" href="packages/polymer/polymer.html">
-<link rel="import" href="packages/paper_elements/paper_shadow.html">
+<link rel="import" href="../base_card.html">
 <polymer-element name="education-card" noscript>
   <template>
-    <link rel="stylesheet" href="education_card.css" />
-    <paper-shadow z="1"></paper-shadow>
-    <h1>Education</h1>
-    <h2>Washington State University</h2>
-    <h3>BS Computer Science</h3>
-    <h3>2010 - Today</h3>
+    <link rel="stylesheet" href="../base_card.css" />
+    <base-card>
+      <h1>Education</h1>
+      <h2>Washington State University</h2>
+      <h3>BS Computer Science</h3>
+      <h3>2010 - Today</h3>
+    </base-card>
   </template>
 </polymer-element>
