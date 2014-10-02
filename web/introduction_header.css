@@ -21,95 +21,14 @@ h1 {
 }
 
 :host {
-  background-color: #e81c23;
+  background-color: #e51c23;
 }
 
-.center-ref-center {
-  left: -25%;
-  text-align: center;
-  width: 50%;
+.center {
+  display: flex;
+  justify-content: center;
 }
 
-.center-ref {
-  bottom: 0px;
-  float: right;
-  height: 50%;
-  position: absolute;
-  right: 0px;
-  width: 50%;
-}
-
-.center-ref-left{
-  left: -100%;
-}
-
-.center-ref-left,
-.left {
-  float: left;
-  margin-left: 32px;
-  text-align: left;
-}
-
-.center-ref-right,
-.right {
-  float: right;
-  right: 0px;
-  margin-right: 32px;
-  text-align: right;
-}
-
-#subtitles {
-  height: 64px;
-  left: -326px;
-  position: relative;
-  top: -187px;
-  width: 652px;
-}
-
-#subtitles > h2 {
-  font-size: 33px;
-  position: absolute;
-}
-
-#footer .center {
-  position: absolute;
-  z-index: -1;
-}
-#footer h3 {
-  font-size: 20px;
-  position: relative;
-  top: 0px;
-  width: 200px;
-}
-#footer img {
-  bottom: -2px;
-  height: 20px;
-  position: relative;
-  right: 0px;
-}
-
-#footer .left {
-  position: relative;
-  width: 233px;
-}
-#footer {
-  bottom: 32px;
-  height: 32px;
-  margin-bottom: 19px;
-  position: absolute;
-  width: 100%;
-}
-
-#title {
-  left: -100%;
-  position: relative;
-  text-align: center;
-  top: -216px;
-  width: 200%;
-}
-
-#footer #center-footer {
-    left: -100px;
-    position: absolute;
-    width: 200px;
+#name {
+  min-width: 800px;
 }
