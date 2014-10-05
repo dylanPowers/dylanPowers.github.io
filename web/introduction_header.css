@@ -1,34 +1,29 @@
-a, 
-:hover, 
-:link, 
-:visited, 
-h1, 
-h2, 
-h3, 
-h4, 
-h5, 
-h6, 
-p {
-  color: rgba(255, 255, 255, 0.87);
-  font-family: robotoregular;
-  font-style: normal;
+:link, :visited, h1 {
   margin: 0px;
   text-decoration: none;
 }
 
-h1 {
- font-size: 108px;
-}
-
-:host {
-  background-color: #e51c23;
+#name, #name :visited, #name :link {  
+  color: rgba(255, 255, 255, 0.87);
+  display: block;
+  font-family: robotoregular;
+  font-size: 108px;
+  font-style: normal;
+  top: 24px;
+  width: 752px;
 }
 
 .center {
-  display: flex;
-  justify-content: center;
+  margin: 0 auto;
+  position: relative;
 }
 
-#name {
-  min-width: 800px;
+#panel {
+  background-color: #e51c23;
+  height: 192px;
+  margin: 0px;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  z-index: 100;
 }
