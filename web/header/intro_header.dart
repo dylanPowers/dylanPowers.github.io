@@ -4,21 +4,18 @@ import 'package:polymer/polymer.dart';
 
 @CustomTag('intro-header')
 class IntroHeaderElement extends PolymerElement {
-  Element _panelEl;
+  @observable String panelStyle = 'panel-expanded';
   StreamSubscription<Event> _scrollHandler;
   
-  IntroHeaderElement.created() : super.created() {
-    _panelEl = shadowRoot.getElementById('panel');
-  }
+  IntroHeaderElement.created() : super.created();
 
   @override
   void attached() {
-    String standardHeight = _panelEl.style.height;
     _scrollHandler = window.onScroll.listen((_) {
-      if (window.pageYOffset > 25) {
-        _panelEl.style.height = "36px";
+      if (window.pageYOffset > 36) {
+        panelStyle = 'panel-collapsed';
       } else {
-        _panelEl.style.height = standardHeight;
+        panelStyle = 'panel-expanded';
       }
     });
   }
