@@ -3,8 +3,8 @@ body {
   margin: 0px;
 }
 
-introduction-header {
-  height: 100%;
+#cards {
   position: absolute;
   width: 100%;
+  top: 100%;
 }

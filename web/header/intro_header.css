@@ -9,7 +9,7 @@ h1 {
 }
 
 .panel-expanded {
-  height: 192px;
+  height: 100%;
 }
 
 .panel-collapsed {
