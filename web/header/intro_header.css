@@ -29,6 +29,16 @@ h1 {
   height: 42px;
 }
 
+.panel-hidden {
+  transition-timing-function: ease-in;
+  top: -42px;
+}
+
+.panel-displayed {
+  transition-timing-function: ease-out;
+  top: 0;
+}
+
 #hidden-panel {
   position: relative;
 }
@@ -42,10 +52,11 @@ h1 {
 }
 
 #panel {
-  background-color: #e51c23;    
-  margin: 0px;
+  background-color: #e51c23;
+  margin: 0;
   position: fixed;
-  top: 0px;
+  transition-duration: 150ms;
+  transition-property: top;
   width: 100%;
   z-index: 100;
 }

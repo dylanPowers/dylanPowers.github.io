@@ -6,10 +6,13 @@ import 'package:polymer/polymer.dart';
 class IntroHeaderElement extends PolymerElement {
   static const String _PANEL_EXPANDED = 'panel-expanded';
   static const String _PANEL_COLLAPSED = 'panel-collapsed';
+  static const String _PANEL_HIDDEN = 'panel-hidden';
+  static const String _PANEL_DISPLAYED = 'panel-displayed';
   static const String _NAME_COLLAPSED = 'name-collapsed';
   static const String _NAME_EXPANDED = 'name-expanded';
 
   @observable String panelStyle = _PANEL_EXPANDED;
+  @observable String panelDisplayStyle = _PANEL_DISPLAYED;
   @observable String nameStyle = _NAME_EXPANDED;
 
   StreamSubscription<EnhancedScrollEvent> _scrollHandler;
@@ -94,18 +97,21 @@ class IntroHeaderElement extends PolymerElement {
 
   void _updatePanel(EnhancedScrollEvent e) {
     if (e.newYPosition > _panelHeightRange.range) {
-      if (e.yMovement < 0) {
-        panelStyle = _PANEL_COLLAPSED;
-        _panel.style.height = '';
-        _panel.style.top = '';
-      } else {
-        _panel.style.top = '${0 - _panelHeightRange.min}px';
+      panelStyle = _PANEL_COLLAPSED;
+      _panel.style.transform = '';
+      if (e.yMovement < -10) {
+        panelDisplayStyle = _PANEL_DISPLAYED;
+      } else if (e.yMovement > 0) {
+        panelDisplayStyle = _PANEL_HIDDEN;
       }
-    } else if (e.newYPosition > 0) {
-      _panel.style.height = '${_panelHeightRange.max - e.newYPosition}px';
     } else {
+      panelDisplayStyle = _PANEL_DISPLAYED;
       panelStyle = _PANEL_EXPANDED;
-      _panel.style.height = '';
+      if (e.newYPosition > 0) {
+        _panel.style.transform = 'translateY(-${e.newYPosition}px)';
+      } else {
+        _panel.style.transform = '';
+      }
     }
   }
 
