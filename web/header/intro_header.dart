@@ -4,15 +4,15 @@ import 'package:polymer/polymer.dart';
 
 @CustomTag('intro-header')
 class IntroHeaderElement extends PolymerElement {
-  static const String _EXPANDED = 'panel-expanded';
-  static const String _COLLAPSED = 'panel-collapsed';
+  static const String _PANEL_EXPANDED = 'panel-expanded';
+  static const String _PANEL_COLLAPSED = 'panel-collapsed';
   static const String _NAME_COLLAPSED = 'name-collapsed';
   static const String _NAME_EXPANDED = 'name-expanded';
 
-  @observable String panelStyle = _EXPANDED;
+  @observable String panelStyle = _PANEL_EXPANDED;
   @observable String nameStyle = _NAME_EXPANDED;
 
-  StreamSubscription<Event> _scrollHandler;
+  StreamSubscription<EnhancedScrollEvent> _scrollHandler;
 
   int _minHeight;
   int _maxHeight;
@@ -20,8 +20,6 @@ class IntroHeaderElement extends PolymerElement {
   Element _name;
   Element _panel;
 
-  int _lastScrollX = 0;
-  int _lastScrollY = 0;
 
   IntroHeaderElement.created() : super.created();
 
@@ -35,7 +33,7 @@ class IntroHeaderElement extends PolymerElement {
       _evaluateSize();
     });
 
-    _scrollHandler = window.onScroll.listen(_onScrollEvent);
+    _scrollHandler = EnhancedWindowOnScroll.stream.listen(_updateForScrollEvent);
 
     _nameTopRange = _evaluateElementTop(_name, _NAME_COLLAPSED, _NAME_EXPANDED);
     _evaluateSize();
@@ -46,15 +44,13 @@ class IntroHeaderElement extends PolymerElement {
     var oldHeight = _panel.style.height;
 
     _panel.style.height = '';
-    _panel.className = _COLLAPSED;
+    _panel.className = _PANEL_COLLAPSED;
     _minHeight = _panel.clientHeight;
-    _panel.className = _EXPANDED;
+    _panel.className = _PANEL_EXPANDED;
     _maxHeight = _panel.clientHeight;
 
     _panel.className = oldClassName;
     _panel.style.height = oldHeight;
-
-//    _updateForScrollEvent();
   }
 
   NumberSpan _evaluateElementTop(Element el, String minClass, String maxClass) {
@@ -76,14 +72,6 @@ class IntroHeaderElement extends PolymerElement {
     return topRange;
   }
 
-  void _onScrollEvent(Event e) {
-    var scrollE = new EnhancedScrollEvent(_lastScrollX, _lastScrollY,
-                                          window.pageXOffset, window.pageYOffset);
-    _lastScrollX = scrollE.newXPosition;
-    _lastScrollY = scrollE.newYPosition;
-    _updateForScrollEvent(scrollE);
-  }
-
   void _updateForScrollEvent(EnhancedScrollEvent e) {
     _updateName(e);
     _updatePanel(e);
@@ -92,7 +80,7 @@ class IntroHeaderElement extends PolymerElement {
   void _updatePanel(EnhancedScrollEvent e) {
     if (e.newYPosition > _maxHeight - _minHeight) {
       if (e.yMovement < 0) {
-        panelStyle = _COLLAPSED;
+        panelStyle = _PANEL_COLLAPSED;
         _panel.style.height = '';
       } else {
         _panel.style.height = '0px';
@@ -101,7 +89,7 @@ class IntroHeaderElement extends PolymerElement {
       _panel.style.height = '${_maxHeight - e.newYPosition}px';
       _name.style.transform = 'scale(${(_maxHeight - _minHeight) / (e.newYPosition + (_maxHeight - _minHeight))}';
     } else {
-      panelStyle = _EXPANDED;
+      panelStyle = _PANEL_EXPANDED;
       _panel.style.height = '';
     }
   }
@@ -120,6 +108,45 @@ class IntroHeaderElement extends PolymerElement {
     }
   }
 }
+
+class EnhancedScrollSink extends EventSink<Event> {
+  int _lastScrollX = 0;
+  int _lastScrollY = 0;
+  final EventSink<EnhancedScrollEvent> _outputSink;
+
+  EnhancedScrollSink(this._outputSink);
+
+  void add(Event data) {
+    var scrollE = new EnhancedScrollEvent(_lastScrollX, _lastScrollY,
+                                          window.pageXOffset, window.pageYOffset);
+    _lastScrollX = scrollE.newXPosition;
+    _lastScrollY = scrollE.newYPosition;
+
+    _outputSink.add(scrollE);
+  }
+
+  void addError(e, [stackTrace]) => _outputSink.addError(e, stackTrace);
+  void close() => _outputSink.close();
+}
+
+abstract class EnhancedWindowOnScroll {
+
+  static Stream<EnhancedScrollEvent> _singleton;
+
+  static Stream<EnhancedScrollEvent> get stream {
+    if (_singleton == null) {
+      _singleton = new Stream<EnhancedScrollEvent>.eventTransformed(window.onScroll,
+                                                                    _mapSink);
+    }
+
+    return _singleton;
+  }
+
+  static EventSink _mapSink(EventSink<EnhancedScrollEvent> sink) {
+    return new EnhancedScrollSink(sink);
+  }
+}
+
 
 class EnhancedScrollEvent {
   final int oldXPosition;
