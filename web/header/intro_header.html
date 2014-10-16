@@ -2,10 +2,11 @@
 <link rel="import" href="packages/paper_elements/paper_shadow.html">
 <polymer-element name="intro-header">
   <template> 
-    <link rel="stylesheet" href="intro_header.css" /> 
+    <link rel="stylesheet" href="intro_header.css" />
+    <div id="hidden-panel" class="panel-expanded"></div>
     <div id="panel" class="{{panelStyle}}">
       <paper-shadow z="2"></paper-shadow> 
-      <h1 id="name" class="center">
+      <h1 id="name" class="center {{nameStyle}}">
         Dylan Powers
       </h1>
     </div>
