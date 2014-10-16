@@ -14,12 +14,10 @@ class IntroHeaderElement extends PolymerElement {
 
   StreamSubscription<EnhancedScrollEvent> _scrollHandler;
 
-  int _minHeight;
-  int _maxHeight;
-  NumberSpan _nameTopRange;
+  IntegerRange _panelHeightRange;
+  IntegerRange _nameTopRange;
   Element _name;
   Element _panel;
-
 
   IntroHeaderElement.created() : super.created();
 
@@ -29,47 +27,64 @@ class IntroHeaderElement extends PolymerElement {
     _panel = shadowRoot.querySelector('#panel');
 
     window.onResize.listen((_) {
-      _nameTopRange = _evaluateElementTop(_name, _NAME_COLLAPSED, _NAME_EXPANDED);
-      _evaluateSize();
+      _evaluateElRanges();
     });
 
     _scrollHandler = EnhancedWindowOnScroll.stream.listen(_updateForScrollEvent);
-
-    _nameTopRange = _evaluateElementTop(_name, _NAME_COLLAPSED, _NAME_EXPANDED);
-    _evaluateSize();
+    _evaluateElRanges();
   }
 
-  void _evaluateSize() {
-    var oldClassName = _panel.className;
-    var oldHeight = _panel.style.height;
-
-    _panel.style.height = '';
-    _panel.className = _PANEL_COLLAPSED;
-    _minHeight = _panel.clientHeight;
-    _panel.className = _PANEL_EXPANDED;
-    _maxHeight = _panel.clientHeight;
-
-    _panel.className = oldClassName;
-    _panel.style.height = oldHeight;
+  void _evaluateElRanges() {
+    _nameTopRange = _evaluateElementTopRange(_name, _NAME_COLLAPSED, _NAME_EXPANDED);
+    _panelHeightRange = _evaluateElementHeightRange(_panel, _PANEL_COLLAPSED, _PANEL_EXPANDED);
   }
 
-  NumberSpan _evaluateElementTop(Element el, String minClass, String maxClass) {
-    var topRange = new NumberSpan();
+  static IntegerRange _evaluateElementHeightRange(Element el, String minClass, String maxClass) {
+    var heightRange = new IntegerRange();
+
+    heightRange.min = _evaluateElHeight(el, minClass, maxClass);
+    heightRange.max = _evaluateElHeight(el, maxClass, minClass);
+
+    return heightRange;
+  }
+
+  static int _evaluateElHeight(Element el, String className, String conflictingClass) {
+    var oldClasses = el.className;
+    var oldHeight = el.style.height;
+
+    el.style.height = '';
+    el.classes.remove(conflictingClass);
+    el.classes.add(className);
+    int height = el.clientHeight;
+
+    el.className = oldClasses;
+    el.style.height = oldHeight;
+
+    return height;
+  }
+
+  static IntegerRange _evaluateElementTopRange(Element el, String minClass, String maxClass) {
+    var topRange = new IntegerRange();
+
+    topRange.min = _evaluateElTop(el, minClass, maxClass);
+    topRange.max = _evaluateElTop(el, maxClass, minClass);
+
+    return topRange;
+  }
+
+  static int _evaluateElTop(Element el, String className, String conflictingClass) {
     var oldClasses = el.className;
     var oldTop = el.style.top;
 
-    el.style.height = '';
-    el.classes.remove(maxClass);
-    el.classes.add(minClass);
-    topRange.min = el.offsetTop;
-    el.classes.remove(minClass);
-    el.classes.add(maxClass);
-    topRange.max = el.offsetTop;
+    el.style.top = '';
+    el.classes.remove(conflictingClass);
+    el.classes.add(className);
+    int top = el.offsetTop;
 
     el.className = oldClasses;
     el.style.top = oldTop;
 
-    return topRange;
+    return top;
   }
 
   void _updateForScrollEvent(EnhancedScrollEvent e) {
@@ -78,16 +93,16 @@ class IntroHeaderElement extends PolymerElement {
   }
 
   void _updatePanel(EnhancedScrollEvent e) {
-    if (e.newYPosition > _maxHeight - _minHeight) {
+    if (e.newYPosition > _panelHeightRange.range) {
       if (e.yMovement < 0) {
         panelStyle = _PANEL_COLLAPSED;
         _panel.style.height = '';
+        _panel.style.top = '';
       } else {
-        _panel.style.height = '0px';
+        _panel.style.top = '${0 - _panelHeightRange.min}px';
       }
     } else if (e.newYPosition > 0) {
-      _panel.style.height = '${_maxHeight - e.newYPosition}px';
-      _name.style.transform = 'scale(${(_maxHeight - _minHeight) / (e.newYPosition + (_maxHeight - _minHeight))}';
+      _panel.style.height = '${_panelHeightRange.max - e.newYPosition}px';
     } else {
       panelStyle = _PANEL_EXPANDED;
       _panel.style.height = '';
@@ -160,8 +175,8 @@ class EnhancedScrollEvent {
                       this.newXPosition, this.newYPosition);
 }
 
-class NumberSpan {
-  num min;
-  num max;
-  num get range => max - min;
+class IntegerRange {
+  int min;
+  int max;
+  int get range => max - min;
 }
