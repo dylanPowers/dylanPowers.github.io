@@ -5,9 +5,13 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      {pattern: 'test/*.dart', included: true },
-      {pattern: '**/*.dart', watched: false, included: false, served: true},
       {pattern: 'packages/browser/dart.js', watched: false, included: true, served: true},
+      //{pattern: 'packages/web_components/dart_support.js', included: true, served: true},
+      {pattern: 'lib/header/intro_header.html', included: true, served: true},
+      {pattern: '**/*.dart', watched: true, included: false, served: true},
+      {pattern: '**/*.css', watched: true, included: false, served: true},
+      {pattern: '**/*.html', watched: true, included: false, served: true},
+      {pattern: 'test/main_test.dart', watched: true, included: true },
     ],
 
     autoWatch: true,

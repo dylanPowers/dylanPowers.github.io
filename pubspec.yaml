@@ -11,4 +11,6 @@ dev_dependencies:
   unittest: ">=0.11.0 < 0.12.0"
 transformers:
 - polymer:
-    entry_points: web/index.html
+    entry_points:
+      - web/index.html
+      - test/main_test.html

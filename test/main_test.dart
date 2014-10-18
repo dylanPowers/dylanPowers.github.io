@@ -1,9 +1,16 @@
+library about_me_tests;
+
+import 'dart:html';
 import 'package:unittest/unittest.dart';
+//import 'package:unittest/html_enhanced_config.dart';
+import 'package:about_me/header/intro_header.dart';
+import 'package:polymer/polymer.dart';
+
+part 'header_tests.dart';
 
 void main() {
-  group("First test", () {
-    test('Success!', () {
-      expect(true, isTrue);
-    });
-  });
+  initPolymer();
+//  useHtmlEnhancedConfiguration();
+
+  HeaderTests.run();
 }

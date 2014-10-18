@@ -22,6 +22,10 @@ class IntroHeaderElement extends PolymerElement {
   Element _name;
   Element _panel;
 
+  factory IntroHeaderElement() {
+    return new Element.tag('intro-header') as IntroHeaderElement;
+  }
+
   IntroHeaderElement.created() : super.created();
 
   @override
