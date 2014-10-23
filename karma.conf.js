@@ -6,7 +6,6 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       {pattern: 'packages/browser/dart.js', watched: false, included: true, served: true},
-      //{pattern: 'packages/web_components/dart_support.js', included: true, served: true},
       {pattern: 'lib/header/intro_header.html', included: true, served: true},
       {pattern: '**/*.dart', watched: true, included: false, served: true},
       {pattern: '**/*.css', watched: true, included: false, served: true},
