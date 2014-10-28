@@ -103,9 +103,9 @@ class IntroHeaderElement extends PolymerElement {
     if (e.newYPosition > _panelHeightRange.range) {
       panelStyle = _PANEL_COLLAPSED;
       _panel.style.transform = '';
-      if (e.yMovement < -10) {
+      if (e.yMovement < -10 || e.newYPosition <= _panelHeightRange.max) {
         panelDisplayStyle = _PANEL_DISPLAYED;
-      } else if (e.yMovement > 0) {
+      } else if (e.yMovement > 0 && e.newYPosition > _panelHeightRange.max) {
         panelDisplayStyle = _PANEL_HIDDEN;
       }
     } else {

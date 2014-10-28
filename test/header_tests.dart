@@ -10,6 +10,9 @@ class HeaderTests {
 
       test('banner is present until the first card is reached',
            bannerIsPresentUntilFirstCardReached);
+      
+      test('banner is present when slowly scrolling up past the first card',
+           bannerIsPresentWhenSlowlyScrolling);
     });
   }
 
@@ -17,11 +20,19 @@ class HeaderTests {
     var el = new IntroHeaderElement();
     el.id = 'header-test-el';
     document.body.append(el);
+
+    var extraHeight = new Element.div();
+    extraHeight.id = 'extra-height';
+    extraHeight.style.height = '5000px';
+    document.body.append(extraHeight);
   }
 
   static void headerTearDown() {
     var el = document.getElementById('header-test-el');
     el.remove();
+    
+    var extraHeight = document.getElementById('extra-height');
+    extraHeight.remove();
   }
 
   static void introHeaderFactoryWorks() {
@@ -29,15 +40,22 @@ class HeaderTests {
   }
 
   static Future bannerIsPresentUntilFirstCardReached() {
-    var extraHeight = new Element.div();
-    extraHeight.style.height = '5000px';
-    document.body.append(extraHeight);
-
-    return new Future(() => window.scroll(0, 600)).then((_) {
+    return new Future(() => window.scroll(0, 500)).then((_) {
       return new Future(() {
         var shadowRoot = document.getElementById('header-test-el').shadowRoot;
         var panel = shadowRoot.getElementById('panel');
         expect(panel.classes, contains('panel-displayed'));
+      });
+    });
+  }
+  
+  static Future bannerIsPresentWhenSlowlyScrolling() {
+    return new Future(() => window.scroll(0, 502)).then((_) {
+      return new Future.delayed(Duration.ZERO, () => window.scroll(0, 500));
+    }).then((_) {
+      return new Future.delayed(Duration.ZERO, () {
+        IntroHeaderElement header = document.getElementById('header-test-el');
+        expect(header.panelDisplayStyle, equals('panel-displayed'));
       });
     });
   }
