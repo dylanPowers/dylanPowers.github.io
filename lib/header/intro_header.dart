@@ -1,9 +1,14 @@
+library intro_header;
+
 import 'dart:async';
 import 'dart:html';
-import 'package:polymer/polymer.dart';
+import 'package:angular/angular.dart';
 
-@CustomTag('intro-header')
-class IntroHeaderElement extends PolymerElement {
+@Component(
+    selector: 'intro-header',
+    cssUrl: 'intro_header.css',
+    templateUrl: 'intro_header.html')
+class IntroHeaderElement implements ShadowRootAware {
   static const String _PANEL_EXPANDED = 'panel-expanded';
   static const String _PANEL_COLLAPSED = 'panel-collapsed';
   static const String _PANEL_HIDDEN = 'panel-hidden';
@@ -11,9 +16,10 @@ class IntroHeaderElement extends PolymerElement {
   static const String _NAME_COLLAPSED = 'name-collapsed';
   static const String _NAME_EXPANDED = 'name-expanded';
 
-  @observable String panelStyle = _PANEL_EXPANDED;
-  @observable String panelDisplayStyle = _PANEL_DISPLAYED;
-  @observable String nameStyle = _NAME_EXPANDED;
+//  Scope scope;
+  @NgOneWay('panelStyle') String panelStyle = _PANEL_EXPANDED;
+  @NgOneWay('panelDisplayStyle') String panelDisplayStyle = _PANEL_DISPLAYED;
+  @NgOneWay('nameStyle') String nameStyle = _NAME_EXPANDED;
 
   StreamSubscription<EnhancedScrollEvent> _scrollHandler;
 
@@ -21,19 +27,21 @@ class IntroHeaderElement extends PolymerElement {
   IntegerRange _nameTopRange;
   Element _name;
   Element _panel;
-
-  factory IntroHeaderElement() {
-    return new Element.tag('intro-header') as IntroHeaderElement;
+  Window _window;
+  
+  IntroHeaderElement(this._window) {
+//    return new Element.tag('intro-header') as IntroHeaderElement;
   }
 
-  IntroHeaderElement.created() : super.created();
+//  IntroHeaderElement.created() : super.created();
 
   @override
-  void attached() {
+  void onShadowRoot(ShadowRoot shadowRoot) {
+    
     _name = shadowRoot.querySelector('#name');
     _panel = shadowRoot.querySelector('#panel');
 
-    window.onResize.listen((_) {
+    _window.onResize.listen((_) {
       _evaluateElRanges();
     });
 
