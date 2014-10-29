@@ -3,6 +3,10 @@ body {
   margin: 0px;
 }
 
+[ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
 #cards {
   position: absolute;
   width: 100%;
