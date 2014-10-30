@@ -7,9 +7,11 @@ import 'package:angular/mock/module.dart';
 //import 'package:polymer/polymer.dart';
 import 'package:unittest/unittest.dart';
 import 'package:about_me/header/intro_header.dart';
+import 'package:about_me/enhanced_window_on_scroll.dart';
 import '../web/main.dart';
 
 part 'header_tests.dart';
+part 'enhanced_window_scroll_test.dart';
 
 void main() {
 //  initPolymer();
@@ -20,4 +22,5 @@ void main() {
   tearDown(tearDownInjector);
   
   HeaderTests.run();
+  EnhancedWindowScrollTests.run();
 }
