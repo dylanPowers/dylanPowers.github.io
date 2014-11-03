@@ -2,24 +2,26 @@ part of about_me_tests;
 
 class EnhancedWindowScrollTests {
   static void run() {
-    group('Enhanced window scroll', () {            
-      test('HTML events can be added to the scroll sink', 
-           _htmlEventsCanBeAddedToScrollSink);
+    describe('Enhanced window scroll', () {  
+      describe('sink', () {
+        it('can have HTML events added',
+        _htmlEventsCanBeAddedToScrollSink);
+      });
       
-      test('EnhancedWindowOnScroll is injectable', () {
-        expect(() => inject((EnhancedWindowOnScroll scroll) {}), returnsNormally);
+      it('is injectable', () {
+        expect(() => inject((EnhancedWindowOnScroll scroll) {})).not.toThrow();
       });
     });
   }
   
   static void _scrollSinkConstructAcceptsWinObj() {
     var sink = new StreamController();
-    expect(() => new EnhancedScrollSink(sink, window), returnsNormally);
-    expect(new EnhancedScrollSink(sink, window), isNotNull);
+    expect(() => new EnhancedScrollSink(sink, window)).not.toThrow();
+    expect(new EnhancedScrollSink(sink, window)).toBeNotNull();
   }
   
   static void _htmlEventsCanBeAddedToScrollSink() {
     var sink = new EnhancedScrollSink(new StreamController(), window);
-    expect(() => sink.add(new Event('Dummy')), returnsNormally);
+    expect(() => sink.add(new Event('Dummy'))).not.toThrow();
   }
 }

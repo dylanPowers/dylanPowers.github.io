@@ -3,18 +3,18 @@ part of about_me_tests;
 class HeaderTests {
   static IntroHeaderElement _header;
   static void run() {
-    group('The intro header', () {
+    describe('The intro header', () {
 
-      test('constructor expects an enhanced window scroll stream',
-           constructorExpectsEnhancedWindowScroll);
+      it('expects a constructor that accepts an enhanced window scroll',
+         constructorExpectsEnhancedWindowScroll);
 
-      test('onShadowRoot runs', onShadowRootRuns);
+      it('has an onShadowRoot that runs cleanly', onShadowRootRuns);
 
-      setUp(headerSetUp);
-      test('is present until the first card is reached',
+      beforeEach(headerSetUp);
+      it('is present until the first card is reached',
            bannerIsPresentUntilFirstCardReached);
       
-      test('is present when slowly scrolling up past the first card',
+      it('is present when slowly scrolling up past the first card',
            bannerIsPresentWhenSlowlyScrolling);
     });
   }
@@ -32,7 +32,7 @@ class HeaderTests {
 
   static void constructorExpectsEnhancedWindowScroll() {
     inject((Window win, EnhancedWindowOnScroll scroll) {
-      expect(() => new IntroHeaderElement(scroll), returnsNormally);
+      expect(() => new IntroHeaderElement(scroll)).not.toThrow();
     });
   }
   
@@ -41,8 +41,7 @@ class HeaderTests {
                                 '<intro-header></intro-header>')
     .then((Element headerElement) {
       inject((IntroHeaderElement header) {
-        expect(() => header.onShadowRoot(headerElement.shadowRoot),
-                    returnsNormally);
+        expect(() => header.onShadowRoot(headerElement.shadowRoot)).not.toThrow();
       });
     });
   }
@@ -53,7 +52,7 @@ class HeaderTests {
      
       microLeap();
       
-      expect(_header.panelDisplayStyle, equals('panel-displayed'));
+      expect(_header.panelDisplayStyle).toEqual('panel-displayed');
     }));
   }
   
@@ -63,7 +62,7 @@ class HeaderTests {
       microLeap();
       win.scroll(0, 500);
       microLeap();
-      expect(_header.panelDisplayStyle, equals('panel-displayed'));
+      expect(_header.panelDisplayStyle).toEqual('panel-displayed');
     }));
   }
 }

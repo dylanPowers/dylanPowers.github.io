@@ -45,6 +45,10 @@ packages:
     description: di
     source: hosted
     version: "3.3.2"
+  guinness:
+    description: guinness
+    source: hosted
+    version: "0.1.16"
   html5lib:
     description: html5lib
     source: hosted
