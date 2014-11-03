@@ -4,7 +4,6 @@ import 'dart:async';
 import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:angular/mock/module.dart';
-//import 'package:polymer/polymer.dart';
 import 'package:unittest/unittest.dart';
 import 'package:about_me/header/intro_header.dart';
 import 'package:about_me/enhanced_window_on_scroll.dart';
@@ -24,21 +23,25 @@ void main() {
   EnhancedWindowScrollTests.run();
 }
 
-Future loadTemplate(String template) {
-  return HttpRequest.request(template).then((HttpRequest r) {
-      inject((TemplateCache cache) => 
-        cache.put(template, new HttpResponse(r.status, r.responseText)));
-  });
+Future<Element> loadNCompileTemplate(String templateUrl, String htmlComponent) {
+  return _loadTemplate(templateUrl).then((_) => _compileComponent(htmlComponent));
 }
 
-//void compileComponent(String html){
-//  async(inject((TestBed tb) {
-//    final s = tb.rootScope.createChild(scope);
-//    final el = tb.compile(html);
-//
-//    microLeap();
-//    tb.rootScope.apply();
-//
-//    callback(el);
-//  }));
-//}
+Element _compileComponent(String htmlComponent) {
+  Element el;
+  inject((TestBed tb) {
+    async(() {
+      el = tb.compile(htmlComponent);
+      microLeap();
+    }).call();
+    tb.rootScope.apply();
+  });
+  return el;
+}
+
+Future _loadTemplate(String template) {
+  return HttpRequest.request(template).then((HttpRequest r) {
+    inject((TemplateCache cache) =>
+    cache.put(template, new HttpResponse(r.status, r.responseText)));
+  });
+}

@@ -5,74 +5,47 @@ class HeaderTests {
   static void run() {
     group('The intro header', () {
 
-      test('intro header expects an enhanced window scroll stream', () {
-        inject((Window win, EnhancedWindowOnScroll scroll) {
-          expect(() => new IntroHeaderElement(scroll), returnsNormally);
-        });
-      });
+      test('constructor expects an enhanced window scroll stream',
+           constructorExpectsEnhancedWindowScroll);
 
-      test('should run async code', async(() {
-        var thenRan = false;
-        new Future.value('s').then((_) { thenRan = true; });
-        expect(thenRan, isFalse);
-        microLeap();
-        expect(thenRan, isTrue);
-      }));
-      
-      test('should run injected async code', async(inject((Http http, MockHttpBackend backend) {
-        var thenRan = false;
-        backend.expectGET('http://www.google.com/').respond('');  
-        http.get('http://www.google.com/').then((_) { thenRan = true; });
-        backend.flush();
-        expect(thenRan, isFalse);
-        microLeap();
-        expect(thenRan, isTrue);
-      })));
+      test('onShadowRoot runs', onShadowRootRuns);
 
-      setUp(() => module((Module m) => m.bind(Window, toValue: window)));
-      test('injected window has an onScroll stream', inject((Window win) {
-        expect(win.onScroll, isNotNull);
-      }));
-
-      setUp(() => loadTemplate('packages/about_me/header/intro_header.html'));
-      
-      test('intro header accepts a shadow root', async(inject((TestBed tb, 
-                                                               IntroHeaderElement header) {
-        Element headerElement = tb.compile('<intro-header></intro-header>');
-        microLeap();
-        tb.rootScope.apply();
-
-        expect(() {
-          header.onShadowRoot(headerElement.shadowRoot);
-        }, returnsNormally);
-      })));
-      
       setUp(headerSetUp);
-
-      skip_test('banner is present until the first card is reached',
+      test('is present until the first card is reached',
            bannerIsPresentUntilFirstCardReached);
       
-      skip_test('banner is present when slowly scrolling up past the first card',
-                bannerIsPresentWhenSlowlyScrolling);
+      test('is present when slowly scrolling up past the first card',
+           bannerIsPresentWhenSlowlyScrolling);
     });
   }
 
   static Future headerSetUp() {
-    return loadTemplate('packages/about_me/header/intro_header.html').then((_) {
-      inject((TestBed tb, IntroHeaderElement header) {
-        Element headerElement;
-        async(() {
-          headerElement = tb.compile('<intro-header></intro-header>');
-          microLeap();
-        }).call();
-        tb.rootScope.apply();
-
+    return loadNCompileTemplate('packages/about_me/header/intro_header.html', 
+                                '<intro-header></intro-header>')
+    .then((Element headerElement) {
+      inject((IntroHeaderElement header) {
         header.onShadowRoot(headerElement.shadowRoot);
         _header = header;
       });
     });
   }
 
+  static void constructorExpectsEnhancedWindowScroll() {
+    inject((Window win, EnhancedWindowOnScroll scroll) {
+      expect(() => new IntroHeaderElement(scroll), returnsNormally);
+    });
+  }
+  
+  static Future onShadowRootRuns() {
+    return loadNCompileTemplate('packages/about_me/header/intro_header.html',
+                                '<intro-header></intro-header>')
+    .then((Element headerElement) {
+      inject((IntroHeaderElement header) {
+        expect(() => header.onShadowRoot(headerElement.shadowRoot),
+                    returnsNormally);
+      });
+    });
+  }
 
   static dynamic bannerIsPresentUntilFirstCardReached() {
     return async(inject((Window win) {
