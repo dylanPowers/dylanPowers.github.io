@@ -14,7 +14,6 @@ part 'header_tests.dart';
 part 'enhanced_window_scroll_test.dart';
 
 void main() {
-//  initPolymer();
   setUp(() {
     setUpInjector();
     module((Module m) => m.install(new AboutMeNGApp()));
@@ -24,3 +23,22 @@ void main() {
   HeaderTests.run();
   EnhancedWindowScrollTests.run();
 }
+
+Future loadTemplate(String template) {
+  return HttpRequest.request(template).then((HttpRequest r) {
+      inject((TemplateCache cache) => 
+        cache.put(template, new HttpResponse(r.status, r.responseText)));
+  });
+}
+
+//void compileComponent(String html){
+//  async(inject((TestBed tb) {
+//    final s = tb.rootScope.createChild(scope);
+//    final el = tb.compile(html);
+//
+//    microLeap();
+//    tb.rootScope.apply();
+//
+//    callback(el);
+//  }));
+//}

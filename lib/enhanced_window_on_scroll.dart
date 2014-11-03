@@ -7,9 +7,9 @@ class EnhancedWindowOnScroll {
   Stream<EnhancedScrollEvent> get stream => _stream;
   
   Stream<EnhancedScrollEvent> _stream;
-  final html.Window _win;
+  final html.Window _win = html.window;
   
-  EnhancedWindowOnScroll(this._win) {
+  EnhancedWindowOnScroll() {
     _stream = new Stream<EnhancedScrollEvent>.eventTransformed(_win.onScroll,
                                                                _mapSink);
   }

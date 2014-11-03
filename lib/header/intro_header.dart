@@ -3,6 +3,7 @@ library intro_header;
 import 'dart:async';
 import 'dart:html';
 import 'package:angular/angular.dart';
+import 'package:about_me/enhanced_window_on_scroll.dart';
 
 @Component(
     selector: 'intro-header',
@@ -22,30 +23,28 @@ class IntroHeaderElement implements ShadowRootAware {
   @NgOneWay('nameStyle') String nameStyle = _NAME_EXPANDED;
 
   StreamSubscription<EnhancedScrollEvent> _scrollHandler;
+  final Stream<EnhancedScrollEvent> _scrollStream;
 
   IntegerRange _panelHeightRange;
   IntegerRange _nameTopRange;
   Element _name;
   Element _panel;
-  Window _window;
+  Window _win = window;
   
-  IntroHeaderElement(this._window) {
-//    return new Element.tag('intro-header') as IntroHeaderElement;
-  }
-
-//  IntroHeaderElement.created() : super.created();
-
+  IntroHeaderElement(EnhancedWindowOnScroll onScroll) : 
+      _scrollStream = onScroll.stream;
+  
   @override
   void onShadowRoot(ShadowRoot shadowRoot) {
     
     _name = shadowRoot.querySelector('#name');
     _panel = shadowRoot.querySelector('#panel');
 
-    _window.onResize.listen((_) {
+    _win.onResize.listen((_) {
       _evaluateElRanges();
     });
 
-    _scrollHandler = EnhancedWindowOnScroll.stream.listen(_updateForScrollEvent);
+    _scrollHandler = _scrollStream.listen(_updateForScrollEvent);
     _evaluateElRanges();
   }
 

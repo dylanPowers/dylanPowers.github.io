@@ -1,51 +1,96 @@
 part of about_me_tests;
 
 class HeaderTests {
+  static IntroHeaderElement _header;
   static void run() {
     group('The intro header', () {
-      setUp(headerSetUp);
-      tearDown(headerTearDown);
 
-      test('banner is present until the first card is reached',
+      test('intro header expects an enhanced window scroll stream', () {
+        inject((Window win, EnhancedWindowOnScroll scroll) {
+          expect(() => new IntroHeaderElement(scroll), returnsNormally);
+        });
+      });
+
+      test('should run async code', async(() {
+        var thenRan = false;
+        new Future.value('s').then((_) { thenRan = true; });
+        expect(thenRan, isFalse);
+        microLeap();
+        expect(thenRan, isTrue);
+      }));
+      
+      test('should run injected async code', async(inject((Http http, MockHttpBackend backend) {
+        var thenRan = false;
+        backend.expectGET('http://www.google.com/').respond('');  
+        http.get('http://www.google.com/').then((_) { thenRan = true; });
+        backend.flush();
+        expect(thenRan, isFalse);
+        microLeap();
+        expect(thenRan, isTrue);
+      })));
+
+      setUp(() => module((Module m) => m.bind(Window, toValue: window)));
+      test('injected window has an onScroll stream', inject((Window win) {
+        expect(win.onScroll, isNotNull);
+      }));
+
+      setUp(() => loadTemplate('packages/about_me/header/intro_header.html'));
+      
+      test('intro header accepts a shadow root', async(inject((TestBed tb, 
+                                                               IntroHeaderElement header) {
+        Element headerElement = tb.compile('<intro-header></intro-header>');
+        microLeap();
+        tb.rootScope.apply();
+
+        expect(() {
+          header.onShadowRoot(headerElement.shadowRoot);
+        }, returnsNormally);
+      })));
+      
+      setUp(headerSetUp);
+
+      skip_test('banner is present until the first card is reached',
            bannerIsPresentUntilFirstCardReached);
       
-      test('banner is present when slowly scrolling up past the first card',
-           bannerIsPresentWhenSlowlyScrolling);
+      skip_test('banner is present when slowly scrolling up past the first card',
+                bannerIsPresentWhenSlowlyScrolling);
     });
   }
 
-  static void headerSetUp() {
-    module((Module m) => m.bind(Window, toValue: new MockWindow()));
-    
-//    var extraHeight = new Element.div();
-//    extraHeight.id = 'extra-height';
-//    extraHeight.style.height = '5000px';
-//    document.body.append(extraHeight);
+  static Future headerSetUp() {
+    return loadTemplate('packages/about_me/header/intro_header.html').then((_) {
+      inject((TestBed tb, IntroHeaderElement header) {
+        Element headerElement;
+        async(() {
+          headerElement = tb.compile('<intro-header></intro-header>');
+          microLeap();
+        }).call();
+        tb.rootScope.apply();
+
+        header.onShadowRoot(headerElement.shadowRoot);
+        _header = header;
+      });
+    });
   }
 
-  static void headerTearDown() {    
-//    var extraHeight = document.getElementById('extra-height');
-//    extraHeight.remove();
-  }
 
-  static Future bannerIsPresentUntilFirstCardReached() {
-    return async(inject((IntroHeaderElement header, ShadowRoot shadowRoot, Window win) {
-      header.onShadowRoot(shadowRoot);
-      win.scroll(0, 500);
-      
+  static dynamic bannerIsPresentUntilFirstCardReached() {
+    return async(inject((Window win) {
+      win.scroll(0, 700);
+     
       microLeap();
       
-      expect(header.panelDisplayStyle, equals('panel-displayed'));
+      expect(_header.panelDisplayStyle, equals('panel-displayed'));
     }));
   }
   
-  static void bannerIsPresentWhenSlowlyScrolling() {
-    async(inject((IntroHeaderElement header, Window win) {
+  static dynamic bannerIsPresentWhenSlowlyScrolling() {
+    return async(inject((Window win) {
       win.scroll(0, 502);
       microLeap();
       win.scroll(0, 500);
       microLeap();
-      expect(header.panelDisplayStyle, equals('panel-displayed'));
+      expect(_header.panelDisplayStyle, equals('panel-displayed'));
     }));
   }
 }

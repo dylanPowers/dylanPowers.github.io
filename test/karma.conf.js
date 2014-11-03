@@ -17,7 +17,9 @@ module.exports = function(config) {
 
     plugins: [
       'karma-dart',
-      'karma-chrome-launcher'
-    ]
+      'karma-chrome-launcher',
+      'karma-mocha-reporter'
+    ],
+    reporters: ['mocha']
   });
 };
