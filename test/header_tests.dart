@@ -7,27 +7,42 @@ class HeaderTests {
 
       it('expects a constructor that accepts an enhanced window scroll',
          constructorExpectsEnhancedWindowScroll);
-
       it('has an onShadowRoot that runs cleanly', onShadowRootRuns);
 
       beforeEach(headerSetUp);
-      it('is present until the first card is reached',
-           bannerIsPresentUntilFirstCardReached);
-      
+      afterEach(headerTearDown);
+      it('is present until the first card is reached', 
+         isPresentUntilFirstCardReached);  
       it('is present when slowly scrolling up past the first card',
-           bannerIsPresentWhenSlowlyScrolling);
+         isPresentWhenSlowlyScrolling);
+      it('is hidden when scrolled down to 700px', isHiddenWhenScrolledDown);
     });
   }
 
   static Future headerSetUp() {
+    var extraHeight = new Element.div();
+    extraHeight.id = 'extra-height';
+    extraHeight.style.height = '5000px';
+    document.body.append(extraHeight);
+    
     return loadNCompileTemplate('packages/about_me/header/intro_header.html', 
                                 '<intro-header></intro-header>')
     .then((Element headerElement) {
+      headerElement.id = 'header-test';
+      document.body.append(headerElement);
       inject((IntroHeaderElement header) {
         header.onShadowRoot(headerElement.shadowRoot);
-        _header = header;
+        _header = header; 
       });
     });
+  }
+
+  static void headerTearDown() {
+    var headerTest = document.getElementById('header-test');
+    headerTest.remove();
+    
+    var extraHeight = document.getElementById('extra-height');
+    extraHeight.remove();
   }
 
   static void constructorExpectsEnhancedWindowScroll() {
@@ -37,6 +52,7 @@ class HeaderTests {
   }
   
   static Future onShadowRootRuns() {
+    
     return loadNCompileTemplate('packages/about_me/header/intro_header.html',
                                 '<intro-header></intro-header>')
     .then((Element headerElement) {
@@ -46,7 +62,7 @@ class HeaderTests {
     });
   }
 
-  static dynamic bannerIsPresentUntilFirstCardReached() {
+  static dynamic isPresentUntilFirstCardReached() {
     return async(inject((Window win) {
       win.scroll(0, 700);
      
@@ -56,13 +72,22 @@ class HeaderTests {
     }));
   }
   
-  static dynamic bannerIsPresentWhenSlowlyScrolling() {
+  static dynamic isPresentWhenSlowlyScrolling() {
     return async(inject((Window win) {
       win.scroll(0, 502);
       microLeap();
       win.scroll(0, 500);
       microLeap();
       expect(_header.panelDisplayStyle).toEqual('panel-displayed');
+    }));
+  }
+  
+  static dynamic isHiddenWhenScrolledDown() {
+    return async(inject((Window win) {
+      win.scroll(0, 700);
+      microLeap();
+      
+      expect(_header.panelDisplayStyle).toEqual('panel-hidden');
     }));
   }
 }
