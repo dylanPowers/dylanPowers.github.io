@@ -13,7 +13,7 @@ class EnhancedWindowScrollTests {
       it('is injectable', () {
         expect(() => inject((EnhancedWindowOnScroll scroll) {})).not.toThrow();
       });
-      
+
       it('reacts to window scroll events', _reactsToScrollEvents);
     });
   }
@@ -29,17 +29,23 @@ class EnhancedWindowScrollTests {
     expect(() => sink.add(new Event('Dummy'))).not.toThrow();
   }
   
-  static void _reactsToScrollEvents() {
+  static Future _reactsToScrollEvents() {
+    SpyFunction callback = guinness.createSpy('On scroll callback');
+    StreamSubscription subscript;
+
     var extraHeight = new Element.div();
     extraHeight.id = 'extra-height';
     extraHeight.style.height = '5000px';
     document.body.append(extraHeight);
-    
+
     inject((EnhancedWindowOnScroll eScroll) {
-      var callback = (_) {};
-      eScroll.stream.listen(callback);
-      expect(callback).toHaveBeenCalledOnce();
-      window.scroll(0, 5);
+      subscript = eScroll.stream.listen(callback);
+    });
+    window.scroll(0, 100);
+
+    return window.animationFrame.then((_) {
+      subscript.cancel();
+      return expect(callback).toHaveBeenCalledOnce();
     });
   }
 }

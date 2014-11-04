@@ -46,9 +46,11 @@ class HeaderTests {
   }
 
   static void constructorExpectsEnhancedWindowScroll() {
-    inject((Window win, EnhancedWindowOnScroll scroll) {
-      expect(() => new IntroHeaderElement(scroll)).not.toThrow();
+    EnhancedWindowOnScroll scroll;
+    inject((EnhancedWindowOnScroll injScroll) {
+      scroll = injScroll;
     });
+    expect(() => new IntroHeaderElement(scroll)).not.toThrow();
   }
   
   static Future onShadowRootRuns() {
@@ -56,38 +58,38 @@ class HeaderTests {
     return loadNCompileTemplate('packages/about_me/header/intro_header.html',
                                 '<intro-header></intro-header>')
     .then((Element headerElement) {
-      inject((IntroHeaderElement header) {
-        expect(() => header.onShadowRoot(headerElement.shadowRoot)).not.toThrow();
+      IntroHeaderElement header;
+      inject((IntroHeaderElement injHeader) {
+        header = injHeader;
       });
+      expect(() => header.onShadowRoot(headerElement.shadowRoot)).not.toThrow();
     });
   }
 
-  static dynamic isPresentUntilFirstCardReached() {
-    return async(inject((Window win) {
-      win.scroll(0, 700);
-     
-      microLeap();
-      
+  static Future isPresentUntilFirstCardReached() {
+    window.scroll(0, 500);
+
+    return window.animationFrame.then((_) {
       expect(_header.panelDisplayStyle).toEqual('panel-displayed');
-    }));
+    });
   }
   
-  static dynamic isPresentWhenSlowlyScrolling() {
-    return async(inject((Window win) {
-      win.scroll(0, 502);
-      microLeap();
-      win.scroll(0, 500);
-      microLeap();
+  static Future isPresentWhenSlowlyScrolling() {
+    window.scroll(0, 502);
+
+    return window.animationFrame.then((_) {
+      window.scroll(0, 500);
+      return window.animationFrame;
+    }).then((_) {
       expect(_header.panelDisplayStyle).toEqual('panel-displayed');
-    }));
+    });
   }
   
-  static dynamic isHiddenWhenScrolledDown() {
-    return async(inject((Window win) {
-      win.scroll(0, 700);
-      microLeap();
-      
-      expect(_header.panelDisplayStyle).toEqual('panel-hidden');
-    }));
+  static Future isHiddenWhenScrolledDown() {
+    window.scroll(0, 700);
+
+    return window.animationFrame.then((_) {
+      return expect(_header.panelDisplayStyle).toEqual('panel-hidden');
+    });
   }
 }
