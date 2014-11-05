@@ -2,17 +2,16 @@ part of about_me_tests;
 
 class HeaderTests {
   static void run() {
-    group('The intro header', () {
-      test('element factory constructor works', introHeaderFactoryWorks);
+    describe('The intro header', () {
+      it('has a working element factory constructor', introHeaderFactoryWorks);
 
-      setUp(headerSetUp);
-      tearDown(headerTearDown);
+      beforeEach(headerSetUp);
+      afterEach(headerTearDown);
 
-      test('banner is present until the first card is reached',
-           bannerIsPresentUntilFirstCardReached);
-      
-      test('banner is present when slowly scrolling up past the first card',
-           bannerIsPresentWhenSlowlyScrolling);
+      it('is present until the first card is reached',
+         isPresentUntilFirstCardReached);
+      it('is present when slowly scrolling up past the first card',
+         isPresentWhenSlowlyScrolling);
     });
   }
 
@@ -36,26 +35,26 @@ class HeaderTests {
   }
 
   static void introHeaderFactoryWorks() {
-    expect(() => new IntroHeaderElement(), returnsNormally);
+    expect(() => new IntroHeaderElement()).not.toThrow();
   }
 
-  static Future bannerIsPresentUntilFirstCardReached() {
+  static Future isPresentUntilFirstCardReached() {
     window.scroll(0, 500);
     return window.animationFrame.then((_) {
       var shadowRoot = document.getElementById('header-test-el').shadowRoot;
       var panel = shadowRoot.getElementById('panel');
-      expect(panel.classes, contains('panel-displayed'));
+      expect(panel.classes).toContain('panel-displayed');
     });
   }
   
-  static Future bannerIsPresentWhenSlowlyScrolling() {
+  static Future isPresentWhenSlowlyScrolling() {
     window.scroll(0, 502);
     return window.animationFrame.then((_) {
       window.scroll(0, 500);
       return window.animationFrame;
     }).then((_) {
       IntroHeaderElement header = document.getElementById('header-test-el');
-      expect(header.panelDisplayStyle, equals('panel-displayed'));
+      expect(header.panelDisplayStyle).toEqual('panel-displayed');
     });
   }
 }

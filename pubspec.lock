@@ -37,6 +37,10 @@ packages:
     description: custom_element_apigen
     source: hosted
     version: "0.1.1"
+  guinness:
+    description: guinness
+    source: hosted
+    version: "0.1.16"
   html5lib:
     description: html5lib
     source: hosted
