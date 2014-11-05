@@ -1,24 +1,27 @@
 part of about_me_tests;
 
 class HeaderTests {
+  static IntroHeaderElement _header;
+
   static void run() {
     describe('The intro header', () {
-      it('has a working element factory constructor', introHeaderFactoryWorks);
+      it('has a working element factory constructor', _introHeaderFactoryWorks);
 
-      beforeEach(headerSetUp);
-      afterEach(headerTearDown);
+      beforeEach(_headerSetUp);
+      afterEach(_headerTearDown);
 
       it('is present until the first card is reached',
-         isPresentUntilFirstCardReached);
+         _isPresentUntilFirstCardReached);
       it('is present when slowly scrolling up past the first card',
-         isPresentWhenSlowlyScrolling);
+         _isPresentWhenSlowlyScrolling);
+      it('scrolls into view upon scrolling up when hidden', _scrollsIntoView);
     });
   }
 
-  static void headerSetUp() {
-    var el = new IntroHeaderElement();
-    el.id = 'header-test-el';
-    document.body.append(el);
+  static void _headerSetUp() {
+    _header = new IntroHeaderElement();
+    _header.id = 'header-test-el';
+    document.body.append(_header);
 
     var extraHeight = new Element.div();
     extraHeight.id = 'extra-height';
@@ -26,35 +29,43 @@ class HeaderTests {
     document.body.append(extraHeight);
   }
 
-  static void headerTearDown() {
-    var el = document.getElementById('header-test-el');
-    el.remove();
+  static void _headerTearDown() {
+    _header.remove();
     
     var extraHeight = document.getElementById('extra-height');
     extraHeight.remove();
   }
 
-  static void introHeaderFactoryWorks() {
+  static void _introHeaderFactoryWorks() {
     expect(() => new IntroHeaderElement()).not.toThrow();
   }
 
-  static Future isPresentUntilFirstCardReached() {
+  static Future _isPresentUntilFirstCardReached() {
     window.scroll(0, 500);
     return window.animationFrame.then((_) {
-      var shadowRoot = document.getElementById('header-test-el').shadowRoot;
-      var panel = shadowRoot.getElementById('panel');
-      expect(panel.classes).toContain('panel-displayed');
+      expect(_header.panelDisplayStyle).toEqual('panel-displayed');
     });
   }
   
-  static Future isPresentWhenSlowlyScrolling() {
+  static Future _isPresentWhenSlowlyScrolling() {
     window.scroll(0, 502);
     return window.animationFrame.then((_) {
       window.scroll(0, 500);
       return window.animationFrame;
     }).then((_) {
-      IntroHeaderElement header = document.getElementById('header-test-el');
-      expect(header.panelDisplayStyle).toEqual('panel-displayed');
+      expect(_header.panelDisplayStyle).toEqual('panel-displayed');
+    });
+  }
+
+  static Future _scrollsIntoView() {
+    window.scroll(0, 600);
+    return window.animationFrame.then((_) {
+      window.scroll(0, 599);
+      return window.animationFrame;
+    }).then((_) {
+      expect(_header.panelDisplayStyle).toEqual('panel-displayed');
+      var panel = _header.shadowRoot.getElementById('panel');
+      expect(panel.offsetTop).toEqual(-41);
     });
   }
 }
