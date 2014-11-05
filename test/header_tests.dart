@@ -29,7 +29,7 @@ class HeaderTests {
     return loadNCompileTemplate('packages/about_me/header/intro_header.html',
                                 '<intro-header></intro-header>')
     .then((Element template) {
-      headerElement = new Element.tag('intro-header');
+      headerElement = template;
       headerElement.id = 'header-test';
       document.body.append(headerElement);
       return window.animationFrame;
