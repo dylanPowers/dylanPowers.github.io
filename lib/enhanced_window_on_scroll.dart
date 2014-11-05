@@ -3,6 +3,9 @@ library enhanced_window_on_scroll;
 import 'dart:async';
 import 'dart:html' as html;
 
+import 'package:angular/angular.dart';
+
+@Injectable()
 class EnhancedWindowOnScroll {
   Stream<EnhancedScrollEvent> get stream => _stream;
   

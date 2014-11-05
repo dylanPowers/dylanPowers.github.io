@@ -11,7 +11,7 @@ class HeaderTests {
 
       beforeEach(headerSetUp);
       afterEach(headerTearDown);
-      it('is present until the first card is reached', 
+      it('is present until the first card is reached',
          isPresentUntilFirstCardReached);  
       it('is present when slowly scrolling up past the first card',
          isPresentWhenSlowlyScrolling);
@@ -24,12 +24,16 @@ class HeaderTests {
     extraHeight.id = 'extra-height';
     extraHeight.style.height = '5000px';
     document.body.append(extraHeight);
-    
-    return loadNCompileTemplate('packages/about_me/header/intro_header.html', 
+
+    Element headerElement;
+    return loadNCompileTemplate('packages/about_me/header/intro_header.html',
                                 '<intro-header></intro-header>')
-    .then((Element headerElement) {
+    .then((Element template) {
+      headerElement = new Element.tag('intro-header');
       headerElement.id = 'header-test';
       document.body.append(headerElement);
+      return window.animationFrame;
+    }).then((_) {
       inject((IntroHeaderElement header) {
         header.onShadowRoot(headerElement.shadowRoot);
         _header = header; 
@@ -54,7 +58,7 @@ class HeaderTests {
   }
   
   static Future onShadowRootRuns() {
-    
+
     return loadNCompileTemplate('packages/about_me/header/intro_header.html',
                                 '<intro-header></intro-header>')
     .then((Element headerElement) {
