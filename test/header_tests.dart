@@ -40,23 +40,22 @@ class HeaderTests {
   }
 
   static Future bannerIsPresentUntilFirstCardReached() {
-    return new Future(() => window.scroll(0, 500)).then((_) {
-      return new Future(() {
-        var shadowRoot = document.getElementById('header-test-el').shadowRoot;
-        var panel = shadowRoot.getElementById('panel');
-        expect(panel.classes, contains('panel-displayed'));
-      });
+    window.scroll(0, 500);
+    return window.animationFrame.then((_) {
+      var shadowRoot = document.getElementById('header-test-el').shadowRoot;
+      var panel = shadowRoot.getElementById('panel');
+      expect(panel.classes, contains('panel-displayed'));
     });
   }
   
   static Future bannerIsPresentWhenSlowlyScrolling() {
-    return new Future(() => window.scroll(0, 502)).then((_) {
-      return new Future.delayed(Duration.ZERO, () => window.scroll(0, 500));
+    window.scroll(0, 502);
+    return window.animationFrame.then((_) {
+      window.scroll(0, 500);
+      return window.animationFrame;
     }).then((_) {
-      return new Future.delayed(Duration.ZERO, () {
-        IntroHeaderElement header = document.getElementById('header-test-el');
-        expect(header.panelDisplayStyle, equals('panel-displayed'));
-      });
+      IntroHeaderElement header = document.getElementById('header-test-el');
+      expect(header.panelDisplayStyle, equals('panel-displayed'));
     });
   }
 }
