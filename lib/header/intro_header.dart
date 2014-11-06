@@ -51,12 +51,10 @@ class IntroHeaderElement extends PolymerElement {
   }
 
   static Interval _evaluateElementHeightRange(Element el, String minClass, String maxClass) {
-    var heightRange = new Interval();
+    num min = _evaluateElHeight(el, minClass, maxClass);
+    num max = _evaluateElHeight(el, maxClass, minClass);
 
-    heightRange.min = _evaluateElHeight(el, minClass, maxClass);
-    heightRange.max = _evaluateElHeight(el, maxClass, minClass);
-
-    return heightRange;
+    return new Interval(min, max);
   }
 
   static int _evaluateElHeight(Element el, String className, String conflictingClass) {
@@ -75,12 +73,10 @@ class IntroHeaderElement extends PolymerElement {
   }
 
   static Interval _evaluateElementTopRange(Element el, String minClass, String maxClass) {
-    var topRange = new Interval();
+    num min = _evaluateElTop(el, minClass, maxClass);
+    num max = _evaluateElTop(el, maxClass, minClass);
 
-    topRange.min = _evaluateElTop(el, minClass, maxClass);
-    topRange.max = _evaluateElTop(el, maxClass, minClass);
-
-    return topRange;
+    return new Interval(min, max);
   }
 
   static int _evaluateElTop(Element el, String className, String conflictingClass) {
