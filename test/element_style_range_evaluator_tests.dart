@@ -10,27 +10,30 @@ class _ElementStyleRangeEvaluatorTests {
   StyleElement _style;
   _ElementStyleRangeEvaluatorTests() {
     beforeEach(() => _testEvaluator = new ElementStyleRangeEvaluator(new Element.div()));
-    describe('the top range method', () {
-      it('should exist',
-         _topRangeForTwoClasses);
-      it('should return an interval of 0 for non-existant css classes', () {
-        expect(_testEvaluator.evalTop('foo', 'bar').range).toEqual(0);
-      });
+    describe('top range method', () {
+      it('should exist', () =>
+         expect(() => _testEvaluator.evalTop('foo', 'bar')).not.toThrow());
+      it('should return an interval of 0 for non-existant css classes', () =>
+         expect(_testEvaluator.evalTop('foo', 'bar').range).toEqual(0));
 
       beforeEach(_beforeEach);
       afterEach(_afterEach);
       it('should return a min/max value of 1 for a min/max top value of 1',
-         _minIs1);
-      it('should return a range of 1 for min of 0 and max of 1', _rangeIs1);
+         _minTopIs1);
     });
 
-    describe('the height range method', () {
-
+    describe('height range method', () {
+      it('should exist', () => 
+         expect(() => _testEvaluator.evalHeight('foo', 'bar')).not.toThrow());
+      it('should return an interval of 0 for non-existant css classes', () =>
+         expect(_testEvaluator.evalHeight('foo', 'bar').range).toEqual(0));
+      
+      beforeEach(_beforeEach);
+      afterEach(_afterEach);
+      it('should return a min/max value of 1 for a min/max top value of 1',
+         _minHeightIs1);
+      it('should return a range of 1 for min of 0 and max of 1', _rangeHeightIs1);
     });
-  }
-
-  void _topRangeForTwoClasses() {
-    expect(() => _testEvaluator.evalTop('foo', 'bar')).not.toThrow();
   }
 
   void _beforeEach() {
@@ -49,15 +52,27 @@ class _ElementStyleRangeEvaluatorTests {
     _style.remove();
   }
 
-  void _minIs1() {
+  void _minTopIs1() {
     _style.appendText('.foo { top: 1px } .bar { top: 1px }');
     var inter = _testEvaluator.evalTop('foo', 'bar');
     expect(inter.min).toEqual(1);
     expect(inter.max).toEqual(1);
   }
 
-  void _rangeIs1() {
+  void _rangeTopIs1() {
     _style.appendText('.foo { top: 0px } .bar { top: 1px }');
     expect(_testEvaluator.evalTop('foo', 'bar').range).toEqual(1);
+  }
+
+  void _minHeightIs1() {
+    _style.appendText('.foo { height: 1px } .bar { height: 1px }');
+    var inter = _testEvaluator.evalHeight('foo', 'bar');
+    expect(inter.min).toEqual(1);
+    expect(inter.max).toEqual(1);
+  }
+
+  void _rangeHeightIs1() {
+    _style.appendText('.foo { height: 0px } .bar { height: 1px }');
+    expect(_testEvaluator.evalHeight('foo', 'bar').range).toEqual(1);
   }
 }

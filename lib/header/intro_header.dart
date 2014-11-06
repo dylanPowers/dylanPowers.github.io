@@ -46,52 +46,10 @@ class IntroHeaderElement extends PolymerElement {
   }
 
   void _evaluateElRanges() {
-    _nameTopRange = _evaluateElementTopRange(_name, _NAME_COLLAPSED, _NAME_EXPANDED);
-    _panelHeightRange = _evaluateElementHeightRange(_panel, _PANEL_COLLAPSED, _PANEL_EXPANDED);
-  }
-
-  static Interval _evaluateElementHeightRange(Element el, String minClass, String maxClass) {
-    num min = _evaluateElHeight(el, minClass, maxClass);
-    num max = _evaluateElHeight(el, maxClass, minClass);
-
-    return new Interval(min, max);
-  }
-
-  static int _evaluateElHeight(Element el, String className, String conflictingClass) {
-    var oldClasses = el.className;
-    var oldHeight = el.style.height;
-
-    el.style.height = '';
-    el.classes.remove(conflictingClass);
-    el.classes.add(className);
-    int height = el.clientHeight;
-
-    el.className = oldClasses;
-    el.style.height = oldHeight;
-
-    return height;
-  }
-
-  static Interval _evaluateElementTopRange(Element el, String minClass, String maxClass) {
-    num min = _evaluateElTop(el, minClass, maxClass);
-    num max = _evaluateElTop(el, maxClass, minClass);
-
-    return new Interval(min, max);
-  }
-
-  static int _evaluateElTop(Element el, String className, String conflictingClass) {
-    var oldClasses = el.className;
-    var oldTop = el.style.top;
-
-    el.style.top = '';
-    el.classes.remove(conflictingClass);
-    el.classes.add(className);
-    int top = el.offsetTop;
-
-    el.className = oldClasses;
-    el.style.top = oldTop;
-
-    return top;
+    var nameStyle = new ElementStyleRangeEvaluator(_name);
+    _nameTopRange = nameStyle.evalTop(_NAME_COLLAPSED, _NAME_EXPANDED);
+    var panelStyle = new ElementStyleRangeEvaluator(_panel);
+    _panelHeightRange = panelStyle.evalHeight(_PANEL_COLLAPSED, _PANEL_EXPANDED);
   }
 
   void _updateForScrollEvent(EnhancedScrollEvent e) {

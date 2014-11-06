@@ -11,6 +11,12 @@ class ElementStyleRangeEvaluator {
     num max = _evaluateElTop(maxClass, minClass);
     return new Interval(min, max);
   }
+  
+  Interval evalHeight(String minClass, String maxClass) {
+    num min = _evaluateElHeight(minClass, maxClass);
+    num max = _evaluateElHeight(maxClass, minClass);
+    return new Interval(min, max);
+  }
 
   num _evaluateElTop(String className, String conflictingClass) {
     var oldClasses = _el.className;
@@ -25,6 +31,21 @@ class ElementStyleRangeEvaluator {
     _el.style.top = oldTop;
 
     return top;
+  }
+
+  int _evaluateElHeight(String className, String conflictingClass) {
+    var oldClasses = _el.className;
+    var oldHeight = _el.style.height;
+
+    _el.style.height = '';
+    _el.classes.remove(conflictingClass);
+    _el.classes.add(className);
+    int height = _el.clientHeight;
+
+    _el.className = oldClasses;
+    _el.style.height = oldHeight;
+
+    return height;
   }
 }
 
