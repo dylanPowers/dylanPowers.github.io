@@ -5,12 +5,12 @@ class ElementStyleRangeEvaluator {
   ElementStyleRangeEvaluator(this._el);
 
   Interval evalTop(String minClass, String maxClass) {
-
+    return new Interval();
   }
 }
 
 class Interval {
-  num min;
-  num max;
+  num min = 0;
+  num max = 0;
   num get range => max - min;
 }
