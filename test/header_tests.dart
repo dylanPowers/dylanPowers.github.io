@@ -62,40 +62,47 @@ class HeaderTests {
 void _whenScrolledOutOfExpandedView() => new _WhenScrolledOutOfExpandedView();
 
 class _WhenScrolledOutOfExpandedView {
+  static const _SCROLL_START = 600;
+
   IntroHeaderElement _header;
+
   _WhenScrolledOutOfExpandedView() {
     beforeEach(_beforeEach);
     it('scrolls by 1px upon scrolling up by 1px', _scrolls1pxIntoView);
     it('scrolls by 41px upon scrolling up by 41px', _scrolls41pxIntoView);
+    it('scrolls by 2px upon scrolling 1px then 1px again',
+       _scrolls2pxWithDouble1pxScrolls);
   }
 
   Future _beforeEach() {
     _header = document.getElementById('header-test');
+    window.scroll(0, _SCROLL_START);
+    return window.animationFrame;
   }
 
   Future _scrolls1pxIntoView() {
-    window.scroll(0, 600);
+    window.scroll(0, _SCROLL_START - 1);
     return window.animationFrame.then((_) {
-      window.scroll(0, 599);
-      return window.animationFrame;
-    }).then((_) {
-      return new Future(() {});
-    }).then((_) {
       expect(_header.panelDisplayStyle).toEqual('panel-hidden');
-      expect(_header.panelYTranslation).toEqual(-1);
+      expect(_header.panelYTranslation).toEqual(1);
     });
   }
 
   Future _scrolls41pxIntoView() {
-    window.scroll(0, 600);
+    window.scroll(0, _SCROLL_START - 41);
     return window.animationFrame.then((_) {
-      window.scroll(0, 600 - 41);
+      expect(_header.panelDisplayStyle).toEqual('panel-hidden');
+      expect(_header.panelYTranslation).toEqual(41);
+    });
+  }
+
+  Future _scrolls2pxWithDouble1pxScrolls() {
+    window.scrollBy(0, -1);
+    return window.animationFrame.then((_) {
+      window.scrollBy(0, -1);
       return window.animationFrame;
     }).then((_) {
-      return new Future(() {});
-    }).then((_) {
-      expect(_header.panelDisplayStyle).toEqual('panel-hidden');
-      expect(_header.panelYTranslation).toEqual(-41);
+      expect(_header.panelYTranslation).toEqual(2);
     });
   }
 }

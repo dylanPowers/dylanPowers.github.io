@@ -102,25 +102,38 @@ class IntroHeaderElement extends PolymerElement {
 
   void _updatePanel(EnhancedScrollEvent e) {
     if (e.newYPosition > _panelHeightRange.range) {
-      panelSizeStyle = _PANEL_COLLAPSED;
-      panelYTranslation = 0;
-      if (e.yMovement < 0 || e.newYPosition <= _panelHeightRange.max) {
-        if (-42 < e.yMovement && e.yMovement < 0 && e.newYPosition > _panelHeightRange.max) {
-          panelYTranslation = e.yMovement;
-        } else {
-          panelDisplayStyle = _PANEL_DISPLAYED;
-        }
-      } else if (e.yMovement > 0 && e.newYPosition > _panelHeightRange.max) {
-        panelDisplayStyle = _PANEL_HIDDEN;
-      }
+      _updateCollapsedPanel(e);
     } else {
+      _updatedExpandedPanel(e);
+    }
+  }
+
+  void _updateCollapsedPanel(EnhancedScrollEvent e) {
+    panelSizeStyle = _PANEL_COLLAPSED;
+    if (e.yMovement < 0 || e.newYPosition <= _panelHeightRange.max) {
+      _displayCollapsedPanel(e);
+    } else if (e.yMovement > 0 && e.newYPosition > _panelHeightRange.max) {
+      panelYTranslation = 0;
+      panelDisplayStyle = _PANEL_HIDDEN;
+    }
+  }
+
+  void _updatedExpandedPanel(EnhancedScrollEvent e) {
+    panelDisplayStyle = _PANEL_DISPLAYED;
+    panelSizeStyle = _PANEL_EXPANDED;
+    if (e.newYPosition > 0) {
+      panelYTranslation = -e.newYPosition;
+    } else {
+      panelYTranslation = 0;
+    }
+  }
+
+  void _displayCollapsedPanel(EnhancedScrollEvent e) {
+    if (-42 < e.yMovement && e.yMovement < 0 && e.newYPosition > _panelHeightRange.max) {
+      panelYTranslation -= e.yMovement;
+    } else {
+      panelYTranslation = 0;
       panelDisplayStyle = _PANEL_DISPLAYED;
-      panelSizeStyle = _PANEL_EXPANDED;
-      if (e.newYPosition > 0) {
-        panelYTranslation = -e.newYPosition;
-      } else {
-        panelYTranslation = 0;
-      }
     }
   }
 
@@ -137,6 +150,11 @@ class IntroHeaderElement extends PolymerElement {
       _name.style.transform = '';
     }
   }
+}
+
+class ElementStyleRangeEvaluator {
+  final Element _el;
+  ElementStyleRangeEvaluator(this._el);
 }
 
 class EnhancedScrollSink extends EventSink<Event> {
