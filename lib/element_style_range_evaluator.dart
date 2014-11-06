@@ -7,45 +7,57 @@ class ElementStyleRangeEvaluator {
   ElementStyleRangeEvaluator(this._el);
 
   Interval evalTop(String minClass, String maxClass) {
-    num min = _evaluateElTop(minClass, maxClass);
-    num max = _evaluateElTop(maxClass, minClass);
-    return new Interval(min, max);
+    return new _TopStyleRange(_el).calcRange(minClass, maxClass);
   }
   
   Interval evalHeight(String minClass, String maxClass) {
-    num min = _evaluateElHeight(minClass, maxClass);
-    num max = _evaluateElHeight(maxClass, minClass);
+    return new _HeightStyleRange(_el).calcRange(minClass, maxClass);
+  }
+}
+
+class _TopStyleRange extends _ElStyleRangeEvalBase {
+  String get oldStyleAttr => el.style.top;
+         set oldStyleAttr(String top) => el.style.top = top;
+  num measure() => el.offsetTop;
+  
+  _TopStyleRange(Element el) : super(el);
+}
+
+class _HeightStyleRange extends _ElStyleRangeEvalBase {
+  String get oldStyleAttr => el.style.height;
+         set oldStyleAttr(String height) => el.style.height = height;
+  num measure() => el.clientHeight;
+  
+  _HeightStyleRange(Element el) : super(el);
+}
+
+abstract class _ElStyleRangeEvalBase {
+  String get oldStyleAttr;
+         set oldStyleAttr(String);
+  num measure();
+  
+  final Element el;
+  _ElStyleRangeEvalBase(this.el);
+  
+  Interval calcRange(String minClass, String maxClass) {
+    num min = _eval(minClass, maxClass);
+    num max = _eval(maxClass, minClass);
     return new Interval(min, max);
   }
+  
+  num _eval(String className, String conflictingClass) {
+    var oldClasses = el.className;
+    var oldElStyle = oldStyleAttr;
 
-  num _evaluateElTop(String className, String conflictingClass) {
-    var oldClasses = _el.className;
-    var oldTop = _el.style.top;
+    oldStyleAttr = '';
+    el.classes.remove(conflictingClass);
+    el.classes.add(className);
+    num measurement = measure();
 
-    _el.style.top = '';
-    _el.classes.remove(conflictingClass);
-    _el.classes.add(className);
-    num top = _el.offsetTop;
+    el.className = oldClasses;
+    oldStyleAttr = oldElStyle;
 
-    _el.className = oldClasses;
-    _el.style.top = oldTop;
-
-    return top;
-  }
-
-  int _evaluateElHeight(String className, String conflictingClass) {
-    var oldClasses = _el.className;
-    var oldHeight = _el.style.height;
-
-    _el.style.height = '';
-    _el.classes.remove(conflictingClass);
-    _el.classes.add(className);
-    int height = _el.clientHeight;
-
-    _el.className = oldClasses;
-    _el.style.height = oldHeight;
-
-    return height;
+    return measurement;
   }
 }
 
