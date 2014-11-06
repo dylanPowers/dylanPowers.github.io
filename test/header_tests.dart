@@ -14,13 +14,14 @@ class HeaderTests {
          _isPresentUntilFirstCardReached);
       it('is present when slowly scrolling up past the first card',
          _isPresentWhenSlowlyScrolling);
-      it('scrolls into view upon scrolling up when hidden', _scrollsIntoView);
+
+      describe('when scrolled out of expanded view', _whenScrolledOutOfExpandedView);
     });
   }
 
   static void _headerSetUp() {
     _header = new IntroHeaderElement();
-    _header.id = 'header-test-el';
+    _header.id = 'header-test';
     document.body.append(_header);
 
     var extraHeight = new Element.div();
@@ -56,16 +57,45 @@ class HeaderTests {
       expect(_header.panelDisplayStyle).toEqual('panel-displayed');
     });
   }
+}
 
-  static Future _scrollsIntoView() {
+void _whenScrolledOutOfExpandedView() => new _WhenScrolledOutOfExpandedView();
+
+class _WhenScrolledOutOfExpandedView {
+  IntroHeaderElement _header;
+  _WhenScrolledOutOfExpandedView() {
+    beforeEach(_beforeEach);
+    it('scrolls by 1px upon scrolling up by 1px', _scrolls1pxIntoView);
+    it('scrolls by 41px upon scrolling up by 41px', _scrolls41pxIntoView);
+  }
+
+  Future _beforeEach() {
+    _header = document.getElementById('header-test');
+  }
+
+  Future _scrolls1pxIntoView() {
     window.scroll(0, 600);
     return window.animationFrame.then((_) {
       window.scroll(0, 599);
       return window.animationFrame;
     }).then((_) {
-      expect(_header.panelDisplayStyle).toEqual('panel-displayed');
-      var panel = _header.shadowRoot.getElementById('panel');
-      expect(panel.offsetTop).toEqual(-41);
+      return new Future(() {});
+    }).then((_) {
+      expect(_header.panelDisplayStyle).toEqual('panel-hidden');
+      expect(_header.panelYTranslation).toEqual(-1);
+    });
+  }
+
+  Future _scrolls41pxIntoView() {
+    window.scroll(0, 600);
+    return window.animationFrame.then((_) {
+      window.scroll(0, 600 - 41);
+      return window.animationFrame;
+    }).then((_) {
+      return new Future(() {});
+    }).then((_) {
+      expect(_header.panelDisplayStyle).toEqual('panel-hidden');
+      expect(_header.panelYTranslation).toEqual(-41);
     });
   }
 }
