@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:html';
 import 'package:polymer/polymer.dart';
+import 'package:about_me/element_style_range_evaluator.dart';
 
 @CustomTag('intro-header')
 class IntroHeaderElement extends PolymerElement {
@@ -18,8 +19,8 @@ class IntroHeaderElement extends PolymerElement {
 
   StreamSubscription<EnhancedScrollEvent> _scrollHandler;
 
-  IntegerRange _panelHeightRange;
-  IntegerRange _nameTopRange;
+  Interval _panelHeightRange;
+  Interval _nameTopRange;
   Element _name;
   Element _panel;
 
@@ -47,8 +48,8 @@ class IntroHeaderElement extends PolymerElement {
     _panelHeightRange = _evaluateElementHeightRange(_panel, _PANEL_COLLAPSED, _PANEL_EXPANDED);
   }
 
-  static IntegerRange _evaluateElementHeightRange(Element el, String minClass, String maxClass) {
-    var heightRange = new IntegerRange();
+  static Interval _evaluateElementHeightRange(Element el, String minClass, String maxClass) {
+    var heightRange = new Interval();
 
     heightRange.min = _evaluateElHeight(el, minClass, maxClass);
     heightRange.max = _evaluateElHeight(el, maxClass, minClass);
@@ -71,8 +72,8 @@ class IntroHeaderElement extends PolymerElement {
     return height;
   }
 
-  static IntegerRange _evaluateElementTopRange(Element el, String minClass, String maxClass) {
-    var topRange = new IntegerRange();
+  static Interval _evaluateElementTopRange(Element el, String minClass, String maxClass) {
+    var topRange = new Interval();
 
     topRange.min = _evaluateElTop(el, minClass, maxClass);
     topRange.max = _evaluateElTop(el, maxClass, minClass);
@@ -152,11 +153,6 @@ class IntroHeaderElement extends PolymerElement {
   }
 }
 
-class ElementStyleRangeEvaluator {
-  final Element _el;
-  ElementStyleRangeEvaluator(this._el);
-}
-
 class EnhancedScrollSink extends EventSink<Event> {
   int _lastScrollX = 0;
   int _lastScrollY = 0;
@@ -206,10 +202,4 @@ class EnhancedScrollEvent {
 
   EnhancedScrollEvent(this.oldXPosition, this.oldYPosition,
                       this.newXPosition, this.newYPosition);
-}
-
-class IntegerRange {
-  int min;
-  int max;
-  int get range => max - min;
 }
