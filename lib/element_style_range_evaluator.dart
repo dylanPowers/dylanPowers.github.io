@@ -7,8 +7,24 @@ class ElementStyleRangeEvaluator {
   ElementStyleRangeEvaluator(this._el);
 
   Interval evalTop(String minClass, String maxClass) {
-    var int = new Interval(5, 5);
-    return int;
+    num min = _evaluateElTop(minClass, maxClass);
+    num max = _evaluateElTop(maxClass, minClass);
+    return new Interval(min, max);
+  }
+
+  num _evaluateElTop(String className, String conflictingClass) {
+    var oldClasses = _el.className;
+    var oldTop = _el.style.top;
+
+    _el.style.top = '';
+    _el.classes.remove(conflictingClass);
+    _el.classes.add(className);
+    num top = _el.offsetTop;
+
+    _el.className = oldClasses;
+    _el.style.top = oldTop;
+
+    return top;
   }
 }
 
