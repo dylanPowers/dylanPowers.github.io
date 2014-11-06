@@ -1,3 +1,5 @@
+library intro_header;
+
 import 'dart:async';
 import 'dart:html';
 import 'package:polymer/polymer.dart';
