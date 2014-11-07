@@ -48,13 +48,16 @@ abstract class _ElStyleRangeEvalBase {
   num _eval(String className, String conflictingClass) {
     var oldClasses = el.className;
     var oldElStyle = oldStyleAttr;
+    var oldTransitionDuration = el.style.transitionDuration;
 
     oldStyleAttr = '';
+    el.style.transitionDuration = '0';
     el.classes.remove(conflictingClass);
     el.classes.add(className);
     num measurement = measure();
 
     el.className = oldClasses;
+    el.style.transitionDuration = oldTransitionDuration;
     oldStyleAttr = oldElStyle;
 
     return measurement;

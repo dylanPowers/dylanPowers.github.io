@@ -34,6 +34,15 @@ class _ElementStyleRangeEvaluatorTests {
          _minHeightIs1);
       it('should return a range of 1 for min of 0 and max of 1', _rangeHeightIs1);
     });
+    
+    beforeEach(_beforeEach);
+    afterEach(_afterEach);
+    
+    it('should handle elements with transitions', () {
+      var divEl = document.getElementById('style-range-test-div');
+      divEl.style.transitionDuration = '1000ms';
+      _rangeHeightIs1();
+    });
   }
 
   void _beforeEach() {

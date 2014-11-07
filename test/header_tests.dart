@@ -72,6 +72,12 @@ class _WhenScrolledOutOfExpandedView {
     it('scrolls by 41px upon scrolling up by 41px', _scrolls41pxIntoView);
     it('scrolls by 2px upon scrolling 1px then 1px again',
        _scrolls2pxWithDouble1pxScrolls);
+    it('stops scrolling when top is reached', _stopsScrolling);
+    it('stops scrolling after displayed', _stopScrollingWhenDisplayed);
+    it('has css transitioning turned off while scrolling up', 
+       _hasNoCssTransitionScrollingUp);
+    
+    it('scrolls by 1px upon scrolling down by 1px', _scrolls1pxOutofView);
   }
 
   Future _beforeEach() {
@@ -81,6 +87,14 @@ class _WhenScrolledOutOfExpandedView {
   }
 
   Future _scrolls1pxIntoView() {
+    window.scroll(0, _SCROLL_START - 1);
+    return window.animationFrame.then((_) {
+      expect(_header.panelDisplayStyle).toEqual('panel-hidden');
+      expect(_header.panelYTranslation).toEqual(1);
+    });
+  }
+  
+  Future _scrolls1pxOutofView() {
     window.scroll(0, _SCROLL_START - 1);
     return window.animationFrame.then((_) {
       expect(_header.panelDisplayStyle).toEqual('panel-hidden');
@@ -103,6 +117,41 @@ class _WhenScrolledOutOfExpandedView {
       return window.animationFrame;
     }).then((_) {
       expect(_header.panelYTranslation).toEqual(2);
+    });
+  }
+  
+  Future _stopsScrolling() {
+    var panel = _header.shadowRoot.getElementById('panel');
+    var styleRangeEvaluator = new ElementStyleRangeEvaluator(panel);
+    Interval heightRange = styleRangeEvaluator.evalTop('panel-hidden', 'panel-displayed');
+    window.scrollBy(0, -20);
+    return window.animationFrame.then((_) {
+      window.scrollBy(0, -heightRange.range + 20);
+      return window.animationFrame;
+    }).then((_) {
+      expect(_header.panelDisplayStyle).toEqual('panel-displayed');
+      expect(_header.panelYTranslation).toEqual(0);
+    });
+  }
+  
+  Future _stopScrollingWhenDisplayed() {
+    var panel = _header.shadowRoot.getElementById('panel');
+    var styleRangeEvaluator = new ElementStyleRangeEvaluator(panel);
+    Interval heightRange = styleRangeEvaluator.evalTop('panel-hidden', 'panel-displayed');
+    window.scrollBy(0, -heightRange.range);
+    return window.animationFrame.then((_) {
+      window.scrollBy(0, -1);
+      return window.animationFrame;
+    }).then((_) {
+      expect(_header.panelYTranslation).toEqual(0);
+    });
+  }
+  
+  Future _hasNoCssTransitionScrollingUp() {
+    var panel = _header.shadowRoot.getElementById('panel');
+    window.scrollBy(0, -1);
+    return window.animationFrame.then((_) {
+      expect(panel.getComputedStyle().transitionDuration).toEqual('0s');
     });
   }
 }
