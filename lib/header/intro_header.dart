@@ -63,15 +63,31 @@ class IntroHeaderElement extends PolymerElement {
     } else {
       _updatedExpandedPanel(e);
     }
+
+    if (e.yMovement > 0) {
+      _lastScrollDown = true;
+    } else {
+      _lastScrollDown = false;
+    }
   }
 
+  bool _lastScrollDown = true;
   void _updateCollapsedPanel(EnhancedScrollEvent e) {
     panelSizeStyle = _PANEL_COLLAPSED;
+    
     if (e.yMovement < 0 || e.newYPosition <= _panelHeightRange.max) {
       _displayCollapsedPanel(e);
     } else if (e.yMovement > 0 && e.newYPosition > _panelHeightRange.max) {
-      panelYTranslation = 0;
       panelDisplayStyle = _PANEL_HIDDEN;
+      if (!_lastScrollDown) {
+        panelYTranslation = _panel.clientHeight;
+      }
+      
+      if (e.yMovement < _panel.clientHeight && panelYTranslation > 0) {
+        panelYTranslation -= e.yMovement;
+      } else {
+        panelYTranslation = 0;
+      }
     }
   }
 

@@ -68,16 +68,34 @@ class _WhenScrolledOutOfExpandedView {
 
   _WhenScrolledOutOfExpandedView() {
     beforeEach(_beforeEach);
-    it('scrolls by 1px upon scrolling up by 1px', _scrolls1pxIntoView);
-    it('scrolls by 41px upon scrolling up by 41px', _scrolls41pxIntoView);
-    it('scrolls by 2px upon scrolling 1px then 1px again',
-       _scrolls2pxWithDouble1pxScrolls);
-    it('stops scrolling when top is reached', _stopsScrolling);
-    it('stops scrolling after displayed', _stopScrollingWhenDisplayed);
-    it('has css transitioning turned off while scrolling up', 
-       _hasNoCssTransitionScrollingUp);
+    it('is currently out of view', _currentlyOutofView);
+    describe('while scrolling up', () {
+      it('scrolls by 1px upon scrolling by 1px', _scrolls1pxIntoView);
+      it('scrolls by 41px upon scrolling by 41px', _scrolls41pxIntoView);
+      it('scrolls by 2px upon scrolling 1px then 1px again',
+         _scrolls2pxWithDouble1pxScrolls);
+      it('stops scrolling when top is reached', _stopsScrolling);
+      it('stops scrolling after displayed', _stopScrollingWhenDisplayed);
+      it('has css transitioning turned off',
+         _hasNoCssTransitionScrollingUp);
+    });
     
-    it('scrolls by 1px upon scrolling down by 1px', _scrolls1pxOutofView);
+    describe('while scrolling down', () {
+      beforeEach(() {
+        var panel = _header.shadowRoot.getElementById('panel');
+        window.scrollBy(0, -panel.clientHeight);
+        return window.animationFrame;
+      });
+
+      it('is currently in view', _currentlyInView);
+      it('scrolls by 1px upon scrolling by 1px', _scrolls1pxOutofView);
+      it('scrolls by its height - 1px upon scrolling by that amount', _scrollsHieghtMinus1pxOutofView);
+      it('scrolls by 2px upon scrolling 1px then 1px again', _double1pxScrollsDown);
+      it('stops scrolling past hidden view state', _scrollPastHidden);
+    });
+    
+    it('is hidden when scrolled down by 1px and up by 1 px', 
+       _isHiddenWhenScrolledUpThenDown);
   }
 
   Future _beforeEach() {
@@ -85,7 +103,17 @@ class _WhenScrolledOutOfExpandedView {
     window.scroll(0, _SCROLL_START);
     return window.animationFrame;
   }
+  
+  void _currentlyOutofView() {
+    expect(_header.panelDisplayStyle).toEqual('panel-hidden');
+    expect(_header.panelYTranslation).toEqual(0);
+  }
 
+  void _currentlyInView() {
+    expect(_header.panelDisplayStyle).toEqual('panel-displayed');
+    expect(_header.panelYTranslation).toEqual(0);
+  }
+  
   Future _scrolls1pxIntoView() {
     window.scroll(0, _SCROLL_START - 1);
     return window.animationFrame.then((_) {
@@ -95,10 +123,11 @@ class _WhenScrolledOutOfExpandedView {
   }
   
   Future _scrolls1pxOutofView() {
-    window.scroll(0, _SCROLL_START - 1);
+    var panel = _header.shadowRoot.getElementById('panel');
+    window.scrollBy(0, 1);
     return window.animationFrame.then((_) {
       expect(_header.panelDisplayStyle).toEqual('panel-hidden');
-      expect(_header.panelYTranslation).toEqual(1);
+      expect(_header.panelYTranslation).toEqual(panel.clientHeight - 1);
     });
   }
 
@@ -110,6 +139,15 @@ class _WhenScrolledOutOfExpandedView {
     });
   }
 
+  Future _scrollsHieghtMinus1pxOutofView() {
+    var panel = _header.shadowRoot.getElementById('panel');
+    window.scrollBy(0, panel.clientHeight - 1);
+    return window.animationFrame.then((_) {
+      expect(_header.panelDisplayStyle).toEqual('panel-hidden');
+      expect(_header.panelYTranslation).toEqual(1);
+    });    
+  }
+  
   Future _scrolls2pxWithDouble1pxScrolls() {
     window.scrollBy(0, -1);
     return window.animationFrame.then((_) {
@@ -117,6 +155,17 @@ class _WhenScrolledOutOfExpandedView {
       return window.animationFrame;
     }).then((_) {
       expect(_header.panelYTranslation).toEqual(2);
+    });
+  }
+  
+  Future _double1pxScrollsDown() {
+    var panel = _header.shadowRoot.getElementById('panel');
+    window.scrollBy(0, 1);
+    return window.animationFrame.then((_) {
+      window.scrollBy(0, 1);
+      return window.animationFrame;
+    }).then((_) {
+      expect(_header.panelYTranslation).toEqual(panel.clientHeight - 2);
     });
   }
   
@@ -146,6 +195,17 @@ class _WhenScrolledOutOfExpandedView {
       expect(_header.panelYTranslation).toEqual(0);
     });
   }
+
+  Future _scrollPastHidden() {
+    var panel = _header.shadowRoot.getElementById('panel');
+    window.scrollBy(0, panel.clientHeight);
+    return window.animationFrame.then((_) {
+      window.scrollBy(0, 1);
+      return window.animationFrame;
+    }).then((_) {
+      expect(_header.panelYTranslation).toEqual(0);
+    });
+  }
   
   Future _hasNoCssTransitionScrollingUp() {
     var panel = _header.shadowRoot.getElementById('panel');
@@ -153,5 +213,9 @@ class _WhenScrolledOutOfExpandedView {
     return window.animationFrame.then((_) {
       expect(panel.getComputedStyle().transitionDuration).toEqual('0s');
     });
+  }
+  
+  Future _isHiddenWhenScrolledUpThenDown() {
+    
   }
 }
