@@ -73,7 +73,7 @@ class _WhenScrolledOutOfExpandedView {
       it('scrolls by 1px upon scrolling by 1px', _scrolls1pxIntoView);
       it('scrolls by 41px upon scrolling by 41px', _scrolls41pxIntoView);
       it('scrolls by 2px upon scrolling 1px then 1px again',
-         _scrolls2pxWithDouble1pxScrolls);
+          _scrolls2pxWithDouble1pxScrolls);
       it('stops scrolling when top is reached', _stopsScrolling);
       it('stops scrolling after displayed', _stopScrollingWhenDisplayed);
       it('has css transitioning turned off',
@@ -115,7 +115,7 @@ class _WhenScrolledOutOfExpandedView {
   }
   
   Future _scrolls1pxIntoView() {
-    window.scroll(0, _SCROLL_START - 1);
+    window.scrollBy(0, -1);
     return window.animationFrame.then((_) {
       expect(_header.panelDisplayStyle).toEqual('panel-hidden');
       expect(_header.panelYTranslation).toEqual(1);
@@ -198,9 +198,9 @@ class _WhenScrolledOutOfExpandedView {
 
   Future _scrollPastHidden() {
     var panel = _header.shadowRoot.getElementById('panel');
-    window.scrollBy(0, panel.clientHeight);
+    window.scrollBy(0, panel.clientHeight - 1);
     return window.animationFrame.then((_) {
-      window.scrollBy(0, 1);
+      window.scrollBy(0, 2);
       return window.animationFrame;
     }).then((_) {
       expect(_header.panelYTranslation).toEqual(0);
@@ -216,6 +216,13 @@ class _WhenScrolledOutOfExpandedView {
   }
   
   Future _isHiddenWhenScrolledUpThenDown() {
-    
+    window.scrollBy(0, -1);
+    return window.animationFrame.then((_) {
+      window.scrollBy(0, 1);
+      return window.animationFrame;
+    }).then((_) {
+      expect(_header.panelDisplayStyle).toEqual('panel-hidden');
+      expect(_header.panelYTranslation).toEqual(0);
+    });
   }
 }

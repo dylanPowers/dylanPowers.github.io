@@ -78,12 +78,12 @@ class IntroHeaderElement extends PolymerElement {
     if (e.yMovement < 0 || e.newYPosition <= _panelHeightRange.max) {
       _displayCollapsedPanel(e);
     } else if (e.yMovement > 0 && e.newYPosition > _panelHeightRange.max) {
-      panelDisplayStyle = _PANEL_HIDDEN;
-      if (!_lastScrollDown) {
+      if (!_lastScrollDown && panelDisplayStyle == _PANEL_DISPLAYED) {
         panelYTranslation = _panel.clientHeight;
       }
-      
-      if (e.yMovement < _panel.clientHeight && panelYTranslation > 0) {
+
+      panelDisplayStyle = _PANEL_HIDDEN;
+      if (e.yMovement < _panel.clientHeight && panelYTranslation - e.yMovement > 0) {
         panelYTranslation -= e.yMovement;
       } else {
         panelYTranslation = 0;
@@ -103,8 +103,8 @@ class IntroHeaderElement extends PolymerElement {
 
   void _displayCollapsedPanel(EnhancedScrollEvent e) {
     num newTranslation = panelYTranslation - e.yMovement;
-    if ((42 > newTranslation && newTranslation > 0) && 
-        e.newYPosition > _panelHeightRange.max && 
+    if ((42 > newTranslation && newTranslation > 0) &&
+        e.newYPosition > _panelHeightRange.max &&
         panelDisplayStyle != _PANEL_DISPLAYED) {
       panelYTranslation = newTranslation;
     } else {
