@@ -78,16 +78,7 @@ class IntroHeaderElement extends PolymerElement {
     if (e.yMovement < 0 || e.newYPosition <= _panelHeightRange.max) {
       _displayCollapsedPanel(e);
     } else if (e.yMovement > 0 && e.newYPosition > _panelHeightRange.max) {
-      if (!_lastScrollDown && panelDisplayStyle == _PANEL_DISPLAYED) {
-        panelYTranslation = _panel.clientHeight;
-      }
-
-      panelDisplayStyle = _PANEL_HIDDEN;
-      if (e.yMovement < _panel.clientHeight && panelYTranslation - e.yMovement > 0) {
-        panelYTranslation -= e.yMovement;
-      } else {
-        panelYTranslation = 0;
-      }
+      _hideCollapsedPanel(e);
     }
   }
 
@@ -113,13 +104,28 @@ class IntroHeaderElement extends PolymerElement {
     }
   }
 
+  void _hideCollapsedPanel(EnhancedScrollEvent e) {
+    if (!_lastScrollDown && panelDisplayStyle == _PANEL_DISPLAYED) {
+      panelYTranslation = _panel.clientHeight;
+    }
+
+    panelDisplayStyle = _PANEL_HIDDEN;
+    if (e.yMovement < _panel.clientHeight &&
+        panelYTranslation - e.yMovement > 0) {
+      panelYTranslation -= e.yMovement;
+    } else {
+      panelYTranslation = 0;
+    }
+  }
+
   void _updateName(EnhancedScrollEvent e) {
     if (e.newYPosition > _nameTopRange.range) {
       nameStyle = _NAME_COLLAPSED;
       _name.style.top = '';
       _name.style.transform = '';
     } else if (e.newYPosition > _nameTopRange.min) {
-      _name.style.top = '${_nameTopRange.max - e.newYPosition}px';
+      nameStyle = _NAME_COLLAPSED;
+//      _name.style.top = '${_nameTopRange.max - e.newYPosition}px';
     } else {
       nameStyle = _NAME_EXPANDED;
       _name.style.top = '';

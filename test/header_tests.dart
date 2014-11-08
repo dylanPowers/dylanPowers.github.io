@@ -15,7 +15,7 @@ class HeaderTests {
       it('is present when slowly scrolling up past the first card',
          _isPresentWhenSlowlyScrolling);
 
-      describe('when scrolled out of expanded view', _whenScrolledOutOfExpandedView);
+      describe('when scrolled out of expanded view', () => new _WhenScrolledOutOfExpandedView());
     });
   }
 
@@ -58,8 +58,6 @@ class HeaderTests {
     });
   }
 }
-
-void _whenScrolledOutOfExpandedView() => new _WhenScrolledOutOfExpandedView();
 
 class _WhenScrolledOutOfExpandedView {
   static const _SCROLL_START = 600;
@@ -132,7 +130,7 @@ class _WhenScrolledOutOfExpandedView {
   }
 
   Future _scrolls41pxIntoView() {
-    window.scroll(0, _SCROLL_START - 41);
+    window.scrollBy(0, -41);
     return window.animationFrame.then((_) {
       expect(_header.panelDisplayStyle).toEqual('panel-hidden');
       expect(_header.panelYTranslation).toEqual(41);
@@ -171,11 +169,9 @@ class _WhenScrolledOutOfExpandedView {
   
   Future _stopsScrolling() {
     var panel = _header.shadowRoot.getElementById('panel');
-    var styleRangeEvaluator = new ElementStyleRangeEvaluator(panel);
-    Interval heightRange = styleRangeEvaluator.evalTop('panel-hidden', 'panel-displayed');
     window.scrollBy(0, -20);
     return window.animationFrame.then((_) {
-      window.scrollBy(0, -heightRange.range + 20);
+      window.scrollBy(0, -panel.clientHeight + 20);
       return window.animationFrame;
     }).then((_) {
       expect(_header.panelDisplayStyle).toEqual('panel-displayed');
@@ -185,9 +181,7 @@ class _WhenScrolledOutOfExpandedView {
   
   Future _stopScrollingWhenDisplayed() {
     var panel = _header.shadowRoot.getElementById('panel');
-    var styleRangeEvaluator = new ElementStyleRangeEvaluator(panel);
-    Interval heightRange = styleRangeEvaluator.evalTop('panel-hidden', 'panel-displayed');
-    window.scrollBy(0, -heightRange.range);
+    window.scrollBy(0, -panel.clientHeight);
     return window.animationFrame.then((_) {
       window.scrollBy(0, -1);
       return window.animationFrame;
