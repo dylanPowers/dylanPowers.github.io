@@ -23,10 +23,12 @@ h1 {
 
 .panel-expanded {
   height: 500px;
+  position: absolute;
 }
 
-.panel-collapsed {
+.panel-condensed {
   height: 42px;
+  position: fixed;
 }
 
 .panel-hidden {
@@ -54,7 +56,6 @@ h1 {
 #panel {
   background-color: #e51c23;
   margin: 0;
-  position: fixed;
   transition-duration: 0s;
   transition-property: top;
   width: 100%;

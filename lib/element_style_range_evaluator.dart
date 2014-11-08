@@ -40,12 +40,12 @@ abstract class _ElStyleRangeEvalBase {
   _ElStyleRangeEvalBase(this.el);
   
   Interval calcRange(String minClass, String maxClass) {
-    num min = _eval(minClass, maxClass);
-    num max = _eval(maxClass, minClass);
+    num min = _measureStyle(minClass, maxClass);
+    num max = _measureStyle(maxClass, minClass);
     return new Interval(min, max);
   }
   
-  num _eval(String className, String conflictingClass) {
+  num _measureStyle(String className, String conflictingClass) {
     var oldClasses = el.className;
     var oldElStyle = oldStyleAttr;
     var oldTransitionDuration = el.style.transitionDuration;

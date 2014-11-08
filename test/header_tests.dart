@@ -10,10 +10,29 @@ class HeaderTests {
       beforeEach(_headerSetUp);
       afterEach(_headerTearDown);
 
-      it('is present until the first card is reached',
-         _isPresentUntilFirstCardReached);
-      it('is present when slowly scrolling up past the first card',
-         _isPresentWhenSlowlyScrolling);
+      it('hides with the page when scrolling down at the expanded to condensed transition', () {
+        var panel = _header.shadowRoot.getElementById('panel');
+        num height = panel.clientHeight;
+        window.scrollBy(0, height - 1);
+        return window.animationFrame.then((_) {
+          height = panel.clientHeight;
+          expect(_header.panelDisplayStyle).toEqual('panel-hidden');
+          expect(_header.panelYTranslation).toEqual(1);
+        });
+      });
+
+      it('does not immediately display when scrolling up near the expanded to condensed transition', () {
+        var panel = _header.shadowRoot.getElementById('panel');
+        num height = panel.clientHeight;
+        window.scrollBy(0, height - 1);
+        return window.animationFrame.then((_) {
+          window.scrollBy(0, -1);
+          return window.animationFrame;
+        }).then((_) {
+          expect(_header.panelDisplayStyle).toEqual('panel-hidden');
+          expect(_header.panelYTranslation).toEqual(2);
+        });
+      });
 
       describe('when scrolled out of expanded view', () => new _WhenScrolledOutOfExpandedView());
     });
@@ -39,23 +58,6 @@ class HeaderTests {
 
   static void _introHeaderFactoryWorks() {
     expect(() => new IntroHeaderElement()).not.toThrow();
-  }
-
-  static Future _isPresentUntilFirstCardReached() {
-    window.scroll(0, 500);
-    return window.animationFrame.then((_) {
-      expect(_header.panelDisplayStyle).toEqual('panel-displayed');
-    });
-  }
-  
-  static Future _isPresentWhenSlowlyScrolling() {
-    window.scroll(0, 502);
-    return window.animationFrame.then((_) {
-      window.scroll(0, 500);
-      return window.animationFrame;
-    }).then((_) {
-      expect(_header.panelDisplayStyle).toEqual('panel-displayed');
-    });
   }
 }
 

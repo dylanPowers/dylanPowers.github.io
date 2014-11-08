@@ -8,7 +8,7 @@ import 'package:about_me/element_style_range_evaluator.dart';
 @CustomTag('intro-header')
 class IntroHeaderElement extends PolymerElement {
   static const String _PANEL_EXPANDED = 'panel-expanded';
-  static const String _PANEL_COLLAPSED = 'panel-collapsed';
+  static const String _PANEL_CONDENSED = 'panel-condensed';
   static const String _PANEL_HIDDEN = 'panel-hidden';
   static const String _PANEL_DISPLAYED = 'panel-displayed';
   static const String _NAME_COLLAPSED = 'name-collapsed';
@@ -43,13 +43,14 @@ class IntroHeaderElement extends PolymerElement {
 
     _scrollHandler = EnhancedWindowOnScroll.stream.listen(_updateForScrollEvent);
     _evaluateElRanges();
+//    panelYTranslation = _panelHeightRange.min;
   }
 
   void _evaluateElRanges() {
     var nameStyle = new ElementStyleRangeEvaluator(_name);
     _nameTopRange = nameStyle.evalTop(_NAME_COLLAPSED, _NAME_EXPANDED);
     var panelStyle = new ElementStyleRangeEvaluator(_panel);
-    _panelHeightRange = panelStyle.evalHeight(_PANEL_COLLAPSED, _PANEL_EXPANDED);
+    _panelHeightRange = panelStyle.evalHeight(_PANEL_CONDENSED, _PANEL_EXPANDED);
   }
 
   void _updateForScrollEvent(EnhancedScrollEvent e) {
@@ -73,11 +74,11 @@ class IntroHeaderElement extends PolymerElement {
 
   bool _lastScrollDown = true;
   void _updateCollapsedPanel(EnhancedScrollEvent e) {
-    panelSizeStyle = _PANEL_COLLAPSED;
+    panelSizeStyle = _PANEL_CONDENSED;
     
-    if (e.yMovement < 0 || e.newYPosition <= _panelHeightRange.max) {
+    if (e.yMovement < 0) {
       _displayCollapsedPanel(e);
-    } else if (e.yMovement > 0 && e.newYPosition > _panelHeightRange.max) {
+    } else if (e.yMovement > 0) {
       _hideCollapsedPanel(e);
     }
   }
@@ -85,17 +86,12 @@ class IntroHeaderElement extends PolymerElement {
   void _updatedExpandedPanel(EnhancedScrollEvent e) {
     panelDisplayStyle = _PANEL_DISPLAYED;
     panelSizeStyle = _PANEL_EXPANDED;
-    if (e.newYPosition > 0) {
-      panelYTranslation = -e.newYPosition;
-    } else {
-      panelYTranslation = 0;
-    }
   }
 
   void _displayCollapsedPanel(EnhancedScrollEvent e) {
     num newTranslation = panelYTranslation - e.yMovement;
     if ((42 > newTranslation && newTranslation > 0) &&
-        e.newYPosition > _panelHeightRange.max &&
+        e.newYPosition > _panelHeightRange.min &&
         panelDisplayStyle != _PANEL_DISPLAYED) {
       panelYTranslation = newTranslation;
     } else {
@@ -105,16 +101,35 @@ class IntroHeaderElement extends PolymerElement {
   }
 
   void _hideCollapsedPanel(EnhancedScrollEvent e) {
-    if (!_lastScrollDown && panelDisplayStyle == _PANEL_DISPLAYED) {
-      panelYTranslation = _panel.clientHeight;
+    if (panelDisplayStyle == _PANEL_DISPLAYED) {
+      panelYTranslation = _panelHeightRange.min;
     }
 
     panelDisplayStyle = _PANEL_HIDDEN;
-    if (e.yMovement < _panel.clientHeight &&
-        panelYTranslation - e.yMovement > 0) {
-      panelYTranslation -= e.yMovement;
+
+    num movement = _calcDownScrollMovement(e);
+
+    if (movement < _panelHeightRange.min &&
+        panelYTranslation - movement > 0) {
+      panelYTranslation -= movement;
     } else {
       panelYTranslation = 0;
+    }
+  }
+
+  /**
+   * Removes the panel height of the displayed panel vs the condensed panel from
+   * the scrolling y movement. Kinda complex to explain in words, but there's a
+   * portion of the header that in relation to the css style's is not hidden.
+   * Instead it is "shrunk." This removes that shrink to condensed distance
+   * from the scrolling y movement so that the point where the switch from
+   * expanded to condensed acts a virtual point of 0.
+   */
+  num _calcDownScrollMovement(EnhancedScrollEvent e) {
+    if (e.newYPosition - e.yMovement < _panelHeightRange.range) {
+      return e.newYPosition - _panelHeightRange.range;
+    } else {
+      return e.yMovement;
     }
   }
 
