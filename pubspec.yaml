@@ -10,6 +10,9 @@ dependencies:
 dev_dependencies:
   guinness: ">=0.1.16 <0.2.0"
   unittest: any
+dependency_overrides:
+  unittest:
+    git: https://github.com/dylanPowers/dart-unittest.git
 transformers:
 - polymer:
     entry_points:
