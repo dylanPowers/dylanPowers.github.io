@@ -34,6 +34,21 @@ class HeaderTests {
         });
       });
 
+      it('while being partially shown for 500ms above the header bottom is displayed', () {
+        var panel = _header.shadowRoot.getElementById('panel');
+        var expandedHeight = new ElementStyleRangeEvaluator(panel).evalHeight('panel-condensed', 'panel-displayed').max;
+        window.scroll(0, expandedHeight);
+        return window.animationFrame.then((_) {
+          window.scrollBy(0, -1);
+          return window.animationFrame;
+        }).then((_) {
+          return new Future.delayed(new Duration(milliseconds: 500));
+        }).then((_) {
+          expect(_header.panelDisplayStyle).toEqual('panel-displayed');
+          expect(_header.panelYTranslation).toEqual(0);
+        });
+      });
+
       describe('when scrolled out of expanded view', () => new _WhenScrolledOutOfExpandedView());
     });
   }
@@ -96,6 +111,36 @@ class _WhenScrolledOutOfExpandedView {
     
     it('is hidden when scrolled down by 1px and up by 1 px', 
        _isHiddenWhenScrolledUpThenDown);
+    it('while being partially hidden is displayed after sitting for 500ms', () {
+      var panel = _header.shadowRoot.getElementById('panel');
+      window.scrollBy(0, -panel.clientHeight + 1);
+      return window.animationFrame.then((_) {
+        return new Future.delayed(new Duration(milliseconds: 500));
+      }).then((_) {
+        expect(_header.panelDisplayStyle).toEqual('panel-displayed');
+        expect(_header.panelYTranslation).toEqual(0);
+      });
+    });
+
+    it('while being partially show is hidden after sitting for 500ms', () {
+      window.scrollBy(0, -1);
+      return window.animationFrame.then((_) {
+        return new Future.delayed(new Duration(milliseconds: 500));
+      }).then((_) {
+        expect(_header.panelDisplayStyle).toEqual('panel-hidden');
+        expect(_header.panelYTranslation).toEqual(0);
+      });
+    });
+
+    it('while being fully displayed is displayed after sitting for 500ms', () {
+      var panel = _header.shadowRoot.getElementById('panel');
+      window.scrollBy(0, -panel.clientHeight);
+      return window.animationFrame.then((_) {
+        return new Future.delayed(new Duration(milliseconds: 500));
+      }).then((_) {
+        expect(_header.panelDisplayStyle).toEqual('panel-displayed');
+      });
+    });
   }
 
   Future _beforeEach() {
