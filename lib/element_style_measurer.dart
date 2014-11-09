@@ -1,4 +1,4 @@
-library element_style_range_evaluator;
+library element_style_measurer;
 
 import 'dart:html';
 
