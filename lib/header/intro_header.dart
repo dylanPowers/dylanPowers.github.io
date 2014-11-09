@@ -3,7 +3,7 @@ library intro_header;
 import 'dart:async';
 import 'dart:html';
 import 'package:polymer/polymer.dart';
-import 'package:about_me/element_style_range_evaluator.dart';
+import 'package:about_me/element_style_measurer.dart';
 
 @CustomTag('intro-header')
 class IntroHeaderElement extends PolymerElement {
@@ -46,10 +46,10 @@ class IntroHeaderElement extends PolymerElement {
   }
 
   void _evaluateElRanges() {
-    var nameStyle = new ElementStyleRangeEvaluator(_name);
-    _nameTopRange = nameStyle.evalTop(_NAME_COLLAPSED, _NAME_EXPANDED);
-    var panelStyle = new ElementStyleRangeEvaluator(_panel);
-    _panelHeightRange = panelStyle.evalHeight(_PANEL_CONDENSED, _PANEL_EXPANDED);
+    var nameStyle = new TopStyleMeasurer(_name);
+    _nameTopRange = nameStyle.measureClassRange(_NAME_COLLAPSED, _NAME_EXPANDED);
+    var panelStyle = new HeightStyleMeasurer(_panel);
+    _panelHeightRange = panelStyle.measureClassRange(_PANEL_CONDENSED, _PANEL_EXPANDED);
   }
 
   void _updateForScrollEvent(EnhancedScrollEvent e) {
