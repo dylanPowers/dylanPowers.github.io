@@ -30,8 +30,8 @@ void runElementStyleMeasurerTests() {
     _topRangeTests();
 
     it('should handle elements with transitions', () {
-      var divEl = document.getElementById('style-range-test-div');
-      divEl.style.transitionDuration = '1000ms';
+      _testMeasurer = new HeightStyleMeasurer(_testEl);
+      _testEl.style.transitionDuration = '1000ms';
       _style.appendText('.foo { height: 0px } .bar { height: 1px }');
       expect(_testMeasurer.measureClassRange('foo', 'bar').range).toEqual(1);
     });
