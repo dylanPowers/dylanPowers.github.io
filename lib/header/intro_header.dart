@@ -78,7 +78,7 @@ class IntroHeaderElement extends PolymerElement {
     _displayTimer.cancel();
     _displayTimer = new Timer(new Duration(milliseconds: 500), () {
       _panel.style.transitionDuration = '150ms';
-      if (panelYTranslation < _panelHeightRange.min / 2 &&
+      if (_lastScrollDown &&
           window.pageYOffset > _panelHeightRange.max) {
         panelDisplayStyle = PANEL_HIDDEN;
       } else {
@@ -102,7 +102,7 @@ class IntroHeaderElement extends PolymerElement {
 
   void _displayCollapsedPanel(EnhancedScrollEvent e) {
     num newTranslation = panelYTranslation - e.yMovement;
-    if ((42 > newTranslation && newTranslation > 0) &&
+    if ((_panelHeightRange.min > newTranslation && newTranslation > 0) &&
         e.newYPosition > _panelHeightRange.min &&
         panelDisplayStyle != PANEL_DISPLAYED) {
       panelYTranslation = newTranslation;

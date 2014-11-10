@@ -107,25 +107,6 @@ void _condensedViewTests() {
       });
     });
 
-    it('while being partially show is hidden after sitting for 500ms', () {
-      window.scrollBy(0, -1);
-      return window.animationFrame.then((_) {
-        return new Future.delayed(new Duration(milliseconds: 500));
-      }).then((_) {
-        expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_HIDDEN);
-        expect(_header.panelYTranslation).toEqual(0);
-      });
-    });
-
-    it('while being fully displayed is displayed after sitting for 500ms', () {
-      window.scrollBy(0, -_panel.clientHeight);
-      return window.animationFrame.then((_) {
-        return new Future.delayed(new Duration(milliseconds: 500));
-      }).then((_) {
-        expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_DISPLAYED);
-      });
-    });
-
     _scrollingUpTests();
     _scrollingDownTests();
   });
@@ -186,6 +167,16 @@ void _scrollingUpTests() {
         expect(_panel.getComputedStyle().transitionDuration).toEqual('0s');
       });
     });
+
+
+    it('while being partially displayed is displayed after sitting for 500ms', () {
+      window.scrollBy(0, -1);
+      return window.animationFrame.then((_) {
+        return new Future.delayed(new Duration(milliseconds: 500));
+      }).then((_) {
+        expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_DISPLAYED);
+      });
+    });
   });
 }
 
@@ -233,6 +224,16 @@ void _scrollingDownTests() {
         window.scrollBy(0, 2);
         return window.animationFrame;
       }).then((_) {
+        expect(_header.panelYTranslation).toEqual(0);
+      });
+    });
+
+    it('while being partially displayed is hidden after sitting for 500ms', () {
+      window.scrollBy(0, 1);
+      return window.animationFrame.then((_) {
+        return new Future.delayed(new Duration(milliseconds: 500));
+      }).then((_) {
+        expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_HIDDEN);
         expect(_header.panelYTranslation).toEqual(0);
       });
     });

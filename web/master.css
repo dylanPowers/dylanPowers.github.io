@@ -1,9 +1,10 @@
 body {
   background-color: #EEE;
-  margin: 0px;
+  margin: 0;
 }
 
 #cards {
-  position: absolute;
-  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  max-width: 900px;
 }

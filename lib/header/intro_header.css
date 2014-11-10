@@ -27,13 +27,13 @@ h1 {
 }
 
 .panel-condensed {
-  height: 42px;
+  height: 60px;
   position: fixed;
 }
 
 .panel-hidden {
   transition-timing-function: ease-in;
-  top: -42px;
+  top: -60px;
 }
 
 .panel-displayed {

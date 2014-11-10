@@ -2,9 +2,12 @@
   background: #FFFFFF;
   display: block;
   font-family: robotoregular;
-  height: 200px;
-  margin: 20px auto;
-  padding: 10px;
+  height: 256px;
+  margin: 20px;
   position: relative;
-  width: 500px;
+}
+
+#content {
+  margin: 10px;
+  position: absolute;
 }
