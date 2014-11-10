@@ -20,7 +20,7 @@ void runHeaderTests() {
     it('hides with the page when scrolling down at the expanded to condensed transition', () {
       window.scrollBy(0, _panel.clientHeight - 1);
       return window.animationFrame.then((_) {
-        expect(_header.panelDisplayStyle).toEqual('panel-hidden');
+        expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_HIDDEN);
         expect(_header.panelYTranslation).toEqual(1);
       });
     });
@@ -31,7 +31,7 @@ void runHeaderTests() {
         window.scrollBy(0, -1);
         return window.animationFrame;
       }).then((_) {
-        expect(_header.panelDisplayStyle).toEqual('panel-hidden');
+        expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_HIDDEN);
         expect(_header.panelYTranslation).toEqual(2);
       });
     });
@@ -44,7 +44,7 @@ void runHeaderTests() {
       }).then((_) {
         return new Future.delayed(new Duration(milliseconds: 500));
       }).then((_) {
-        expect(_header.panelDisplayStyle).toEqual('panel-displayed');
+        expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_DISPLAYED);
         expect(_header.panelYTranslation).toEqual(0);
       });
     });
@@ -82,7 +82,7 @@ void _condensedViewTests() {
     });
 
     it('is currently out of view', () {
-      expect(_header.panelDisplayStyle).toEqual('panel-hidden');
+      expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_HIDDEN);
       expect(_header.panelYTranslation).toEqual(0);
     });
 
@@ -92,7 +92,7 @@ void _condensedViewTests() {
         window.scrollBy(0, 1);
         return window.animationFrame;
       }).then((_) {
-        expect(_header.panelDisplayStyle).toEqual('panel-hidden');
+        expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_HIDDEN);
         expect(_header.panelYTranslation).toEqual(0);
       });
     });
@@ -102,7 +102,7 @@ void _condensedViewTests() {
       return window.animationFrame.then((_) {
         return new Future.delayed(new Duration(milliseconds: 500));
       }).then((_) {
-        expect(_header.panelDisplayStyle).toEqual('panel-displayed');
+        expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_DISPLAYED);
         expect(_header.panelYTranslation).toEqual(0);
       });
     });
@@ -112,7 +112,7 @@ void _condensedViewTests() {
       return window.animationFrame.then((_) {
         return new Future.delayed(new Duration(milliseconds: 500));
       }).then((_) {
-        expect(_header.panelDisplayStyle).toEqual('panel-hidden');
+        expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_HIDDEN);
         expect(_header.panelYTranslation).toEqual(0);
       });
     });
@@ -122,7 +122,7 @@ void _condensedViewTests() {
       return window.animationFrame.then((_) {
         return new Future.delayed(new Duration(milliseconds: 500));
       }).then((_) {
-        expect(_header.panelDisplayStyle).toEqual('panel-displayed');
+        expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_DISPLAYED);
       });
     });
 
@@ -136,7 +136,7 @@ void _scrollingUpTests() {
     it('scrolls by 1px upon scrolling by 1px', () {
       window.scrollBy(0, -1);
       return window.animationFrame.then((_) {
-        expect(_header.panelDisplayStyle).toEqual('panel-hidden');
+        expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_HIDDEN);
         expect(_header.panelYTranslation).toEqual(1);
       });
     });
@@ -144,7 +144,7 @@ void _scrollingUpTests() {
     it('scrolls by 41px upon scrolling by 41px', () {
       window.scrollBy(0, -41);
       return window.animationFrame.then((_) {
-        expect(_header.panelDisplayStyle).toEqual('panel-hidden');
+        expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_HIDDEN);
         expect(_header.panelYTranslation).toEqual(41);
       });
     });
@@ -165,7 +165,7 @@ void _scrollingUpTests() {
         window.scrollBy(0, -_panel.clientHeight + 20);
         return window.animationFrame;
       }).then((_) {
-        expect(_header.panelDisplayStyle).toEqual('panel-displayed');
+        expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_DISPLAYED);
         expect(_header.panelYTranslation).toEqual(0);
       });
     });
@@ -197,14 +197,14 @@ void _scrollingDownTests() {
     });
 
     it('is currently in view', () {
-      expect(_header.panelDisplayStyle).toEqual('panel-displayed');
+      expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_DISPLAYED);
       expect(_header.panelYTranslation).toEqual(0);
     });
 
     it('scrolls by 1px upon scrolling by 1px', () {
       window.scrollBy(0, 1);
       return window.animationFrame.then((_) {
-        expect(_header.panelDisplayStyle).toEqual('panel-hidden');
+        expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_HIDDEN);
         expect(_header.panelYTranslation).toEqual(_panel.clientHeight - 1);
       });
     });
@@ -212,7 +212,7 @@ void _scrollingDownTests() {
     it('scrolls by its height - 1px upon scrolling by that amount', () {
       window.scrollBy(0, _panel.clientHeight - 1);
       return window.animationFrame.then((_) {
-        expect(_header.panelDisplayStyle).toEqual('panel-hidden');
+        expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_HIDDEN);
         expect(_header.panelYTranslation).toEqual(1);
       });
     });

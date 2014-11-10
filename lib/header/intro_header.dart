@@ -7,16 +7,16 @@ import 'package:about_me/element_style_measurer.dart';
 
 @CustomTag('intro-header')
 class IntroHeaderElement extends PolymerElement {
-  static const String _PANEL_EXPANDED = 'panel-expanded';
-  static const String _PANEL_CONDENSED = 'panel-condensed';
-  static const String _PANEL_HIDDEN = 'panel-hidden';
-  static const String _PANEL_DISPLAYED = 'panel-displayed';
-  static const String _NAME_COLLAPSED = 'name-collapsed';
-  static const String _NAME_EXPANDED = 'name-expanded';
+  static const String PANEL_EXPANDED = 'panel-expanded';
+  static const String PANEL_CONDENSED = 'panel-condensed';
+  static const String PANEL_HIDDEN = 'panel-hidden';
+  static const String PANEL_DISPLAYED = 'panel-displayed';
+  static const String NAME_COLLAPSED = 'name-collapsed';
+  static const String NAME_EXPANDED = 'name-expanded';
 
-  @observable String nameStyle = _NAME_EXPANDED;
-  @observable String panelDisplayStyle = _PANEL_DISPLAYED;
-  @observable String panelSizeStyle = _PANEL_EXPANDED;
+  @observable String nameStyle = NAME_EXPANDED;
+  @observable String panelDisplayStyle = PANEL_DISPLAYED;
+  @observable String panelSizeStyle = PANEL_EXPANDED;
   @observable num panelYTranslation = 0;
 
   Timer _displayTimer = new Timer(Duration.ZERO, () {});
@@ -47,9 +47,9 @@ class IntroHeaderElement extends PolymerElement {
 
   void _evaluateElRanges() {
     var nameStyle = new TopStyleMeasurer(_name);
-    _nameTopRange = nameStyle.measureClassRange(_NAME_COLLAPSED, _NAME_EXPANDED);
+    _nameTopRange = nameStyle.measureClassRange(NAME_COLLAPSED, NAME_EXPANDED);
     var panelStyle = new HeightStyleMeasurer(_panel);
-    _panelHeightRange = panelStyle.measureClassRange(_PANEL_CONDENSED, _PANEL_EXPANDED);
+    _panelHeightRange = panelStyle.measureClassRange(PANEL_CONDENSED, PANEL_EXPANDED);
   }
 
   void _updateForScrollEvent(EnhancedScrollEvent e) {
@@ -73,16 +73,16 @@ class IntroHeaderElement extends PolymerElement {
 
   bool _lastScrollDown = true;
   void _updateCollapsedPanel(EnhancedScrollEvent e) {
-    panelSizeStyle = _PANEL_CONDENSED;
+    panelSizeStyle = PANEL_CONDENSED;
 
     _displayTimer.cancel();
     _displayTimer = new Timer(new Duration(milliseconds: 500), () {
       _panel.style.transitionDuration = '150ms';
       if (panelYTranslation < _panelHeightRange.min / 2 &&
           window.pageYOffset > _panelHeightRange.max) {
-        panelDisplayStyle = _PANEL_HIDDEN;
+        panelDisplayStyle = PANEL_HIDDEN;
       } else {
-        panelDisplayStyle = _PANEL_DISPLAYED;
+        panelDisplayStyle = PANEL_DISPLAYED;
       }
       panelYTranslation = 0;
     });
@@ -96,29 +96,29 @@ class IntroHeaderElement extends PolymerElement {
   }
 
   void _updatedExpandedPanel(EnhancedScrollEvent e) {
-    panelDisplayStyle = _PANEL_DISPLAYED;
-    panelSizeStyle = _PANEL_EXPANDED;
+    panelDisplayStyle = PANEL_DISPLAYED;
+    panelSizeStyle = PANEL_EXPANDED;
   }
 
   void _displayCollapsedPanel(EnhancedScrollEvent e) {
     num newTranslation = panelYTranslation - e.yMovement;
     if ((42 > newTranslation && newTranslation > 0) &&
         e.newYPosition > _panelHeightRange.min &&
-        panelDisplayStyle != _PANEL_DISPLAYED) {
+        panelDisplayStyle != PANEL_DISPLAYED) {
       panelYTranslation = newTranslation;
     } else {
       panelYTranslation = 0;
-      panelDisplayStyle = _PANEL_DISPLAYED;
+      panelDisplayStyle = PANEL_DISPLAYED;
       _displayTimer.cancel();
     }
   }
 
   void _hideCollapsedPanel(EnhancedScrollEvent e) {
-    if (panelDisplayStyle == _PANEL_DISPLAYED) {
+    if (panelDisplayStyle == PANEL_DISPLAYED) {
       panelYTranslation = _panelHeightRange.min;
     }
 
-    panelDisplayStyle = _PANEL_HIDDEN;
+    panelDisplayStyle = PANEL_HIDDEN;
 
     num movement = _calcDownScrollMovement(e);
 
@@ -149,14 +149,14 @@ class IntroHeaderElement extends PolymerElement {
 
   void _updateName(EnhancedScrollEvent e) {
     if (e.newYPosition > _nameTopRange.range) {
-      nameStyle = _NAME_COLLAPSED;
+      nameStyle = NAME_COLLAPSED;
       _name.style.top = '';
       _name.style.transform = '';
     } else if (e.newYPosition > _nameTopRange.min) {
-      nameStyle = _NAME_COLLAPSED;
+      nameStyle = NAME_COLLAPSED;
 //      _name.style.top = '${_nameTopRange.max - e.newYPosition}px';
     } else {
-      nameStyle = _NAME_EXPANDED;
+      nameStyle = NAME_EXPANDED;
       _name.style.top = '';
       _name.style.transform = '';
     }
