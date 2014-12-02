@@ -115,10 +115,10 @@ void _condensedViewTests() {
       window.scrollBy(0, -1);
       num oldTranslationVal;
       return window.animationFrame.then((_) {
-        oldTranslationVal = new CssTransformProp(_header.style).translateY;
+        oldTranslationVal = new CssTransformProp(_panel.style).translateY;
         return new Future.delayed(new Duration(milliseconds: _WAIT_TIME));
       }).then((_) {
-        expect(_panel.style.top).toEqual('${oldTranslationVal}px');
+        expect(_panel.getComputedStyle().top).toEqual('${-_panel.clientHeight + oldTranslationVal}px');
       });
     });
 

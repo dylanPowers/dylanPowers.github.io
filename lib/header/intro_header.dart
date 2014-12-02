@@ -54,7 +54,7 @@ class IntroHeaderElement extends PolymerElement {
   }
 
   void _adjustPartiallyViewablePanel() {
-    _panelTop.top = -60 + _panelTransform.translateY;
+    _panelTop.top = -_panelHeightRange.min + _panelTransform.translateY;
     _panelTransform.translateY = 0;
 
     if (_lastScrollDown && window.pageYOffset > _panelHeightRange.max) {
@@ -63,11 +63,9 @@ class IntroHeaderElement extends PolymerElement {
       panelDisplayStyle = PANEL_DISPLAYED;
     }
 
+    // Order matters here!
     _panelTransitionDuration.duration = new Duration(milliseconds: 150);
-
-    window.animationFrame.then((_) {
-      _panelTop.clear();
-    });
+    _panelTop.clear();
   }
 
   void _evaluateElRanges() {
