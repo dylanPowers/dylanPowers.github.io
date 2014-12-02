@@ -3,6 +3,7 @@ library intro_header;
 import 'dart:async';
 import 'dart:html';
 import 'package:polymer/polymer.dart';
+import 'package:about_me/css_style_props.dart';
 import 'package:about_me/element_style_measurer.dart';
 
 @CustomTag('intro-header')
@@ -17,7 +18,9 @@ class IntroHeaderElement extends PolymerElement {
   @observable String nameStyle = NAME_EXPANDED;
   @observable String panelDisplayStyle = PANEL_DISPLAYED;
   @observable String panelSizeStyle = PANEL_EXPANDED;
-  @observable num panelYTranslation = 0;
+  CssTopProp _panelTop;
+  CssTransformProp _panelTransform;
+  CssTransitionDurationProp _panelTransitionDuration;
 
   Timer _displayTimer = new Timer(Duration.ZERO, () {});
   Element _name;
@@ -37,12 +40,32 @@ class IntroHeaderElement extends PolymerElement {
     _name = shadowRoot.querySelector('#name');
     _panel = shadowRoot.querySelector('#panel');
 
+    _panelTop = new CssTopProp(_panel.style);
+    _panelTransform = new CssTransformProp(_panel.style);
+    _panelTransform.translateY = 0;
+    _panelTransitionDuration = new CssTransitionDurationProp(_panel.style);
+
     window.onResize.listen((_) {
       _evaluateElRanges();
     });
 
     _scrollHandler = EnhancedWindowOnScroll.stream.listen(_updateForScrollEvent);
     _evaluateElRanges();
+  }
+
+  void _adjustPartiallyViewablePanel() {
+    _panelTop.top = -_panelHeightRange.min + _panelTransform.translateY;
+    _panelTransform.translateY = 0;
+
+    if (_lastScrollDown && window.pageYOffset > _panelHeightRange.max) {
+      panelDisplayStyle = PANEL_HIDDEN;
+    } else if (window.pageYOffset <= _panelHeightRange.max) {
+      panelDisplayStyle = PANEL_DISPLAYED;
+    }
+
+    // Order matters here!
+    _panelTransitionDuration.duration = new Duration(milliseconds: 150);
+    _panelTop.clear();
   }
 
   void _evaluateElRanges() {
@@ -75,17 +98,10 @@ class IntroHeaderElement extends PolymerElement {
   void _updateCollapsedPanel(EnhancedScrollEvent e) {
     panelSizeStyle = PANEL_CONDENSED;
 
+    _panelTransitionDuration.clear();
     _displayTimer.cancel();
-    _displayTimer = new Timer(new Duration(milliseconds: 500), () {
-      _panel.style.transitionDuration = '150ms';
-      if (_lastScrollDown &&
-          window.pageYOffset > _panelHeightRange.max) {
-        panelDisplayStyle = PANEL_HIDDEN;
-      } else {
-        panelDisplayStyle = PANEL_DISPLAYED;
-      }
-      panelYTranslation = 0;
-    });
+    _displayTimer = new Timer(new Duration(milliseconds: 500),
+                              _adjustPartiallyViewablePanel);
 
     // Goes last
     if (e.yMovement < 0) {
@@ -101,13 +117,13 @@ class IntroHeaderElement extends PolymerElement {
   }
 
   void _displayCollapsedPanel(EnhancedScrollEvent e) {
-    num newTranslation = panelYTranslation - e.yMovement;
+    num newTranslation = _panelTransform.translateY - e.yMovement;
     if ((_panelHeightRange.min > newTranslation && newTranslation > 0) &&
         e.newYPosition > _panelHeightRange.min &&
         panelDisplayStyle != PANEL_DISPLAYED) {
-      panelYTranslation = newTranslation;
+      _panelTransform.translateY = newTranslation;
     } else {
-      panelYTranslation = 0;
+      _panelTransform.translateY = 0;
       panelDisplayStyle = PANEL_DISPLAYED;
       _displayTimer.cancel();
     }
@@ -115,7 +131,7 @@ class IntroHeaderElement extends PolymerElement {
 
   void _hideCollapsedPanel(EnhancedScrollEvent e) {
     if (panelDisplayStyle == PANEL_DISPLAYED) {
-      panelYTranslation = _panelHeightRange.min;
+      _panelTransform.translateY = _panelHeightRange.min;
     }
 
     panelDisplayStyle = PANEL_HIDDEN;
@@ -123,10 +139,10 @@ class IntroHeaderElement extends PolymerElement {
     num movement = _calcDownScrollMovement(e);
 
     if (movement < _panelHeightRange.min &&
-        panelYTranslation - movement > 0) {
-      panelYTranslation -= movement;
+        _panelTransform.translateY - movement > 0) {
+      _panelTransform.translateY -= movement;
     } else {
-      panelYTranslation = 0;
+      _panelTransform.translateY = 0;
       _displayTimer.cancel();
     }
   }
@@ -162,6 +178,7 @@ class IntroHeaderElement extends PolymerElement {
     }
   }
 }
+
 
 class EnhancedScrollSink extends EventSink<Event> {
   int _lastScrollX = 0;
