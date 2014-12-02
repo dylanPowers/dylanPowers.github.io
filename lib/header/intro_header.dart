@@ -57,15 +57,15 @@ class IntroHeaderElement extends PolymerElement {
     _panelTop.top = -60 + _panelTransform.translateY;
     _panelTransform.translateY = 0;
 
-    window.animationFrame.then((_) {
-      if (_lastScrollDown &&
-      window.pageYOffset > _panelHeightRange.max) {
-        panelDisplayStyle = PANEL_HIDDEN;
-      } else if (window.pageYOffset < _panelHeightRange.max) {
-        panelDisplayStyle = PANEL_DISPLAYED;
-      }
+    if (_lastScrollDown && window.pageYOffset > _panelHeightRange.max) {
+      panelDisplayStyle = PANEL_HIDDEN;
+    } else if (window.pageYOffset <= _panelHeightRange.max) {
+      panelDisplayStyle = PANEL_DISPLAYED;
+    }
 
-      _panelTransitionDuration.duration = new Duration(milliseconds: 150);
+    _panelTransitionDuration.duration = new Duration(milliseconds: 150);
+
+    window.animationFrame.then((_) {
       _panelTop.clear();
     });
   }

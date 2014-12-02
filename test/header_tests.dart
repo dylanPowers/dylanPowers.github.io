@@ -4,6 +4,7 @@ import 'dart:async';
 import 'dart:html';
 import 'package:guinness/guinness.dart';
 
+import 'package:about_me/css_style_props.dart';
 import 'package:about_me/header/intro_header.dart';
 
 IntroHeaderElement _header;
@@ -21,7 +22,7 @@ void runHeaderTests() {
       window.scrollBy(0, _panel.clientHeight - 1);
       return window.animationFrame.then((_) {
         expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_HIDDEN);
-        expect(_header.panelYTranslation).toEqual(1);
+        expect(_panel.style.transform).toEqual('translateY(1px)');
       });
     });
 
@@ -32,7 +33,7 @@ void runHeaderTests() {
         return window.animationFrame;
       }).then((_) {
         expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_HIDDEN);
-        expect(_header.panelYTranslation).toEqual(2);
+        expect(_panel.style.transform).toEqual('translateY(2px)');
       });
     });
 
@@ -45,7 +46,7 @@ void runHeaderTests() {
         return new Future.delayed(new Duration(milliseconds: 500));
       }).then((_) {
         expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_DISPLAYED);
-        expect(_header.panelYTranslation).toEqual(0);
+        expect(_panel.style.transform).toEqual('translateY(0px)');
       });
     });
 
@@ -74,6 +75,7 @@ void _stdTearDown() {
 }
 
 final _SCROLL_START = 600;
+final _WAIT_TIME = 500;
 void _condensedViewTests() {
   describe('when scrolled out of expanded view', () {
     beforeEach(() {
@@ -83,7 +85,7 @@ void _condensedViewTests() {
 
     it('is currently out of view', () {
       expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_HIDDEN);
-      expect(_header.panelYTranslation).toEqual(0);
+      expect(_panel.style.transform).toEqual('translateY(0px)');
     });
 
     it('is hidden when scrolled down by 1px and up by 1 px', () {
@@ -93,17 +95,43 @@ void _condensedViewTests() {
         return window.animationFrame;
       }).then((_) {
         expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_HIDDEN);
-        expect(_header.panelYTranslation).toEqual(0);
+        expect(_panel.style.transform).toEqual('translateY(0px)');
       });
     });
 
-    it('while being partially hidden is displayed after sitting for 500ms', () {
-      window.scrollBy(0, -_panel.clientHeight + 1);
+    it('has a 150ms transition duration after sitting for ${_WAIT_TIME}ms', () {
+      window.scrollBy(0, -1);
       return window.animationFrame.then((_) {
-        return new Future.delayed(new Duration(milliseconds: 500));
+        return new Future.delayed(new Duration(milliseconds: _WAIT_TIME));
       }).then((_) {
-        expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_DISPLAYED);
-        expect(_header.panelYTranslation).toEqual(0);
+        return window.animationFrame;
+      }).then((_) {
+        expect(_panel.style.transitionDuration).toEqual('150ms');
+      });
+    });
+
+    it('has a top value equivalent to the ytranslation after sitting for ' +
+       '${_WAIT_TIME}ms', () {
+      window.scrollBy(0, -1);
+      num oldTranslationVal;
+      return window.animationFrame.then((_) {
+        oldTranslationVal = new CssTransformProp(_header.style).translateY;
+        return new Future.delayed(new Duration(milliseconds: _WAIT_TIME));
+      }).then((_) {
+        expect(_panel.style.top).toEqual('${oldTranslationVal}px');
+      });
+    });
+
+    it('has a 0 ms transition immediately after scrolling after a previous ' +
+       '"scroll then wait ${_WAIT_TIME}ms"', () {
+      window.scrollBy(0, -1);
+      return window.animationFrame.then((_) {
+        return new Future.delayed(new Duration(milliseconds: _WAIT_TIME));
+      }).then((_) {
+        window.scrollBy(0, -1);
+        return window.animationFrame;
+      }).then((_) {
+        expect(_panel.style.transitionDuration).toEqual('');
       });
     });
 
@@ -118,7 +146,7 @@ void _scrollingUpTests() {
       window.scrollBy(0, -1);
       return window.animationFrame.then((_) {
         expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_HIDDEN);
-        expect(_header.panelYTranslation).toEqual(1);
+        expect(_panel.style.transform).toEqual('translateY(1px)');
       });
     });
 
@@ -126,7 +154,7 @@ void _scrollingUpTests() {
       window.scrollBy(0, -41);
       return window.animationFrame.then((_) {
         expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_HIDDEN);
-        expect(_header.panelYTranslation).toEqual(41);
+        expect(_panel.style.transform).toEqual('translateY(41px)');
       });
     });
 
@@ -136,7 +164,7 @@ void _scrollingUpTests() {
         window.scrollBy(0, -1);
         return window.animationFrame;
       }).then((_) {
-        expect(_header.panelYTranslation).toEqual(2);
+        expect(_panel.style.transform).toEqual('translateY(2px)');
       });
     });
 
@@ -147,7 +175,7 @@ void _scrollingUpTests() {
         return window.animationFrame;
       }).then((_) {
         expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_DISPLAYED);
-        expect(_header.panelYTranslation).toEqual(0);
+        expect(_panel.style.transform).toEqual('translateY(0px)');
       });
     });
 
@@ -157,7 +185,7 @@ void _scrollingUpTests() {
         window.scrollBy(0, -1);
         return window.animationFrame;
       }).then((_) {
-        expect(_header.panelYTranslation).toEqual(0);
+        expect(_panel.style.transform).toEqual('translateY(0px)');
       });
     });
 
@@ -169,12 +197,12 @@ void _scrollingUpTests() {
     });
 
 
-    it('while being partially displayed is displayed after sitting for 500ms', () {
+    it('while being partially displayed is hidden after sitting for 500ms', () {
       window.scrollBy(0, -1);
       return window.animationFrame.then((_) {
         return new Future.delayed(new Duration(milliseconds: 500));
       }).then((_) {
-        expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_DISPLAYED);
+        expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_HIDDEN);
       });
     });
   });
@@ -189,14 +217,14 @@ void _scrollingDownTests() {
 
     it('is currently in view', () {
       expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_DISPLAYED);
-      expect(_header.panelYTranslation).toEqual(0);
+      expect(_panel.style.transform).toEqual('translateY(0px)');
     });
 
     it('scrolls by 1px upon scrolling by 1px', () {
       window.scrollBy(0, 1);
       return window.animationFrame.then((_) {
         expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_HIDDEN);
-        expect(_header.panelYTranslation).toEqual(_panel.clientHeight - 1);
+        expect(_panel.style.transform).toEqual('translateY(${_panel.clientHeight - 1}px)');
       });
     });
 
@@ -204,7 +232,7 @@ void _scrollingDownTests() {
       window.scrollBy(0, _panel.clientHeight - 1);
       return window.animationFrame.then((_) {
         expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_HIDDEN);
-        expect(_header.panelYTranslation).toEqual(1);
+        expect(_panel.style.transform).toEqual('translateY(1px)');
       });
     });
 
@@ -214,7 +242,7 @@ void _scrollingDownTests() {
         window.scrollBy(0, 1);
         return window.animationFrame;
       }).then((_) {
-        expect(_header.panelYTranslation).toEqual(_panel.clientHeight - 2);
+        expect(_panel.style.transform).toEqual('translateY(${_panel.clientHeight - 2}px)');
       });
     });
 
@@ -224,7 +252,7 @@ void _scrollingDownTests() {
         window.scrollBy(0, 2);
         return window.animationFrame;
       }).then((_) {
-        expect(_header.panelYTranslation).toEqual(0);
+        expect(_panel.style.transform).toEqual('translateY(0px)');
       });
     });
 
@@ -234,7 +262,7 @@ void _scrollingDownTests() {
         return new Future.delayed(new Duration(milliseconds: 500));
       }).then((_) {
         expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_HIDDEN);
-        expect(_header.panelYTranslation).toEqual(0);
+        expect(_panel.style.transform).toEqual('translateY(0px)');
       });
     });
   });

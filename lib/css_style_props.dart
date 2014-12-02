@@ -45,7 +45,16 @@ class CssTransformProp extends CssProperty {
   }
   num _translateY = double.NAN;
 
-  CssTransformProp(CssStyleDeclaration style) : super(style);
+  CssTransformProp(CssStyleDeclaration style) : super(style) {
+    int transStartIndex = style.transform.indexOf('translateY(');
+    if (transStartIndex != -1) {
+      transStartIndex += 'translateY('.length;
+      int transEndIndex = style.transform.indexOf('px)', transStartIndex);
+      String translateYStr = style.transform.substring(transStartIndex,
+                                                       transEndIndex);
+      _translateY = num.parse(translateYStr);
+    }
+  }
 
   void clear() => translateY = double.NAN;
 
