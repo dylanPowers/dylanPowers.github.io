@@ -2,12 +2,21 @@
   background: #FFFFFF;
   display: block;
   font-family: robotoregular;
-  height: 256px;
-  margin: 20px;
+  margin: 20px auto;
   position: relative;
+  width: 100%;
+  max-width: 712px;
+}
+
+@media (max-width: 752px) {
+  :host {
+    margin: 20px;
+    width: auto;
+  }
 }
 
 #content {
-  margin: 10px;
-  position: absolute;
+  height: 100%;
+  min-height: 256px;
+  padding: 10px;
 }
