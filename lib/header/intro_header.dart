@@ -18,15 +18,18 @@ class IntroHeaderElement extends PolymerElement {
   @observable String nameStyle = NAME_EXPANDED;
   @observable String panelDisplayStyle = PANEL_DISPLAYED;
   @observable String panelSizeStyle = PANEL_EXPANDED;
+
+  num get _condensedHeight => _panelHeights.min;
+  Timer _displayTimer = new Timer(Duration.ZERO, () {});
+  num get _expandedHeight => _panelHeights.max;
+  bool _lastScrollDown = true;
+  Element _name;
+  Interval _nameTopInterval;
+  Element _panel;
+  Interval _panelHeights;
   CssTopProp _panelTop;
   CssTransformProp _panelTransform;
   CssTransitionDurationProp _panelTransitionDuration;
-
-  Timer _displayTimer = new Timer(Duration.ZERO, () {});
-  Element _name;
-  Interval _nameTopRange;
-  Element _panel;
-  Interval _panelHeightRange;
   StreamSubscription<EnhancedScrollEvent> _scrollHandler;
 
   factory IntroHeaderElement() {
@@ -54,12 +57,12 @@ class IntroHeaderElement extends PolymerElement {
   }
 
   void _adjustPartiallyViewablePanel() {
-    _panelTop.top = -_panelHeightRange.min + _panelTransform.translateY;
+    _panelTop.top = -_condensedHeight + _panelTransform.translateY;
     _panelTransform.translateY = 0;
 
-    if (_lastScrollDown && window.pageYOffset > _panelHeightRange.max) {
+    if (_lastScrollDown && window.pageYOffset > _expandedHeight) {
       panelDisplayStyle = PANEL_HIDDEN;
-    } else if (window.pageYOffset <= _panelHeightRange.max) {
+    } else if (window.pageYOffset <= _expandedHeight) {
       panelDisplayStyle = PANEL_DISPLAYED;
     }
 
@@ -68,11 +71,81 @@ class IntroHeaderElement extends PolymerElement {
     _panelTop.clear();
   }
 
+  /**
+   * Kinda complex to explain in words, but when
+   * scrolling down, a large scroll jump over the expanded mode to condensed
+   * mode transition can cause a problem where the condensed panel
+   * is "scrolled" too far.
+   * This recalculates the scroll movement so that it is relative to that
+   * transition point.
+   */
+  num _calcCondensedScrollMovement(EnhancedScrollEvent e) {
+    if (e.newYPosition - e.yMovement < _panelHeights.range) {
+      return e.newYPosition - _panelHeights.range;
+    } else {
+      return e.yMovement;
+    }
+  }
+
+  void _clearPanelTimers() {
+    _panelTransitionDuration.clear();
+    _displayTimer.cancel();
+  }
+
+  void _displayCollapsedPanel(EnhancedScrollEvent e) {
+    num newTranslation = _panelTransform.translateY - e.yMovement;
+    if ((_condensedHeight > newTranslation && newTranslation > 0) &&
+         e.newYPosition > _condensedHeight &&
+         panelDisplayStyle != PANEL_DISPLAYED) {
+      _panelTransform.translateY = newTranslation;
+    } else {
+      _panelTransform.translateY = 0;
+      panelDisplayStyle = PANEL_DISPLAYED;
+     _clearPanelTimers();
+    }
+  }
+
   void _evaluateElRanges() {
     var nameStyle = new TopStyleMeasurer(_name);
-    _nameTopRange = nameStyle.measureClassRange(NAME_COLLAPSED, NAME_EXPANDED);
+    _nameTopInterval = nameStyle.measureClassRange(NAME_COLLAPSED, NAME_EXPANDED);
     var panelStyle = new HeightStyleMeasurer(_panel);
-    _panelHeightRange = panelStyle.measureClassRange(PANEL_CONDENSED, PANEL_EXPANDED);
+    _panelHeights = panelStyle.measureClassRange(PANEL_CONDENSED, PANEL_EXPANDED);
+  }
+
+  void _hideCondensedPanel(EnhancedScrollEvent e) {
+    if (panelDisplayStyle == PANEL_DISPLAYED) {
+      _panelTransform.translateY = _condensedHeight;
+    }
+
+    panelDisplayStyle = PANEL_HIDDEN;
+    num condensedMove = _calcCondensedScrollMovement(e);
+    if (condensedMove < _condensedHeight &&
+        _panelTransform.translateY - condensedMove > 0) {
+      _panelTransform.translateY -= condensedMove;
+    } else {
+      _panelTransform.translateY = 0;
+      _clearPanelTimers();
+    }
+  }
+
+  void _updateCondensedPanel(EnhancedScrollEvent e) {
+    panelSizeStyle = PANEL_CONDENSED;
+
+    _displayTimer = new Timer(new Duration(milliseconds: 500),
+                               _adjustPartiallyViewablePanel);
+
+    // Goes last
+    if (e.yMovement < 0) {
+      _displayCollapsedPanel(e);
+    } else if (e.yMovement > 0) {
+      _hideCondensedPanel(e);
+    }
+  }
+
+  void _updatedExpandedPanel(EnhancedScrollEvent e) {
+    _panelTransform.translateY = 0;
+    panelDisplayStyle = PANEL_DISPLAYED;
+    panelSizeStyle = PANEL_EXPANDED;
   }
 
   void _updateForScrollEvent(EnhancedScrollEvent e) {
@@ -80,9 +153,26 @@ class IntroHeaderElement extends PolymerElement {
     _updatePanel(e);
   }
 
+  void _updateName(EnhancedScrollEvent e) {
+    if (e.newYPosition > _nameTopInterval.range) {
+      nameStyle = NAME_COLLAPSED;
+      _name.style.top = '';
+      _name.style.transform = '';
+    } else if (e.newYPosition > _nameTopInterval.min) {
+      nameStyle = NAME_COLLAPSED;
+//      _name.style.top = '${_nameTopRange.max - e.newYPosition}px';
+    } else {
+      nameStyle = NAME_EXPANDED;
+      _name.style.top = '';
+      _name.style.transform = '';
+    }
+  }
+
   void _updatePanel(EnhancedScrollEvent e) {
-    if (e.newYPosition > _panelHeightRange.range) {
-      _updateCollapsedPanel(e);
+    _clearPanelTimers();
+
+    if (e.newYPosition > _panelHeights.range) {
+      _updateCondensedPanel(e);
     } else {
       _updatedExpandedPanel(e);
     }
@@ -91,90 +181,6 @@ class IntroHeaderElement extends PolymerElement {
       _lastScrollDown = true;
     } else {
       _lastScrollDown = false;
-    }
-  }
-
-  bool _lastScrollDown = true;
-  void _updateCollapsedPanel(EnhancedScrollEvent e) {
-    panelSizeStyle = PANEL_CONDENSED;
-
-    _panelTransitionDuration.clear();
-    _displayTimer.cancel();
-    _displayTimer = new Timer(new Duration(milliseconds: 500),
-                              _adjustPartiallyViewablePanel);
-
-    // Goes last
-    if (e.yMovement < 0) {
-      _displayCollapsedPanel(e);
-    } else if (e.yMovement > 0) {
-      _hideCollapsedPanel(e);
-    }
-  }
-
-  void _updatedExpandedPanel(EnhancedScrollEvent e) {
-    panelDisplayStyle = PANEL_DISPLAYED;
-    panelSizeStyle = PANEL_EXPANDED;
-  }
-
-  void _displayCollapsedPanel(EnhancedScrollEvent e) {
-    num newTranslation = _panelTransform.translateY - e.yMovement;
-    if ((_panelHeightRange.min > newTranslation && newTranslation > 0) &&
-        e.newYPosition > _panelHeightRange.min &&
-        panelDisplayStyle != PANEL_DISPLAYED) {
-      _panelTransform.translateY = newTranslation;
-    } else {
-      _panelTransform.translateY = 0;
-      panelDisplayStyle = PANEL_DISPLAYED;
-      _displayTimer.cancel();
-    }
-  }
-
-  void _hideCollapsedPanel(EnhancedScrollEvent e) {
-    if (panelDisplayStyle == PANEL_DISPLAYED) {
-      _panelTransform.translateY = _panelHeightRange.min;
-    }
-
-    panelDisplayStyle = PANEL_HIDDEN;
-
-    num movement = _calcDownScrollMovement(e);
-
-    if (movement < _panelHeightRange.min &&
-        _panelTransform.translateY - movement > 0) {
-      _panelTransform.translateY -= movement;
-    } else {
-      _panelTransform.translateY = 0;
-      _displayTimer.cancel();
-    }
-  }
-
-  /**
-   * Removes the panel height of the displayed panel vs the condensed panel from
-   * the scrolling y movement. Kinda complex to explain in words, but there's a
-   * portion of the header that in relation to the css style's is not hidden.
-   * Instead it is "shrunk." This removes that shrink to condensed distance
-   * from the scrolling y movement so that the point where the switch from
-   * expanded to condensed acts a virtual point of 0.
-   */
-  num _calcDownScrollMovement(EnhancedScrollEvent e) {
-    if (e.newYPosition - e.yMovement < _panelHeightRange.range) {
-      return e.newYPosition - _panelHeightRange.range;
-    } else {
-      return e.yMovement;
-    }
-  }
-
-  void _updateName(EnhancedScrollEvent e) {
-    if (e.newYPosition > _nameTopRange.range) {
-      nameStyle = NAME_COLLAPSED;
-      _name.style.top = '';
-      _name.style.transform = '';
-    } else if (e.newYPosition > _nameTopRange.min) {
-      nameStyle = NAME_COLLAPSED;
-//      _name.style.top = '${_nameTopRange.max - e.newYPosition}px';
-    } else {
-      nameStyle = NAME_EXPANDED;
-      _name.style.top = '';
-      _name.style.transform = '';
     }
   }
 }

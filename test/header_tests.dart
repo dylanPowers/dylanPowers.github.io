@@ -7,6 +7,8 @@ import 'package:guinness/guinness.dart';
 import 'package:about_me/css_style_props.dart';
 import 'package:about_me/header/intro_header.dart';
 
+const _WAIT_TIME = 500;
+
 IntroHeaderElement _header;
 Element _panel;
 
@@ -37,16 +39,18 @@ void runHeaderTests() {
       });
     });
 
-    it('while being partially shown for 500ms above the header bottom is displayed', () {
-      window.scroll(0, _panel.clientHeight);
+    it('is not moved after scrolling down until partially hidden, and then ' +
+        'scrolling back up to the top', () {
+      window.scrollBy(0, _panel.clientHeight);
       return window.animationFrame.then((_) {
-        window.scrollBy(0, -1);
+        // This bug is caused by some intermediary scroll events
+        window.scrollBy(0, -20);
         return window.animationFrame;
       }).then((_) {
-        return new Future.delayed(new Duration(milliseconds: 500));
+        window.scroll(0, 0);
+        return window.animationFrame;
       }).then((_) {
-        expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_DISPLAYED);
-        expect(_panel.style.transform).toEqual('translateY(0px)');
+        expect(_panel.getBoundingClientRect().top).toEqual(0);
       });
     });
 
@@ -75,7 +79,6 @@ void _stdTearDown() {
 }
 
 final _SCROLL_START = 600;
-final _WAIT_TIME = 500;
 void _condensedViewTests() {
   describe('when scrolled out of expanded view', () {
     beforeEach(() {
@@ -132,6 +135,20 @@ void _condensedViewTests() {
         return window.animationFrame;
       }).then((_) {
         expect(_panel.style.transitionDuration).toEqual('');
+      });
+    });
+
+    it('while being partially shown for 500ms and scrolled above the ' +
+       'expanded header bottom, the condensed view is displayed', () {
+      window.scroll(0, _panel.clientHeight);
+      return window.animationFrame.then((_) {
+        window.scrollBy(0, -1);
+        return window.animationFrame;
+      }).then((_) {
+        return new Future.delayed(new Duration(milliseconds: 500));
+      }).then((_) {
+        expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_DISPLAYED);
+        expect(_panel.style.transform).toEqual('translateY(0px)');
       });
     });
 
