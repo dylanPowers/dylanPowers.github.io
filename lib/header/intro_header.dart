@@ -8,16 +8,19 @@ import 'package:about_me/element_style_measurer.dart';
 
 @CustomTag('intro-header')
 class IntroHeaderElement extends PolymerElement {
-  static const String PANEL_EXPANDED = 'panel-expanded';
-  static const String PANEL_CONDENSED = 'panel-condensed';
-  static const String PANEL_HIDDEN = 'panel-hidden';
-  static const String PANEL_DISPLAYED = 'panel-displayed';
-  static const String NAME_COLLAPSED = 'name-collapsed';
+  static const String NAME_CONDENSED = 'name-condensed';
   static const String NAME_EXPANDED = 'name-expanded';
+  static const String PANEL_CONDENSED = 'panel-condensed';
+  static const String PANEL_EXPANDED = 'panel-expanded';
+  static const String PANEL_DISPLAYED = 'panel-displayed';
+  static const String PANEL_HIDDEN = 'panel-hidden';
+  static const String PIC_CONDENSED = 'pic-condensed';
+  static const String PIC_EXPANDED = 'pic-expanded';
 
   @observable String nameStyle = NAME_EXPANDED;
   @observable String panelDisplayStyle = PANEL_DISPLAYED;
   @observable String panelSizeStyle = PANEL_EXPANDED;
+  @observable String profilePicStyle = PIC_EXPANDED;
 
   num get _condensedHeight => _panelHeights.min;
   Timer _displayTimer = new Timer(Duration.ZERO, () {});
@@ -54,6 +57,11 @@ class IntroHeaderElement extends PolymerElement {
 
     _scrollHandler = EnhancedWindowOnScroll.stream.listen(_updateForScrollEvent);
     _evaluateElRanges();
+  }
+
+  @override
+  void detached() {
+    _scrollHandler.cancel();
   }
 
   void _adjustPartiallyViewablePanel() {
@@ -107,7 +115,7 @@ class IntroHeaderElement extends PolymerElement {
 
   void _evaluateElRanges() {
     var nameStyle = new TopStyleMeasurer(_name);
-    _nameTopInterval = nameStyle.measureClassRange(NAME_COLLAPSED, NAME_EXPANDED);
+    _nameTopInterval = nameStyle.measureClassRange(NAME_CONDENSED, NAME_EXPANDED);
     var panelStyle = new HeightStyleMeasurer(_panel);
     _panelHeights = panelStyle.measureClassRange(PANEL_CONDENSED, PANEL_EXPANDED);
   }
@@ -155,11 +163,11 @@ class IntroHeaderElement extends PolymerElement {
 
   void _updateName(EnhancedScrollEvent e) {
     if (e.newYPosition > _nameTopInterval.range) {
-      nameStyle = NAME_COLLAPSED;
+      nameStyle = NAME_CONDENSED;
       _name.style.top = '';
       _name.style.transform = '';
     } else if (e.newYPosition > _nameTopInterval.min) {
-      nameStyle = NAME_COLLAPSED;
+      nameStyle = NAME_CONDENSED;
 //      _name.style.top = '${_nameTopRange.max - e.newYPosition}px';
     } else {
       nameStyle = NAME_EXPANDED;

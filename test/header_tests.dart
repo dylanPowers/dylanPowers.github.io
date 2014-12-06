@@ -3,6 +3,7 @@ library intro_header_tests;
 import 'dart:async';
 import 'dart:html';
 import 'package:guinness/guinness.dart';
+import 'package:unittest/unittest.dart' as ut;
 
 import 'package:about_me/css_style_props.dart';
 import 'package:about_me/header/intro_header.dart';
@@ -52,6 +53,15 @@ void runHeaderTests() {
       }).then((_) {
         expect(_panel.getBoundingClientRect().top).toEqual(0);
       });
+    });
+
+    it('has a property for modifying the profile picture style', () {
+      expect(() => _header.profilePicStyle, ut.returnsNormally);
+    });
+
+    it('when expanded sets the profile picture html element to the expanded style', () {
+      var picEl = _header.shadowRoot.getElementById('profile-pic');
+      expect(picEl.classes).toContain(IntroHeaderElement.PIC_EXPANDED);
     });
 
     _condensedViewTests();

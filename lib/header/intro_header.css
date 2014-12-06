@@ -12,7 +12,7 @@ h1 {
   width: 50%;
 }
 
-.name-collapsed {
+.name-condensed {
   font-size: 30px;
   top: 4px;
   width: 192px;
@@ -24,14 +24,19 @@ h1 {
   width: 654px;
 }
 
+.panel-condensed {
+    height: 60px;
+    position: fixed;
+}
+
+.panel-displayed {
+    transition-timing-function: ease-out;
+    top: 0;
+}
+
 .panel-expanded {
   height: 448px;
   position: absolute;
-}
-
-.panel-condensed {
-  height: 60px;
-  position: fixed;
 }
 
 .panel-hidden {
@@ -39,9 +44,12 @@ h1 {
   top: -60px;
 }
 
-.panel-displayed {
-  transition-timing-function: ease-out;
-  top: 0;
+.pic-condensed {
+
+}
+
+.pic-expanded {
+
 }
 
 #hidden-panel {
