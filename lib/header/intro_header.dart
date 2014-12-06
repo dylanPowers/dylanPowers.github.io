@@ -138,6 +138,7 @@ class IntroHeaderElement extends PolymerElement {
 
   void _updateCondensedPanel(EnhancedScrollEvent e) {
     panelSizeStyle = PANEL_CONDENSED;
+    profilePicStyle = PIC_CONDENSED;
 
     _displayTimer = new Timer(new Duration(milliseconds: 500),
                                _adjustPartiallyViewablePanel);
@@ -154,6 +155,7 @@ class IntroHeaderElement extends PolymerElement {
     _panelTransform.translateY = 0;
     panelDisplayStyle = PANEL_DISPLAYED;
     panelSizeStyle = PANEL_EXPANDED;
+    profilePicStyle = PIC_EXPANDED;
   }
 
   void _updateForScrollEvent(EnhancedScrollEvent e) {

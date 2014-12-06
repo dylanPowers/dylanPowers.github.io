@@ -25,13 +25,13 @@ h1 {
 }
 
 .panel-condensed {
-    height: 60px;
-    position: fixed;
+  height: 60px;
+  position: fixed;
 }
 
 .panel-displayed {
-    transition-timing-function: ease-out;
-    top: 0;
+  transition-timing-function: ease-out;
+  top: 0;
 }
 
 .panel-expanded {
@@ -45,11 +45,17 @@ h1 {
 }
 
 .pic-condensed {
-
+  height: 48px;
+  left: 16px;
+  margin-left: 0;
+  top: 4px;
+  width: 48px;
 }
 
 .pic-expanded {
-
+  height: 192px;
+  top: 36px;
+  width: 192px;
 }
 
 #hidden-panel {
@@ -79,9 +85,6 @@ h1 {
 #profile-pic {
   border-radius: 96px;
   box-shadow: 0 0 10px #000000;
-  height: 192px;
-  top: 36px;
-  width: 192px;
 }
 
 /*

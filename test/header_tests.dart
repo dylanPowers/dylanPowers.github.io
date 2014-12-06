@@ -13,7 +13,7 @@ const _WAIT_TIME = 500;
 IntroHeaderElement _header;
 Element _panel;
 
-void runHeaderTests() {
+void run(bool doCompleteRun) {
   describe('The intro header', () {
     beforeEach(_stdSetUp);
     afterEach(_stdTearDown);
@@ -64,7 +64,18 @@ void runHeaderTests() {
       expect(picEl.classes).toContain(IntroHeaderElement.PIC_EXPANDED);
     });
 
-    _condensedViewTests();
+    it('when scrolled down to condensed and back up the expanded sets the ' +
+       'profile picture style to expanded', (){
+      window.scrollBy(0, _panel.clientHeight);
+      return window.animationFrame.then((_) {
+        window.scroll(0, 0);
+        return window.animationFrame;
+      }).then((_) {
+        expect(_header.profilePicStyle).toEqual(IntroHeaderElement.PIC_EXPANDED);
+      });
+    });
+
+    _condensedViewTests(doCompleteRun);
   });
 }
 
@@ -89,8 +100,8 @@ void _stdTearDown() {
 }
 
 final _SCROLL_START = 600;
-void _condensedViewTests() {
-  describe('when scrolled out of expanded view', () {
+void _condensedViewTests(bool doCompleteRun) {
+  describe('when scrolled down to condensed view', () {
     beforeEach(() {
       window.scroll(0, _SCROLL_START);
       return window.animationFrame;
@@ -162,8 +173,14 @@ void _condensedViewTests() {
       });
     });
 
-    _scrollingUpTests();
-    _scrollingDownTests();
+    it('sets the profile pic style to condensed', () {
+      expect(_header.profilePicStyle).toEqual(IntroHeaderElement.PIC_CONDENSED);
+    });
+
+    if (doCompleteRun) {
+      _scrollingUpTests();
+      _scrollingDownTests();
+    }
   });
 }
 
