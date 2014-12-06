@@ -13,7 +13,7 @@ const _WAIT_TIME = 500;
 IntroHeaderElement _header;
 Element _panel;
 
-void run(bool doCompleteRun) {
+void run() {
   describe('The intro header', () {
     beforeEach(_stdSetUp);
     afterEach(_stdTearDown);
@@ -64,18 +64,17 @@ void run(bool doCompleteRun) {
       expect(picEl.classes).toContain(IntroHeaderElement.PIC_EXPANDED);
     });
 
-    it('when scrolled down to condensed and back up the expanded sets the ' +
-       'profile picture style to expanded', (){
-      window.scrollBy(0, _panel.clientHeight);
-      return window.animationFrame.then((_) {
-        window.scroll(0, 0);
-        return window.animationFrame;
-      }).then((_) {
-        expect(_header.profilePicStyle).toEqual(IntroHeaderElement.PIC_EXPANDED);
-      });
+    it('has a property for modifying the name style', () {
+      expect(() => _header.nameStyle, ut.returnsNormally);
     });
 
-    _condensedViewTests(doCompleteRun);
+    it('when expanded sets the name html element to the expanded style', () {
+      var nameEl = _header.shadowRoot.getElementById('name');
+      expect(nameEl.classes).toContain(IntroHeaderElement.NAME_EXPANDED);
+    });
+
+    _condensedThenExpandedTests();
+    _condensedViewTests();
   });
 }
 
@@ -99,8 +98,40 @@ void _stdTearDown() {
   extraHeight.remove();
 }
 
+void _condensedThenExpandedTests() {
+  describe('when scrolled down to condensed and back up to expanded', () {
+    beforeEach(() {
+      window.scrollBy(0, _panel.clientHeight);
+      return window.animationFrame.then((_) {
+        window.scroll(0, 0);
+        return window.animationFrame;
+      });
+    });
+
+    it('sets the profile picture style to expanded', (){
+      window.scrollBy(0, _panel.clientHeight);
+      return window.animationFrame.then((_) {
+        window.scroll(0, 0);
+        return window.animationFrame;
+      }).then((_) {
+        expect(_header.profilePicStyle).toEqual(IntroHeaderElement.PIC_EXPANDED);
+      });
+    });
+
+    it('sets the name style to expanded', () {
+      window.scrollBy(0, _panel.clientHeight);
+      return window.animationFrame.then((_) {
+        window.scroll(0, 0);
+        return window.animationFrame;
+      }).then((_) {
+        expect(_header.nameStyle).toEqual(IntroHeaderElement.NAME_EXPANDED);
+      });
+    });
+  });
+}
+
 final _SCROLL_START = 600;
-void _condensedViewTests(bool doCompleteRun) {
+void _condensedViewTests() {
   describe('when scrolled down to condensed view', () {
     beforeEach(() {
       window.scroll(0, _SCROLL_START);
@@ -177,10 +208,12 @@ void _condensedViewTests(bool doCompleteRun) {
       expect(_header.profilePicStyle).toEqual(IntroHeaderElement.PIC_CONDENSED);
     });
 
-    if (doCompleteRun) {
-      _scrollingUpTests();
-      _scrollingDownTests();
-    }
+    it('sets the name style to condensed', () {
+      expect(_header.nameStyle).toEqual(IntroHeaderElement.NAME_CONDENSED);
+    });
+
+    _scrollingUpTests();
+    _scrollingDownTests();
   });
 }
 

@@ -13,14 +13,13 @@ h1 {
 }
 
 .name-condensed {
-  font-size: 30px;
-  top: 4px;
-  width: 192px;
+  font-size: 36px;
+  top: 8px;
 }
 
 .name-expanded {
   font-size: 108px;
-  top: 320px;
+  top: 280px;
   width: 654px;
 }
 
@@ -66,11 +65,14 @@ h1 {
   color: rgba(255, 255, 255, 0.87);
   display: block;
   font-family:  robotoregular, sans-serif;
-  font-size: 96px;
   font-style: normal;
   position: relative;
-  top: 72px;
-  width: 584px;
+}
+
+#name-box {
+  position: absolute;
+  top: 0;
+  width: 100%;
 }
 
 #panel {

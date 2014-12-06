@@ -17,7 +17,7 @@ void main() {
   // It's good to get a new animation frame to prevent randomness
   beforeEach(() => window.animationFrame);
 
-  headerTests.run(false);
+  headerTests.run();
   runElementStyleMeasurerTests();
   cssStylePropsTests.run();
 }

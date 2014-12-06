@@ -137,6 +137,7 @@ class IntroHeaderElement extends PolymerElement {
   }
 
   void _updateCondensedPanel(EnhancedScrollEvent e) {
+    nameStyle = NAME_CONDENSED;
     panelSizeStyle = PANEL_CONDENSED;
     profilePicStyle = PIC_CONDENSED;
 
@@ -154,28 +155,13 @@ class IntroHeaderElement extends PolymerElement {
   void _updatedExpandedPanel(EnhancedScrollEvent e) {
     _panelTransform.translateY = 0;
     panelDisplayStyle = PANEL_DISPLAYED;
+    nameStyle = NAME_EXPANDED;
     panelSizeStyle = PANEL_EXPANDED;
     profilePicStyle = PIC_EXPANDED;
   }
 
   void _updateForScrollEvent(EnhancedScrollEvent e) {
-    _updateName(e);
     _updatePanel(e);
-  }
-
-  void _updateName(EnhancedScrollEvent e) {
-    if (e.newYPosition > _nameTopInterval.range) {
-      nameStyle = NAME_CONDENSED;
-      _name.style.top = '';
-      _name.style.transform = '';
-    } else if (e.newYPosition > _nameTopInterval.min) {
-      nameStyle = NAME_CONDENSED;
-//      _name.style.top = '${_nameTopRange.max - e.newYPosition}px';
-    } else {
-      nameStyle = NAME_EXPANDED;
-      _name.style.top = '';
-      _name.style.transform = '';
-    }
   }
 
   void _updatePanel(EnhancedScrollEvent e) {
