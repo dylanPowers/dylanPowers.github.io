@@ -1,3 +1,6 @@
+$accent-color: #D50000;
+$text-color: rgba(0, 0, 0, 0.87);
+
 :host {
   background: #FFFFFF;
   border-radius: 2px;
@@ -23,24 +26,26 @@
 }
 
 ::content h1 {
-  color: #D50000;
+  color: $accent-color;
+  margin: 0 0 16px 0;
 }
 
 ::content h2 {
-  margin: 12px 0 4px 0;
+  color: $text-color;
+  margin: 0 0 12px 0;
 }
 
 ::content h3, ::content h4 {
-  color: rgba(0, 0, 0, 0.87);
-  margin: 8px 0 4px 0;
+  color: $text-color;
+  margin: 0 0 8px 0;
 }
 
-::content li {
-  color: rgba(0, 0, 0, 0.87);
+::content li, ::content p {
+  color: $text-color;
 }
 
 ::content p {
-  color: rgba(0, 0, 0, 0.87);
+  margin: 0 0 12px 0;
 }
 
 ::content ul {
