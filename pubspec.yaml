@@ -15,8 +15,8 @@ dependency_overrides:
   unittest:
     git: https://github.com/dylanPowers/dart-unittest.git
 transformers:
+- sass
 - polymer:
     entry_points:
       - web/index.html
       - test/main_test.html
-- sass
