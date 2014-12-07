@@ -6,7 +6,7 @@ $text-color: rgba(0, 0, 0, 0.87);
   border-radius: 2px;
   display: block;
   font-family: robotoregular, sans-serif;
-  margin: 20px auto;
+  margin: 12px auto;
   position: relative;
   width: 100%;
   max-width: 712px;
@@ -14,7 +14,7 @@ $text-color: rgba(0, 0, 0, 0.87);
 
 @media (max-width: 752px) {
   :host {
-    margin: 20px;
+    margin: 12px;
     width: auto;
   }
 }
@@ -25,23 +25,29 @@ $text-color: rgba(0, 0, 0, 0.87);
   padding: 16px;
 }
 
+::content h2,
+::content h3,
+::content h4,
+::content li,
+::content p {
+  color: $text-color;
+}
+
 ::content h1 {
   color: $accent-color;
   margin: 0 0 16px 0;
 }
 
 ::content h2 {
-  color: $text-color;
   margin: 0 0 12px 0;
 }
 
-::content h3, ::content h4 {
-  color: $text-color;
+::content h3 {
   margin: 0 0 8px 0;
 }
 
-::content li, ::content p {
-  color: $text-color;
+::content h4 {
+  margin: 0 0 4px 0;
 }
 
 ::content p {
@@ -50,4 +56,5 @@ $text-color: rgba(0, 0, 0, 0.87);
 
 ::content ul {
   margin: 0;
+  padding: 0 0 0 24px;
 }

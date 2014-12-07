@@ -19,7 +19,7 @@ h1 {
 }
 
 .name-expanded {
-  font-size: 108px;
+  font-size: 96px;
   top: 280px;
 }
 
@@ -44,10 +44,11 @@ h1 {
 }
 
 .pic-condensed {
+  float: left;
   height: 48px;
-  left: 16px;
+  left: 6px;
   margin-left: 0;
-  top: 4px;
+  top: 6px;
   width: 48px;
 }
 
@@ -55,6 +56,15 @@ h1 {
   height: 192px;
   top: 36px;
   width: 192px;
+}
+
+#github-logo {
+  bottom: 14px;
+  height: 32px;
+  opacity: 0.87;
+  position: absolute;
+  right: 14px;
+  width: 32px;
 }
 
 #hidden-panel {
@@ -96,16 +106,15 @@ h1 {
  */
 @media (max-width: 612px) {
   .panel-expanded {
-    height: 320px;
+    height: 288px;
   }
 
-  #name {
-    font-size: 48px;
-    top: 48px;
-    width: 320px;
+  .name-expanded {
+    font-size: 36px;
+    top: 236px;
   }
 
-  #profile-pic {
+  .pic-expanded {
     top: 24px;
   }
 }
