@@ -2,11 +2,22 @@
 <link rel="import" href="base_card.html">
 <polymer-element name="work-experience-card" noscript>
   <template>
+    <link rel="stylesheet" href="work_experience_card.css" />
     <base-card>
       <h1>Work Experience</h1>
-      <h2>Schweitzer Engineering Laboratories</h2>
-      <h3>Software Engineering Intern</h3>
-      <p>Software engineering...blah blah blah</p>
+      <h2>Schweitzer Engineering Laboratories, Pullman, WA</h2>
+      <h3 id="sel-position">Software Engineering Intern</h3>
+      <h3 id="sel-date">Jan 2013 - Oct 2014</h3>
+      <h4 id="sel-roles">Creations:</h4>
+      <ul>
+        <li>Prototype mobile and HTML5 apps to migrate away from Silverlight</li>
+        <li>
+          Mho circle and FFT plots in Silverlight for
+          <a href="https://www.selinc.com/SEL-5601-2015/">SynchroWAVe Event</a></li>
+        <li>
+          Web API rewrite that fully leverages REST principals to increase
+          multiplatform interoperability</li>
+      </ul>
     </base-card>
   </template>
 </polymer-element>
