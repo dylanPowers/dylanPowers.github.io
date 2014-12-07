@@ -8,6 +8,7 @@ import 'package:unittest/unittest.dart' as ut;
 import 'package:about_me/css_style_props.dart';
 import 'package:about_me/header/intro_header.dart';
 
+const _SCROLL_START = 600;
 const _WAIT_TIME = 500;
 
 IntroHeaderElement _header;
@@ -130,7 +131,6 @@ void _condensedThenExpandedTests() {
   });
 }
 
-final _SCROLL_START = 600;
 void _condensedViewTests() {
   describe('when scrolled down to condensed view', () {
     beforeEach(() {
