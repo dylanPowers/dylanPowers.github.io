@@ -59,16 +59,30 @@ h1 {
 }
 
 #github-logo {
-  bottom: 14px;
+  float: left;
   height: 32px;
+  margin: 14px 7px;
   opacity: 0.87;
-  position: absolute;
-  right: 14px;
+  position: relative;
   width: 32px;
 }
 
 #hidden-panel {
   position: relative;
+}
+
+#link-icon {
+  float: right;
+  height: 32px;
+  margin: 14px 14px 14px 7px;
+  position: relative;
+  width: 32px;
+}
+
+#links-box {
+  bottom: 0;
+  position: absolute;
+  right: 0;
 }
 
 #name {

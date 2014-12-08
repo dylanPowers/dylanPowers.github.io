@@ -11,8 +11,18 @@
         <h1 id="name" class="center {{nameStyle}}">
           Dylan Powers</h1>
       </div>
-      <a href="https://github.com/dylanPowers" target="_blank">
-        <img id="github-logo" src="github_mark_64px.png" /></a>
+      <div id="links-box">
+        <a href="https://github.com/dylanPowers" target="_blank">
+          <img id="github-logo"
+               src="github_mark_32px.png"
+               srcset="packages/about_me/header/github_mark_32px.png 1x,
+                       packages/about_me/header/github_mark_64px.png 2x,
+                       packages/about_me/header/github_mark_120px 4x"/></a>
+        <img id="link-icon"
+             src="link_icon_36px.png"
+             srcset="packages/about_me/header/link_icon_36px.png 1.2x,
+                     packages/about_me/header/link_icon_72px.png 2x" />
+      </div>
     </div>
   </template>
   <script type="application/dart" src="intro_header.dart"></script>
