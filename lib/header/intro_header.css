@@ -70,18 +70,27 @@ h1 {
   position: relative;
 }
 
-#link-icon {
-  float: right;
+#links-box {
+  bottom: 0;
+  height: 60px;
+  position: absolute;
+  right: 0;
+}
+
+#links-dropdown {
+  top: 56px;
+}
+
+#links-icon {
   height: 32px;
-  margin: 14px 14px 14px 7px;
-  position: relative;
+  margin: 14px;
   width: 32px;
 }
 
-#links-box {
-  bottom: 0;
-  position: absolute;
-  right: 0;
+#links-menu-button {
+  height: 60px;
+  outline: none;
+  width: 60px;
 }
 
 #name {

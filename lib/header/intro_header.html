@@ -1,11 +1,14 @@
-<link rel="import" href="../../../packages/polymer/polymer.html">
-<link rel="import" href="../../../packages/paper_elements/paper_shadow.html">
+<link rel="import" href="../../../packages/polymer/polymer.html" />
+<link rel="import" href="../../../packages/paper_elements/paper_dropdown.html" />
+<link rel="import" href="../../../packages/paper_elements/paper_item.html" />
+<link rel="import" href="../../../packages/paper_elements/paper_ripple.html" />
+<link rel="import" href="../../../packages/paper_elements/paper_shadow.html" />
+<link rel="import" href="../../../packages/paper_elements/paper_menu_button.html" />
 <polymer-element name="intro-header">
   <template> 
     <link rel="stylesheet" href="intro_header.css" />
     <div id="hidden-panel" class="panel-expanded"></div>
-    <div id="panel" class="{{panelSizeStyle}} {{panelDisplayStyle}}">
-      <paper-shadow z="1"></paper-shadow>
+    <paper-shadow z="1" id="panel" class="{{panelSizeStyle}} {{panelDisplayStyle}}">
       <img id="profile-pic" class="center {{profilePicStyle}}" src="profile.jpg" />
       <div id="name-box">
         <h1 id="name" class="center {{nameStyle}}">
@@ -18,12 +21,18 @@
                srcset="packages/about_me/header/github_mark_32px.png 1x,
                        packages/about_me/header/github_mark_64px.png 2x,
                        packages/about_me/header/github_mark_120px 4x"/></a>
-        <img id="link-icon"
-             src="link_icon_36px.png"
-             srcset="packages/about_me/header/link_icon_36px.png 1.2x,
-                     packages/about_me/header/link_icon_72px.png 2x" />
+        <paper-menu-button id="links-menu-button">
+            <paper-ripple fit></paper-ripple>
+            <img id="links-icon"
+               src="link_icon_36px.png"
+               srcset="packages/about_me/header/link_icon_36px.png 1.2x,
+                       packages/about_me/header/link_icon_72px.png 2x" />
+          <paper-dropdown id="links-dropdown" class="dropdown" halign="right">
+            <paper-item>Googles</paper-item>
+          </paper-dropdown>
+        </paper-menu-button>
       </div>
-    </div>
+    </paper-shadow>
   </template>
   <script type="application/dart" src="intro_header.dart"></script>
 </polymer-element>
