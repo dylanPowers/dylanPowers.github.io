@@ -13,6 +13,17 @@ h1 {
   width: 50%;
 }
 
+.link-logo {
+  height: 32px;
+  margin: 14px 14px;
+  width: 32px;
+}
+
+.links-icon {
+  height: 32px;
+  width: 32px;
+}
+
 .name-condensed {
   font-size: 36px;
   top: 8px;
@@ -62,20 +73,6 @@ h1 {
   position: relative;
 }
 
-.link-logo {
-  height: 32px;
-  margin: 14px 14px;
-  position: relative;
-  width: 32px;
-}
-
-.link-logo-box {
-  float: left;
-  height: 60px;
-  position: relative;
-  width: 60px;
-}
-
 #links-box {
   bottom: 0;
   height: 60px;
@@ -87,14 +84,18 @@ h1 {
   margin: 14px;
 }
 
+#links-close-button {
+  height: 56px;
+}
+
+#links-dropdown {
+  top: 4px;
+}
+
 #links-dropdown-icon {
   float: right;
   margin-left: 48px;
-}
-
-.links-icon {
-  height: 32px;
-  width: 32px;
+  margin-top: -32px;
 }
 
 #links-menu-button {

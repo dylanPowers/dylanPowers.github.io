@@ -17,51 +17,42 @@
           Dylan Powers</h1>
       </div>
       <div id="links-box">
-        <a class="link-logo-box" href="https://github.com/dylanPowers" target="_blank">
-          <paper-ripple fit></paper-ripple>
+        <header-link href="https://github.com/dylanPowers">
           <img class="link-logo"
                alt="Github"
                src="images/github_mark_120px.png"/>
-        </a>
+        </header-link>
 
-        <a class="link-logo-box" href="https://medium.com/@dylankpowers" target="_blank">
-          <paper-ripple fit></paper-ripple>
+        <header-link href="https://medium.com/@dylankpowers">
           <img id="medium-logo" class="link-logo"
                alt="Medium"
                src="images/medium_icon_100px.png"/>
-        </a>
+        </header-link>
 
-        <a class="link-logo-box"
-           href="https://plus.google.com/+DylanPowersz" target="_blank">
-          <paper-ripple fit></paper-ripple>
+        <header-link href="https://plus.google.com/+DylanPowersz">
           <img id="google-plus-logo" class="link-logo"
                alt="Google Plus"
                src="images/g+_icon_64px.png" />
-        </a>
+        </header-link>
 
-        <a class="link-logo-box"
-           href="https://twitter.com/dylankpowers" target="_blank">
-          <paper-ripple fit></paper-ripple>
+        <header-link href="https://twitter.com/dylankpowers">
           <img class="link-logo"
                alt="Twitter"
                src="images/twitter_icon_128px.png"/>
-        </a>
+        </header-link>
 
-        <a class="link-logo-box"
-           href="http://www.linkedin.com/pub/dylan-powers/a4/599/a3b/"
-           target="_blank">
-          <paper-ripple fit></paper-ripple>
+        <header-link href="http://www.linkedin.com/pub/dylan-powers/a4/599/a3b/">
           <img id="linkedin-logo" class="link-logo"
                alt="LinkedIn"
                src="images/linkedin_icon_128px.png"/>
-        </a>
+        </header-link>
 
         <paper-menu-button id="links-menu-button">
-          <paper-ripple fit></paper-ripple>
+          <header-link-ripple></header-link-ripple>
           <img id="links-button-icon" class="links-icon"
              src="images/link_icon_72px.png" />
           <paper-dropdown id="links-dropdown" class="dropdown" halign="right">
-            <paper-item>
+            <paper-item id="links-close-button">
               <img id="links-dropdown-icon" class="links-icon"
                    src="images/link_icon_black_72px.png" />
             </paper-item>
@@ -72,4 +63,35 @@
     </paper-shadow>
   </template>
   <script type="application/dart" src="intro_header.dart"></script>
+</polymer-element>
+
+<polymer-element name="header-link" noscript attributes="href">
+  <template>
+    <style>
+      a,
+      a:link,
+      a:visited,
+      a:active {
+        color: #000;
+        -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
+      }
+
+      #link-logo-box {
+        float: left;
+        height: 60px;
+        position: relative;
+        width: 60px;
+      }
+    </style>
+    <a id="link-logo-box" _href="{{href}}" target="_blank">
+      <header-link-ripple></header-link-ripple>
+      <content></content>
+    </a>
+  </template>
+</polymer-element>
+
+<polymer-element name="header-link-ripple" noscript>
+  <template>
+    <paper-ripple class="circle recenteringTouch" fit></paper-ripple>
+  </template>
 </polymer-element>
