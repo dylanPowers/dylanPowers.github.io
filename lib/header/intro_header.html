@@ -9,25 +9,62 @@
     <link rel="stylesheet" href="intro_header.css" />
     <div id="hidden-panel" class="panel-expanded"></div>
     <paper-shadow z="1" id="panel" class="{{panelSizeStyle}} {{panelDisplayStyle}}">
-      <img id="profile-pic" class="center {{profilePicStyle}}" src="profile.jpg" />
+      <img id="profile-pic"
+           class="center {{profilePicStyle}}"
+           src="images/profile.jpg" />
       <div id="name-box">
         <h1 id="name" class="center {{nameStyle}}">
           Dylan Powers</h1>
       </div>
       <div id="links-box">
-        <a href="https://github.com/dylanPowers" target="_blank">
-          <img id="github-logo"
-               src="github_mark_32px.png"
-               srcset="packages/about_me/header/github_mark_32px.png 1x,
-                       packages/about_me/header/github_mark_64px.png 2x,
-                       packages/about_me/header/github_mark_120px 4x"/></a>
+        <a class="link-logo-box" href="https://github.com/dylanPowers" target="_blank">
+          <paper-ripple fit></paper-ripple>
+          <img class="link-logo"
+               alt="Github"
+               src="images/github_mark_120px.png"/>
+        </a>
+
+        <a class="link-logo-box" href="https://medium.com/@dylankpowers" target="_blank">
+          <paper-ripple fit></paper-ripple>
+          <img id="medium-logo" class="link-logo"
+               alt="Medium"
+               src="images/medium_icon_100px.png"/>
+        </a>
+
+        <a class="link-logo-box"
+           href="https://plus.google.com/+DylanPowersz" target="_blank">
+          <paper-ripple fit></paper-ripple>
+          <img id="google-plus-logo" class="link-logo"
+               alt="Google Plus"
+               src="images/g+_icon_64px.png" />
+        </a>
+
+        <a class="link-logo-box"
+           href="https://twitter.com/dylankpowers" target="_blank">
+          <paper-ripple fit></paper-ripple>
+          <img class="link-logo"
+               alt="Twitter"
+               src="images/twitter_icon_128px.png"/>
+        </a>
+
+        <a class="link-logo-box"
+           href="http://www.linkedin.com/pub/dylan-powers/a4/599/a3b/"
+           target="_blank">
+          <paper-ripple fit></paper-ripple>
+          <img id="linkedin-logo" class="link-logo"
+               alt="LinkedIn"
+               src="images/linkedin_icon_128px.png"/>
+        </a>
+
         <paper-menu-button id="links-menu-button">
-            <paper-ripple fit></paper-ripple>
-            <img id="links-icon"
-               src="link_icon_36px.png"
-               srcset="packages/about_me/header/link_icon_36px.png 1.2x,
-                       packages/about_me/header/link_icon_72px.png 2x" />
+          <paper-ripple fit></paper-ripple>
+          <img id="links-button-icon" class="links-icon"
+             src="images/link_icon_72px.png" />
           <paper-dropdown id="links-dropdown" class="dropdown" halign="right">
+            <paper-item>
+              <img id="links-dropdown-icon" class="links-icon"
+                   src="images/link_icon_black_72px.png" />
+            </paper-item>
             <paper-item>Googles</paper-item>
           </paper-dropdown>
         </paper-menu-button>

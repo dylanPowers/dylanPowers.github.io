@@ -58,16 +58,22 @@ h1 {
   width: 192px;
 }
 
-#github-logo {
-  float: left;
+#hidden-panel {
+  position: relative;
+}
+
+.link-logo {
   height: 32px;
-  margin: 14px 7px;
+  margin: 14px 14px;
   position: relative;
   width: 32px;
 }
 
-#hidden-panel {
+.link-logo-box {
+  float: left;
+  height: 60px;
   position: relative;
+  width: 60px;
 }
 
 #links-box {
@@ -77,13 +83,17 @@ h1 {
   right: 0;
 }
 
-#links-dropdown {
-  top: 56px;
+#links-button-icon {
+  margin: 14px;
 }
 
-#links-icon {
+#links-dropdown-icon {
+  float: right;
+  margin-left: 48px;
+}
+
+.links-icon {
   height: 32px;
-  margin: 14px;
   width: 32px;
 }
 
@@ -91,6 +101,22 @@ h1 {
   height: 60px;
   outline: none;
   width: 60px;
+}
+
+#google-plus-logo {
+  background-color: #dd4b39;
+}
+
+#linkedin-logo {
+  margin-right: auto;
+  width: auto;
+}
+
+#medium-logo {
+  background-color: #000;
+  height: 32px;
+  width: 32px;
+  margin: 14px;
 }
 
 #name {
