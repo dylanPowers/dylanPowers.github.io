@@ -172,17 +172,43 @@ class IntroHeaderElement extends PolymerElement {
   void _updateLinks() {
     HtmlElement twoToLast = _headerLinks[_headerLinks.length - 2];
     HtmlElement last = _headerLinks.last;
-    if (window.document.body.clientWidth < 1000) {
-      showLinksMenu = true;
-      overflowedLinks.add(new OverflowedHeaderLink(twoToLast));
-      twoToLast.classes.add('hide');
-      overflowedLinks.add(new OverflowedHeaderLink(last));
-      last.classes.add('hide');
+    HtmlElement representativeBox;
+    if (overflowedLinks.length == _headerLinks.length) {
+      representativeBox = shadowRoot.getElementById('links-menu-button');
     } else {
-      showLinksMenu = false;
-      overflowedLinks.clear();
-      twoToLast.classes.remove('hide');
-      last.classes.remove('hide');
+      HtmlElement first = (_headerLinks.first as HtmlElement);
+      representativeBox = first.shadowRoot.getElementById('link-logo-box');
+    }
+    var representativeDims = representativeBox.getBoundingClientRect();
+    var body = (window.document as HtmlDocument).body;
+    var noMansLand = body.clientWidth / 2 + 128;
+    var numLinksInNoLand = (noMansLand - representativeDims.left) / representativeDims.width;
+    var numLinksToRemove = numLinksInNoLand.ceil();
+    if (numLinksToRemove <= 0) {
+      // A little unintuitive, but this is working backwords.
+      for (int i = 0; i > numLinksToRemove && overflowedLinks.length > 0; --i) {
+        overflowedLinks.removeAt(0);
+        HtmlElement redisplayEl = _headerLinks[_headerLinks.length - overflowedLinks.length - 1];
+        redisplayEl.classes.remove('hide');
+      }
+
+      if (overflowedLinks.length <= 1) {
+        showLinksMenu = false;
+        overflowedLinks.clear();
+        (_headerLinks.last as HtmlElement).classes.remove('hide');
+      }
+    } else {
+      if (overflowedLinks.length == 0) {
+        showLinksMenu = true;
+        (_headerLinks.last as HtmlElement).classes.add('hide');
+        overflowedLinks.add(new OverflowedHeaderLink(_headerLinks.last));
+      }
+
+      for (int i = 0; i < numLinksToRemove; ++i) {
+        HtmlElement elToHide = _headerLinks[_headerLinks.length - overflowedLinks.length - 1];
+        elToHide.classes.add('hide');
+        overflowedLinks.insert(0, new OverflowedHeaderLink(elToHide));
+      }
     }
   }
 

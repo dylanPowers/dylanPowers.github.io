@@ -223,7 +223,8 @@ void _condensedViewTests() {
         oldTranslationVal = new CssTransformProp(_panel.style).translateY;
         return new Future.delayed(new Duration(milliseconds: _WAIT_TIME));
       }).then((_) {
-        expect(_panel.getComputedStyle().top).toEqual('${-_panel.clientHeight + oldTranslationVal}px');
+        expect(_panel.getComputedStyle().top)
+            .toEqual('${-_panel.clientHeight + oldTranslationVal}px');
       });
     });
 
