@@ -87,7 +87,8 @@ void run() {
       });
 
       it('is an observable list of OverflowedHeaderLinks', () {
-        expect(_header.overflowedLinks).toBeAnInstanceOf(ObservableList);
+        expect(_header.overflowedLinks,
+               new ut.isInstanceOf<ObservableList<OverflowedHeaderLink>>());
       });
     });
 
@@ -95,7 +96,7 @@ void run() {
     _condensedViewTests();
   });
 
-  ddescribe('An overflowed header link', () {
+  describe('An overflowed header link', () {
     OverflowedHeaderLink link;
     beforeEach(() => link = new OverflowedHeaderLink(new Element.tag('header-link')));
 
