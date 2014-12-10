@@ -106,6 +106,25 @@ void run() {
     it('has an href property', () {
       expect(() => link.href, ut.returnsNormally);
     });
+
+    it('correctly sets the href property to the value from the header-link', () {
+      var headerLink = new Element.tag('header-link');
+      var linkAddr = 'a-link-to-a-website';
+      headerLink.setAttribute('href', linkAddr);
+      link = new OverflowedHeaderLink(headerLink);
+      expect(link.href).toEqual(linkAddr);
+    });
+
+    it('correctly sets the name attribute from the alt attribute on the ' +
+       'img content', () {
+      var headerLink = new Element.tag('header-link');
+      var alt = 'get a life';
+      var imgEl = new Element.img()
+          ..setAttribute('alt', alt);
+      headerLink.append(imgEl);
+      link = new OverflowedHeaderLink(headerLink);
+      expect(link.name).toEqual(alt);
+    });
   });
 }
 

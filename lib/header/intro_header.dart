@@ -18,7 +18,7 @@ class IntroHeaderElement extends PolymerElement {
   static const String PIC_EXPANDED = 'pic-expanded';
 
   @observable String nameStyle = NAME_EXPANDED;
-  var overflowedLinks = new ObservableList();
+  var overflowedLinks = new ObservableList<OverflowedHeaderLink>();
   @observable String panelDisplayStyle = PANEL_DISPLAYED;
   @observable String panelSizeStyle = PANEL_EXPANDED;
   @observable String profilePicStyle = PIC_EXPANDED;
@@ -189,7 +189,13 @@ class OverflowedHeaderLink {
   String name;
   String href;
 
-  OverflowedHeaderLink(HtmlElement headerLink);
+  OverflowedHeaderLink(HtmlElement headerLink) {
+    href = headerLink.getAttribute('href');
+    var imgEl = headerLink.querySelector('img');
+    if (imgEl != null) {
+      name = imgEl.getAttribute('alt');
+    }
+  }
 }
 
 class EnhancedScrollSink extends EventSink<Event> {
