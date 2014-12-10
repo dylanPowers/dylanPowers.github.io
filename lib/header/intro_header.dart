@@ -204,7 +204,8 @@ class IntroHeaderElement extends PolymerElement {
         overflowedLinks.add(new OverflowedHeaderLink(_headerLinks.last));
       }
 
-      for (int i = 0; i < numLinksToRemove; ++i) {
+      for (int i = 0; i < numLinksToRemove &&
+                      overflowedLinks.length < _headerLinks.length; ++i) {
         HtmlElement elToHide = _headerLinks[_headerLinks.length - overflowedLinks.length - 1];
         elToHide.classes.add('hide');
         overflowedLinks.insert(0, new OverflowedHeaderLink(elToHide));
