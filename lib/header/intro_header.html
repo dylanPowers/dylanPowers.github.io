@@ -47,18 +47,22 @@
                src="images/linkedin_icon_128px.png"/>
         </header-link>
 
-        <paper-menu-button id="links-menu-button">
-          <header-link-ripple></header-link-ripple>
-          <img id="links-button-icon" class="links-icon"
-             src="images/link_icon_72px.png" />
-          <paper-dropdown id="links-dropdown" class="dropdown" halign="right">
-            <paper-item id="links-close-button">
-              <img id="links-dropdown-icon" class="links-icon"
-                   src="images/link_icon_black_72px.png" />
-            </paper-item>
-            <paper-item>Googles</paper-item>
-          </paper-dropdown>
-        </paper-menu-button>
+        <template if="{{showLinksMenu}}">
+          <paper-menu-button id="links-menu-button">
+            <header-link-ripple></header-link-ripple>
+            <img id="links-button-icon" class="links-icon"
+               src="images/link_icon_72px.png" />
+            <paper-dropdown id="links-dropdown" class="dropdown" halign="right">
+              <paper-item id="links-close-button">
+                <img id="links-dropdown-icon" class="links-icon"
+                     src="images/link_icon_black_72px.png" />
+              </paper-item>
+              <template repeat="{{link in overflowedLinks}}">
+
+              </template>
+            </paper-dropdown>
+          </paper-menu-button>
+        </template>
       </div>
     </paper-shadow>
   </template>

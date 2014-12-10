@@ -3,6 +3,7 @@ library intro_header_tests;
 import 'dart:async';
 import 'dart:html';
 import 'package:guinness/guinness.dart';
+import 'package:polymer/polymer.dart';
 import 'package:unittest/unittest.dart' as ut;
 
 import 'package:about_me/css_style_props.dart';
@@ -74,8 +75,37 @@ void run() {
       expect(nameEl.classes).toContain(IntroHeaderElement.NAME_EXPANDED);
     });
 
+    it('has a property for accessing the state of whether the additional ' +
+       'links button should be shown', () {
+      expect(() => _header.showLinksMenu, ut.returnsNormally);
+      expect(_header.showLinksMenu).toBeAnInstanceOf(bool);
+    });
+
+    describe('property for accessing the overflowed header links', () {
+      it('exists', () {
+        expect(() => _header.overflowedLinks, ut.returnsNormally);
+      });
+
+      it('is an observable list of OverflowedHeaderLinks', () {
+        expect(_header.overflowedLinks).toBeAnInstanceOf(ObservableList);
+      });
+    });
+
     _condensedThenExpandedTests();
     _condensedViewTests();
+  });
+
+  ddescribe('An overflowed header link', () {
+    OverflowedHeaderLink link;
+    beforeEach(() => link = new OverflowedHeaderLink(new Element.tag('header-link')));
+
+    it('has a name property', () {
+      expect(() => link.name, ut.returnsNormally);
+    });
+
+    it('has an href property', () {
+      expect(() => link.href, ut.returnsNormally);
+    });
   });
 }
 

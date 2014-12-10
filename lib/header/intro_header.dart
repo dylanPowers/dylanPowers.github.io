@@ -18,9 +18,11 @@ class IntroHeaderElement extends PolymerElement {
   static const String PIC_EXPANDED = 'pic-expanded';
 
   @observable String nameStyle = NAME_EXPANDED;
+  var overflowedLinks = new ObservableList();
   @observable String panelDisplayStyle = PANEL_DISPLAYED;
   @observable String panelSizeStyle = PANEL_EXPANDED;
   @observable String profilePicStyle = PIC_EXPANDED;
+  @observable bool showLinksMenu = false;
 
   num get _condensedHeight => _panelHeights.min;
   Timer _displayTimer = new Timer(Duration.ZERO, () {});
@@ -183,6 +185,12 @@ class IntroHeaderElement extends PolymerElement {
   }
 }
 
+class OverflowedHeaderLink {
+  String name;
+  String href;
+
+  OverflowedHeaderLink(HtmlElement headerLink);
+}
 
 class EnhancedScrollSink extends EventSink<Event> {
   int _lastScrollX = 0;
