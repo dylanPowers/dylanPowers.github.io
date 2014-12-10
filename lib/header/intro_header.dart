@@ -18,7 +18,7 @@ class IntroHeaderElement extends PolymerElement {
   static const String PIC_EXPANDED = 'pic-expanded';
 
   @observable String nameStyle = NAME_EXPANDED;
-  var overflowedLinks = new ObservableList<OverflowedHeaderLink>();
+  final overflowedLinks = new ObservableList<OverflowedHeaderLink>();
   @observable String panelDisplayStyle = PANEL_DISPLAYED;
   @observable String panelSizeStyle = PANEL_EXPANDED;
   @observable String profilePicStyle = PIC_EXPANDED;
@@ -27,6 +27,7 @@ class IntroHeaderElement extends PolymerElement {
   num get _condensedHeight => _panelHeights.min;
   Timer _displayTimer = new Timer(Duration.ZERO, () {});
   num get _expandedHeight => _panelHeights.max;
+  ElementList _headerLinks;
   bool _lastScrollDown = true;
   Element _name;
   Interval _nameTopInterval;
@@ -48,6 +49,8 @@ class IntroHeaderElement extends PolymerElement {
     _name = shadowRoot.querySelector('#name');
     _panel = shadowRoot.querySelector('#panel');
 
+    _headerLinks = shadowRoot.getElementById('links-box').querySelectorAll('header-link');
+
     _panelTop = new CssTopProp(_panel.style);
     _panelTransform = new CssTransformProp(_panel.style);
     _panelTransform.translateY = 0;
@@ -55,10 +58,12 @@ class IntroHeaderElement extends PolymerElement {
 
     window.onResize.listen((_) {
       _evaluateElRanges();
+      _updateLinks();
     });
 
     _scrollHandler = EnhancedWindowOnScroll.stream.listen(_updateForScrollEvent);
     _evaluateElRanges();
+    _updateLinks();
   }
 
   @override
@@ -156,12 +161,29 @@ class IntroHeaderElement extends PolymerElement {
     }
   }
 
-  void _updatedExpandedPanel(EnhancedScrollEvent e) {
+  void _updateExpandedPanel(EnhancedScrollEvent e) {
     _panelTransform.translateY = 0;
     panelDisplayStyle = PANEL_DISPLAYED;
     nameStyle = NAME_EXPANDED;
     panelSizeStyle = PANEL_EXPANDED;
     profilePicStyle = PIC_EXPANDED;
+  }
+
+  void _updateLinks() {
+    HtmlElement twoToLast = _headerLinks[_headerLinks.length - 2];
+    HtmlElement last = _headerLinks.last;
+    if (window.document.body.clientWidth < 1000) {
+      showLinksMenu = true;
+      overflowedLinks.add(new OverflowedHeaderLink(twoToLast));
+      twoToLast.classes.add('hide');
+      overflowedLinks.add(new OverflowedHeaderLink(last));
+      last.classes.add('hide');
+    } else {
+      showLinksMenu = false;
+      overflowedLinks.clear();
+      twoToLast.classes.remove('hide');
+      last.classes.remove('hide');
+    }
   }
 
   void _updateForScrollEvent(EnhancedScrollEvent e) {
@@ -174,7 +196,7 @@ class IntroHeaderElement extends PolymerElement {
     if (e.newYPosition > _panelHeights.range) {
       _updateCondensedPanel(e);
     } else {
-      _updatedExpandedPanel(e);
+      _updateExpandedPanel(e);
     }
 
     if (e.yMovement > 0) {

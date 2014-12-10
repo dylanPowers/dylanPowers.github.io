@@ -58,7 +58,7 @@
                      src="images/link_icon_black_72px.png" />
               </paper-item>
               <template repeat="{{link in overflowedLinks}}">
-
+                <a _href="{{link.href}}" target="_blank"><paper-item>{{link.name}}</paper-item></a>
               </template>
             </paper-dropdown>
           </paper-menu-button>
