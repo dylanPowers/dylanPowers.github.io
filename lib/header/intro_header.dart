@@ -68,9 +68,11 @@ class IntroHeaderElement extends PolymerElement {
     _panelTop.top = -_condensedHeight + _panelTransform.translateY;
     _panelTransform.translateY = 0;
 
-    if (_lastScrollDown && window.pageYOffset > _expandedHeight) {
+    if (window.pageYOffset > _expandedHeight &&
+        -_panelTop.top >= _condensedHeight / 4 &&
+        window.pageYOffset > _expandedHeight) {
       panelDisplayStyle = PANEL_HIDDEN;
-    } else if (window.pageYOffset <= _expandedHeight) {
+    } else {
       panelDisplayStyle = PANEL_DISPLAYED;
     }
 
@@ -100,7 +102,7 @@ class IntroHeaderElement extends PolymerElement {
     _displayTimer.cancel();
   }
 
-  void _displayCollapsedPanel(EnhancedScrollEvent e) {
+  void _displayCondensedPanel(EnhancedScrollEvent e) {
     num newTranslation = _panelTransform.translateY - e.yMovement;
     if ((_condensedHeight > newTranslation && newTranslation > 0) &&
          e.newYPosition > _condensedHeight &&
@@ -146,7 +148,7 @@ class IntroHeaderElement extends PolymerElement {
 
     // Goes last
     if (e.yMovement < 0) {
-      _displayCollapsedPanel(e);
+      _displayCondensedPanel(e);
     } else if (e.yMovement > 0) {
       _hideCondensedPanel(e);
     }

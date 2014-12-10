@@ -204,6 +204,16 @@ void _condensedViewTests() {
       });
     });
 
+    it('while having less than 25% hidden is displayed after sitting for 500ms', () {
+      window.scrollBy(0, -3 * _panel.clientHeight ~/ 4 - 1);
+      return window.animationFrame.then((_) {
+        return new Future.delayed(new Duration(milliseconds: _WAIT_TIME));
+      }).then((_) {
+        expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_DISPLAYED);
+        expect(_panel.style.transform).toEqual('translateY(0px)');
+      });
+    });
+
     it('sets the profile pic style to condensed', () {
       expect(_header.profilePicStyle).toEqual(IntroHeaderElement.PIC_CONDENSED);
     });
@@ -277,7 +287,7 @@ void _scrollingUpTests() {
     it('while being partially displayed is hidden after sitting for 500ms', () {
       window.scrollBy(0, -1);
       return window.animationFrame.then((_) {
-        return new Future.delayed(new Duration(milliseconds: 500));
+        return new Future.delayed(new Duration(milliseconds: _WAIT_TIME));
       }).then((_) {
         expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_HIDDEN);
       });
@@ -329,16 +339,6 @@ void _scrollingDownTests() {
         window.scrollBy(0, 2);
         return window.animationFrame;
       }).then((_) {
-        expect(_panel.style.transform).toEqual('translateY(0px)');
-      });
-    });
-
-    it('while being partially displayed is hidden after sitting for 500ms', () {
-      window.scrollBy(0, 1);
-      return window.animationFrame.then((_) {
-        return new Future.delayed(new Duration(milliseconds: 500));
-      }).then((_) {
-        expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_HIDDEN);
         expect(_panel.style.transform).toEqual('translateY(0px)');
       });
     });
