@@ -119,9 +119,10 @@ class HeaderElement extends PolymerElement {
       leftMostLinkEl = first.shadowRoot.getElementById('link-logo-box');
     }
 
+    const int numPixelsRightOfCenter = 160;
     var linkElDimensions = leftMostLinkEl.getBoundingClientRect();
     var body = (window.document as HtmlDocument).body;
-    var noMansLand = body.clientWidth / 2 + 128;
+    var noMansLand = body.clientWidth / 2 + numPixelsRightOfCenter;
     double exactNumLinks = (noMansLand - linkElDimensions.left) / linkElDimensions.width;
     return exactNumLinks.ceil();
   }
