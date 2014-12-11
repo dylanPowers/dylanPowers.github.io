@@ -24,12 +24,20 @@
   padding: 16px;
 }
 
+::content a,
+::content a:visited,
 ::content h2,
 ::content h3,
 ::content h4,
 ::content li,
-::content p {
+::content p{
   color: $text-color;
+  line-height: 125%;
+}
+
+::content a,
+::content a:visited {
+  text-decoration: underline;
 }
 
 ::content h1 {
@@ -50,7 +58,7 @@
 }
 
 ::content p {
-  margin: 0 0 12px 0;
+  margin: 0 0 16px 0;
 }
 
 ::content ul {
