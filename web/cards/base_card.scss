@@ -31,7 +31,7 @@
 ::content h4,
 ::content li,
 ::content p{
-  color: $text-color;
+  @include standard-text-format;
   line-height: 125%;
 }
 
