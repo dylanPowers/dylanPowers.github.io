@@ -5,6 +5,7 @@ import 'dart:html';
 import 'package:polymer/polymer.dart';
 import 'package:about_me/css_style_props.dart';
 import 'package:about_me/element_style_measurer.dart';
+import 'package:about_me/enhanced_window_on_scroll.dart';
 
 @CustomTag('dkp-header')
 class HeaderElement extends PolymerElement {
@@ -61,7 +62,7 @@ class HeaderElement extends PolymerElement {
       _updateLinks();
     });
 
-    _scrollHandler = EnhancedWindowOnScroll.stream.listen(_updatePanel);
+    _scrollHandler = new EnhancedWindowOnScroll(window).stream.listen(_updatePanel);
     _evaluateElRanges();
     _updateLinks();
   }
@@ -257,55 +258,4 @@ class OverflowedHeaderLink {
       name = imgEl.getAttribute('alt');
     }
   }
-}
-
-class EnhancedScrollSink extends EventSink<Event> {
-  int _lastScrollX = 0;
-  int _lastScrollY = 0;
-  final EventSink<EnhancedScrollEvent> _outputSink;
-
-  EnhancedScrollSink(this._outputSink);
-
-  void add(Event data) {
-    var scrollE = new EnhancedScrollEvent(_lastScrollX, _lastScrollY,
-                                          window.pageXOffset, window.pageYOffset);
-    _lastScrollX = scrollE.newXPosition;
-    _lastScrollY = scrollE.newYPosition;
-
-    _outputSink.add(scrollE);
-  }
-
-  void addError(e, [stackTrace]) => _outputSink.addError(e, stackTrace);
-  void close() => _outputSink.close();
-}
-
-abstract class EnhancedWindowOnScroll {
-
-  static Stream<EnhancedScrollEvent> _singleton;
-
-  static Stream<EnhancedScrollEvent> get stream {
-    if (_singleton == null) {
-      _singleton = new Stream<EnhancedScrollEvent>.eventTransformed(window.onScroll,
-                                                                    _mapSink);
-    }
-
-    return _singleton;
-  }
-
-  static EventSink _mapSink(EventSink<EnhancedScrollEvent> sink) {
-    return new EnhancedScrollSink(sink);
-  }
-}
-
-
-class EnhancedScrollEvent {
-  final int oldXPosition;
-  final int oldYPosition;
-  final int newXPosition;
-  final int newYPosition;
-  int get xMovement => newXPosition - oldXPosition;
-  int get yMovement => newYPosition - oldYPosition;
-
-  EnhancedScrollEvent(this.oldXPosition, this.oldYPosition,
-                      this.newXPosition, this.newYPosition);
 }
