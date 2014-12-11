@@ -1,16 +1,11 @@
+@import "../theme";
+
+$panel-condensed-height: 60px;
+
 h1 {
   font-weight: 700;
   margin: 0;
   text-decoration: none;
-}
-
-.center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
-  text-align: center;
-  width: 50%;
 }
 
 .hide {
@@ -39,7 +34,7 @@ h1 {
 }
 
 .panel-condensed {
-  height: 60px;
+  height: $panel-condensed-height;
   position: fixed;
 }
 
@@ -55,21 +50,20 @@ h1 {
 
 .panel-hidden {
   transition-timing-function: ease-in;
-  top: -60px;
+  top: -$panel-condensed-height;
 }
 
 .pic-condensed {
   float: left;
   height: 48px;
-  left: 6px;
-  margin-left: 0;
-  top: 6px;
+  margin-left: 6px;
+  margin-top: 6px;
   width: 48px;
 }
 
 .pic-expanded {
   height: 192px;
-  top: 36px;
+  margin-top: 36px;
   width: 192px;
 }
 
@@ -83,7 +77,7 @@ h1 {
 
 #links-box {
   bottom: 0;
-  height: 60px;
+  height: $panel-condensed-height;
   position: absolute;
   right: 0;
 }
@@ -107,9 +101,9 @@ h1 {
 }
 
 #links-menu-button {
-  height: 60px;
+  height: $panel-condensed-height;
   outline: none;
-  width: 60px;
+  width: $panel-condensed-height;
 }
 
 #linkedin-logo {
@@ -140,7 +134,7 @@ h1 {
 }
 
 #panel {
-  background-color: #1565C0;
+  background-color: $primary-color;
   margin: 0;
   transition-duration: 0;
   transition-property: top;
@@ -149,7 +143,7 @@ h1 {
 }
 
 #profile-pic {
-  border-radius: 96px;
+  border-radius: 50%;
   box-shadow: 0 0 10px #000000;
 }
 
