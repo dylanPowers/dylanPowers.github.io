@@ -148,7 +148,7 @@ h1 {
 }
 
 /*
-  Name inflection point.
+  Expanded name is too wide to fit on the screen inflection point.
   This is the point where things condense a lot for smaller screens
  */
 @media (max-width: 612px) {
@@ -162,6 +162,21 @@ h1 {
   }
 
   .pic-expanded {
-    top: 24px;
+    margin-top: 24px;
+  }
+}
+
+/*
+  For iPhone 4/5 sized screens
+ */
+@media (max-width: 352px) {
+  .pic-condensed {
+    display: none;
+  }
+
+  .name-condensed,
+  .name-expanded {
+    margin-left: 10px;
+    text-align: left;
   }
 }
