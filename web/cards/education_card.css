@@ -1,5 +1,9 @@
-#major {
+#bottom {
   clear: both;
+}
+
+#major {
+  float: left;
 }
 
 #wsu-date {
