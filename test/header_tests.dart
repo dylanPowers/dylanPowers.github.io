@@ -7,12 +7,12 @@ import 'package:polymer/polymer.dart';
 import 'package:unittest/unittest.dart' as ut;
 
 import 'package:about_me/css_style_props.dart';
-import 'package:about_me/header/intro_header.dart';
+import 'package:about_me/header/header.dart';
 
 const _SCROLL_START = 600;
 const _WAIT_TIME = 500;
 
-IntroHeaderElement _header;
+HeaderElement _header;
 Element _panel;
 
 void run() {
@@ -21,12 +21,12 @@ void run() {
     afterEach(_stdTearDown);
 
     it('has a working element factory constructor', () =>
-       expect(() => new IntroHeaderElement()).not.toThrow());
+       expect(() => new HeaderElement()).not.toThrow());
 
     it('hides with the page when scrolling down at the expanded to condensed transition', () {
       window.scrollBy(0, _panel.clientHeight - 1);
       return window.animationFrame.then((_) {
-        expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_HIDDEN);
+        expect(_header.panelDisplayStyle).toEqual(HeaderElement.PANEL_HIDDEN);
         expect(_panel.style.transform).toEqual('translateY(1px)');
       });
     });
@@ -37,7 +37,7 @@ void run() {
         window.scrollBy(0, -1);
         return window.animationFrame;
       }).then((_) {
-        expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_HIDDEN);
+        expect(_header.panelDisplayStyle).toEqual(HeaderElement.PANEL_HIDDEN);
         expect(_panel.style.transform).toEqual('translateY(2px)');
       });
     });
@@ -63,7 +63,7 @@ void run() {
 
     it('when expanded sets the profile picture html element to the expanded style', () {
       var picEl = _header.shadowRoot.getElementById('profile-pic');
-      expect(picEl.classes).toContain(IntroHeaderElement.PIC_EXPANDED);
+      expect(picEl.classes).toContain(HeaderElement.PIC_EXPANDED);
     });
 
     it('has a property for modifying the name style', () {
@@ -72,7 +72,7 @@ void run() {
 
     it('when expanded sets the name html element to the expanded style', () {
       var nameEl = _header.shadowRoot.getElementById('name');
-      expect(nameEl.classes).toContain(IntroHeaderElement.NAME_EXPANDED);
+      expect(nameEl.classes).toContain(HeaderElement.NAME_EXPANDED);
     });
 
     it('has a property for accessing the state of whether the additional ' +
@@ -130,7 +130,7 @@ void run() {
 }
 
 void _stdSetUp() {
-  _header = new IntroHeaderElement();
+  _header = new HeaderElement();
   _header.id = 'header-test';
   document.body.append(_header);
 
@@ -165,7 +165,7 @@ void _condensedThenExpandedTests() {
         window.scroll(0, 0);
         return window.animationFrame;
       }).then((_) {
-        expect(_header.profilePicStyle).toEqual(IntroHeaderElement.PIC_EXPANDED);
+        expect(_header.profilePicStyle).toEqual(HeaderElement.PIC_EXPANDED);
       });
     });
 
@@ -175,7 +175,7 @@ void _condensedThenExpandedTests() {
         window.scroll(0, 0);
         return window.animationFrame;
       }).then((_) {
-        expect(_header.nameStyle).toEqual(IntroHeaderElement.NAME_EXPANDED);
+        expect(_header.nameStyle).toEqual(HeaderElement.NAME_EXPANDED);
       });
     });
   });
@@ -189,7 +189,7 @@ void _condensedViewTests() {
     });
 
     it('is currently out of view', () {
-      expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_HIDDEN);
+      expect(_header.panelDisplayStyle).toEqual(HeaderElement.PANEL_HIDDEN);
       expect(_panel.style.transform).toEqual('translateY(0px)');
     });
 
@@ -199,7 +199,7 @@ void _condensedViewTests() {
         window.scrollBy(0, 1);
         return window.animationFrame;
       }).then((_) {
-        expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_HIDDEN);
+        expect(_header.panelDisplayStyle).toEqual(HeaderElement.PANEL_HIDDEN);
         expect(_panel.style.transform).toEqual('translateY(0px)');
       });
     });
@@ -250,7 +250,7 @@ void _condensedViewTests() {
       }).then((_) {
         return new Future.delayed(new Duration(milliseconds: 500));
       }).then((_) {
-        expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_DISPLAYED);
+        expect(_header.panelDisplayStyle).toEqual(HeaderElement.PANEL_DISPLAYED);
         expect(_panel.style.transform).toEqual('translateY(0px)');
       });
     });
@@ -260,17 +260,17 @@ void _condensedViewTests() {
       return window.animationFrame.then((_) {
         return new Future.delayed(new Duration(milliseconds: _WAIT_TIME));
       }).then((_) {
-        expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_DISPLAYED);
+        expect(_header.panelDisplayStyle).toEqual(HeaderElement.PANEL_DISPLAYED);
         expect(_panel.style.transform).toEqual('translateY(0px)');
       });
     });
 
     it('sets the profile pic style to condensed', () {
-      expect(_header.profilePicStyle).toEqual(IntroHeaderElement.PIC_CONDENSED);
+      expect(_header.profilePicStyle).toEqual(HeaderElement.PIC_CONDENSED);
     });
 
     it('sets the name style to condensed', () {
-      expect(_header.nameStyle).toEqual(IntroHeaderElement.NAME_CONDENSED);
+      expect(_header.nameStyle).toEqual(HeaderElement.NAME_CONDENSED);
     });
 
     _scrollingUpTests();
@@ -283,7 +283,7 @@ void _scrollingUpTests() {
     it('scrolls by 1px upon scrolling by 1px', () {
       window.scrollBy(0, -1);
       return window.animationFrame.then((_) {
-        expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_HIDDEN);
+        expect(_header.panelDisplayStyle).toEqual(HeaderElement.PANEL_HIDDEN);
         expect(_panel.style.transform).toEqual('translateY(1px)');
       });
     });
@@ -291,7 +291,7 @@ void _scrollingUpTests() {
     it('scrolls by 41px upon scrolling by 41px', () {
       window.scrollBy(0, -41);
       return window.animationFrame.then((_) {
-        expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_HIDDEN);
+        expect(_header.panelDisplayStyle).toEqual(HeaderElement.PANEL_HIDDEN);
         expect(_panel.style.transform).toEqual('translateY(41px)');
       });
     });
@@ -312,7 +312,7 @@ void _scrollingUpTests() {
         window.scrollBy(0, -_panel.clientHeight + 20);
         return window.animationFrame;
       }).then((_) {
-        expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_DISPLAYED);
+        expect(_header.panelDisplayStyle).toEqual(HeaderElement.PANEL_DISPLAYED);
         expect(_panel.style.transform).toEqual('translateY(0px)');
       });
     });
@@ -340,7 +340,7 @@ void _scrollingUpTests() {
       return window.animationFrame.then((_) {
         return new Future.delayed(new Duration(milliseconds: _WAIT_TIME));
       }).then((_) {
-        expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_HIDDEN);
+        expect(_header.panelDisplayStyle).toEqual(HeaderElement.PANEL_HIDDEN);
       });
     });
   });
@@ -354,14 +354,14 @@ void _scrollingDownTests() {
     });
 
     it('is currently in view', () {
-      expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_DISPLAYED);
+      expect(_header.panelDisplayStyle).toEqual(HeaderElement.PANEL_DISPLAYED);
       expect(_panel.style.transform).toEqual('translateY(0px)');
     });
 
     it('scrolls by 1px upon scrolling by 1px', () {
       window.scrollBy(0, 1);
       return window.animationFrame.then((_) {
-        expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_HIDDEN);
+        expect(_header.panelDisplayStyle).toEqual(HeaderElement.PANEL_HIDDEN);
         expect(_panel.style.transform).toEqual('translateY(${_panel.clientHeight - 1}px)');
       });
     });
@@ -369,7 +369,7 @@ void _scrollingDownTests() {
     it('scrolls by its height - 1px upon scrolling by that amount', () {
       window.scrollBy(0, _panel.clientHeight - 1);
       return window.animationFrame.then((_) {
-        expect(_header.panelDisplayStyle).toEqual(IntroHeaderElement.PANEL_HIDDEN);
+        expect(_header.panelDisplayStyle).toEqual(HeaderElement.PANEL_HIDDEN);
         expect(_panel.style.transform).toEqual('translateY(1px)');
       });
     });

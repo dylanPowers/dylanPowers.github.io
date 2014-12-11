@@ -6,8 +6,8 @@ import 'package:polymer/polymer.dart';
 import 'package:about_me/css_style_props.dart';
 import 'package:about_me/element_style_measurer.dart';
 
-@CustomTag('intro-header')
-class IntroHeaderElement extends PolymerElement {
+@CustomTag('dkp-header')
+class HeaderElement extends PolymerElement {
   static const String NAME_CONDENSED = 'name-condensed';
   static const String NAME_EXPANDED = 'name-expanded';
   static const String PANEL_CONDENSED = 'panel-condensed';
@@ -38,11 +38,11 @@ class IntroHeaderElement extends PolymerElement {
   CssTransitionDurationProp _panelTransitionDuration;
   StreamSubscription<EnhancedScrollEvent> _scrollHandler;
 
-  factory IntroHeaderElement() {
-    return new Element.tag('intro-header') as IntroHeaderElement;
+  factory HeaderElement() {
+    return new Element.tag('dkp-header') as HeaderElement;
   }
 
-  IntroHeaderElement.created() : super.created();
+  HeaderElement.created() : super.created();
 
   @override
   void attached() {
@@ -61,7 +61,7 @@ class IntroHeaderElement extends PolymerElement {
       _updateLinks();
     });
 
-    _scrollHandler = EnhancedWindowOnScroll.stream.listen(_updateForScrollEvent);
+    _scrollHandler = EnhancedWindowOnScroll.stream.listen(_updatePanel);
     _evaluateElRanges();
     _updateLinks();
   }
@@ -211,10 +211,6 @@ class IntroHeaderElement extends PolymerElement {
         overflowedLinks.insert(0, new OverflowedHeaderLink(elToHide));
       }
     }
-  }
-
-  void _updateForScrollEvent(EnhancedScrollEvent e) {
-    _updatePanel(e);
   }
 
   void _updatePanel(EnhancedScrollEvent e) {
