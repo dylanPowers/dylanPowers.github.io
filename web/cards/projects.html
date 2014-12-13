@@ -4,30 +4,38 @@
   <template>
     <base-card>
       <h1>Projects</h1>
-      <h3>Pandoroid</h3>
-      <p>
-        Reverse engineering of Pandora's API's to bring the same high quality
-        audio found in their desktop app to mobile. Also analysed available
-        bandwidth to bring the best audio available for the current cellular
-        connection while also pre-caching the next song for consistant playback.
-      </p>
       <h3>Hackathon 2015 Website</h3>
       <p>
-        The 2015 Hackathon needed a website, and I have provided most of the
+        The
+        <a href="http://hackathon.eecs.wsu.edu" target="_blank">2015 Hackathon</a>
+        needs a website, and I have provided most of the
         work to facilitate that. It's a no-nonsense implementation made for
         modern browsers that can run scriptless which feels like an
         notable achievement for 2014. Who creates a website without scripts and
         can properly handle both desktops and screens as small as the tiny
-        iPhone 4? I can.
+        iPhone 4? We can.
       </p>
       <h3>This website</h3>
       <p>
         This site was an effort by me to sort of push the browser boundaries.
-        Mobile browsers ended up annoying me the most as they don't trigger
-        their scroll updates as often as they should, but it's implemented
-        in the Dart web components framework Polymer and I'm very happy with
-        it. It really symbolizes what I see as being a state of the art
-        web app.
+        It's nothing special and implemented
+        in Dart and the web components framework Polymer. A lot of complexity could
+        have been reduced by simplifying the header, but I really wanted to
+        create something that showcases how I think website headers should
+        work. The design is heavily influenced by Android and Google's
+        Material Design.
+      </p>
+      <h3>Pandoroid</h3>
+      <p>
+        <a href="https://github.com/dylanPowers/pandoroid" target="_blank">Pandoroid</a>
+        is an Android app that utilizes a reverse engineering of Pandora's
+        JSON-RPC APIs to bring
+        the same high quality
+        audio found in their desktop app to mobile. It also had a few playback
+        tricks under the hood like bandwidth analysis to bring the
+        best audio available for the current network conditions
+        and next song pre-caching for consistant playback under intermittent
+        network conditions.
       </p>
     </base-card>
   </template>
