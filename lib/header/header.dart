@@ -9,6 +9,10 @@ import 'package:about_me/enhanced_window_on_scroll.dart';
 
 @CustomTag('dkp-header')
 class HeaderElement extends PolymerElement {
+
+  // Be sneaky and hide the email address from the html
+  final String EMAIL_ADDRESS = 'dylan.kyle.powers';
+
   static const String NAME_CONDENSED = 'name-condensed';
   static const String NAME_EXPANDED = 'name-expanded';
   static const String PANEL_CONDENSED = 'panel-condensed';
@@ -179,6 +183,12 @@ class HeaderElement extends PolymerElement {
       int linkIndex = _headerLinks.length - overflowedLinks.length - 1;
       HtmlElement link = _headerLinks[linkIndex];
       link.classes.add('hide');
+
+      if (link.id == 'email') {
+        // Glitch in the bindings
+        link.setAttribute('href', 'mailto:${EMAIL_ADDRESS}@gmail.com');
+      }
+
       overflowedLinks.insert(0, new OverflowedHeaderLink(link));
     }
   }
