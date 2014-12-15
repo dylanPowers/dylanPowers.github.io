@@ -33,6 +33,7 @@
 ::content p{
   @include standard-text-format;
   line-height: 125%;
+  word-wrap: break-word;
 }
 
 ::content a,
