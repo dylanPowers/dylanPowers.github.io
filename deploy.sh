@@ -31,7 +31,7 @@ fi
 # Note that this is a potentially dangerous operation!!!! If the .git directory gets 
 # clobbered, you're SOL
 find . -maxdepth 1 -not -empty \( -name 'build' -o -name '.git' \
-                                  -o -wholename './.*' \)
+                                  -o -wholename './.*' \) \
                    -o -wholename '.' -o -print0 | xargs -0 rm -r
 
 # Put the deployable files into place
