@@ -3552,7 +3552,8 @@ p {
 ::content p {
   color: rgba(0, 0, 0, 0.87);
   font-family: robotoregular, sans-serif;
-  line-height: 125%; }
+  line-height: 125%;
+  word-wrap: break-word; }
 
 ::content a,
 ::content a:visited {
@@ -3611,7 +3612,7 @@ p {
         B.S. in Computer Science, and with school costing twice as much as it did
         when I started,
         <a href="https://medium.com/@dylankpowers/im-kinda-done-with-college-1d2027869881" target="_blank">
-          I've grown to be a bit discouraged</a>.
+          I'm not going back if I can help it</a>.
         I'm definitely looking
         for employment and if you're interested in
         what I can do for you, please contact me! I'm primarily interested in
@@ -3650,6 +3651,18 @@ p {
   <template>
     <base-card>
       <h1>Projects</h1>
+      <h3>Spotigoo (Work in progress)</h3>
+      <p>
+        An Android app that aids in transitioning between Spotify
+        and Google Music by migrating playlists and libraries between the two.
+      </p>
+      <p>
+        Source:
+        <a href="https://github.com/dylanPowers/spotigoo">
+          https://github.com/dylanPowers/spotigoo
+        </a>
+      </p>
+
       <h3>Hackathon 2015 Website</h3>
       <p>
         The
@@ -3666,6 +3679,7 @@ p {
         <a href="https://github.com/WSU-ACM/hackathon-site" target="_blank">
           https://github.com/WSU-ACM/hackathon-site</a>.
       </p>
+
       <h3>This website</h3>
       <p>
         This site was an effort by me to sort of push the browser boundaries.
@@ -3682,6 +3696,7 @@ p {
           https://github.com/dylanPowers/dylanPowers.github.io
         </a>
       </p>
+
       <h3>Pandoroid</h3>
       <p>
         <a href="https://github.com/dylanPowers/pandoroid" target="_blank">Pandoroid</a>
@@ -3700,6 +3715,23 @@ p {
           https://github.com/dylanPowers/pandoroid
         </a>
       </p>
+
+      <h3>
+        Interesting Snippets
+      </h3>
+      <ul>
+        <li>
+          Android platform bug fix:
+          <a href="https://android.googlesource.com/platform/frameworks/av/+/6e8f0bc59ad2409b294ad4eb803131500306bc8b" target="_blank">
+            https://android.googlesource.com/platform/frameworks/av/+/6e8f0bc59ad2409b294ad4eb803131500306bc8b</a>
+        </li>
+        <li>
+          Dart to Github user page build script:
+          <a href="https://gist.github.com/dylanPowers/7969683" target="_blank">
+            https://gist.github.com/dylanPowers/7969683
+          </a>
+        </li>
+      </ul>
     </base-card>
   </template>
 </polymer-element>

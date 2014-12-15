@@ -54,7 +54,8 @@ p {
 ::content p {
   color: rgba(0, 0, 0, 0.87);
   font-family: robotoregular, sans-serif;
-  line-height: 125%; }
+  line-height: 125%;
+  word-wrap: break-word; }
 
 ::content a,
 ::content a:visited {
