@@ -51,6 +51,8 @@ class HeaderElement extends PolymerElement {
 
   @override
   void attached() {
+    super.attached();
+    
     _name = shadowRoot.querySelector('#name');
     _panel = shadowRoot.querySelector('#panel');
 
@@ -73,6 +75,8 @@ class HeaderElement extends PolymerElement {
 
   @override
   void detached() {
+    super.detached();
+    
     _scrollHandler.cancel();
   }
 
@@ -82,13 +86,7 @@ class HeaderElement extends PolymerElement {
 
     if (window.pageYOffset > _expandedHeight &&
         -_panelTop.top >= _condensedHeight / 4) {
-      
-      // IE 11 timer bug workaround
-      if (panelDisplayStyle == PANEL_DISPLAYED) {
-        print('IE11 timer bug present');
-      } else {
-        panelDisplayStyle = PANEL_HIDDEN;
-      }
+      panelDisplayStyle = PANEL_HIDDEN;
     } else {
       panelDisplayStyle = PANEL_DISPLAYED;
     }
@@ -150,7 +148,7 @@ class HeaderElement extends PolymerElement {
     } else {
       _panelTransform.translateY = 0;
       panelDisplayStyle = PANEL_DISPLAYED;
-     _clearPanelTimers();
+      _clearPanelTimers();
     }
   }
 
@@ -222,9 +220,9 @@ class HeaderElement extends PolymerElement {
                                _adjustPartiallyViewablePanel);
 
     // Goes last
-    if (e.yMovement < 0) {
+    if (e.yMovement < 0 || (e.yMovement == 0 && !_lastScrollDown)) {
       _displayCondensedPanel(e);
-    } else if (e.yMovement > 0) {
+    } else if (e.yMovement > 0 || (e.yMovement == 0 && _lastScrollDown)) {
       _hideCondensedPanel(e);
     }
   }
@@ -257,7 +255,7 @@ class HeaderElement extends PolymerElement {
 
     if (e.yMovement > 0) {
       _lastScrollDown = true;
-    } else {
+    } else if (e.yMovement < 0){
       _lastScrollDown = false;
     }
   }
