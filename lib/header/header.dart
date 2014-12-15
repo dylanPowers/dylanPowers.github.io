@@ -81,9 +81,14 @@ class HeaderElement extends PolymerElement {
     _panelTransform.translateY = 0;
 
     if (window.pageYOffset > _expandedHeight &&
-        -_panelTop.top >= _condensedHeight / 4 &&
-        panelDisplayStyle != PANEL_DISPLAYED) {
-      panelDisplayStyle = PANEL_HIDDEN;
+        -_panelTop.top >= _condensedHeight / 4) {
+      
+      // IE 11 timer bug workaround
+      if (panelDisplayStyle == PANEL_DISPLAYED) {
+        print('IE11 timer bug present');
+      } else {
+        panelDisplayStyle = PANEL_HIDDEN;
+      }
     } else {
       panelDisplayStyle = PANEL_DISPLAYED;
     }
