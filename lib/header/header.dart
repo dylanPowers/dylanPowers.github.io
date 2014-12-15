@@ -82,7 +82,7 @@ class HeaderElement extends PolymerElement {
 
     if (window.pageYOffset > _expandedHeight &&
         -_panelTop.top >= _condensedHeight / 4 &&
-        window.pageYOffset > _expandedHeight) {
+        panelDisplayStyle != PANEL_DISPLAYED) {
       panelDisplayStyle = PANEL_HIDDEN;
     } else {
       panelDisplayStyle = PANEL_DISPLAYED;
