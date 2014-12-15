@@ -7478,6 +7478,7 @@ srD:function(a,b){a.ca=this.ct(a,C.S,a.ca,b)},
 gY:function(a){return a.Jc},
 sY:function(a,b){a.Jc=this.ct(a,C.ii,a.Jc,b)},
 ig:function(a){var z,y
+this.aQ(a)
 a.Jr=(a.shadowRoot||a.webkitShadowRoot).querySelector("#name")
 a.TO=(a.shadowRoot||a.webkitShadowRoot).querySelector("#panel")
 a.nz=W.vD((a.shadowRoot||a.webkitShadowRoot).getElementById("links-box").querySelectorAll("header-link"),null)
@@ -7497,7 +7498,8 @@ z.tS(y)
 a.kZ=z.Q.Ka(this.gTv(a))
 this.Ln(a)
 this.qC(a)},
-dQ:function(a){a.kZ.Gv()},
+dQ:function(a){this.xD(a)
+a.kZ.Gv()},
 uM:[function(a){var z,y,x
 z=a.ZG
 y=a.S8.Q
@@ -7509,11 +7511,7 @@ z=window.pageYOffset
 y=a.S8
 x=y.a
 if(typeof z!=="number")return z.A()
-if(z>x)if(-a.ZG.a>=y.Q/4){z=window.pageYOffset
-if(typeof z!=="number")return z.A()
-x=z>x
-z=x}else z=!1
-else z=!1
+z=z>x&&-a.ZG.a>=y.Q/4
 y=a.ij
 if(z)a.ij=this.ct(a,C.X,y,"panel-hidden")
 else a.ij=this.ct(a,C.X,y,"panel-displayed")
@@ -7596,7 +7594,9 @@ if(z>x-y){a.kX=this.ct(a,C.M,a.kX,"name-condensed")
 a.TQ=this.ct(a,C.Z,a.TQ,"panel-condensed")
 a.ca=this.ct(a,C.S,a.ca,"pic-condensed")
 a.cw=P.rT(P.xC(0,0,0,500,0,0),this.geI(a))
-if(b.grR()<0){w=J.aF(a.Y0.a,b.grR())
+if(b.grR()>=0)z=b.grR()===0&&!a.mT
+else z=!0
+if(z){w=J.aF(a.Y0.a,b.grR())
 z=a.S8.Q
 if(typeof w!=="number")return H.o(w)
 if(z>w&&w>0){z=b.gTT()
@@ -7608,7 +7608,9 @@ if(z)y.sUj(w)
 else{y.sUj(0)
 a.ij=this.ct(a,C.X,a.ij,"panel-displayed")
 a.j4.szo(0,null)
-a.cw.Gv()}}else if(b.grR()>0){if(J.mG(a.ij,"panel-displayed"))a.Y0.sUj(a.S8.Q)
+a.cw.Gv()}}else{if(b.grR()<=0)z=b.grR()===0&&a.mT
+else z=!0
+if(z){if(J.mG(a.ij,"panel-displayed"))a.Y0.sUj(a.S8.Q)
 a.ij=this.ct(a,C.X,a.ij,"panel-hidden")
 v=this.uk(a,b)
 z=v<a.S8.Q&&J.vU(J.aF(a.Y0.a,v),0)
@@ -7616,12 +7618,12 @@ y=a.Y0
 if(z)y.sUj(J.aF(y.a,v))
 else{y.sUj(0)
 a.j4.szo(0,null)
-a.cw.Gv()}}}else{a.Y0.sUj(0)
+a.cw.Gv()}}}}else{a.Y0.sUj(0)
 a.ij=this.ct(a,C.X,a.ij,"panel-displayed")
 a.kX=this.ct(a,C.M,a.kX,"name-expanded")
 a.TQ=this.ct(a,C.Z,a.TQ,"panel-expanded")
 a.ca=this.ct(a,C.S,a.ca,"pic-expanded")}if(b.grR()>0)a.mT=!0
-else a.mT=!1},"$1","gTv",2,0,98,2],
+else if(b.grR()<0)a.mT=!1},"$1","gTv",2,0,98,2],
 static:{"^":"r5,No,IE,Vm,bV,Zn,t9,Ut",vhD:function(a){var z,y,x,w,v,u
 z=S.CO
 y=H.J([],[z])
@@ -9169,11 +9171,11 @@ this.bT(a)
 this.z2(a,a.a$)
 this.gQg(a).Rz(0,"unresolved")
 $.xP().To(new A.yG(a))},
-ig:function(a){if(a.a$==null)throw H.b(P.s("polymerCreated was not called for custom element "+H.d(this.gRT(a))+", this should normally be done in the .created() if Polymer is used as a mixin."))
+ig:["aQ",function(a){if(a.a$==null)throw H.b(P.s("polymerCreated was not called for custom element "+H.d(this.gRT(a))+", this should normally be done in the .created() if Polymer is used as a mixin."))
 this.oW(a)
 if(!a.y$){a.y$=!0
-this.rW(a,new A.hp(a))}},
-dQ:function(a){this.x3(a)},
+this.rW(a,new A.hp(a))}}],
+dQ:["xD",function(a){this.x3(a)}],
 z2:function(a,b){if(b!=null){this.z2(a,b.gP1())
 this.aI(a,J.nq(b))}},
 aI:function(a,b){var z,y,x,w
