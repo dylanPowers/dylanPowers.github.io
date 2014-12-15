@@ -27,6 +27,11 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
+cleanup() {
+  git checkout $build_rev_branch
+  pub get
+}
+
 # Clean the directory while ignoring build/ .git/ and any other hidden .* files/directories
 # Note that this is a potentially dangerous operation!!!! If the .git directory gets 
 # clobbered, you're SOL
@@ -45,11 +50,9 @@ echo "\nPublishing to origin master"
 git push origin master
 if [ $? -ne 0 ]; then
   echo "\n\nPublishing failed"
-  git checkout $build_rev_branch
-  pub get
+  cleanup
   exit 1
 fi
 
-git checkout $build_rev_branch
-pub get
+cleanup
 echo "\nDeployment succeeded!"
