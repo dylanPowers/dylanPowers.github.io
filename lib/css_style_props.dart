@@ -27,7 +27,7 @@ class CssTopProp extends CssProperty {
   CssTopProp(CssStyleDeclaration style) : super(style);
 
   @override
-  void clear() => top = double.NAN;
+  void clear() { top = double.NAN; }
 
   @override
   void _regenStyleText() {
@@ -56,7 +56,7 @@ class CssTransformProp extends CssProperty {
     }
   }
 
-  void clear() => translateY = double.NAN;
+  void clear() { translateY = double.NAN; }
 
   @override
   void _regenStyleText() {
