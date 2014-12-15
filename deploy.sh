@@ -27,12 +27,12 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-# Clean the directory while ignoring build/ .git/ and any hidden .* files
+# Clean the directory while ignoring build/ .git/ and any other hidden .* files/directories
 # Note that this is a potentially dangerous operation!!!! If the .git directory gets 
 # clobbered, you're SOL
-find . -not -empty \( -name 'build' -prune -o -name '.git' -prune \
-                      -o -name '.*' \) \
-       -o -prune -print0 | xargs -0 rm -r
+find . -maxdepth 1 -not -empty \( -name 'build' -prune -o -name '.git' -prune \
+                                  -o -wholename './.*' -prune \) \
+                   -o -print0 | xargs -0 rm -r
 
 # Put the deployable files into place
 cp -R build/web/* .
