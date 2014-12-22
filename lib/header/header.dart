@@ -9,6 +9,10 @@ import 'package:about_me/enhanced_window_on_scroll.dart';
 
 @CustomTag('dkp-header')
 class HeaderElement extends PolymerElement {
+
+  // Be sneaky and hide the email address from the html
+  final String EMAIL_ADDRESS = 'dylan.kyle.powers';
+
   static const String NAME_CONDENSED = 'name-condensed';
   static const String NAME_EXPANDED = 'name-expanded';
   static const String PANEL_CONDENSED = 'panel-condensed';
@@ -47,6 +51,8 @@ class HeaderElement extends PolymerElement {
 
   @override
   void attached() {
+    super.attached();
+    
     _name = shadowRoot.querySelector('#name');
     _panel = shadowRoot.querySelector('#panel');
 
@@ -69,6 +75,8 @@ class HeaderElement extends PolymerElement {
 
   @override
   void detached() {
+    super.detached();
+    
     _scrollHandler.cancel();
   }
 
@@ -77,8 +85,7 @@ class HeaderElement extends PolymerElement {
     _panelTransform.translateY = 0;
 
     if (window.pageYOffset > _expandedHeight &&
-        -_panelTop.top >= _condensedHeight / 4 &&
-        window.pageYOffset > _expandedHeight) {
+        -_panelTop.top >= _condensedHeight / 4) {
       panelDisplayStyle = PANEL_HIDDEN;
     } else {
       panelDisplayStyle = PANEL_DISPLAYED;
@@ -141,7 +148,7 @@ class HeaderElement extends PolymerElement {
     } else {
       _panelTransform.translateY = 0;
       panelDisplayStyle = PANEL_DISPLAYED;
-     _clearPanelTimers();
+      _clearPanelTimers();
     }
   }
 
@@ -179,6 +186,12 @@ class HeaderElement extends PolymerElement {
       int linkIndex = _headerLinks.length - overflowedLinks.length - 1;
       HtmlElement link = _headerLinks[linkIndex];
       link.classes.add('hide');
+
+      if (link.id == 'email') {
+        // Glitch in the bindings
+        link.setAttribute('href', 'mailto:${EMAIL_ADDRESS}@gmail.com');
+      }
+
       overflowedLinks.insert(0, new OverflowedHeaderLink(link));
     }
   }
@@ -207,9 +220,9 @@ class HeaderElement extends PolymerElement {
                                _adjustPartiallyViewablePanel);
 
     // Goes last
-    if (e.yMovement < 0) {
+    if (e.yMovement < 0 || (e.yMovement == 0 && !_lastScrollDown)) {
       _displayCondensedPanel(e);
-    } else if (e.yMovement > 0) {
+    } else if (e.yMovement > 0 || (e.yMovement == 0 && _lastScrollDown)) {
       _hideCondensedPanel(e);
     }
   }
@@ -242,7 +255,7 @@ class HeaderElement extends PolymerElement {
 
     if (e.yMovement > 0) {
       _lastScrollDown = true;
-    } else {
+    } else if (e.yMovement < 0){
       _lastScrollDown = false;
     }
   }

@@ -27,12 +27,17 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-# Clean the directory while ignoring build/ .git/ and any hidden .* files
+cleanup() {
+  git checkout $build_rev_branch
+  pub get
+}
+
+# Clean the directory while ignoring build/ .git/ and any other hidden .* files/directories
 # Note that this is a potentially dangerous operation!!!! If the .git directory gets 
 # clobbered, you're SOL
-find . -not -empty \( -name 'build' -prune -o -name '.git' -prune \
-                      -o -name '.*' \) \
-       -o -prune -print0 | xargs -0 rm -r
+find . -maxdepth 1 -not -empty \( -name 'build' -o -name '.git' \
+                                  -o -wholename './.*' \) \
+                   -o -wholename '.' -o -print0 | xargs -0 rm -r
 
 # Put the deployable files into place
 cp -R build/web/* .
@@ -45,11 +50,9 @@ echo "\nPublishing to origin master"
 git push origin master
 if [ $? -ne 0 ]; then
   echo "\n\nPublishing failed"
-  git checkout $build_rev_branch
-  pub get
+  cleanup
   exit 1
 fi
 
-git checkout $build_rev_branch
-pub get
+cleanup
 echo "\nDeployment succeeded!"
