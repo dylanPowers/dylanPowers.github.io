@@ -1,8 +1,8 @@
 # Master branch .gitignore
 
-# Ignore any subdirectory packages dirs/symlinks
-*/packages
-
 # Ignore the build stuff
 /build/
 /.buildlog
+
+# Ignore pub
+/.pub/

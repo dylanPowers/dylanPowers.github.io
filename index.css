@@ -1,0 +1,9 @@
+body {
+  background-color: #EEE;
+  margin: 0;
+}
+
+#cards {
+  margin: 0 auto;
+  position: relative;
+}
