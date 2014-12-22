@@ -21,7 +21,7 @@ echo "\nAttempting to commit new build into master..."
 build_rev_hash=`git rev-parse HEAD`
 build_rev_branch=`git rev-parse --abbrev-ref HEAD`
 
-git checkout master
+git checkout master && git pull origin master
 if [ $? -ne 0 ]; then 
   echo "\n\nChecking out master failed"
   exit 1
