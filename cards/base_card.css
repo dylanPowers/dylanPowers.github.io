@@ -41,6 +41,9 @@ p {
   padding: 16px;
   text-align: left; }
 
+@media (max-width: 758px) {
+  #content {
+    margin: 12px; } }
 ::content a,
 ::content a:visited,
 ::content h2,
