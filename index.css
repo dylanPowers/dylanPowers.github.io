@@ -1,9 +1,44 @@
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  text-align: center;
+  width: 50%; }
+
+a,
+a:link,
+a:visited,
+a:active {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: robotoregular, sans-serif;
+  outline: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0); }
+
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: robotoregular, sans-serif; }
+
 body {
   background-color: #EEE;
-  margin: 0;
-}
+  margin: 0; }
 
 #cards {
-  margin: 0 auto;
-  position: relative;
-}
+  max-width: 1488px;
+  width: 100%; }
+
+@media (min-width: 1503px) {
+  .left {
+    clear: left;
+    float: left; }
+
+  .right {
+    clear: right;
+    float: right; } }

@@ -14,15 +14,51 @@
     font-weight: normal;
     font-style: normal;
 }</style>
-  <style>body {
+  <style>.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  text-align: center;
+  width: 50%; }
+
+a,
+a:link,
+a:visited,
+a:active {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: robotoregular, sans-serif;
+  outline: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0); }
+
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: robotoregular, sans-serif; }
+
+body {
   background-color: #EEE;
-  margin: 0;
-}
+  margin: 0; }
 
 #cards {
-  margin: 0 auto;
-  position: relative;
-}</style>
+  max-width: 1488px;
+  width: 100%; }
+
+@media (min-width: 1503px) {
+  .left {
+    clear: left;
+    float: left; }
+
+  .right {
+    clear: right;
+    float: right; } }
+</style>
   <link rel="shortcut icon" href="cat_computer_65px.png">
 
   
@@ -3499,7 +3535,7 @@ h1 {
 
 <polymer-element name="base-card" noscript="">
   <template>
-    <style>.center {
+    <style>.center, :host {
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -3528,23 +3564,19 @@ p {
   font-family: robotoregular, sans-serif; }
 
 :host {
+  clear: both;
+  max-width: 744px;
+  width: 100%; }
+
+#content {
   background: #FFFFFF;
   border-radius: 2px;
-  display: block;
   font-family: robotoregular, sans-serif;
-  margin: 12px auto;
-  position: relative;
-  width: 100%;
-  max-width: 712px; }
-
-@media (max-width: 752px) {
-  :host {
-    margin: 12px;
-    width: auto; } }
-#content {
   height: 100%;
+  margin: 24px 12px;
   min-height: 128px;
-  padding: 16px; }
+  padding: 16px;
+  text-align: left; }
 
 ::content a,
 ::content a:visited,
@@ -3906,13 +3938,17 @@ p {
   </template>
 </polymer-element></div>
   <dkp-header></dkp-header>
-  <div id="cards">
-    <dkp-about-me></dkp-about-me>
-    <dkp-dev-env-prefs></dkp-dev-env-prefs>
-    <dkp-work-experience></dkp-work-experience>
-    <dkp-projects></dkp-projects>
-    <dkp-education></dkp-education>
-    <dkp-volunteering></dkp-volunteering>
+  <div id="cards" class="center">
+    <div class="left">
+      <dkp-about-me></dkp-about-me>
+      <dkp-dev-env-prefs></dkp-dev-env-prefs>
+    </div>
+    <div class="right">
+      <dkp-work-experience></dkp-work-experience>
+      <dkp-projects></dkp-projects>
+      <dkp-education></dkp-education>
+      <dkp-volunteering></dkp-volunteering>
+    </div>
   </div>
   
 
