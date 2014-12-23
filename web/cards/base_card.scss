@@ -1,27 +1,21 @@
 @import "packages/about_me/theme";
 
 :host {
-  background: #FFFFFF;
-  border-radius: 2px;
-  display: block;
-  font-family: robotoregular, sans-serif;
-  margin: 12px auto;
-  position: relative;
+  @extend .center;
+  clear: both;
+  max-width: 744px;
   width: 100%;
-  max-width: 712px;
-}
-
-@media (max-width: 752px) {
-  :host {
-    margin: 12px;
-    width: auto;
-  }
 }
 
 #content {
+  background: #FFFFFF;
+  border-radius: 2px;
+  font-family: robotoregular, sans-serif;
   height: 100%;
+  margin: 24px 12px;
   min-height: 128px;
   padding: 16px;
+  text-align: left;
 }
 
 ::content a,

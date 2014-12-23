@@ -22,13 +22,17 @@
 </head>
 <body>
   <dkp-header></dkp-header>
-  <div id="cards">
-    <dkp-about-me></dkp-about-me>
-    <dkp-dev-env-prefs></dkp-dev-env-prefs>
-    <dkp-work-experience></dkp-work-experience>
-    <dkp-projects></dkp-projects>
-    <dkp-education></dkp-education>
-    <dkp-volunteering></dkp-volunteering>
+  <div id="cards" class="center">
+    <div class="left">
+      <dkp-about-me></dkp-about-me>
+      <dkp-dev-env-prefs></dkp-dev-env-prefs>
+    </div>
+    <div class="right">
+      <dkp-work-experience></dkp-work-experience>
+      <dkp-projects></dkp-projects>
+      <dkp-education></dkp-education>
+      <dkp-volunteering></dkp-volunteering>
+    </div>
   </div>
   <script type="application/dart">export 'package:polymer/init.dart';</script>
 </body>
