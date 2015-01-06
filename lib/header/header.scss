@@ -22,11 +22,6 @@ h1 {
   width: 32px;
 }
 
-.links-icon {
-  height: 32px;
-  width: 32px;
-}
-
 .name-condensed {
   font-size: 36px;
   top: 8px;
@@ -86,31 +81,6 @@ h1 {
   right: 0;
 }
 
-#links-button-icon {
-  margin: 14px;
-}
-
-#links-close-button {
-  height: 56px;
-}
-
-#links-dropdown {
-  top: 4px;
-}
-
-#links-dropdown-icon {
-  float: right;
-  margin-left: 48px;
-  margin-top: -32px;
-  opacity: 0.87;
-}
-
-#links-menu-button {
-  height: $panel-condensed-height;
-  outline: none;
-  width: $panel-condensed-height;
-}
-
 #linkedin-logo {
   margin-right: auto;
   width: auto;
@@ -149,6 +119,61 @@ h1 {
   border-radius: 50%;
   box-shadow: 0 0 10px #000000;
 }
+
+
+
+/*******************************************************************************
+header-link element
+**/
+
+#link-logo-box {
+  float: left;
+  height: 60px;
+  position: relative;
+  width: 60px;
+}
+
+
+
+/*******************************************************************************
+overflowed-links-menu element
+**/
+
+.links-icon {
+  height: 32px;
+  width: 32px;
+}
+
+#links-button-icon {
+  margin: 14px;
+}
+
+#links-close-button {
+  height: 56px;
+}
+
+#links-dropdown {
+  top: 4px;
+}
+
+#links-dropdown-icon {
+  float: right;
+  margin-left: 48px;
+  margin-top: -32px;
+  opacity: 0.87;
+}
+
+#links-menu-button {
+  height: $panel-condensed-height;
+  outline: none;
+  width: $panel-condensed-height;
+}
+
+
+
+/******************************************************************************
+Media queries for reflow on smaller screens
+**/
 
 /*
   Expanded name is too wide to fit on the screen inflection point.

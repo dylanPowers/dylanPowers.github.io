@@ -120,16 +120,18 @@ class HeaderElement extends PolymerElement {
    * header-links should be redisplayed.
    */
   int _calcNumLinksToHide() {
-    HtmlElement leftMostLinkEl;
+    Rectangle linkElDimensions;
     if (overflowedLinks.length == _headerLinks.length) {
-      leftMostLinkEl = shadowRoot.getElementById('links-menu-button');
+      OverflowedLinksMenuElement leftMostLinkEl =
+          shadowRoot.getElementsByTagName(OVERFLOWED_LINKS_MENU_TAG).first;
+      linkElDimensions = leftMostLinkEl.buttonDimensions;
     } else {
       HtmlElement first = (_headerLinks.first as HtmlElement);
-      leftMostLinkEl = first.shadowRoot.getElementById('link-logo-box');
+      HtmlElement leftMostLinkEl = first.shadowRoot.getElementById('link-logo-box');
+      linkElDimensions = leftMostLinkEl.getBoundingClientRect();
     }
 
     const int numPixelsRightOfCenter = 160;
-    var linkElDimensions = leftMostLinkEl.getBoundingClientRect();
     var body = (window.document as HtmlDocument).body;
     var noMansLand = body.clientWidth / 2 + numPixelsRightOfCenter;
     double exactNumLinks = (noMansLand - linkElDimensions.left) / linkElDimensions.width;
