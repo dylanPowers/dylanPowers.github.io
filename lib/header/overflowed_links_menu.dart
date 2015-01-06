@@ -3,7 +3,8 @@ part of intro_header;
 const String OVERFLOWED_LINKS_MENU_TAG = 'overflowed-links-menu';
 @CustomTag(OVERFLOWED_LINKS_MENU_TAG)
 class OverflowedLinksMenuElement extends PolymerElement {
-  dynamic overflowedLinks; // TODO
+  @published bool isMenuOpen = false;
+  @published List overflowedLinks = new List<OverflowedHeaderLink>();
 
   factory OverflowedLinksMenuElement() {
     return new Element.tag(OVERFLOWED_LINKS_MENU_TAG);
