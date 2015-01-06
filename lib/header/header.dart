@@ -7,6 +7,8 @@ import 'package:about_me/css_style_props.dart';
 import 'package:about_me/element_style_measurer.dart';
 import 'package:about_me/enhanced_window_on_scroll.dart';
 
+part 'overflowed_links_menu.dart';
+
 @CustomTag('dkp-header')
 class HeaderElement extends PolymerElement {
 
@@ -177,9 +179,7 @@ class HeaderElement extends PolymerElement {
 
   void _hideLinkIcons(int numLinks) {
     if (overflowedLinks.length == 0) {
-      showLinksMenu = true;
-      (_headerLinks.last as HtmlElement).classes.add('hide');
-      overflowedLinks.add(new OverflowedHeaderLink(_headerLinks.last));
+      _showTheLinksMenuButton();
     }
 
     for (int i = 0; i < numLinks && overflowedLinks.length < _headerLinks.length; ++i) {
@@ -196,6 +196,12 @@ class HeaderElement extends PolymerElement {
     }
   }
 
+  void _hideTheLinksMenuButton() {
+    showLinksMenu = false;
+    overflowedLinks.clear();
+    (_headerLinks.last as HtmlElement).classes.remove('hide');
+  }
+
   void _redisplayLinkIcons(int numLinks) {
     for (int i = 0; i < numLinks && overflowedLinks.length > 0; ++i) {
       overflowedLinks.removeAt(0);
@@ -205,10 +211,14 @@ class HeaderElement extends PolymerElement {
     }
 
     if (overflowedLinks.length <= 1) {
-      showLinksMenu = false;
-      overflowedLinks.clear();
-      (_headerLinks.last as HtmlElement).classes.remove('hide');
+      _hideTheLinksMenuButton();
     }
+  }
+
+  void _showTheLinksMenuButton() {
+    showLinksMenu = true;
+    (_headerLinks.last as HtmlElement).classes.add('hide');
+    overflowedLinks.add(new OverflowedHeaderLink(_headerLinks.last));
   }
 
   void _updateCondensedPanel(EnhancedScrollEvent e) {

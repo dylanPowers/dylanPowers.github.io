@@ -9,6 +9,8 @@ import 'package:unittest/unittest.dart' as ut;
 import 'package:about_me/css_style_props.dart';
 import 'package:about_me/header/header.dart';
 
+import 'overflowed_links_menu_tests.dart' as overflowedLinksMenuTests;
+
 const _SCROLL_START = 600;
 const _WAIT_TIME = 500;
 
@@ -16,6 +18,8 @@ HeaderElement _header;
 Element _panel;
 
 void run() {
+  overflowedLinksMenuTests.run();
+
   describe('The intro header', () {
     beforeEach(_stdSetUp);
     afterEach(_stdTearDown);
