@@ -25,19 +25,14 @@ p {
   color: rgba(0, 0, 0, 0.87);
   font-family: robotoregular, sans-serif; }
 
-body {
-  background-color: #EEE;
-  margin: 0; }
-
-#cards {
-  max-width: 1488px;
+#desktop-pic {
+  border-radius: 4px;
+  max-height: 300px;
+  max-width: 411px;
   width: 100%; }
 
-@media (min-width: 1503px) {
-  .left {
-    clear: left;
-    float: left; }
-
-  .right {
-    clear: right;
-    float: right; } }
+#desktop-pic-shadow {
+  border-radius: 4px;
+  max-height: 300px;
+  max-width: 411px;
+  width: 100%; }
