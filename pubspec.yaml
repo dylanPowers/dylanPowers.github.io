@@ -12,6 +12,10 @@ dev_dependencies:
   sass: ">=0.4.2 <0.5.0"
   unittest: any
 dependency_overrides:
+  core_elements:
+    git:
+      url: https://github.com/dylanPowers/core-elements.git
+      ref: null-position-bug-fix
   unittest:
     git: https://github.com/dylanPowers/dart-unittest.git
 transformers:
