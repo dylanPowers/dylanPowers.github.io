@@ -3,7 +3,7 @@ author: Dylan Powers
 homepage: me.dylankpowers.com
 description: A dart app showcasing a little about me
 environment:
-  sdk: ">=1.8.0-dev"
+  sdk: ">=1.9.0-dev"
 dependencies:
   polymer: ">=0.15.0 <0.16.0"
   paper_elements: any
