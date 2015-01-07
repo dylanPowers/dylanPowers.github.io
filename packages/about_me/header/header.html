@@ -1,9 +1,11 @@
 <link rel="import" href="../../../packages/polymer/polymer.html" />
 <link rel="import" href="../../../packages/paper_elements/paper_dropdown.html" />
 <link rel="import" href="../../../packages/paper_elements/paper_item.html" />
-<link rel="import" href="../../../packages/paper_elements/paper_ripple.html" />
-<link rel="import" href="../../../packages/paper_elements/paper_shadow.html" />
 <link rel="import" href="../../../packages/paper_elements/paper_menu_button.html" />
+<link rel="import" href="../../../packages/paper_elements/paper_shadow.html" />
+
+<script type="application/dart" src="header.dart"></script>
+
 <polymer-element name="dkp-header">
   <template> 
     <link rel="stylesheet" href="header.css" />
@@ -54,45 +56,18 @@
         </header-link>
 
         <template if="{{showLinksMenu}}">
-          <paper-menu-button id="links-menu-button">
-            <header-link-ripple></header-link-ripple>
-            <img id="links-button-icon" class="links-icon"
-               src="images/link_icon_72px.png" />
-            <paper-dropdown id="links-dropdown" class="dropdown" halign="right">
-              <paper-item id="links-close-button">
-                <img id="links-dropdown-icon" class="links-icon"
-                     src="images/link_icon_black_72px.png" />
-              </paper-item>
-              <template repeat="{{link in overflowedLinks}}">
-                <a _href="{{link.href}}" target="_blank"><paper-item>{{link.name}}</paper-item></a>
-              </template>
-            </paper-dropdown>
-          </paper-menu-button>
+          <overflowed-links-menu
+              overflowedLinks="{{overflowedLinks}}"
+              menuOpened="{{isOverflowedLinksMenuOpen}}"></overflowed-links-menu>
         </template>
       </div>
     </paper-shadow>
   </template>
-  <script type="application/dart" src="header.dart"></script>
 </polymer-element>
 
 <polymer-element name="header-link" noscript attributes="href">
   <template>
-    <style>
-      a,
-      a:link,
-      a:visited,
-      a:active {
-        color: #000;
-        -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
-      }
-
-      #link-logo-box {
-        float: left;
-        height: 60px;
-        position: relative;
-        width: 60px;
-      }
-    </style>
+    <link rel="stylesheet" href="header.css" />
     <a id="link-logo-box" _href="{{href}}" target="_blank">
       <header-link-ripple></header-link-ripple>
       <content></content>
@@ -103,5 +78,25 @@
 <polymer-element name="header-link-ripple" noscript>
   <template>
     <paper-ripple class="circle recenteringTouch" fit></paper-ripple>
+  </template>
+</polymer-element>
+
+<polymer-element name="overflowed-links-menu">
+  <template>
+    <link rel="stylesheet" href="header.css" />
+    <paper-menu-button id="links-menu-button" on-click="{{linksMenuButtonClicked}}">
+      <header-link-ripple></header-link-ripple>
+      <img id="links-button-icon" class="links-icon"
+           src="images/link_icon_72px.png" />
+      <paper-dropdown id="links-dropdown" class="dropdown" halign="right">
+        <paper-item id="links-close-button">
+          <img id="links-dropdown-icon" class="links-icon"
+               src="images/link_icon_black_72px.png" />
+        </paper-item>
+        <template repeat="{{link in overflowedLinks}}">
+          <a _href="{{link.href}}" target="_blank"><paper-item>{{link.name}}</paper-item></a>
+        </template>
+      </paper-dropdown>
+    </paper-menu-button>
   </template>
 </polymer-element>
