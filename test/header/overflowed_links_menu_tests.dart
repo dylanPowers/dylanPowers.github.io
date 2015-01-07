@@ -2,12 +2,15 @@ library overflowed_links_menu_tests;
 
 import 'dart:html';
 import 'package:guinness/guinness.dart';
+import 'package:paper_elements/paper_dropdown.dart';
 import 'package:unittest/unittest.dart' as ut;
 
 import 'package:about_me/header/header.dart';
 
+OverflowedLinksMenuElement _overLinksMenu;
+
 void run() {
-  ddescribe('The overflowed links menu', () {
+  describe('The overflowed links menu', () {
     beforeEach(() {
       _overLinksMenu = new OverflowedLinksMenuElement();
       document.body.append(_overLinksMenu);
@@ -22,9 +25,9 @@ void run() {
              new ut.isInstanceOf<List<OverflowedHeaderLink>>());
     });
 
-    it('has an attribute that describes whether or not the menu should be open', () {
-      expect(() => _overLinksMenu.isMenuOpen).not.toThrow();
-      expect(_overLinksMenu.isMenuOpen, new ut.isInstanceOf<bool>());
+    it('has an attribute that describes whether or not the menu is opened', () {
+      expect(() => _overLinksMenu.menuOpened).not.toThrow();
+      expect(_overLinksMenu.menuOpened, new ut.isInstanceOf<bool>());
     });
 
     it('has a property for accessing the menu button dimensions', () {
@@ -32,26 +35,27 @@ void run() {
       expect(_overLinksMenu.buttonDimensions, new ut.isInstanceOf<Rectangle>());
     });
 
-    it('when set to open is open', _testOpen);
-
-    it('when set to closed is closed', () {
-      var dropdown = _testOpen();
-      _overLinksMenu.isMenuOpen = false;
-      expect(dropdown.classes
-                     .contains(OverflowedLinksMenuElement.OPEN_DROPDOWN_CLASSNAME))
-          .toBeFalse();
-    });
+    _openClosedStateTests();
   });
 }
 
+void _openClosedStateTests() {
+  describe('when open vs closed state', () {
+    PaperDropdown dropdown;
+    beforeEach(() {
+      dropdown = _overLinksMenu.shadowRoot.getElementById('links-dropdown');
+      _overLinksMenu.menuOpened = true;
+      return window.animationFrame;
+    });
 
-OverflowedLinksMenuElement _overLinksMenu;
+    it('is set to open the menu is open', () {
+      expect(dropdown.opened).toBeTrue();
+    });
 
-HtmlElement _testOpen() {
-  _overLinksMenu.isMenuOpen = true;
-  var dropdown = _overLinksMenu.shadowRoot.getElementById('links-dropdown');
-  expect(dropdown.classes
-                 .contains(OverflowedLinksMenuElement.OPEN_DROPDOWN_CLASSNAME))
-      .toBeTrue();
-  return dropdown;
+    it('is set to closed the menu is closed', () {
+      _overLinksMenu.menuOpened = false;
+      return window.animationFrame
+                   .then((_) => expect(dropdown.opened).toBeFalse());
+    });
+  });
 }

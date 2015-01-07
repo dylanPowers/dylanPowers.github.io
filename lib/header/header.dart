@@ -6,6 +6,7 @@ import 'package:polymer/polymer.dart';
 import 'package:about_me/css_style_props.dart';
 import 'package:about_me/element_style_measurer.dart';
 import 'package:about_me/enhanced_window_on_scroll.dart';
+import 'package:paper_elements/paper_dropdown.dart';
 
 part 'overflowed_links_menu.dart';
 
@@ -24,6 +25,7 @@ class HeaderElement extends PolymerElement {
   static const String PIC_CONDENSED = 'pic-condensed';
   static const String PIC_EXPANDED = 'pic-expanded';
 
+  @observable bool isOverflowedLinksMenuOpen = false;
   @observable String nameStyle = NAME_EXPANDED;
   final overflowedLinks = new ObservableList<OverflowedHeaderLink>();
   @observable String panelDisplayStyle = PANEL_DISPLAYED;
@@ -164,9 +166,15 @@ class HeaderElement extends PolymerElement {
   }
 
   void _hideCondensedPanel(EnhancedScrollEvent e) {
+    // If the panel is displayed, that is we just started scrolling down, then
+    // the y translation needs to be reset to a beginning value of the
+    // condensed height.
     if (panelDisplayStyle == PANEL_DISPLAYED) {
       _panelTransform.translateY = _condensedHeight;
     }
+
+    // When scrolling down, close the overflowed links menu
+    isOverflowedLinksMenuOpen = false;
 
     panelDisplayStyle = PANEL_HIDDEN;
     num condensedMove = _calcCondensedScrollMovement(e);

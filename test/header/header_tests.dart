@@ -96,6 +96,11 @@ void run() {
       });
     });
 
+    it('has a property for modifying whether the overflowed links menu should be open', () {
+      expect(() => _header.isOverflowedLinksMenuOpen, ut.returnsNormally);
+      expect(_header.isOverflowedLinksMenuOpen).toBeAnInstanceOf(bool);
+    });
+
     _condensedThenExpandedTests();
     _condensedViewTests();
   });
@@ -395,6 +400,14 @@ void _scrollingDownTests() {
         return window.animationFrame;
       }).then((_) {
         expect(_panel.style.transform).toEqual('translateY(0px)');
+      });
+    });
+
+    it('closes the overflowed links menu', () {
+      _header.isOverflowedLinksMenuOpen = true;
+      window.scrollBy(0, 1);
+      return window.animationFrame.then((_) {
+        expect(_header.isOverflowedLinksMenuOpen).toBeFalse();
       });
     });
   });

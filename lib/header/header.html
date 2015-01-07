@@ -57,7 +57,8 @@
 
         <template if="{{showLinksMenu}}">
           <overflowed-links-menu
-              overflowedLinks="{{overflowedLinks}}"></overflowed-links-menu>
+              overflowedLinks="{{overflowedLinks}}"
+              menuOpened="{{isOverflowedLinksMenuOpen}}"></overflowed-links-menu>
         </template>
       </div>
     </paper-shadow>
@@ -83,7 +84,7 @@
 <polymer-element name="overflowed-links-menu">
   <template>
     <link rel="stylesheet" href="header.css" />
-    <paper-menu-button id="links-menu-button">
+    <paper-menu-button id="links-menu-button" on-click="{{linksMenuButtonClicked}}">
       <header-link-ripple></header-link-ripple>
       <img id="links-button-icon" class="links-icon"
            src="images/link_icon_72px.png" />
