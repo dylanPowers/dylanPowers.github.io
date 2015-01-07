@@ -8,10 +8,16 @@ class OverflowedLinksMenuElement extends PolymerElement {
   Rectangle get buttonDimensions =>
       shadowRoot.getElementById('links-menu-button').getBoundingClientRect();
 
-  @published bool menuOpened = false;
+  /**
+   * Keeping track of the state of the menu is unreliable and complicated.
+   * We only keep track of whether it's possibly opened. Set to false to close
+   * the menu.
+   */
+  @published bool menuPossiblyOpened = false;
   @published List overflowedLinks = new List<OverflowedHeaderLink>();
 
   PaperDropdown _linksDropdown;
+  StreamSubscription _linksMenuButtonClickListener;
   StreamSubscription _observableListener;
 
   factory OverflowedLinksMenuElement() {
@@ -23,17 +29,15 @@ class OverflowedLinksMenuElement extends PolymerElement {
   @override
   void attached() {
     _linksDropdown = shadowRoot.getElementById('links-dropdown');
-    if (menuOpened) {
+    if (menuPossiblyOpened) {
       _linksDropdown.classes.add(OPEN_DROPDOWN_CLASSNAME);
     }
 
-    // Listen for changes to menuOpened
+    // Listen for changes to menuPossiblyOpened
     _observableListener = changes.listen((List<ChangeRecord> records) {
       records.forEach((PropertyChangeRecord<bool> record) {
-        if (record.name == #menuOpened) {
-          if (record.newValue) {
-            _linksDropdown.open();
-          } else {
+        if (record.name == #menuPossiblyOpened) {
+          if (!record.newValue) {
             _linksDropdown.close();
           }
         }
@@ -47,8 +51,6 @@ class OverflowedLinksMenuElement extends PolymerElement {
   }
 
   void linksMenuButtonClicked() {
-    // After event propagation
-    window.animationFrame.then((_) =>
-      menuOpened = _linksDropdown.opened);
+    menuPossiblyOpened = true;
   }
 }

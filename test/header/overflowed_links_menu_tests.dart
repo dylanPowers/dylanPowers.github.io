@@ -26,8 +26,8 @@ void run() {
     });
 
     it('has an attribute that describes whether or not the menu is opened', () {
-      expect(() => _overLinksMenu.menuOpened).not.toThrow();
-      expect(_overLinksMenu.menuOpened, new ut.isInstanceOf<bool>());
+      expect(() => _overLinksMenu.menuPossiblyOpened).not.toThrow();
+      expect(_overLinksMenu.menuPossiblyOpened, new ut.isInstanceOf<bool>());
     });
 
     it('has a property for accessing the menu button dimensions', () {
@@ -44,16 +44,18 @@ void _openClosedStateTests() {
     PaperDropdown dropdown;
     beforeEach(() {
       dropdown = _overLinksMenu.shadowRoot.getElementById('links-dropdown');
-      _overLinksMenu.menuOpened = true;
+      _overLinksMenu.menuPossiblyOpened = true;
       return window.animationFrame;
     });
 
-    it('is set to open the menu is open', () {
-      expect(dropdown.opened).toBeTrue();
-    });
+    // TODO Someday figure out how to do this. I think the easiest way would
+    // be to get the underlying paper dropdown to have an open/close event.
+//    xit('is set to open the menu is open', () {
+//      expect(dropdown.opened).toBeTrue();
+//    });
 
     it('is set to closed the menu is closed', () {
-      _overLinksMenu.menuOpened = false;
+      _overLinksMenu.menuPossiblyOpened = false;
       return window.animationFrame
                    .then((_) => expect(dropdown.opened).toBeFalse());
     });
