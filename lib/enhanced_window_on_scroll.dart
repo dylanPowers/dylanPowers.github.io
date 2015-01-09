@@ -39,6 +39,12 @@ class EnhancedScrollEvent {
 
   EnhancedScrollEvent(this.oldXPosition, this.oldYPosition,
                       this.newXPosition, this.newYPosition);
+
+  EnhancedScrollEvent.zeroMovement(Window win) :
+    this.oldXPosition = win.pageXOffset,
+    this.newXPosition = win.pageXOffset,
+    this.oldYPosition = win.pageYOffset,
+    this.newYPosition = win.pageYOffset;
 }
 
 class EnhancedScrollSink extends EventSink<Event> {

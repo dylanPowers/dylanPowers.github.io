@@ -42,6 +42,7 @@ class HeaderElement extends PolymerElement {
   CssTransformProp _panelTransform;
   CssTransitionDurationProp _panelTransitionDuration;
   StreamSubscription<EnhancedScrollEvent> _scrollHandler;
+  StreamSubscription _windowResizeHandler;
 
   factory HeaderElement() {
     return new Element.tag('dkp-header') as HeaderElement;
@@ -62,15 +63,6 @@ class HeaderElement extends PolymerElement {
     _panelTransform = new CssTransformProp(_panel.style);
     _panelTransform.translateY = 0;
     _panelTransitionDuration = new CssTransitionDurationProp(_panel.style);
-
-    window.onResize.listen((_) {
-      _evaluateElRanges();
-      _updateLinks();
-    });
-
-    _scrollHandler = new EnhancedWindowOnScroll(window).stream.listen(_updatePanel);
-    _evaluateElRanges();
-    _updateLinks();
   }
 
   @override
@@ -78,6 +70,7 @@ class HeaderElement extends PolymerElement {
     super.detached();
     
     _scrollHandler.cancel();
+    _windowResizeHandler.cancel();
   }
 
   void _adjustPartiallyViewablePanel() {
@@ -94,6 +87,18 @@ class HeaderElement extends PolymerElement {
     // Order matters here!
     _panelTransitionDuration.duration = new Duration(milliseconds: 150);
     _panelTop.clear();
+  }
+
+  void _attachEventHandlers() {
+    _scrollHandler = new EnhancedWindowOnScroll(window).stream.listen(_updatePanel);
+    _windowResizeHandler = window.onResize.listen((_) {
+      _evaluateElRanges();
+      _updateLinks();
+      _updatePanel(new EnhancedScrollEvent.zeroMovement(window));
+    });
+      
+    _evaluateElRanges();
+    _updateLinks();
   }
 
   /**
