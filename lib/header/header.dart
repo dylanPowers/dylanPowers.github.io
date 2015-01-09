@@ -67,6 +67,8 @@ class HeaderElement extends PolymerElement {
     _panelTransform = new CssTransformProp(_panel.style);
     _panelTransform.translateY = 0;
     _panelTransitionDuration = new CssTransitionDurationProp(_panel.style);
+
+    _attachEventHandlers();
   }
 
   @override
@@ -100,7 +102,7 @@ class HeaderElement extends PolymerElement {
       _updateLinks();
       _updatePanel(new EnhancedScrollEvent.zeroMovement(window));
     });
-      
+
     _evaluateElRanges();
     _updateLinks();
   }
