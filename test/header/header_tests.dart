@@ -9,6 +9,8 @@ import 'package:unittest/unittest.dart' as ut;
 import 'package:about_me/css_style_props.dart';
 import 'package:about_me/header/header.dart';
 
+import 'overflowed_links_menu_tests.dart' as overflowedLinksMenuTests;
+
 const _SCROLL_START = 600;
 const _WAIT_TIME = 500;
 
@@ -16,6 +18,8 @@ HeaderElement _header;
 Element _panel;
 
 void run() {
+  overflowedLinksMenuTests.run();
+
   describe('The intro header', () {
     beforeEach(_stdSetUp);
     afterEach(_stdTearDown);
@@ -90,6 +94,11 @@ void run() {
         expect(_header.overflowedLinks,
                new ut.isInstanceOf<ObservableList<OverflowedHeaderLink>>());
       });
+    });
+
+    it('has a property for modifying whether the overflowed links menu should be open', () {
+      expect(() => _header.isOverflowedLinksMenuOpen, ut.returnsNormally);
+      expect(_header.isOverflowedLinksMenuOpen).toBeAnInstanceOf(bool);
     });
 
     _condensedThenExpandedTests();
@@ -391,6 +400,14 @@ void _scrollingDownTests() {
         return window.animationFrame;
       }).then((_) {
         expect(_panel.style.transform).toEqual('translateY(0px)');
+      });
+    });
+
+    it('closes the overflowed links menu', () {
+      _header.isOverflowedLinksMenuOpen = true;
+      window.scrollBy(0, 1);
+      return window.animationFrame.then((_) {
+        expect(_header.isOverflowedLinksMenuOpen).toBeFalse();
       });
     });
   });
