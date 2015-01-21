@@ -2,16 +2,18 @@
 <link rel="import" href="../base_card.html" />
 <polymer-element name="dkp-skills">
   <template>
-    <script type="application/javascript" src="highcharts-standalone-framework.js"></script>
-    <script type="application/javascript" src="highcharts.js"></script>
+    <link rel="stylesheet" href="skills.css" />
+    <!--
+      Highcharts dependencies would normally be included here,
+      but they can't because of Firefox -->
     <base-card>
       <h1>Skills</h1>
 
       <h2>Languages</h2>
-      <div id="languages-chart"></div>
+      <div id="languages-chart" class="chart"></div>
 
       <h2>Platforms</h2>
-      <div id="platforms-chart"></div>
+      <div id="platforms-chart" class="chart"></div>
 
     </base-card>
   </template>

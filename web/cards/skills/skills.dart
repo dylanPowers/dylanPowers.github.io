@@ -19,15 +19,15 @@ class SkillsElement extends PolymerElement {
   @override
   void attached() {
     super.attached();
-    if (document.readyState == 'complete') {
-      _renderCharts();
-    } else {
+//    if (document.readyState == 'complete') {
+//      _renderCharts();
+//    } else {
       StreamSubscription winOnLoad;
       winOnLoad = window.onLoad.listen((_) {
         _renderCharts();
         winOnLoad.cancel();
       });
-    }
+//    }
   }
 
   void _renderCharts() {
@@ -47,15 +47,35 @@ class SkillsElement extends PolymerElement {
 abstract class SkillsChart {
   Map _chartOptions = {
     'chart': {
+      'marginLeft': 56,
       'type': 'bar'
+    },
+    'colors': ['#FFAB00', '#D50000'],
+    'credits': {
+      'enabled': false
+    },
+    'legend': {
+      'backgroundColor': '#FFF',
+      'floating': false,
+      'shadow': true
+    },
+    'plotOptions': {
+      'series': {
+        'borderWidth': 0,
+        'groupPadding': 0.15,
+        'pointPadding': 0
+      }
     },
     'title': {
       'text': null
     },
     'yAxis': {
+      'labels': {
+        'enabled': false
+      },
       'min': 0,
       'max': 5,
-      'minTickInterval': 1,
+      'tickInterval': 1,
       'title': {
         'text': null
       }

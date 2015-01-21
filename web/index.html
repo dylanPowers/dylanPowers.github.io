@@ -20,18 +20,24 @@
   <link rel="import" href="cards/skills/skills.html" />
   <link rel="import" href="cards/volunteering.html" />
   <link rel="import" href="cards/work_experience.html" />
+
+  <!--
+    It would be preferable to have these included from skills.html,
+    but Firefox doesn't like that -->
+  <script type="application/javascript" src="cards/skills/highcharts-standalone-framework.js"></script>
+  <script type="application/javascript" src="cards/skills/highcharts.js"></script>
 </head>
 <body>
   <dkp-header></dkp-header>
   <div id="cards" class="center">
     <div class="left">
       <dkp-about-me></dkp-about-me>
+      <dkp-skills></dkp-skills>
       <dkp-dev-env-prefs></dkp-dev-env-prefs>
     </div>
     <div class="right">
-      <dkp-work-experience></dkp-work-experience>
       <dkp-projects></dkp-projects>
-      <dkp-skills></dkp-skills>
+      <dkp-work-experience></dkp-work-experience>
       <dkp-education></dkp-education>
       <dkp-volunteering></dkp-volunteering>
     </div>
