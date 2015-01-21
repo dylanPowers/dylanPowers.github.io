@@ -19,15 +19,11 @@ class SkillsElement extends PolymerElement {
   @override
   void attached() {
     super.attached();
-//    if (document.readyState == 'complete') {
-//      _renderCharts();
-//    } else {
-      StreamSubscription winOnLoad;
-      winOnLoad = window.onLoad.listen((_) {
-        _renderCharts();
-        winOnLoad.cancel();
-      });
-//    }
+    StreamSubscription winOnLoad;
+    winOnLoad = window.onLoad.listen((_) {
+      _renderCharts();
+      winOnLoad.cancel();
+    });
   }
 
   void _renderCharts() {
@@ -57,6 +53,7 @@ abstract class SkillsChart {
     'legend': {
       'backgroundColor': '#FFF',
       'floating': false,
+      'reversed': true,
       'shadow': true
     },
     'plotOptions': {
