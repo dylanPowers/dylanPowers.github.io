@@ -61,13 +61,16 @@ p {
 
 ::content h1 {
   color: #D50000;
-  margin: 0 0 16px 0; }
-
-::content h2 {
+  font-size: 32px;
   margin: 0 0 12px 0; }
 
+::content h2 {
+  font-size: 22px;
+  margin: 12px 0 4px 0; }
+
 ::content h3 {
-  margin: 0 0 8px 0; }
+  font-size: 18px;
+  margin: 8px 0 8px 0; }
 
 ::content h4 {
   margin: 0 0 4px 0; }

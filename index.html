@@ -67,6 +67,13 @@ body {
   
   
   
+  
+
+  <!--
+    It would be preferable to have these included from skills.html,
+    but Firefox doesn't like that -->
+  <script type="application/javascript" src="cards/skills/highcharts-standalone-framework.js"></script>
+  <script type="application/javascript" src="cards/skills/highcharts.js"></script>
 </head>
 <body><div hidden=""><style shim-shadowdom="">
 /*******************************
@@ -3983,13 +3990,16 @@ p {
 
 ::content h1 {
   color: #D50000;
-  margin: 0 0 16px 0; }
-
-::content h2 {
+  font-size: 32px;
   margin: 0 0 12px 0; }
 
+::content h2 {
+  font-size: 22px;
+  margin: 12px 0 4px 0; }
+
 ::content h3 {
-  margin: 0 0 8px 0; }
+  font-size: 18px;
+  margin: 8px 0 8px 0; }
 
 ::content h4 {
   margin: 0 0 4px 0; }
@@ -4092,7 +4102,7 @@ p {
 </style>
     <base-card>
       <div id="other-content">
-        <h1 id="title">Preferred Development Environment</h1>
+        <h1>Preferred Development Environment</h1>
         <paper-shadow id="desktop-pic-shadow" class="center">
           <img id="desktop-pic" src="cards/desktop.jpg">
         </paper-shadow>
@@ -4101,7 +4111,7 @@ p {
           <a href="http://usesthis.com/" target="_blank">usesthis.com</a>
         </p>
 
-        <h3>Hardware</h3>
+        <h2>Hardware</h2>
         <p>
           Hardware wise, I keep it cheap. My primary on the go device is a
           <a href="http://www.amazon.com/Toshiba-CB35-B3340-13-3-Inch-Chromebook-Full-HD/dp/B00N99FXIS" target="_blank">
@@ -4110,7 +4120,7 @@ p {
           no frills, and run Linux like a boss. This one has a rather beautiful
           1080p IPS display. It's a little underpowered, but that's
           why I have a desktop. The point is, I can get all day battery life
-          from this little sucker.
+          from this little guy.
         </p>
         <p>
           My custom built desktop for getting the tough work done features
@@ -4118,7 +4128,8 @@ p {
           Nvidia 760 GPU with a 250GB SSD and spinning disks for extra space.
           The system physically
           <a href="http://www.fractal-design.com/home/product/cases/define-series/define-r4-black-pearl" target="_blank">
-            looks non-descript</a>, is completely silent, and does
+            looks non-descript</a>,
+          is completely silent, and does
           everything I need it to with plenty of power to spare. A nice thing
           about building my own desktop is that it's possible to build it in
           bits and pieces as I get funds. For awhile, it didn't even have the
@@ -4126,13 +4137,20 @@ p {
           <a href="http://www.engadget.com/products/planar/px2710mw/" target="_blank">
             27" 1080p monitor by Planar</a>,
           an excellent pair of
-          <a href="http://www.engadget.com/products/sennheiser/hd/555/" target="_blank">Sennheiser HD555</a>
+          <a href="http://www.engadget.com/products/sennheiser/hd/555/" target="_blank">
+            Sennheiser HD555</a>
           headphones which are great for around the house because they let in
           ambient noise, a
           <a href="http://www.amazon.com/Logitech-Wireless-Performance-Mouse-Mac/dp/B002HWRJBM" target="_blank">
-          Logitech Performance MX</a>, and a rather terrible
-          <a href="http://www.amazon.com/Microsoft-Natural-Ergonomic-Keyboard-4000/dp/B000A6PPOK/" target="_blank">Microsoft Ergo 4000</a>
-          keyboard that I got from Goodwill for $5 (lol).
+            Logitech Performance MX</a>,
+          and a rather terrible
+          <a href="http://www.amazon.com/Microsoft-Natural-Ergonomic-Keyboard-4000/dp/B000A6PPOK/" target="_blank">
+            Microsoft Ergo 4000</a>
+          keyboard that I got from Goodwill for $5 (lol). Oh yeah, I also prefer
+          sitting near the ground in a
+          <a href="http://www.amazon.com/gp/product/B0055DXLVW" target="_blank">
+            bean bag chair</a>.
+          It's super comfy, which helps for long coding sessions.
         </p>
         <p>
           The smallest device in the family is my LG G2. I like Nexus devices,
@@ -4141,12 +4159,13 @@ p {
           this phone has never ran out of juice on me.
         </p>
 
-        <h3>Software</h3>
+        <h2>Software</h2>
         <p>
           On the software side, I prefer Linux. Everything from my little MIPS
           powered Netgear router, to my desktop runs Linux.
           Windows generates a flurry of
-          curse words from my mouth, and I'm too poor to have even tried to use
+          curse words from my mouth, and macbooks are too expensive for me to
+          have tried
           OS X for any length of time. I even have a cool script
           that can get a Linux system quickly configured to my liking -- it's not
           open sourced, sorry. --
@@ -4199,7 +4218,7 @@ p {
     <base-card>
       <h1>Education</h1>
       <h2>Washington State University</h2>
-      <h3 id="wsu-date">Fall 2010 - Fall 2014</h3>
+      <h3 id="wsu-date">Fall 2010 - Today</h3>
       <h3 id="major">BS Computer Science</h3>
 
       <!-- Browsers don't properly calculate the card vertical size without this -->
@@ -4212,19 +4231,8 @@ p {
   <template>
     <base-card>
       <h1>Projects</h1>
-      <h3>Spotigoo (Work in progress)</h3>
-      <p>
-        An Android app that aids in transitioning between Spotify
-        and Google Music by migrating playlists and libraries between the two.
-      </p>
-      <p>
-        Source:
-        <a href="https://github.com/dylanPowers/spotigoo">
-          https://github.com/dylanPowers/spotigoo
-        </a>
-      </p>
 
-      <h3>WSU 2015 Hackathon Website</h3>
+      <h2>WSU 2015 Hackathon Website</h2>
       <p>
         The
         <a href="http://hackathon.eecs.wsu.edu" target="_blank">WSU 2015 Hackathon</a>
@@ -4238,7 +4246,7 @@ p {
           https://github.com/WSU-ACM/hackathon-site</a>.
       </p>
 
-      <h3>This website</h3>
+      <h2>This website</h2>
       <p>
         This site was an effort by me to sort of push the browser boundaries.
         It's implemented
@@ -4246,7 +4254,8 @@ p {
         a Github page. A lot of complexity could
         have been reduced by simplifying the header, but I really wanted to
         create something that showcases how I think website headers should
-        work. For that reason, it doesn't work as beautifully as it could on
+        work. My only disappointment is that it doesn't work
+        as beautifully as it could on
         mobile due to the low frequency of scroll events mobile browsers send.
         The design is heavily influenced by Android and Google's
         Material Design.
@@ -4258,7 +4267,7 @@ p {
         </a>
       </p>
 
-      <h3>Pandoroid</h3>
+      <h2>Pandoroid</h2>
       <p>
         <a href="https://github.com/dylanPowers/pandoroid" target="_blank">Pandoroid</a>
         is an Android app that utilizes a reverse engineering of Pandora's
@@ -4268,7 +4277,8 @@ p {
         tricks under the hood like bandwidth analysis to bring the
         best audio available for the current network conditions
         and next song pre-caching for consistant playback under intermittent
-        network conditions.
+        network conditions. I've left Pandora behind however for other services
+        so work on this has been stale for a couple of years.
       </p>
       <p>
         Source:
@@ -4277,33 +4287,96 @@ p {
         </a>
       </p>
 
-      <h3>
+      <h2>Spotigoo (Work in progress)</h2>
+      <p>
+        An Android app that aids in transitioning between Spotify
+        and Google Music by migrating playlists and libraries between the two.
+        It's still very much a concept.
+      </p>
+      <p>
+        Source:
+        <a href="https://github.com/dylanPowers/spotigoo">
+          https://github.com/dylanPowers/spotigoo
+        </a>
+      </p>
+
+      <h2>
         Interesting Snippets
-      </h3>
+      </h2>
       <ul>
         <li>
-          Android platform bug fix:
-          <a href="https://android.googlesource.com/platform/frameworks/av/+/6e8f0bc59ad2409b294ad4eb803131500306bc8b" target="_blank">
-            https://android.googlesource.com/platform/frameworks/av/+/6e8f0bc59ad2409b294ad4eb803131500306bc8b</a>
+          <p>
+            Android platform bug fix:
+            <a href="https://android.googlesource.com/platform/frameworks/av/+/6e8f0bc59ad2409b294ad4eb803131500306bc8b" target="_blank">
+              https://android.googlesource.com/platform/frameworks/av/+/6e8f0bc59ad2409b294ad4eb803131500306bc8b</a>
+          </p>
+          <p>
+            This was a rather long bug hunt and a brutal 1 week crash course into
+            Android system development. However, I really wanted to learn
+            Android at the system level, so I killed two birds with one stone.
+            This was also my first time navigating a large code base, and in this
+            case an incredibly massive one.
+          </p>
         </li>
         <li>
-          Dart to Github user page build script:
-          <a href="https://gist.github.com/dylanPowers/7969683" target="_blank">
-            https://gist.github.com/dylanPowers/7969683
-          </a>
+          <p>
+            Dart to Github user page build script:
+            <a href="https://gist.github.com/dylanPowers/7969683" target="_blank">
+              https://gist.github.com/dylanPowers/7969683
+            </a>
+          </p>
+          <p>
+            This script is responsible for building this website. However the
+            most up to date version is probably within this website's
+            <a href="https://github.com/dylanPowers/dylanPowers.github.io" target="_blank">
+              repo</a>
+            rather than at that gist.
+          </p>
         </li>
         <li>
-          OpenGL ES Android demo app implemented in C:
-          <a href="https://github.com/dylanPowers/openGLSandbox" target="_blank">
-            https://github.com/dylanPowers/openGLSandbox</a>.
-          It took some work
-          figuring out how to get the Android Gradle build system
-          to work with the NDK at the time because it was still in beta and
-          not officially supported.
+          <p>
+            OpenGL ES Android demo app implemented in C:
+            <a href="https://github.com/dylanPowers/openGLSandbox" target="_blank">
+              https://github.com/dylanPowers/openGLSandbox</a>
+          </p>
+          <p>
+            Nothing significant, but I was doing a class on desktop
+            OpenGL in C++ and really wanted to do something on my phone.
+            It took some work
+            figuring out how to get the Android Gradle build system
+            to work with the NDK at the time because it was still in beta and
+            not officially supported.
+          </p>
         </li>
       </ul>
     </base-card>
   </template>
+</polymer-element>
+
+<polymer-element name="dkp-skills">
+  <template>
+    <style>#languages-chart {
+  height: 488px;
+}
+
+#platforms-chart {
+  height: 192px;
+}</style>
+    <!--
+      Highcharts dependencies would normally be included here,
+      but they can't because of Firefox -->
+    <base-card>
+      <h1>Skills</h1>
+
+      <h2>Languages</h2>
+      <div id="languages-chart" class="chart"></div>
+
+      <h2>Platforms</h2>
+      <div id="platforms-chart" class="chart"></div>
+
+    </base-card>
+  </template>
+  
 </polymer-element>
 
 <polymer-element name="dkp-volunteering" noscript="">
@@ -4342,23 +4415,65 @@ p {
 
 #sel-roles {
   clear: both;
+}
+
+#sel-summary {
+  clear: both;
 }</style>
     <base-card>
       <h1>Work Experience</h1>
       <h2>Schweitzer Engineering Laboratories, Pullman, WA</h2>
       <h3 id="sel-date">Jan 2013 - Oct 2014</h3>
       <h3 id="sel-position">Software Engineering Intern</h3>
+      <p id="sel-summary">
+        During my time at SEL, while I did create a couple of shipping features,
+        most of my work was done on prototypal applications that were centered
+        around
+        <a href="https://www.selinc.com/SEL-5078-2/" target="_blank">
+          SynchroWAVe Central</a>
+        and
+        <a href="https://www.selinc.com/SEL-5601-2015/" target="_blank">
+          SynchroWAVe Event</a>.
+        This was my first software engineering internship and I got quite lucky
+        working in a pretty innovative group within SEL. I ended up
+        leaving because I decided I could no longer work while also doing
+        classes and I wanted to move on to working in a city for the next
+        summer (2015).
+      </p>
       <h4 id="sel-roles">Notable creations:</h4>
       <ul>
-        <li>Prototype mobile and HTML5 apps to investigate migrating away
-          from Silverlight</li>
         <li>
-          <a href="https://www.youtube.com/watch?v=iuIniFY07GY" target="_blank">Mho circle</a>
-          and FFT plots in Silverlight for
-          <a href="https://www.selinc.com/SEL-5601-2015/" target="_blank">SynchroWAVe Event</a></li>
+          A few prototype
+          mobile and HTML5 apps to investigate moving away from Silverlight.
+          Our team got caught in the Silverlight end of life downfall, plus we
+          wanted to explore supporting more platforms.
+          These prototypes included weighing various
+          languages against each other and the incumbent C#
+          (Javascript didn't come out too well), and
+          benchmarking the performance next to Silverlight.
+        </li>
         <li>
-          Web API redesign that fully leverages REST principals to increase
-          multiplatform interoperability</li>
+          A couple of new charts implemented in Silverlight for
+          <a href="https://www.selinc.com/SEL-5601-2015/" target="_blank">
+            SynchroWAVe Event</a>.
+          If you know what
+          <a href="https://www.youtube.com/watch?v=iuIniFY07GY" target="_blank">
+            Mho circle</a>
+          and FFT plots are, then congrats! You'll have a better appreciation of
+          the work I did. Otherwise know that I have the most beautiful and
+          intuitive mho circle in the industry.
+        </li>
+        <li>
+          A desperately needed redesign of the web API that fully leverages
+          REST principals to increase
+          multiplatform interoperability. The original API was .NET
+          autogenerated
+          gunk that was undocumented and didn't practice good programming
+          practices. In .NET everything looked workable, but when
+          using it with other languages/frameworks, it was a complete mess. I
+          happily fixed it up while gaining a very deep understanding of
+          what it takes to architect a RESTful API.
+        </li>
       </ul>
     </base-card>
   </template>
@@ -4367,13 +4482,14 @@ p {
   <div id="cards" class="center">
     <div class="left">
       <dkp-about-me></dkp-about-me>
+      <dkp-skills></dkp-skills>
       <dkp-dev-env-prefs></dkp-dev-env-prefs>
     </div>
     <div class="right">
-      <dkp-work-experience></dkp-work-experience>
       <dkp-projects></dkp-projects>
-      <dkp-education></dkp-education>
+      <dkp-work-experience></dkp-work-experience>
       <dkp-volunteering></dkp-volunteering>
+      <dkp-education></dkp-education>
     </div>
   </div>
   
