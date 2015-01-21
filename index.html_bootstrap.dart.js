@@ -11003,10 +11003,10 @@ w4:{
 "^":"r:49;Q,a",
 $1:[function(a){var z,y
 z=this.a
-y=new Q.nL(P.B(["chart",P.B(["marginLeft",56,"type","bar"],null,null),"colors",["#FFAB00","#D50000"],"credits",P.B(["enabled",!1],null,null),"legend",P.B(["backgroundColor","#FFF","floating",!1,"shadow",!0],null,null),"plotOptions",P.B(["series",P.B(["borderWidth",0,"groupPadding",0.15,"pointPadding",0],null,null)],null,null),"title",P.B(["text",null],null,null),"yAxis",P.B(["labels",P.B(["enabled",!1],null,null),"min",0,"max",5,"tickInterval",1,"title",P.B(["text",null],null,null)],null,null)],null,null))
+y=new Q.nL(P.B(["chart",P.B(["marginLeft",56,"type","bar"],null,null),"colors",["#FFAB00","#D50000"],"credits",P.B(["enabled",!1],null,null),"legend",P.B(["backgroundColor","#FFF","floating",!1,"reversed",!0,"shadow",!0],null,null),"plotOptions",P.B(["series",P.B(["borderWidth",0,"groupPadding",0.15,"pointPadding",0],null,null)],null,null),"title",P.B(["text",null],null,null),"yAxis",P.B(["labels",P.B(["enabled",!1],null,null),"min",0,"max",5,"tickInterval",1,"title",P.B(["text",null],null,null)],null,null)],null,null))
 y.Vr(C.Yu,C.Ah,C.Tr)
 y.bU(z.shadowRoot||z.webkitShadowRoot,"languages-chart")
-y=new Q.Rj(P.B(["chart",P.B(["marginLeft",56,"type","bar"],null,null),"colors",["#FFAB00","#D50000"],"credits",P.B(["enabled",!1],null,null),"legend",P.B(["backgroundColor","#FFF","floating",!1,"shadow",!0],null,null),"plotOptions",P.B(["series",P.B(["borderWidth",0,"groupPadding",0.15,"pointPadding",0],null,null)],null,null),"title",P.B(["text",null],null,null),"yAxis",P.B(["labels",P.B(["enabled",!1],null,null),"min",0,"max",5,"tickInterval",1,"title",P.B(["text",null],null,null)],null,null)],null,null))
+y=new Q.Rj(P.B(["chart",P.B(["marginLeft",56,"type","bar"],null,null),"colors",["#FFAB00","#D50000"],"credits",P.B(["enabled",!1],null,null),"legend",P.B(["backgroundColor","#FFF","floating",!1,"reversed",!0,"shadow",!0],null,null),"plotOptions",P.B(["series",P.B(["borderWidth",0,"groupPadding",0.15,"pointPadding",0],null,null)],null,null),"title",P.B(["text",null],null,null),"yAxis",P.B(["labels",P.B(["enabled",!1],null,null),"min",0,"max",5,"tickInterval",1,"title",P.B(["text",null],null,null)],null,null)],null,null))
 y.Vr(C.n4,C.nC,C.ll)
 y.bU(z.shadowRoot||z.webkitShadowRoot,"platforms-chart")
 this.Q.a.Gv()},"$1",null,2,0,null,73,"call"]},
