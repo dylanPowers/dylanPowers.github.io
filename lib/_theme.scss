@@ -10,6 +10,10 @@ $text-color: rgba(0, 0, 0, 0.87);
   text-align: center;
 }
 
+.print-only {
+  display: none;
+}
+
 @mixin standard-text-format {
   color: $text-color;
   font-family:  robotoregular, sans-serif;
@@ -33,4 +37,14 @@ h5,
 h6,
 p {
   @include standard-text-format;
+}
+
+@media print {
+  .print-only {
+    display: auto;
+  }
+
+  .no-print {
+    display: none;
+  }
 }

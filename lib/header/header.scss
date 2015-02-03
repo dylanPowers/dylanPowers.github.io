@@ -208,3 +208,8 @@ Media queries for reflow on smaller screens
     text-align: left;
   }
 }
+
+/** Printer friendly, ie paper resume version **/
+@media print {
+
+}

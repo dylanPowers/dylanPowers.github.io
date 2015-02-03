@@ -12,7 +12,7 @@
     <div id="hidden-panel" class="panel-expanded"></div>
     <paper-shadow z="1" id="panel" class="{{panelSizeStyle}} {{panelDisplayStyle}}">
       <img id="profile-pic"
-           class="center {{profilePicStyle}}"
+           class="no-print center {{profilePicStyle}}"
            src="images/profile.jpg" />
       <div id="name-box">
         <h1 id="name" class="center {{nameStyle}}">
@@ -68,7 +68,7 @@
 <polymer-element name="header-link" noscript attributes="href">
   <template>
     <link rel="stylesheet" href="header.css" />
-    <a id="link-logo-box" _href="{{href}}" target="_blank">
+    <a id="link-logo-box" _href="{{href}}" target="_blank" class="no-print">
       <header-link-ripple></header-link-ripple>
       <content></content>
     </a>
