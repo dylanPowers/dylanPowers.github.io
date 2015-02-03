@@ -1,0 +1,10 @@
+/** Printer friendly, ie paper resume version **/
+@media print {
+  .panel-condensed {
+    display: none;
+  }
+
+  #panel {
+
+  }
+}
