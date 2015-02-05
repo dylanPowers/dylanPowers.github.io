@@ -293,7 +293,7 @@ class OverflowedHeaderLink {
   String href;
 
   OverflowedHeaderLink(HtmlElement headerLink) {
-    href = headerLink.getAttribute('href');
+    href = headerLink.getAttribute('url') + headerLink.getAttribute('user');
     var imgEl = headerLink.querySelector('img');
     if (imgEl != null) {
       name = imgEl.getAttribute('alt');

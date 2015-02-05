@@ -96,13 +96,7 @@ h1 {
 #name {
   color: #FFF;
   display: block;
-  position: relative;
-  width: 100%;
-}
-
-#name-box {
   position: absolute;
-  top: 0;
   width: 100%;
 }
 
@@ -208,3 +202,6 @@ Media queries for reflow on smaller screens
     text-align: left;
   }
 }
+
+/** Printer friendly overrides **/
+@import "header-print";

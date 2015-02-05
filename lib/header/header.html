@@ -9,47 +9,45 @@
 <polymer-element name="dkp-header">
   <template> 
     <link rel="stylesheet" href="header.css" />
-    <div id="hidden-panel" class="panel-expanded"></div>
+    <div id="hidden-panel" class="panel-expanded no-print"></div>
     <paper-shadow z="1" id="panel" class="{{panelSizeStyle}} {{panelDisplayStyle}}">
       <img id="profile-pic"
            class="no-print center {{profilePicStyle}}"
            src="images/profile.jpg" />
-      <div id="name-box">
-        <h1 id="name" class="center {{nameStyle}}">
-          Dylan Powers</h1>
-      </div>
-      <div id="links-box">
-        <header-link href="https://github.com/dylanPowers">
-          <img class="link-logo"
-               alt="Github"
-               src="images/github_mark_120px.png"/>
-        </header-link>
-
-        <header-link href="https://medium.com/@dylankpowers">
-          <img id="medium-logo" class="link-logo"
-               alt="Medium"
-               src="images/medium_icon_100px.png"/>
-        </header-link>
-
-        <header-link href="https://plus.google.com/+DylanPowersz">
-          <img id="google-plus-logo" class="link-logo"
-               alt="Google Plus"
-               src="images/g+_icon_64px.png" />
-        </header-link>
-
-        <header-link href="https://twitter.com/dylankpowers">
-          <img class="link-logo"
-               alt="Twitter"
-               src="images/twitter_icon_128px.png"/>
-        </header-link>
-
-        <header-link id="email" href="mailto:{{EMAIL_ADDRESS}}@gmail.com">
+      <h1 id="name" class="center {{nameStyle}}">
+        Dylan Powers</h1>
+      <div id="links-box" class="">
+        <header-link id="email" name="Email" url="mailto:" user="{{EMAIL_ADDRESS}}@gmail.com">
           <img class="link-logo"
                alt="Email"
                src="images/email_icon_96px.png" />
         </header-link>
 
-        <header-link href="https://www.linkedin.com/profile/view?id=371709839">
+        <header-link name="Github" url="https://github.com/" user="dylanPowers">
+          <img class="link-logo"
+               alt="Github"
+               src="images/github_mark_120px.png"/>
+        </header-link>
+
+        <header-link name="Medium" url="https://medium.com/" user="@dylankpowers">
+          <img id="medium-logo" class="link-logo"
+               alt="Medium"
+               src="images/medium_icon_100px.png"/>
+        </header-link>
+
+        <header-link name="Twitter" url="https://twitter.com/" user="@dylankpowers">
+          <img class="link-logo"
+               alt="Twitter"
+               src="images/twitter_icon_128px.png"/>
+        </header-link>
+
+        <header-link name="Google+" url="https://plus.google.com/" user="+DylanPowersz">
+          <img id="google-plus-logo" class="link-logo"
+               alt="Google Plus"
+               src="images/g+_icon_64px.png" />
+        </header-link>
+
+        <header-link name="LinkedIn" url="https://www.linkedin.com/" user="in/dylankpowers">
           <img id="linkedin-logo" class="link-logo"
                alt="LinkedIn"
                src="images/linkedin_icon_128px.png"/>
@@ -65,10 +63,11 @@
   </template>
 </polymer-element>
 
-<polymer-element name="header-link" noscript attributes="href">
+<polymer-element name="header-link" noscript attributes="url user name">
   <template>
     <link rel="stylesheet" href="header.css" />
-    <a id="link-logo-box" _href="{{href}}" target="_blank" class="no-print">
+    <p id="printed-text" class="print-only">{{name}}: {{user}}</p>
+    <a id="link-logo-box" _href="{{url}}{{user}}" target="_blank" class="no-print">
       <header-link-ripple></header-link-ripple>
       <content></content>
     </a>
