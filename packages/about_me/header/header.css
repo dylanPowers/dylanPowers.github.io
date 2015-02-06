@@ -5,6 +5,11 @@
   position: relative;
   text-align: center; }
 
+.fill {
+  height: 100%;
+  position: absolute;
+  width: 100%; }
+
 a,
 a:link,
 a:visited,
@@ -25,6 +30,15 @@ p {
   color: rgba(0, 0, 0, 0.87);
   font-family: robotoregular, sans-serif; }
 
+p {
+  margin: 6px 16px 16px 18px; }
+
+@media not print {
+  .print-only {
+    display: none; } }
+@media print {
+  .no-print {
+    display: none; } }
 a {
   text-decoration: none; }
 
@@ -33,9 +47,9 @@ h1 {
   margin: 0;
   text-decoration: none; }
 
-.hide {
-  display: none; }
-
+@media not print {
+  header-link.hide {
+    display: none; } }
 .link-logo {
   height: 32px;
   margin: 14px 14px;
@@ -102,12 +116,7 @@ h1 {
 #name {
   color: #FFF;
   display: block;
-  position: relative;
-  width: 100%; }
-
-#name-box {
   position: absolute;
-  top: 0;
   width: 100%; }
 
 #panel {
@@ -186,3 +195,39 @@ Media queries for reflow on smaller screens
   .name-expanded {
     margin-left: 10px;
     text-align: left; } }
+/** Printer friendly overrides **/
+/** Printer friendly, ie paper resume version **/
+@media print {
+  #links-box {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    text-align: center;
+    bottom: auto;
+    height: 76px;
+    text-align: left;
+    width: 824px; }
+
+  #name {
+    color: #1565C0;
+    font-size: 48px;
+    position: relative;
+    top: 0; }
+
+  #panel {
+    background-color: #FFF;
+    height: 100%;
+    position: relative;
+    top: 0; }
+
+  #printed-text {
+    display: block;
+    float: left;
+    height: 16px;
+    margin: 4px 0 4px 112px;
+    position: relative;
+    width: 288px; }
+
+  #website {
+    margin-bottom: 4px; } }

@@ -21,6 +21,11 @@
   position: relative;
   text-align: center; }
 
+.fill {
+  height: 100%;
+  position: absolute;
+  width: 100%; }
+
 a,
 a:link,
 a:visited,
@@ -41,6 +46,15 @@ p {
   color: rgba(0, 0, 0, 0.87);
   font-family: robotoregular, sans-serif; }
 
+p {
+  margin: 6px 16px 16px 18px; }
+
+@media not print {
+  .print-only {
+    display: none; } }
+@media print {
+  .no-print {
+    display: none; } }
 body {
   background-color: #EEE;
   margin: 0; }
@@ -57,6 +71,9 @@ body {
   .right {
     clear: right;
     float: right; } }
+@media print {
+  body {
+    background-color: #FFF; } }
 </style>
   <link rel="shortcut icon" sizes="65x65" href="cat_computer_65px.png">
   <meta name="theme-color" content="#1565C0"><!-- Cool Android trick -->
@@ -3283,7 +3300,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
 
-
 <polymer-element name="dkp-header">
   <template> 
     <style>.center {
@@ -3293,6 +3309,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   position: relative;
   text-align: center; }
 
+.fill {
+  height: 100%;
+  position: absolute;
+  width: 100%; }
+
 a,
 a:link,
 a:visited,
@@ -3313,6 +3334,15 @@ p {
   color: rgba(0, 0, 0, 0.87);
   font-family: robotoregular, sans-serif; }
 
+p {
+  margin: 6px 16px 16px 18px; }
+
+@media not print {
+  .print-only {
+    display: none; } }
+@media print {
+  .no-print {
+    display: none; } }
 a {
   text-decoration: none; }
 
@@ -3321,9 +3351,9 @@ h1 {
   margin: 0;
   text-decoration: none; }
 
-.hide {
-  display: none; }
-
+@media not print {
+  header-link.hide {
+    display: none; } }
 .link-logo {
   height: 32px;
   margin: 14px 14px;
@@ -3390,12 +3420,7 @@ h1 {
 #name {
   color: #FFF;
   display: block;
-  position: relative;
-  width: 100%; }
-
-#name-box {
   position: absolute;
-  top: 0;
   width: 100%; }
 
 #panel {
@@ -3474,36 +3499,74 @@ Media queries for reflow on smaller screens
   .name-expanded {
     margin-left: 10px;
     text-align: left; } }
+/** Printer friendly overrides **/
+/** Printer friendly, ie paper resume version **/
+@media print {
+  #links-box {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    text-align: center;
+    bottom: auto;
+    height: 76px;
+    text-align: left;
+    width: 824px; }
+
+  #name {
+    color: #1565C0;
+    font-size: 48px;
+    position: relative;
+    top: 0; }
+
+  #panel {
+    background-color: #FFF;
+    height: 100%;
+    position: relative;
+    top: 0; }
+
+  #printed-text {
+    display: block;
+    float: left;
+    height: 16px;
+    margin: 4px 0 4px 112px;
+    position: relative;
+    width: 288px; }
+
+  #website {
+    margin-bottom: 4px; } }
 </style>
-    <div id="hidden-panel" class="panel-expanded"></div>
-    <paper-shadow z="1" id="panel" class="{{panelSizeStyle}} {{panelDisplayStyle}}">
-      <img id="profile-pic" class="center {{profilePicStyle}}" src="packages/about_me/header/images/profile.jpg">
-      <div id="name-box">
-        <h1 id="name" class="center {{nameStyle}}">
-          Dylan Powers</h1>
-      </div>
-      <div id="links-box">
-        <header-link href="https://github.com/dylanPowers">
-          <img class="link-logo" alt="Github" src="packages/about_me/header/images/github_mark_120px.png">
-        </header-link>
+    <div id="hidden-panel" class="panel-expanded no-print"></div>
+    <div id="panel" class="{{panelSizeStyle}} {{panelDisplayStyle}}">
+      <paper-shadow z="1" class="fill no-print"></paper-shadow>
+      <img id="profile-pic" class="no-print center {{profilePicStyle}}" src="packages/about_me/header/images/profile.jpg">
+      <h1 id="name" class="center {{nameStyle}}">
+        Dylan Powers
+      </h1>
+      <p id="website" class="print-only center">Website: bits.dylankpowers.com</p>
 
-        <header-link href="https://medium.com/@dylankpowers">
-          <img id="medium-logo" class="link-logo" alt="Medium" src="packages/about_me/header/images/medium_icon_100px.png">
-        </header-link>
-
-        <header-link href="https://plus.google.com/+DylanPowersz">
-          <img id="google-plus-logo" class="link-logo" alt="Google Plus" src="packages/about_me/header/images/g+_icon_64px.png">
-        </header-link>
-
-        <header-link href="https://twitter.com/dylankpowers">
-          <img class="link-logo" alt="Twitter" src="packages/about_me/header/images/twitter_icon_128px.png">
-        </header-link>
-
-        <header-link id="email" href="mailto:{{EMAIL_ADDRESS}}@gmail.com">
+      <div id="links-box" class="">
+        <header-link id="email" name="Email" url="mailto:" user="{{EMAIL_ADDRESS}}@gmail.com">
           <img class="link-logo" alt="Email" src="packages/about_me/header/images/email_icon_96px.png">
         </header-link>
 
-        <header-link href="https://www.linkedin.com/profile/view?id=371709839">
+        <header-link name="Github" url="https://github.com/" user="dylanPowers">
+          <img class="link-logo" alt="Github" src="packages/about_me/header/images/github_mark_120px.png">
+        </header-link>
+
+        <header-link name="Medium" url="https://medium.com/" user="@dylankpowers">
+          <img id="medium-logo" class="link-logo" alt="Medium" src="packages/about_me/header/images/medium_icon_100px.png">
+        </header-link>
+
+        <header-link name="Twitter" url="https://twitter.com/" user="@dylankpowers">
+          <img class="link-logo" alt="Twitter" src="packages/about_me/header/images/twitter_icon_128px.png">
+        </header-link>
+
+        <header-link name="Google+" url="https://plus.google.com/" user="+DylanPowersz">
+          <img id="google-plus-logo" class="link-logo" alt="Google Plus" src="packages/about_me/header/images/g+_icon_64px.png">
+        </header-link>
+
+        <header-link name="LinkedIn" url="https://www.linkedin.com/" user="in/dylankpowers">
           <img id="linkedin-logo" class="link-logo" alt="LinkedIn" src="packages/about_me/header/images/linkedin_icon_128px.png">
         </header-link>
 
@@ -3511,11 +3574,12 @@ Media queries for reflow on smaller screens
           <overflowed-links-menu overflowedlinks="{{overflowedLinks}}" menupossiblyopened="{{isOverflowedLinksMenuOpen}}"></overflowed-links-menu>
         </template>
       </div>
-    </paper-shadow>
+    </div>
   </template>
 </polymer-element>
 
-<polymer-element name="header-link" noscript="" attributes="href">
+
+<polymer-element name="header-link" noscript="" attributes="name url user">
   <template>
     <style>.center {
   display: block;
@@ -3524,6 +3588,11 @@ Media queries for reflow on smaller screens
   position: relative;
   text-align: center; }
 
+.fill {
+  height: 100%;
+  position: absolute;
+  width: 100%; }
+
 a,
 a:link,
 a:visited,
@@ -3544,6 +3613,15 @@ p {
   color: rgba(0, 0, 0, 0.87);
   font-family: robotoregular, sans-serif; }
 
+p {
+  margin: 6px 16px 16px 18px; }
+
+@media not print {
+  .print-only {
+    display: none; } }
+@media print {
+  .no-print {
+    display: none; } }
 a {
   text-decoration: none; }
 
@@ -3552,9 +3630,9 @@ h1 {
   margin: 0;
   text-decoration: none; }
 
-.hide {
-  display: none; }
-
+@media not print {
+  header-link.hide {
+    display: none; } }
 .link-logo {
   height: 32px;
   margin: 14px 14px;
@@ -3621,12 +3699,7 @@ h1 {
 #name {
   color: #FFF;
   display: block;
-  position: relative;
-  width: 100%; }
-
-#name-box {
   position: absolute;
-  top: 0;
   width: 100%; }
 
 #panel {
@@ -3705,19 +3778,58 @@ Media queries for reflow on smaller screens
   .name-expanded {
     margin-left: 10px;
     text-align: left; } }
+/** Printer friendly overrides **/
+/** Printer friendly, ie paper resume version **/
+@media print {
+  #links-box {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    text-align: center;
+    bottom: auto;
+    height: 76px;
+    text-align: left;
+    width: 824px; }
+
+  #name {
+    color: #1565C0;
+    font-size: 48px;
+    position: relative;
+    top: 0; }
+
+  #panel {
+    background-color: #FFF;
+    height: 100%;
+    position: relative;
+    top: 0; }
+
+  #printed-text {
+    display: block;
+    float: left;
+    height: 16px;
+    margin: 4px 0 4px 112px;
+    position: relative;
+    width: 288px; }
+
+  #website {
+    margin-bottom: 4px; } }
 </style>
-    <a id="link-logo-box" _href="{{href}}" target="_blank">
+    <p id="printed-text" class="print-only">{{name}}: {{user}}</p>
+    <a id="link-logo-box" _href="{{url}}{{user}}" target="_blank" class="no-print">
       <header-link-ripple></header-link-ripple>
       <content></content>
     </a>
   </template>
 </polymer-element>
 
+
 <polymer-element name="header-link-ripple" noscript="">
   <template>
     <paper-ripple class="circle recenteringTouch" fit=""></paper-ripple>
   </template>
 </polymer-element>
+
 
 <polymer-element name="overflowed-links-menu">
   <template>
@@ -3728,6 +3840,11 @@ Media queries for reflow on smaller screens
   position: relative;
   text-align: center; }
 
+.fill {
+  height: 100%;
+  position: absolute;
+  width: 100%; }
+
 a,
 a:link,
 a:visited,
@@ -3748,6 +3865,15 @@ p {
   color: rgba(0, 0, 0, 0.87);
   font-family: robotoregular, sans-serif; }
 
+p {
+  margin: 6px 16px 16px 18px; }
+
+@media not print {
+  .print-only {
+    display: none; } }
+@media print {
+  .no-print {
+    display: none; } }
 a {
   text-decoration: none; }
 
@@ -3756,9 +3882,9 @@ h1 {
   margin: 0;
   text-decoration: none; }
 
-.hide {
-  display: none; }
-
+@media not print {
+  header-link.hide {
+    display: none; } }
 .link-logo {
   height: 32px;
   margin: 14px 14px;
@@ -3825,12 +3951,7 @@ h1 {
 #name {
   color: #FFF;
   display: block;
-  position: relative;
-  width: 100%; }
-
-#name-box {
   position: absolute;
-  top: 0;
   width: 100%; }
 
 #panel {
@@ -3909,6 +4030,42 @@ Media queries for reflow on smaller screens
   .name-expanded {
     margin-left: 10px;
     text-align: left; } }
+/** Printer friendly overrides **/
+/** Printer friendly, ie paper resume version **/
+@media print {
+  #links-box {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    text-align: center;
+    bottom: auto;
+    height: 76px;
+    text-align: left;
+    width: 824px; }
+
+  #name {
+    color: #1565C0;
+    font-size: 48px;
+    position: relative;
+    top: 0; }
+
+  #panel {
+    background-color: #FFF;
+    height: 100%;
+    position: relative;
+    top: 0; }
+
+  #printed-text {
+    display: block;
+    float: left;
+    height: 16px;
+    margin: 4px 0 4px 112px;
+    position: relative;
+    width: 288px; }
+
+  #website {
+    margin-bottom: 4px; } }
 </style>
     <paper-menu-button id="links-menu-button" on-click="{{linksMenuButtonClicked}}">
       <header-link-ripple></header-link-ripple>
@@ -3926,6 +4083,10 @@ Media queries for reflow on smaller screens
 </polymer-element>
 
 
+
+
+
+
 <polymer-element name="base-card" noscript="">
   <template>
     <style>.center, :host {
@@ -3934,6 +4095,11 @@ Media queries for reflow on smaller screens
   margin-right: auto;
   position: relative;
   text-align: center; }
+
+.fill {
+  height: 100%;
+  position: absolute;
+  width: 100%; }
 
 a,
 a:link,
@@ -3955,24 +4121,34 @@ p {
   color: rgba(0, 0, 0, 0.87);
   font-family: robotoregular, sans-serif; }
 
+p {
+  margin: 6px 16px 16px 18px; }
+
+@media not print {
+  .print-only {
+    display: none; } }
+@media print {
+  .no-print {
+    display: none; } }
 :host {
   clear: both;
   max-width: 744px;
   width: 100%; }
 
-#content {
+#card {
   background: #FFFFFF;
   border-radius: 2px;
-  font-family: robotoregular, sans-serif;
   height: 100%;
   margin: 24px 12px;
   min-height: 128px;
-  padding: 16px;
+  position: relative; }
+
+#content {
+  font-family: robotoregular, sans-serif;
+  padding: 0.1px 0;
+  /* Hack to get around weird browser behavior with margins */
   text-align: left; }
 
-@media (max-width: 758px) {
-  #content {
-    margin: 12px; } }
 ::content a,
 ::content a:visited,
 ::content h2,
@@ -3992,29 +4168,84 @@ p {
 ::content h1 {
   color: #D50000;
   font-size: 32px;
-  margin: 0 0 12px 0; }
+  margin: 16px 16px 12px 12px; }
 
 ::content h2 {
   font-size: 22px;
-  margin: 12px 0 4px 0; }
+  margin: 12px 16px 8px 16px; }
 
 ::content h3 {
   font-size: 18px;
-  margin: 8px 0 8px 0; }
+  margin: 8px 16px 8px 16px; }
 
 ::content h4 {
-  margin: 0 0 4px 0; }
+  margin: 8px 16px 4px 16px; }
+
+::content li {
+  margin: 6px 16px 0 0; }
 
 ::content p {
-  margin: 8px 0 16px 0; }
+  margin: 6px 16px 16px 18px; }
 
 ::content ul {
-  margin: 0;
-  padding: 0 0 0 24px; }
+  margin: 8px 16px 16px 0;
+  padding: 0 0 0 42px; }
+
+::content li > p {
+  margin: 6px 16px 0 0; }
+
+@media (max-width: 758px) {
+  #card {
+    margin: 12px; } }
+/** Printer friendly overrides **/
+@media print {
+  hr {
+    margin: 4px 0; }
+
+  :host {
+    max-width: 612pt; }
+
+  #card {
+    margin-bottom: 0;
+    margin-top: 0; }
+
+  ::content h1 {
+    font-size: 24px;
+    margin: 8px 16px 8px 12px; }
+
+  ::content h2 {
+    font-size: 18px;
+    margin: 8px 16px 4px 16px; }
+
+  ::content h3 {
+    font-size: 16px;
+    margin: 6px 16px 4px 16px; }
+
+  ::content h4 {
+    margin: 4px 16px 4px 16px; }
+
+  ::content li {
+    margin: 4px 16px 0 0; }
+
+  ::content p {
+    margin: 4px 16px 4px 18px; }
+
+  ::content ul {
+    margin: 4px 16px 4px 0;
+    padding: 0 0 0 42px; }
+
+  ::content li > p {
+    margin: 4px 16px 0 0; } }
 </style>
-    <paper-shadow id="content">
-      <content></content>
-    </paper-shadow>
+
+    <div id="card">
+      <hr class="print-only">
+      <paper-shadow class="fill no-print"></paper-shadow>
+
+      <div id="content">
+        <content></content>
+      </div>
+    </div>
   </template>
 </polymer-element>
 <polymer-element name="dkp-about-me" noscript="">
@@ -4067,6 +4298,11 @@ p {
   position: relative;
   text-align: center; }
 
+.fill {
+  height: 100%;
+  position: absolute;
+  width: 100%; }
+
 a,
 a:link,
 a:visited,
@@ -4087,6 +4323,15 @@ p {
   color: rgba(0, 0, 0, 0.87);
   font-family: robotoregular, sans-serif; }
 
+p {
+  margin: 6px 16px 16px 18px; }
+
+@media not print {
+  .print-only {
+    display: none; } }
+@media print {
+  .no-print {
+    display: none; } }
 #desktop-pic {
   border-radius: 4px;
   max-height: 300px;
@@ -4245,7 +4490,7 @@ p {
           https://github.com/WSU-ACM/hackathon-site</a>.
       </p>
 
-      <h2>This website</h2>
+      <h2>My (this) website</h2>
       <p>
         This site was an effort by me to sort of push the browser boundaries.
         It's implemented
@@ -4259,7 +4504,8 @@ p {
         The design is heavily influenced by Android and Google's
         Material Design.
       </p>
-      <p>
+      <p>Pro tip: Print this page for a resume sized version.
+      </p><p>
         Source:
         <a href="https://github.com/dylanPowers/dylanPowers.github.io" target="_blank">
           https://github.com/dylanPowers/dylanPowers.github.io
@@ -4501,9 +4747,9 @@ p {
   <dkp-header></dkp-header>
   <div id="cards" class="center">
     <div class="left">
-      <dkp-about-me></dkp-about-me>
-      <dkp-skills></dkp-skills>
-      <dkp-dev-env-prefs></dkp-dev-env-prefs>
+      <dkp-about-me class="no-print"></dkp-about-me>
+      <dkp-skills class="no-print"></dkp-skills>
+      <dkp-dev-env-prefs class="no-print"></dkp-dev-env-prefs>
     </div>
     <div class="right">
       <dkp-projects></dkp-projects>
