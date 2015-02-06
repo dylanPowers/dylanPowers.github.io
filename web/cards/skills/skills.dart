@@ -43,7 +43,7 @@ class SkillsElement extends PolymerElement {
 abstract class SkillsChart {
   Map _chartOptions = {
     'chart': {
-      'marginLeft': 56,
+      'marginLeft': 64,
       'type': 'bar'
     },
     'colors': ['#FFAB00', '#D50000'],
@@ -79,7 +79,8 @@ abstract class SkillsChart {
     }
   };
 
-  SkillsChart(List<String> categories, List<int> relativeExp, List<int> years) {
+  SkillsChart(List<String> categories, List<int> relativeExp, List<int> years,
+              {Map optionOverrides: const {}}) {
     _chartOptions.addAll({
       'xAxis': { 'categories': categories },
       'series': [{
@@ -90,6 +91,8 @@ abstract class SkillsChart {
         'data': relativeExp
       }]
     });
+
+    _chartOptions.addAll(optionOverrides);
   }
 
   void renderTo(ShadowRoot shadowRoot, String elementId) {
@@ -102,7 +105,7 @@ abstract class SkillsChart {
 
 class LangsChart extends SkillsChart {
   static const _CATEGORIES = const [
-    'Dart', 'C', 'JS', 'C++', 'Java', 'C#', 'Go'
+    'Dart', 'C', 'C++', 'JS', 'Java', 'C#', 'Go'
   ];
 
   static const _RELATIVE_EXP = const [
@@ -113,7 +116,8 @@ class LangsChart extends SkillsChart {
     2, 3, 3, 3, 2, 2, 1
   ];
 
-  LangsChart() : super(_CATEGORIES, _RELATIVE_EXP, _YEARS);
+  LangsChart() : super(_CATEGORIES, _RELATIVE_EXP, _YEARS,
+                       optionOverrides: { 'legend': { 'enabled': false }});
 }
 
 class PlatformsChart extends SkillsChart {

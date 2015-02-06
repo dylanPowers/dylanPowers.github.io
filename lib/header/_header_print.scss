@@ -1,0 +1,37 @@
+/** Printer friendly, ie paper resume version **/
+@media print {
+  #links-box {
+    @include center;
+    bottom: auto;
+    height: 76px;
+    text-align: left;
+    width: 824px;
+  }
+
+  #name {
+    color: $primary-color;
+    font-size: 48px;
+    position: relative;
+    top: 0;
+  }
+
+  #panel {
+    background-color: #FFF;
+    height: 100%;
+    position: relative;
+    top: 0;
+  }
+
+  #printed-text {
+    display: block;
+    float: left;
+    height: 16px;
+    margin: 4px 0 4px 112px;
+    position: relative;
+    width: 288px;
+  }
+
+  #website {
+    margin-bottom: 4px;
+  }
+}

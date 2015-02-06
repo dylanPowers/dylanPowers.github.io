@@ -2,7 +2,7 @@ $accent-color: #D50000;
 $primary-color: #1565C0;
 $text-color: rgba(0, 0, 0, 0.87);
 
-.center {
+@mixin center {
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -13,6 +13,16 @@ $text-color: rgba(0, 0, 0, 0.87);
 @mixin standard-text-format {
   color: $text-color;
   font-family:  robotoregular, sans-serif;
+}
+
+.center {
+  @include center;
+}
+
+.fill {
+  height: 100%;
+  position: absolute;
+  width: 100%;
 }
 
 a,
@@ -33,4 +43,20 @@ h5,
 h6,
 p {
   @include standard-text-format;
+}
+
+p {
+  margin: 6px 16px 16px 18px;
+}
+
+@media not print {
+  .print-only {
+    display: none;
+  }
+}
+
+@media print {
+  .no-print {
+    display: none;
+  }
 }
