@@ -79,7 +79,8 @@ abstract class SkillsChart {
     }
   };
 
-  SkillsChart(List<String> categories, List<int> relativeExp, List<int> years) {
+  SkillsChart(List<String> categories, List<int> relativeExp, List<int> years,
+              {Map optionOverrides: const {}}) {
     _chartOptions.addAll({
       'xAxis': { 'categories': categories },
       'series': [{
@@ -90,6 +91,8 @@ abstract class SkillsChart {
         'data': relativeExp
       }]
     });
+
+    _chartOptions.addAll(optionOverrides);
   }
 
   void renderTo(ShadowRoot shadowRoot, String elementId) {
@@ -113,7 +116,8 @@ class LangsChart extends SkillsChart {
     2, 3, 3, 3, 2, 2, 1
   ];
 
-  LangsChart() : super(_CATEGORIES, _RELATIVE_EXP, _YEARS);
+  LangsChart() : super(_CATEGORIES, _RELATIVE_EXP, _YEARS,
+                       optionOverrides: { 'legend': { 'enabled': false }});
 }
 
 class PlatformsChart extends SkillsChart {
