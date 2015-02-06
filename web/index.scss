@@ -22,3 +22,9 @@ body {
     float: right;
   }
 }
+
+@media print {
+  body {
+    background-color: #FFF;
+  }
+}
