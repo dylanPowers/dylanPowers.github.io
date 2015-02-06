@@ -13,7 +13,7 @@ part 'overflowed_links_menu.dart';
 @CustomTag('dkp-header')
 class HeaderElement extends PolymerElement {
 
-  // Be sneaky and hide the email address from the html
+  // Split up the email address to make the spammers actually have to run the code
   final String EMAIL_ADDRESS = 'dylan.kyle.powers';
 
   static const String NAME_CONDENSED = 'name-condensed';
@@ -206,7 +206,7 @@ class HeaderElement extends PolymerElement {
 
       if (link.id == 'email') {
         // Glitch in the bindings
-        link.setAttribute('href', 'mailto:${EMAIL_ADDRESS}@gmail.com');
+        link.setAttribute('user', '${EMAIL_ADDRESS}@gmail.com');
       }
 
       overflowedLinks.insert(0, new OverflowedHeaderLink(link));

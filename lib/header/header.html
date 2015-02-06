@@ -4,7 +4,6 @@
 <link rel="import" href="../../../packages/paper_elements/paper_menu_button.html" />
 <link rel="import" href="../../../packages/paper_elements/paper_shadow.html" />
 
-<script type="application/dart" src="header.dart"></script>
 
 <polymer-element name="dkp-header">
   <template> 
@@ -67,7 +66,8 @@
   </template>
 </polymer-element>
 
-<polymer-element name="header-link" noscript attributes="url user name">
+
+<polymer-element name="header-link" noscript attributes="name url user">
   <template>
     <link rel="stylesheet" href="header.css" />
     <p id="printed-text" class="print-only">{{name}}: {{user}}</p>
@@ -78,11 +78,13 @@
   </template>
 </polymer-element>
 
+
 <polymer-element name="header-link-ripple" noscript>
   <template>
     <paper-ripple class="circle recenteringTouch" fit></paper-ripple>
   </template>
 </polymer-element>
+
 
 <polymer-element name="overflowed-links-menu">
   <template>
@@ -103,3 +105,6 @@
     </paper-menu-button>
   </template>
 </polymer-element>
+
+
+<script type="application/dart" src="header.dart"></script>
