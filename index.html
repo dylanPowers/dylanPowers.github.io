@@ -4473,6 +4473,49 @@ p {
 
 <polymer-element name="dkp-projects" noscript="">
   <template>
+    <style>.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  text-align: center; }
+
+.fill {
+  height: 100%;
+  position: absolute;
+  width: 100%; }
+
+a,
+a:link,
+a:visited,
+a:active {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: robotoregular, sans-serif;
+  outline: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0); }
+
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: robotoregular, sans-serif; }
+
+p {
+  margin: 6px 16px 16px 18px; }
+
+@media not print {
+  .print-only {
+    display: none; } }
+@media print {
+  .no-print {
+    display: none; } }
+</style>
+
     <base-card>
       <h1>Projects</h1>
 
@@ -4490,9 +4533,10 @@ p {
           https://github.com/WSU-ACM/hackathon-site</a>.
       </p>
 
-      <h2>My (this) website</h2>
+      <h2 class="no-print">This website</h2>
+      <h2 class="print-only">My website</h2>
       <p>
-        This site was an effort by me to sort of push the browser boundaries.
+        This site is an effort by me to sort of push the browser boundaries.
         It's implemented
         in Dart with the web components framework Polymer and deployed as
         a Github page. A lot of complexity could
@@ -4504,7 +4548,7 @@ p {
         The design is heavily influenced by Android and Google's
         Material Design.
       </p>
-      <p>Pro tip: Print this page for a resume sized version.
+      <p class="no-print">Pro tip: Print this page for a resume sized version.
       </p><p>
         Source:
         <a href="https://github.com/dylanPowers/dylanPowers.github.io" target="_blank">
