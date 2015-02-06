@@ -7,13 +7,23 @@
   width: 100%;
 }
 
-#content {
+.fill {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+#card {
   background: #FFFFFF;
-  border-radius: 2px;
-  font-family: robotoregular, sans-serif;
   height: 100%;
   margin: 24px 12px;
   min-height: 128px;
+  position: relative;
+}
+
+#content {
+  border-radius: 2px;
+  font-family: robotoregular, sans-serif;
   padding: 16px;
   text-align: left;
 }

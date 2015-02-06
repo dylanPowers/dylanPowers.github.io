@@ -3,8 +3,13 @@
 <polymer-element name="base-card" noscript>
   <template>
     <link rel="stylesheet" href="base_card.css" />
-    <paper-shadow id="content">
-      <content></content>
-    </paper-shadow>
+
+    <div id="card">
+      <paper-shadow class="fill no-print"></paper-shadow>
+
+      <div id="content">
+        <content></content>
+      </div>
+    </div>
   </template>
 </polymer-element>
