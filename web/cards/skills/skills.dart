@@ -43,7 +43,7 @@ class SkillsElement extends PolymerElement {
 abstract class SkillsChart {
   Map _chartOptions = {
     'chart': {
-      'marginLeft': 56,
+      'marginLeft': 64,
       'type': 'bar'
     },
     'colors': ['#FFAB00', '#D50000'],
@@ -105,7 +105,7 @@ abstract class SkillsChart {
 
 class LangsChart extends SkillsChart {
   static const _CATEGORIES = const [
-    'Dart', 'C', 'JS', 'C++', 'Java', 'C#', 'Go'
+    'Dart', 'C', 'C++', 'JS', 'Java', 'C#', 'Go'
   ];
 
   static const _RELATIVE_EXP = const [
