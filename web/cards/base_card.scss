@@ -84,6 +84,10 @@
 
 /** Printer friendly overrides **/
 @media print {
+  hr {
+    margin: 4px 0;
+  }
+
   :host {
     max-width: 72pt * 8.5/*in*/;
   }
@@ -117,11 +121,11 @@
   }
 
   ::content p {
-    margin: 4px 16px 8px 18px;
+    margin: 4px 16px 4px 18px;
   }
 
   ::content ul {
-    margin: 4px 16px 16px 0;
+    margin: 4px 16px 4px 0;
     padding: 0 0 0 42px;
   }
 
