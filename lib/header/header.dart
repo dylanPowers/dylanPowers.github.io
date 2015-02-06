@@ -289,11 +289,16 @@ class HeaderElement extends PolymerElement {
 }
 
 class OverflowedHeaderLink {
-  String name;
-  String href;
+  String href = "";
+  String name = "";
 
   OverflowedHeaderLink(HtmlElement headerLink) {
-    href = headerLink.getAttribute('url') + headerLink.getAttribute('user');
+    var url = headerLink.getAttribute('url');
+    var user = headerLink.getAttribute('user');
+    if (url != null && user != null) {
+      href =  url + user;
+    }
+
     var imgEl = headerLink.querySelector('img');
     if (imgEl != null) {
       name = imgEl.getAttribute('alt');

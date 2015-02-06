@@ -119,10 +119,12 @@ void run() {
 
     it('correctly sets the href property to the value from the header-link', () {
       var headerLink = new Element.tag('header-link');
-      var linkAddr = 'a-link-to-a-website';
-      headerLink.setAttribute('href', linkAddr);
+      var url = 'a-website-url/';
+      var user = 'randomUser';
+      headerLink.setAttribute('url', url);
+      headerLink.setAttribute('user', user);
       link = new OverflowedHeaderLink(headerLink);
-      expect(link.href).toEqual(linkAddr);
+      expect(link.href).toEqual(url + user);
     });
 
     it('correctly sets the name attribute from the alt attribute on the ' +
