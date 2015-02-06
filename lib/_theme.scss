@@ -10,13 +10,19 @@ $text-color: rgba(0, 0, 0, 0.87);
   text-align: center;
 }
 
+@mixin standard-text-format {
+  color: $text-color;
+  font-family:  robotoregular, sans-serif;
+}
+
 .center {
   @include center;
 }
 
-@mixin standard-text-format {
-  color: $text-color;
-  font-family:  robotoregular, sans-serif;
+.fill {
+  height: 100%;
+  position: absolute;
+  width: 100%;
 }
 
 a,

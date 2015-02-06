@@ -10,7 +10,8 @@
   <template> 
     <link rel="stylesheet" href="header.css" />
     <div id="hidden-panel" class="panel-expanded no-print"></div>
-    <paper-shadow z="1" id="panel" class="{{panelSizeStyle}} {{panelDisplayStyle}}">
+    <div id="panel" class="{{panelSizeStyle}} {{panelDisplayStyle}}">
+      <paper-shadow z="1" class="fill no-print"></paper-shadow>
       <img id="profile-pic"
            class="no-print center {{profilePicStyle}}"
            src="images/profile.jpg" />
@@ -59,7 +60,7 @@
               menuPossiblyOpened="{{isOverflowedLinksMenuOpen}}"></overflowed-links-menu>
         </template>
       </div>
-    </paper-shadow>
+    </div>
   </template>
 </polymer-element>
 
