@@ -1,13 +1,9 @@
 /** Printer friendly, ie paper resume version **/
 @media print {
-  .panel-condensed {
-    display: none;
-  }
-
   #links-box {
     @include center;
     bottom: auto;
-    height: 80px;
+    height: 76px;
     text-align: left;
     width: 824px;
   }
@@ -21,8 +17,9 @@
 
   #panel {
     background-color: #FFF;
-    height: 144px;
+    height: 100%;
     position: relative;
+    top: 0;
   }
 
   #printed-text {
@@ -32,5 +29,9 @@
     margin: 4px 0 4px 112px;
     position: relative;
     width: 288px;
+  }
+
+  #website {
+    margin-bottom: 4px;
   }
 }

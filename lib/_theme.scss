@@ -45,6 +45,10 @@ p {
   @include standard-text-format;
 }
 
+p {
+  margin: 6px 16px 16px 18px;
+}
+
 @media not print {
   .print-only {
     display: none;
