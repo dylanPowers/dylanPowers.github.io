@@ -7,14 +7,9 @@
   width: 100%;
 }
 
-.fill {
-  height: 100%;
-  position: absolute;
-  width: 100%;
-}
-
 #card {
   background: #FFFFFF;
+  border-radius: 2px;
   height: 100%;
   margin: 24px 12px;
   min-height: 128px;
@@ -22,16 +17,9 @@
 }
 
 #content {
-  border-radius: 2px;
   font-family: robotoregular, sans-serif;
-  padding: 16px;
+  padding: 0.1px 0; /* Hack to get around weird browser behavior with margins */
   text-align: left;
-}
-
-@media (max-width: 758px) {
-  #content {
-    margin: 12px;
-  }
 }
 
 ::content a,
@@ -54,28 +42,90 @@
 ::content h1 {
   color: $accent-color;
   font-size: 32px;
-  margin: 0 0 12px 0;
+  margin: 16px 16px 12px 12px;
 }
 
 ::content h2 {
   font-size: 22px;
-  margin: 12px 0 4px 0;
+  margin: 12px 16px 8px 16px;
 }
 
 ::content h3 {
   font-size: 18px;
-  margin: 8px 0 8px 0;
+  margin: 8px 16px 8px 16px;
 }
 
 ::content h4 {
-  margin: 0 0 4px 0;
+  margin: 8px 16px 4px 16px;
+}
+
+::content li {
+  margin: 6px 16px 0 0;
 }
 
 ::content p {
-  margin: 8px 0 16px 0;
+  margin: 6px 16px 16px 18px;
 }
 
 ::content ul {
-  margin: 0;
-  padding: 0 0 0 24px;
+  margin: 8px 16px 16px 0;
+  padding: 0 0 0 42px;
+}
+
+::content li > p {
+  margin: 6px 16px 0 0;
+}
+
+@media (max-width: 758px) {
+  #card {
+    margin: 12px;
+  }
+}
+
+/** Printer friendly overrides **/
+@media print {
+  :host {
+    max-width: 72pt * 8.5/*in*/;
+  }
+
+  #card {
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+
+  ::content h1 {
+    font-size: 24px;
+    margin: 8px 16px 8px 12px;
+  }
+
+  ::content h2 {
+    font-size: 18px;
+    margin: 8px 16px 4px 16px;
+  }
+
+  ::content h3 {
+    font-size: 16px;
+    margin: 6px 16px 4px 16px;
+  }
+
+  ::content h4 {
+    margin: 4px 16px 4px 16px;
+  }
+
+  ::content li {
+    margin: 4px 16px 0 0;
+  }
+
+  ::content p {
+    margin: 4px 16px 8px 18px;
+  }
+
+  ::content ul {
+    margin: 4px 16px 16px 0;
+    padding: 0 0 0 42px;
+  }
+
+  ::content li > p {
+    margin: 4px 16px 0 0;
+  }
 }
