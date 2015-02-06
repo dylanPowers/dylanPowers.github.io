@@ -12,8 +12,10 @@ h1 {
   text-decoration: none;
 }
 
-.hide {
-  display: none;
+@media not print {
+  header-link.hide {
+    display: none;
+  }
 }
 
 .link-logo {
