@@ -1,5 +1,9 @@
 @import "packages/about_me/theme";
 
+paper-shadow {
+  z-index: -1;
+}
+
 :host {
   @extend .center;
   clear: both;
