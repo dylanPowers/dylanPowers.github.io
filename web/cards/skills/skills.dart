@@ -52,9 +52,12 @@ abstract class SkillsChart {
     },
     'legend': {
       'backgroundColor': '#FFF',
+      'borderRadius': 2,
       'floating': false,
       'reversed': true,
-      'shadow': true
+      'shadow': true,
+      'verticalAlign': 'bottom',
+      'y': 0
     },
     'plotOptions': {
       'series': {
@@ -68,7 +71,7 @@ abstract class SkillsChart {
     },
     'yAxis': {
       'labels': {
-        'enabled': false
+        'enabled': true
       },
       'min': 0,
       'max': 5,
@@ -116,8 +119,7 @@ class LangsChart extends SkillsChart {
     2, 3, 3, 3, 2, 2, 1
   ];
 
-  LangsChart() : super(_CATEGORIES, _RELATIVE_EXP, _YEARS,
-                       optionOverrides: { 'legend': { 'enabled': false }});
+  LangsChart() : super(_CATEGORIES, _RELATIVE_EXP, _YEARS);
 }
 
 class PlatformsChart extends SkillsChart {
