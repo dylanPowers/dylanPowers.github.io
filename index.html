@@ -24,6 +24,7 @@
 .fill {
   height: 100%;
   position: absolute;
+  top: 0;
   width: 100%; }
 
 a,
@@ -3312,6 +3313,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 .fill {
   height: 100%;
   position: absolute;
+  top: 0;
   width: 100%; }
 
 a,
@@ -3591,6 +3593,7 @@ Media queries for reflow on smaller screens
 .fill {
   height: 100%;
   position: absolute;
+  top: 0;
   width: 100%; }
 
 a,
@@ -3843,6 +3846,7 @@ Media queries for reflow on smaller screens
 .fill {
   height: 100%;
   position: absolute;
+  top: 0;
   width: 100%; }
 
 a,
@@ -4099,6 +4103,7 @@ Media queries for reflow on smaller screens
 .fill {
   height: 100%;
   position: absolute;
+  top: 0;
   width: 100%; }
 
 a,
@@ -4130,6 +4135,9 @@ p {
 @media print {
   .no-print {
     display: none; } }
+paper-shadow {
+  z-index: -1; }
+
 :host {
   clear: both;
   max-width: 744px;
@@ -4301,6 +4309,7 @@ p {
 .fill {
   height: 100%;
   position: absolute;
+  top: 0;
   width: 100%; }
 
 a,
@@ -4483,6 +4492,7 @@ p {
 .fill {
   height: 100%;
   position: absolute;
+  top: 0;
   width: 100%; }
 
 a,
@@ -4665,12 +4675,16 @@ p {
 
 <polymer-element name="dkp-skills">
   <template>
-    <style>#languages-chart {
-  height: 488px;
+    <style>.chart {
+  margin-right: 8px;
+}
+
+#languages-chart {
+  height: 496px;
 }
 
 #platforms-chart {
-  height: 192px;
+  height: 208px;
 }</style>
     <!--
       Highcharts dependencies would normally be included here,

@@ -8,6 +8,7 @@
 .fill {
   height: 100%;
   position: absolute;
+  top: 0;
   width: 100%; }
 
 a,
@@ -39,6 +40,9 @@ p {
 @media print {
   .no-print {
     display: none; } }
+paper-shadow {
+  z-index: -1; }
+
 :host {
   clear: both;
   max-width: 744px;

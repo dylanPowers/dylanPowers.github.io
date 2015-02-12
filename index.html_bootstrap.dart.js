@@ -11102,15 +11102,14 @@ C.Ax.XI(a)
 return a}}},
 w4:{
 "^":"r:2;Q,a",
-$1:[function(a){var z,y,x
+$1:[function(a){var z,y
 z=this.a
-y=P.B(["legend",P.B(["enabled",!1],null,null)],null,null)
-x=new Q.nL(P.B(["chart",P.B(["marginLeft",64,"type","bar"],null,null),"colors",["#FFAB00","#D50000"],"credits",P.B(["enabled",!1],null,null),"legend",P.B(["backgroundColor","#FFF","floating",!1,"reversed",!0,"shadow",!0],null,null),"plotOptions",P.B(["series",P.B(["borderWidth",0,"groupPadding",0.15,"pointPadding",0],null,null)],null,null),"title",P.B(["text",null],null,null),"yAxis",P.B(["labels",P.B(["enabled",!1],null,null),"min",0,"max",5,"tickInterval",1,"title",P.B(["text",null],null,null)],null,null)],null,null))
-x.kL(C.dQ,C.Ah,C.Tr,y)
-x.bU(z.shadowRoot||z.webkitShadowRoot,"languages-chart")
-x=new Q.Rj(P.B(["chart",P.B(["marginLeft",64,"type","bar"],null,null),"colors",["#FFAB00","#D50000"],"credits",P.B(["enabled",!1],null,null),"legend",P.B(["backgroundColor","#FFF","floating",!1,"reversed",!0,"shadow",!0],null,null),"plotOptions",P.B(["series",P.B(["borderWidth",0,"groupPadding",0.15,"pointPadding",0],null,null)],null,null),"title",P.B(["text",null],null,null),"yAxis",P.B(["labels",P.B(["enabled",!1],null,null),"min",0,"max",5,"tickInterval",1,"title",P.B(["text",null],null,null)],null,null)],null,null))
-x.kL(C.n4,C.nC,C.ll,C.CM)
-x.bU(z.shadowRoot||z.webkitShadowRoot,"platforms-chart")
+y=new Q.nL(P.B(["chart",P.B(["marginLeft",64,"type","bar"],null,null),"colors",["#FFAB00","#D50000"],"credits",P.B(["enabled",!1],null,null),"legend",P.B(["backgroundColor","#FFF","borderRadius",2,"floating",!1,"reversed",!0,"shadow",!0,"verticalAlign","bottom","y",0],null,null),"plotOptions",P.B(["series",P.B(["borderWidth",0,"groupPadding",0.15,"pointPadding",0],null,null)],null,null),"title",P.B(["text",null],null,null),"yAxis",P.B(["labels",P.B(["enabled",!0],null,null),"min",0,"max",5,"tickInterval",1,"title",P.B(["text",null],null,null)],null,null)],null,null))
+y.kL(C.dQ,C.Ah,C.Tr,C.CM)
+y.bU(z.shadowRoot||z.webkitShadowRoot,"languages-chart")
+y=new Q.Rj(P.B(["chart",P.B(["marginLeft",64,"type","bar"],null,null),"colors",["#FFAB00","#D50000"],"credits",P.B(["enabled",!1],null,null),"legend",P.B(["backgroundColor","#FFF","borderRadius",2,"floating",!1,"reversed",!0,"shadow",!0,"verticalAlign","bottom","y",0],null,null),"plotOptions",P.B(["series",P.B(["borderWidth",0,"groupPadding",0.15,"pointPadding",0],null,null)],null,null),"title",P.B(["text",null],null,null),"yAxis",P.B(["labels",P.B(["enabled",!0],null,null),"min",0,"max",5,"tickInterval",1,"title",P.B(["text",null],null,null)],null,null)],null,null))
+y.kL(C.n4,C.nC,C.ll,C.CM)
+y.bU(z.shadowRoot||z.webkitShadowRoot,"platforms-chart")
 this.Q.a.Gv()},"$1",null,2,0,null,78,"call"]},
 ik:{
 "^":"a;",
