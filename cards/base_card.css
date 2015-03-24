@@ -1,3 +1,28 @@
+a,
+a:link,
+a:visited,
+a:active {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: robotoregular, sans-serif;
+  outline: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0); }
+
+body {
+  font-family: robotoregular, sans-serif; }
+
+a,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: robotoregular, sans-serif; }
+
+p {
+  margin: 6px 16px 0 18px; }
+
 .center, :host {
   display: block;
   margin-left: auto;
@@ -11,38 +36,12 @@
   top: 0;
   width: 100%; }
 
-a,
-a:link,
-a:visited,
-a:active {
-  color: rgba(0, 0, 0, 0.87);
-  font-family: robotoregular, sans-serif;
-  outline: none;
-  -webkit-tap-highlight-color: rgba(255, 255, 255, 0); }
-
-a,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
-  color: rgba(0, 0, 0, 0.87);
-  font-family: robotoregular, sans-serif; }
-
-p {
-  margin: 6px 16px 16px 18px; }
-
 @media not print {
   .print-only {
     display: none; } }
 @media print {
   .no-print {
     display: none; } }
-paper-shadow {
-  z-index: -1; }
-
 :host {
   clear: both;
   max-width: 744px;
@@ -58,8 +57,10 @@ paper-shadow {
 
 #content {
   font-family: robotoregular, sans-serif;
-  padding: 0.1px 0;
-  /* Hack to get around weird browser behavior with margins */
+  margin-top: 16px;
+  padding: 16px 0;
+  /* Hack to get around weird browser + Polymer behavior with margins */
+  page-break-inside: avoid;
   text-align: left; }
 
 ::content a,
@@ -78,27 +79,28 @@ paper-shadow {
 ::content a:visited {
   text-decoration: underline; }
 
+h1,
 ::content h1 {
   color: #D50000;
   font-size: 32px;
-  margin: 16px 16px 12px 12px; }
+  margin: 0 16px 8px 12px; }
 
 ::content h2 {
   font-size: 22px;
-  margin: 12px 16px 8px 16px; }
+  margin: 16px 16px 0 16px; }
 
 ::content h3 {
   font-size: 18px;
-  margin: 8px 16px 8px 16px; }
+  margin: 8px 16px 0 16px; }
 
 ::content h4 {
-  margin: 8px 16px 4px 16px; }
+  margin: 8px 16px 0 16px; }
 
 ::content li {
   margin: 6px 16px 0 0; }
 
 ::content p {
-  margin: 6px 16px 16px 18px; }
+  margin: 6px 16px 0 18px; }
 
 ::content ul {
   margin: 8px 16px 16px 0;
@@ -122,26 +124,30 @@ paper-shadow {
     margin-bottom: 0;
     margin-top: 0; }
 
+  #content {
+    margin-top: 0;
+    padding: 8px 0; }
+
   ::content h1 {
     font-size: 24px;
-    margin: 8px 16px 8px 12px; }
+    margin-top: 0; }
 
   ::content h2 {
-    font-size: 18px;
-    margin: 8px 16px 4px 16px; }
+    font-size: 20px;
+    margin-top: 12px; }
 
   ::content h3 {
     font-size: 16px;
-    margin: 6px 16px 4px 16px; }
+    margin-top: 4px; }
 
   ::content h4 {
-    margin: 4px 16px 4px 16px; }
+    margin-top: 4px; }
 
   ::content li {
     margin: 4px 16px 0 0; }
 
   ::content p {
-    margin: 4px 16px 4px 18px; }
+    margin-top: 4px; }
 
   ::content ul {
     margin: 4px 16px 4px 0;
