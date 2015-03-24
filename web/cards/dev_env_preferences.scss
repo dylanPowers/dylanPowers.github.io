@@ -1,14 +1,12 @@
 @import "packages/about_me/theme";
 
-#desktop-pic {
+#desktop-pic img {
   border-radius: 4px;
-  max-height: 300px;
-  max-width: 411px;
+  display: block;
   width: 100%;
 }
 
-#desktop-pic-shadow {
-  border-radius: 4px;
+#desktop-pic {
   max-height: 300px;
   max-width: 411px;
   width: 100%;

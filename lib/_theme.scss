@@ -19,17 +19,6 @@ $text-color: rgba(0, 0, 0, 0.87);
   font-family:  robotoregular, sans-serif;
 }
 
-.center {
-  @include center;
-}
-
-.fill {
-  height: 100%;
-  position: absolute;
-  top: 0;
-  width: 100%;
-}
-
 a,
 a:link,
 a:visited,
@@ -39,8 +28,11 @@ a:active {
   -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
 }
 
+body {
+  font-family:  robotoregular, sans-serif;
+}
+
 a,
-h1,
 h2,
 h3,
 h4,
@@ -52,6 +44,17 @@ p {
 
 p {
  @include p;
+}
+
+.center {
+  @include center;
+}
+
+.fill {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 100%;
 }
 
 @media not print {
