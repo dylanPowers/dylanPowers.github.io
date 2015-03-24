@@ -10,6 +10,10 @@ $text-color: rgba(0, 0, 0, 0.87);
   text-align: center;
 }
 
+@mixin p {
+  margin: 6px 16px 0 18px;
+}
+
 @mixin standard-text-format {
   color: $text-color;
   font-family:  robotoregular, sans-serif;
@@ -47,7 +51,7 @@ p {
 }
 
 p {
-  margin: 6px 16px 16px 18px;
+ @include p;
 }
 
 @media not print {
