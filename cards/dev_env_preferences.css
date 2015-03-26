@@ -23,6 +23,9 @@ p {
 p {
   margin: 6px 16px 0 18px; }
 
+paper-shadow {
+  z-index: -1; }
+
 .center {
   display: block;
   margin-left: auto;
