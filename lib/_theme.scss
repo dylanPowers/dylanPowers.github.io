@@ -46,6 +46,10 @@ p {
  @include p;
 }
 
+paper-shadow {
+  z-index: -1;
+}
+
 .center {
   @include center;
 }
