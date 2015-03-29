@@ -7,7 +7,8 @@ ssh="ssh -p $ssh_port $server_addr"
 
 echo "Publishing to IPNS"
 
-tar -cf $build_tarball -C build web
+rm $build_tarball &>/dev/null
+tar --create --file=$build_tarball --directory=build web
 
 temp_dir=/tmp/dkp-build.$RANDOM
 $ssh "mkdir --parents $temp_dir"
