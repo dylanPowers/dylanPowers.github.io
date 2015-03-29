@@ -15,7 +15,8 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-source tools/ipfs-deploy.sh
+## Include and run ipfs-deploy at this point
+. ipfs-deploy.sh
 
 echo "\nAttempting to commit new build into master..."
 
