@@ -1,5 +1,8 @@
 #!/bin/sh
 
+## Makes sure we're always working from the right place
+cd "$(dirname "$0")/.."
+
 echo "\nBacking up the source with a git push"
 git push
 if [ $? -ne 0 ]; then
@@ -16,7 +19,7 @@ if [ $? -ne 0 ]; then
 fi
 
 ## Include and run ipfs-deploy at this point
-. ipfs-deploy.sh
+. "tools/ipfs-deploy.sh"
 
 echo "\nAttempting to commit new build into master..."
 
