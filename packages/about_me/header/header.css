@@ -211,7 +211,7 @@ Media queries for reflow on smaller screens
     position: relative;
     text-align: center;
     bottom: auto;
-    height: 76px;
+    height: 64px;
     text-align: left;
     width: 824px; }
 
@@ -230,10 +230,11 @@ Media queries for reflow on smaller screens
   #printed-text {
     display: block;
     float: left;
-    height: 16px;
-    margin: 4px 0 4px 112px;
+    font-size: 14px;
+    height: 14px;
+    margin: 2px 0 2px 108px;
     position: relative;
-    width: 288px; }
+    width: 300px; }
 
   #website {
     margin-bottom: 4px; } }
