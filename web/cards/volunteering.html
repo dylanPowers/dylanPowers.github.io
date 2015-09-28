@@ -2,9 +2,10 @@
 <link rel="import" href="base_card.html">
 <polymer-element name="dkp-volunteering" noscript>
   <template>
+    <link rel="stylesheet" href="volunteering.css" />
     <base-card>
       <h1>Volunteer Work</h1>
-      <p>
+      <p class="no-print">
         I feel that everyone has an obligation to give back to the communities
         they live in because it's those communities that are what help us as
         individuals prosper. For me, I do this through what I know best,
@@ -21,10 +22,17 @@
         helped with ACM tutoring on weekends for computer science students that
         need homework help.
       </p>
-      <p>
+      <p class="no-print">
         Currently I'm the treasurer for the 2015-2016 WSU ACM chapter and will
         be a lead organizer of the annual WSU Hackathon in the early spring.
       </p>
+      <ul class="print-only">
+        <li>2015-2016 Officer of the WSU ACM chapter</li>
+        <li>ACM weekend tutor from 2014 to present</li>
+        <li>Lead organizer for the 4th annual WSU Hackathon and
+          organizer for the 3rd WSU Hackathon</li>
+        <li>Spring 2013 Cpts 121 TA</li>
+      </ul>
     </base-card>
   </template>
 </polymer-element>
