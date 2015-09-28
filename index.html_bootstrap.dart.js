@@ -8703,7 +8703,9 @@ TR:function(a,b){return this.eu(this,b)},
 Ej:function(){this.f=L.BH(this,this.e)
 this.CG(!0)},
 Wm:function(){this.b=null
-this.d=null
+var z=this.f
+if(z!=null){z.w8(0,this)
+this.f=null}this.d=null
 this.e=null},
 Jp:function(a){this.d.KJ(this.e,a)},
 CG:function(a){var z,y
@@ -8869,21 +8871,16 @@ gDJ:function(){return 3},
 TR:function(a,b){return this.eu(this,b)},
 Ej:function(){var z,y,x,w
 for(z=this.f,y=z.length,x=0;x<y;x+=2){w=z[x]
-if(w!==C.zm){z=$.uE
-if(z!=null){y=z.Q
-y=y==null?w!=null:y!==w}else y=!0
-if(y){z=w==null?null:P.Ls(null,null,null,null)
-z=new L.uP(w,z,[],null)
-$.uE=z}if(z.Q==null){z.Q=w
-z.a=P.Ls(null,null,null,null)}z.b.push(this)
-this.Jp(z.gRY(z))
-this.d=null
+if(w!==C.zm){this.d=L.BH(this,w)
 break}}this.CG(!this.e)},
 Wm:function(){var z,y,x,w
 for(z=0;y=this.f,x=y.length,z<x;z+=2)if(y[z]===C.zm){w=z+1
 if(w>=x)return H.e(y,w)
 J.wC(y[w])}this.f=null
-this.b=null},
+this.b=null
+y=this.d
+if(y!=null){y.w8(0,this)
+this.d=null}},
 WX:function(a,b){var z=this.c
 if(z===$.ng||z===$.zk)throw H.b(P.s("Cannot add paths once started."))
 b=L.hk(b)
@@ -8976,6 +8973,14 @@ qk:function(a,b){return this.Q.$2(a,b)},
 XE:function(a,b,c){return this.Q.$3(a,b,c)}},
 uP:{
 "^":"a;Q,a,b,c",
+w8:function(a,b){var z=this.b
+C.Nm.Rz(z,b)
+if(z.length!==0)return
+z=this.c
+if(z!=null){for(z=z.gUQ(z),z=H.J(new H.MH(null,J.Nx(z.Q),z.a),[H.Kp(z,0),H.Kp(z,1)]);z.D();)z.Q.Gv()
+this.c=null}this.Q=null
+this.a=null
+if($.uE===this)$.uE=null},
 ua:[function(a,b,c){var z=this.Q
 if(b==null?z==null:b===z)this.a.h(0,c)
 z=J.t(b)
@@ -9012,7 +9017,8 @@ if(y){z=b==null?null:P.Ls(null,null,null,null)
 z=new L.uP(b,z,[],null)
 $.uE=z}if(z.Q==null){z.Q=b
 z.a=P.Ls(null,null,null,null)}z.b.push(a)
-a.Jp(z.gRY(z))}}}}],["","",,V,{
+a.Jp(z.gRY(z))
+return $.uE}}}}],["","",,V,{
 "^":"",
 q9:[function(){return N.Xw("paper-button-base",C.j1,null)},"$0","J4",0,0,0],
 vi:{
