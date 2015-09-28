@@ -88,7 +88,7 @@ h1,
 /** Printer friendly overrides **/
 @media print {
   hr {
-    margin: 4px 0;
+    margin: 0 0 2px 0;
   }
 
   :host {
@@ -98,33 +98,37 @@ h1,
   #card {
     margin-bottom: 0;
     margin-top: 0;
+    min-height: initial;
   }
 
   #content {
     margin-top: 0;
-    padding: 8px 0;
+    padding: 4px 0;
   }
 
   ::content h1 {
-    font-size: 24px;
-    margin-top: 0;
+    font-size: 20px;
+    margin-bottom: 4px;
+    margin-top: 4px;
   }
 
   ::content h2 {
-    font-size: 20px;
-    margin-top: 12px;
+    font-size: 18px;
+    margin-top: 4px;
   }
 
   ::content h3 {
     font-size: 16px;
-    margin-top: 4px;
+    font-weight: normal;
+    margin-top: 2px;
   }
 
   ::content h4 {
-    margin-top: 4px;
+    margin-top: 2px;
   }
 
   ::content li {
+    font-size: 13px;
     margin: 4px 16px 0 0;
   }
 
@@ -133,7 +137,7 @@ h1,
   }
 
   ::content ul {
-    margin: 4px 16px 4px 0;
+    margin: 2px 16px 6px 0;
     padding: 0 0 0 42px;
   }
 
