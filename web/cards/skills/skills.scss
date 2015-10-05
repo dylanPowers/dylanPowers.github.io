@@ -4,14 +4,6 @@
   margin-right: 8px;
 }
 
-.left {
-  float: left;
-}
-
-.right {
-  float: right;
-}
-
 #languages-chart {
   height: 496px;
 }
@@ -21,14 +13,9 @@
 }
 
 ul {
-  width: 206px;
+  width: 100%;
 }
 
-//#skills-left {
-//  width: 214px;
-//}
-//
-//#skills-right {
-//  width: 214px;
-//  //margin-right: 12px;
-//}
+#skills-bulleted {
+  display: flex;
+}
