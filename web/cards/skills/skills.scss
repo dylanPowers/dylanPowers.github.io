@@ -12,10 +12,51 @@
   height: 208px;
 }
 
-ul {
-  width: 100%;
-}
+@media print {
+  h3 {
+    display: inline-block;
+  }
 
-#skills-bulleted {
-  display: flex;
+  .major-skill {
+    width: 100%;
+  }
+
+  #major-skills {
+    display: flex;
+  }
+
+  #skills-printed {
+    text-align: center;
+  }
+
+  #tools {
+    width: 100%;
+  }
+
+  #tools > h3 {
+    display: inline-block;
+    margin-right: 0;
+  }
+
+  #tools > ul {
+    display: inline-block;
+  }
+
+  #skills-printed li {
+    display: inline-block;
+    list-style: none;
+    margin-left: 16px;
+    margin-top: 0;
+    width: 86px;
+  }
+
+  #skills-printed ul {
+    margin-right: 0;
+    margin-top: 0;
+    padding-left: 0;
+  }
+
+  #tools li {
+    width: auto;
+  }
 }

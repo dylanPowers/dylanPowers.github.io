@@ -3,11 +3,11 @@
 <polymer-element name="dkp-work-experience" noscript>
   <template>
     <link rel="stylesheet" href="work_experience.css" />
-    <base-card>
+    <base-card id="content-override">
       <h1>Work Experience</h1>
       <h3 class="date">March 2015 - August 2015</h3>
       <h2><span class="position">Software Developer</span>;
-        Smart Environments Research Center; Pullman, WA</h2>
+        <span class="company">Smart Environments Research Center (WSU)</span>; Pullman, WA</h2>
       <p class="summary no-print">
         This was a contract based job that consisted of working on two
         applications: one being a website written in PHP and the other an
@@ -26,12 +26,16 @@
         it can be platform agnostic and run on Android.
       </p>
       <ul class="print-only">
-        <li>Modernized a PHP based website to be mobile friendly and eye appealing.</li>
-        <li>Ported an iOS app, Wumpus World, to Android using C++, OpenGL ES, and the NDK.</li>
+        <li>Modernized a PHP based website to be mobile friendly and visually appealing.</li>
+        <li>Created the Android version of Wumpus World, a game and educational
+          tool for a WSU CS AI class.</li>
+        <li>Wumpus World was ported from iOS using C++ and OpenGL ES to
+          increase cross platform compatibility.</li>
       </ul>
 
       <h3 class="date">March 2015 - May 2015</h3>
-      <h2><span class="position">Community Advocate</span>; Interplanetary Networks Inc</h2>
+      <h2><span class="position">Community Advocate</span>;
+        <span class="company">Interplanetary Networks Inc</span></h2>
       <p class="summary no-print">
         This was a part time job with very light duties where my primary goal
         was to help foster
@@ -47,7 +51,7 @@
 
       <h3 class="date">Jan 2013 - Oct 2014</h3>
       <h2><span class="position">Software Engineering Intern</span>;
-        Schweitzer Engineering Laboratories; Pullman, WA</h2>
+        <span class="company">Schweitzer Engineering Laboratories</span>; Pullman, WA</h2>
       <p class="summary no-print">
         During my time at SEL, while I did create a couple of shipping features,
         most of my work was done on prototypal applications that were centered
@@ -69,7 +73,7 @@
       <h4 class="roles no-print">Notable creations:</h4>
       <ul>
         <li>
-          Built a few prototype
+          Built two prototype
           mobile and HTML5 apps to investigate moving away from Silverlight.
           <span class="no-print">Our team got caught in the Silverlight end of
           life downfall, plus we
@@ -79,18 +83,20 @@
           benchmarking the performance next to Silverlight.</span>
         </li>
         <li>
-          Implemented a couple of new charts in Silverlight for
+          Implemented two new charts in Silverlight for
           <a href="https://www.selinc.com/SEL-5601-2015/"
              target="_blank">
-            SynchroWAVe Event</a><span class="no-print">.
-          If you know what
+            SynchroWAVe Event</a>: An FFT plot and Mho circle plot.
+          <span class="no-print">If you know what
           <a href="https://www.youtube.com/watch?v=iuIniFY07GY"
              target="_blank">
             Mho circle</a>
           and FFT plots are, then congrats! You'll have a better appreciation of
-          the work I did. Otherwise know that I have</span>
-          <span class="print-only">including</span> the most beautiful and
-          intuitive mho circle in the industry.
+          the work I did. Otherwise know that I have the most beautiful and
+          intuitive mho circle in the industry.</span>
+        </li>
+        <li class="print-only">
+          Most beautiful and intuitive Mho circle plot in the industry.
         </li>
         <li>
           <span class="no-print">

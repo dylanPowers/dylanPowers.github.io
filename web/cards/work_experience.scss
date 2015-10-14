@@ -1,9 +1,19 @@
 @import "packages/about_me/theme";
 
+.company {
+  font-weight: bold;
+}
+
 .date {
   float: right;
 }
 
 .position {
   display: inline-block;
+}
+
+@media print {
+  #content-override a, #content-override a:visited {
+    text-decoration: none;
+  }
 }
