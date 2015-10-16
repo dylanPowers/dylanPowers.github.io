@@ -115,6 +115,16 @@ h1,
     padding: 4px 0;
   }
 
+  ::content a,
+  ::content a:visited,
+  ::content h2,
+  ::content h3,
+  ::content h4,
+  ::content li,
+  ::content p{
+    @include print-text-format;
+  }
+
   ::content h1 {
     font-size: 20px;
     margin-bottom: 0;
