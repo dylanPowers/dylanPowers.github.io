@@ -56,49 +56,10 @@ paper-shadow {
 
   .no-print {
     display: none; } }
-.chart {
-  margin-right: 8px; }
+.left {
+  float: left;
+  width: 50%; }
 
-#languages-chart {
-  height: 496px; }
-
-#platforms-chart {
-  height: 208px; }
-
-@media print {
-  h3 {
-    display: inline-block; }
-
-  .major-skill {
-    width: 100%; }
-
-  #major-skills {
-    display: flex; }
-
-  #skills-printed {
-    text-align: center; }
-
-  #tools {
-    width: 100%; }
-
-  #tools > h3 {
-    display: inline-block;
-    margin-right: 0; }
-
-  #tools > ul {
-    display: inline-block; }
-
-  #skills-printed li {
-    display: inline-block;
-    list-style: none;
-    margin-left: 16px;
-    margin-top: 0;
-    width: 86px; }
-
-  #skills-printed ul {
-    margin-right: 0;
-    margin-top: 0;
-    padding-left: 0; }
-
-  #tools li {
-    width: auto; } }
+.right {
+  float: right;
+  width: 50%; }

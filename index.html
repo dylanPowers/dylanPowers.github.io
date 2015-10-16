@@ -23,10 +23,8 @@ a:active {
   outline: none;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0); }
 
-body {
-  font-family: robotoregular, sans-serif; }
-
 a,
+body,
 h2,
 h3,
 h4,
@@ -59,6 +57,19 @@ paper-shadow {
   .print-only {
     display: none; } }
 @media print {
+  a,
+  a:link,
+  a:visited,
+  a:active,
+  body,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; }
+
   .no-print {
     display: none; } }
 body {
@@ -3314,10 +3325,8 @@ a:active {
   outline: none;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0); }
 
-body {
-  font-family: robotoregular, sans-serif; }
-
 a,
+body,
 h2,
 h3,
 h4,
@@ -3350,6 +3359,19 @@ paper-shadow {
   .print-only {
     display: none; } }
 @media print {
+  a,
+  a:link,
+  a:visited,
+  a:active,
+  body,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; }
+
   .no-print {
     display: none; } }
 a {
@@ -3518,13 +3540,13 @@ Media queries for reflow on smaller screens
     position: relative;
     text-align: center;
     bottom: auto;
-    height: 64px;
+    height: 44px;
     text-align: left;
     width: 824px; }
 
   #name {
     color: #1565C0;
-    font-size: 48px;
+    font-size: 40px;
     position: relative;
     top: 0; }
 
@@ -3544,7 +3566,8 @@ Media queries for reflow on smaller screens
     width: 300px; }
 
   #website {
-    margin-bottom: 4px; } }
+    margin-bottom: 4px;
+    margin-top: 0; } }
 </style>
     <div id="hidden-panel" class="panel-expanded no-print"></div>
     <div id="panel" class="{{panelSizeStyle}} {{panelDisplayStyle}}">
@@ -3568,11 +3591,11 @@ Media queries for reflow on smaller screens
           <img id="medium-logo" class="link-logo" alt="Medium" src="packages/about_me/header/images/medium_icon_100px.png">
         </header-link>
 
-        <header-link name="Twitter" url="https://twitter.com/" user="@dylankpowers">
+        <header-link class="no-print" name="Twitter" url="https://twitter.com/" user="@dylankpowers">
           <img class="link-logo" alt="Twitter" src="packages/about_me/header/images/twitter_icon_128px.png">
         </header-link>
 
-        <header-link name="Google+" url="https://plus.google.com/" user="+DylanPowersz">
+        <header-link class="no-print" name="Google+" url="https://plus.google.com/" user="+DylanPowersz">
           <img id="google-plus-logo" class="link-logo" alt="Google Plus" src="packages/about_me/header/images/g+_icon_64px.png">
         </header-link>
 
@@ -3600,10 +3623,8 @@ a:active {
   outline: none;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0); }
 
-body {
-  font-family: robotoregular, sans-serif; }
-
 a,
+body,
 h2,
 h3,
 h4,
@@ -3636,6 +3657,19 @@ paper-shadow {
   .print-only {
     display: none; } }
 @media print {
+  a,
+  a:link,
+  a:visited,
+  a:active,
+  body,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; }
+
   .no-print {
     display: none; } }
 a {
@@ -3804,13 +3838,13 @@ Media queries for reflow on smaller screens
     position: relative;
     text-align: center;
     bottom: auto;
-    height: 64px;
+    height: 44px;
     text-align: left;
     width: 824px; }
 
   #name {
     color: #1565C0;
-    font-size: 48px;
+    font-size: 40px;
     position: relative;
     top: 0; }
 
@@ -3830,7 +3864,8 @@ Media queries for reflow on smaller screens
     width: 300px; }
 
   #website {
-    margin-bottom: 4px; } }
+    margin-bottom: 4px;
+    margin-top: 0; } }
 </style>
     <p id="printed-text" class="print-only">{{name}}: {{user}}</p>
     <a id="link-logo-box" _href="{{url}}{{user}}" target="_blank" class="no-print">
@@ -3859,10 +3894,8 @@ a:active {
   outline: none;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0); }
 
-body {
-  font-family: robotoregular, sans-serif; }
-
 a,
+body,
 h2,
 h3,
 h4,
@@ -3895,6 +3928,19 @@ paper-shadow {
   .print-only {
     display: none; } }
 @media print {
+  a,
+  a:link,
+  a:visited,
+  a:active,
+  body,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; }
+
   .no-print {
     display: none; } }
 a {
@@ -4063,13 +4109,13 @@ Media queries for reflow on smaller screens
     position: relative;
     text-align: center;
     bottom: auto;
-    height: 64px;
+    height: 44px;
     text-align: left;
     width: 824px; }
 
   #name {
     color: #1565C0;
-    font-size: 48px;
+    font-size: 40px;
     position: relative;
     top: 0; }
 
@@ -4089,7 +4135,8 @@ Media queries for reflow on smaller screens
     width: 300px; }
 
   #website {
-    margin-bottom: 4px; } }
+    margin-bottom: 4px;
+    margin-top: 0; } }
 </style>
     <paper-menu-button id="links-menu-button" on-click="{{linksMenuButtonClicked}}">
       <header-link-ripple></header-link-ripple>
@@ -4122,10 +4169,8 @@ a:active {
   outline: none;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0); }
 
-body {
-  font-family: robotoregular, sans-serif; }
-
 a,
+body,
 h2,
 h3,
 h4,
@@ -4158,6 +4203,19 @@ paper-shadow {
   .print-only {
     display: none; } }
 @media print {
+  a,
+  a:link,
+  a:visited,
+  a:active,
+  body,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; }
+
   .no-print {
     display: none; } }
 :host {
@@ -4227,52 +4285,74 @@ h1,
 ::content li > p {
   margin: 6px 16px 0 0; }
 
+::content .date {
+  float: right; }
+
+::content .org {
+  font-weight: bold; }
+
 @media (max-width: 758px) {
   #card {
     margin: 12px; } }
 /** Printer friendly overrides **/
 @media print {
   hr {
-    margin: 4px 0; }
+    margin: 0 0 2px 0; }
 
   :host {
     max-width: 612pt; }
 
   #card {
     margin-bottom: 0;
-    margin-top: 0; }
+    margin-top: 0;
+    min-height: initial; }
 
   #content {
     margin-top: 0;
-    padding: 8px 0; }
+    padding: 4px 0; }
+
+  ::content a,
+  ::content a:visited,
+  ::content h2,
+  ::content h3,
+  ::content h4,
+  ::content li,
+  ::content p {
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; }
 
   ::content h1 {
-    font-size: 24px;
-    margin-top: 0; }
+    font-size: 20px;
+    margin-bottom: 0;
+    margin-top: 4px; }
 
   ::content h2 {
-    font-size: 20px;
-    margin-top: 12px; }
+    font-size: 15px;
+    font-weight: normal;
+    margin-top: 2px;
+    margin-right: 4px; }
 
   ::content h3 {
-    font-size: 16px;
-    margin-top: 4px; }
+    font-size: 14px;
+    font-weight: normal;
+    margin-top: 2px; }
 
   ::content h4 {
-    margin-top: 4px; }
+    margin-top: 2px; }
 
   ::content li {
-    margin: 4px 16px 0 0; }
+    font-size: 14px;
+    margin: 2px 0 0 0; }
 
   ::content p {
+    font-size: 14px;
     margin-top: 4px; }
 
   ::content ul {
-    margin: 4px 16px 4px 0;
+    margin: 0 4px 4px 0;
     padding: 0 0 0 42px; }
 
   ::content li > p {
-    margin: 4px 16px 0 0; } }
+    margin: 4px 0 0 0; } }
 </style>
 
     <div id="card">
@@ -4325,10 +4405,8 @@ a:active {
   outline: none;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0); }
 
-body {
-  font-family: robotoregular, sans-serif; }
-
 a,
+body,
 h2,
 h3,
 h4,
@@ -4361,6 +4439,19 @@ paper-shadow {
   .print-only {
     display: none; } }
 @media print {
+  a,
+  a:link,
+  a:visited,
+  a:active,
+  body,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; }
+
   .no-print {
     display: none; } }
 #desktop-pic img {
@@ -4434,7 +4525,9 @@ paper-shadow {
           The smallest device in the family is my LG G2. I like Nexus devices,
           but when the choice came between a 2300mAh battery versus a
           3000mAh battery, the G2 won out. A dead phone is a useless phone and
-          this phone has never ran out of juice on me.
+          this phone has never ran out of juice on me. However over time the
+          software on this phone has failed me and I would never recommend an
+          LG branded device. Currently I'm waiting on my Nexus 5X to ship to me.
         </p>
 
         <h2>Software</h2>
@@ -4453,7 +4546,7 @@ paper-shadow {
           distro decisions based upon the default window manager...which is
           idiotic. Don't like Unity? Install something else.
           My something else is
-          <a href="http://awesome.naquadah.org/">Awesome</a>.
+          <a href="http://awesome.naquadah.org/" target="_blank">Awesome</a>.
           It does the job and tiling window
           managers are the best for productivity.
         </p>
@@ -4483,31 +4576,6 @@ paper-shadow {
 
 <polymer-element name="dkp-education" noscript="">
   <template>
-    <style>#bottom {
-  clear: both;
-}
-
-#major {
-  float: left;
-}
-
-#wsu-date {
-  float: right;
-}</style>
-    <base-card>
-      <h1>Education</h1>
-      <h2>Washington State University</h2>
-      <h3 id="wsu-date">Fall 2010 - Today</h3>
-      <h3 id="major">BS Computer Science</h3>
-
-      <!-- Browsers don't properly calculate the card vertical size without this -->
-      <div id="bottom"></div>
-    </base-card>
-  </template>
-</polymer-element>
-
-<polymer-element name="dkp-projects" noscript="">
-  <template>
     <style>a,
 a:link,
 a:visited,
@@ -4517,10 +4585,8 @@ a:active {
   outline: none;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0); }
 
-body {
-  font-family: robotoregular, sans-serif; }
-
 a,
+body,
 h2,
 h3,
 h4,
@@ -4553,129 +4619,138 @@ paper-shadow {
   .print-only {
     display: none; } }
 @media print {
+  a,
+  a:link,
+  a:visited,
+  a:active,
+  body,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; }
+
   .no-print {
     display: none; } }
+</style>
+    <base-card>
+      <h1>Education</h1>
+      <h2 class="org">Washington State University</h2>
+      <h3 class="date">Expected graduation: Spring 2017</h3>
+      <h3 id="position">BS Computer Science<span class="print-only">; GPA: 2.84</span></h3>
+    </base-card>
+  </template>
+</polymer-element>
+
+
+<polymer-element name="dkp-projects" noscript="">
+  <template>
+    <style>a,
+a:link,
+a:visited,
+a:active {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: robotoregular, sans-serif;
+  outline: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0); }
+
+a,
+body,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: robotoregular, sans-serif; }
+
+p {
+  margin: 6px 16px 0 18px; }
+
+paper-shadow {
+  z-index: -1; }
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  text-align: center; }
+
+.fill {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 100%; }
+
+@media not print {
+  .print-only {
+    display: none; } }
+@media print {
+  a,
+  a:link,
+  a:visited,
+  a:active,
+  body,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; }
+
+  .no-print {
+    display: none; } }
+@media print {
+  #snippets-list {
+    margin: 0;
+    padding: 0; }
+
+  #snippets-list > li {
+    list-style: none; }
+
+  #snippets-list ul > li {
+    list-style-type: disc; } }
 </style>
 
     <base-card>
       <h1>Projects</h1>
 
-      <h2>WSU Hackathon Website</h2>
-      <p>
-        The 2015
-        <a href="http://hackathon.eecs.wsu.edu" target="_blank">WSU Hackathon</a>
-        needed a website, and I contributed a lot of
-        work to facilitate that. It is largely a joint effort between
-        <a href="http://bahm.io" target="_blank">Alex Bahm</a> and I, and as
-        with any small team, I've touched pretty much every piece of it. With
-        the amount of work we've put in, I'm just happy that it can be used as
-        a foundation for many hackathons to come.
-      </p>
-      <p>
-        Source:
-        <a href="https://github.com/WSU-ACM/hackathon-site" target="_blank">
-          https://github.com/WSU-ACM/hackathon-site</a>.
-      </p>
-
-      <h2 class="no-print">This website</h2>
-      <h2 class="print-only">My website</h2>
-      <p>
-        This site is an effort by me to sort of push the browser boundaries.
-        It's implemented
-        in Dart with the web components framework Polymer and deployed as
-        a Github page. A lot of complexity could
-        have been reduced by simplifying the header, but I really wanted to
-        create something that showcases how I think website headers should
-        work. <span class="no-print">My only disappointment is that it doesn't work
-        as beautifully as it could on
-        mobile due to the low frequency of scroll events mobile browsers send.</span>
-        The design is heavily influenced by Android and Google's
-        Material Design.
-      </p>
-      <p class="no-print">Pro tip: Print this page for a resume sized version.</p>
-      <p>
-        Source:
-        <a href="https://github.com/dylanPowers/dylanPowers.github.io" target="_blank">
-          https://github.com/dylanPowers/dylanPowers.github.io
-        </a>
-      </p>
-
-      <h2>Pandoroid</h2>
-      <p>
-        <a href="https://github.com/dylanPowers/pandoroid" target="_blank">Pandoroid</a>
-        is an Android app that utilizes a reverse engineering of Pandora's
-        JSON-RPC APIs to bring
-        the same high quality
-        audio found in their desktop app to mobile. It also has a few playback
-        tricks under the hood like bandwidth analysis to bring the
-        best audio available for the current network conditions
-        and next song pre-caching for consistant playback under intermittent
-        network conditions. I've left Pandora behind however for other services
-        so work on this has been stale for a couple of years.
-      </p>
-      <p>
-        Source:
-        <a href="https://github.com/dylanPowers/pandoroid" target="_blank">
-          https://github.com/dylanPowers/pandoroid
-        </a>
-      </p>
-
-      <h2 id="ipfs-chrome-extension">IPFS Chrome Extension</h2>
-      <p>
-        <a href="https://ipfs.io" target="_blank">IPFS</a> is a new P2P technology
-        that has caught my interest. I'd describe it as a modernized and
-        user friendly version of BitTorrent. Using it is as simple as visiting
-        <a href="https://ipfs.io/ipns/QmSJ5B27yQe9bDLmwqF4FxJpBBcpxMnK9uJwX8qbQUyycN/#ipfs-chrome-extension">
-          https://ipfs.io/ipns/QmSJ5B27yQe9bDLmwqF4FxJpBBcpxMnK9uJwX8qbQUyycN
-        </a>.
-        This extension extends the user friendliness by enabling users of
-        IPFS to use it in a distributed fashion, like it is meant to be used,
-        while also providing backwards compatibility with the current web.
-        In direct terms, this extension redirects requests to
-        http://gateway.ipfs.io/ to a locally running IPFS daemon. For more
-        details, check out the source.
-      </p>
-      <p>
-        Source:
-        <a href="https://github.com/dylanPowers/ipfs-chrome-extension" target="_blank">
-          https://github.com/dylanPowers/ipfs-chrome-extension
-        </a>
-      </p>
-
-      <div class="no-print">
-        <h2>Spotigoo (Work in progress)</h2>
-        <p>
-          An Android app that aids in transitioning between Spotify
-          and Google Music by migrating playlists and libraries between the two.
-          It's still very much a concept.
-        </p>
-        <p>
-          Source:
-          <a href="https://github.com/dylanPowers/spotigoo">
-            https://github.com/dylanPowers/spotigoo
-          </a>
-        </p>
-      </div>
-
       <h2 class="no-print">
         Interesting Snippets
       </h2>
-      <ul class="no-print">
+      <ul id="snippets-list">
         <li>
-          <p>
+          <h2 class="print-only">Android platform bug fix</h2>
+          <p class="no-print">
             Android platform bug fix:
             <a href="https://android.googlesource.com/platform/frameworks/av/+/6e8f0bc59ad2409b294ad4eb803131500306bc8b" target="_blank">
-              https://android.googlesource.com/platform/frameworks/av/+/6e8f0bc59ad2409b294ad4eb803131500306bc8b</a>
+          https://android.googlesource.com/platform/frameworks/av/+/6e8f0bc59ad2409b294ad4eb803131500306bc8b
+            </a>
           </p>
-          <p>
+          <ul class="print-only">
+            <li>
+              Bug fix in the MediaPlayer::prepare() API.
+            </li>
+            <li>
+              Learned about the Android system architecture and this signified
+              my first time navigating a massive code base.
+            </li>
+          </ul>
+
+          <p class="no-print">
             This was a rather long bug hunt and a brutal 1 week crash course into
-            Android system development. However, I really wanted to learn
+            Android system development. I really wanted to learn
             Android at the system level, so I killed two birds with one stone.
             This was also my first time navigating a large code base, and in this
             case an incredibly massive one.
           </p>
         </li>
-        <li>
+        <li class="no-print">
           <p>
             Dart to Github user page build script:
             <a href="https://gist.github.com/dylanPowers/7969683" target="_blank">
@@ -4690,7 +4765,7 @@ paper-shadow {
             rather than at that gist.
           </p>
         </li>
-        <li>
+        <li class="no-print">
           <p>
             OpenGL ES Android demo app implemented in C:
             <a href="https://github.com/dylanPowers/openGLSandbox" target="_blank">
@@ -4706,6 +4781,106 @@ paper-shadow {
           </p>
         </li>
       </ul>
+      <h2>WSU Hackathon Website</h2>
+      <p class="no-print">
+        The 2015
+        <a href="http://hackathon.eecs.wsu.edu" target="_blank">WSU Hackathon</a>
+        needed a website, and I contributed a lot of
+        work to facilitate that. It is largely a joint effort between
+        <a href="http://bahm.io" target="_blank">Alex Bahm</a> and I, and as
+        with any small team, I've touched pretty much every piece of it. With
+        the amount of work we've put in, I'm just happy that it can be used as
+        a foundation for many hackathons to come.
+      </p>
+      <p class="no-print">
+        Source:
+        <a href="https://github.com/WSU-ACM/hackathon-site" target="_blank">
+          https://github.com/WSU-ACM/hackathon-site</a>.
+      </p>
+      <ul class="print-only">
+        <li>The central hub for all information about the WSU Hackathon.</li>
+        <li>Two person team effort built using Jekyll with a Node.js backend for various AJAX calls.</li>
+      </ul>
+
+      <h2 class="no-print">This website</h2>
+      <h2 class="print-only">My website</h2>
+      <p class="no-print">
+        This site is an effort by me to sort of push the browser boundaries.
+        It's implemented
+        in Dart with the web components framework Polymer and deployed as
+        a Github page. A lot of complexity could
+        have been reduced by simplifying the header, but I really wanted to
+        create something that showcases how I think website headers should
+        work. <span class="no-print">My only disappointment is that it doesn't work
+        as beautifully as it could on
+        mobile due to the low frequency of scroll events mobile browsers send.</span>
+        The design is heavily influenced by Android and Google's
+        Material Design.
+      </p>
+      <p class="no-print">Pro tip: Print this page for a resume sized version.</p>      
+      <p class="no-print">
+        Source:
+        <a href="https://github.com/dylanPowers/dylanPowers.github.io" target="_blank">
+          https://github.com/dylanPowers/dylanPowers.github.io
+        </a>
+      </p>
+      <ul class="print-only">
+        <li>A central hub for everything about myself.</li>
+        <li>Built with Dart, deployed as a Github page, and heavily influenced
+          by Google's material design.</li>
+      </ul>
+
+      <h2>Pandoroid</h2>
+      <p class="no-print">
+        <a href="https://github.com/dylanPowers/pandoroid" target="_blank">Pandoroid</a>
+        is an Android app that utilizes a reverse engineering of Pandora's
+        JSON-RPC APIs to bring
+        the same high quality
+        audio found in their desktop app to mobile. It also has a few playback
+        tricks under the hood like bandwidth analysis to bring the
+        best audio available for the current network conditions
+        and next song pre-caching for consistant playback under intermittent
+        network conditions. I've left Pandora behind however for other services
+        so work on this has been stale for a couple of years.
+      </p>
+      <p class="no-print">
+        Source:
+        <a href="https://github.com/dylanPowers/pandoroid" target="_blank">
+          https://github.com/dylanPowers/pandoroid
+        </a>
+      </p>
+      <ul class="print-only">
+        <li>An Android app that brings the same high quality audio found in
+          desktop Pandora to mobile.</li>
+        <li>Represented my first fling into Android development and API reverse engineering.</li>
+      </ul>
+
+      <h2 id="ipfs-chrome-extension">IPFS Chrome Extension</h2>
+      <p class="no-print">
+        <a href="https://ipfs.io" target="_blank">IPFS</a> is a new P2P technology
+        that has caught my interest. I'd describe it as a modernized and
+        user friendly version of BitTorrent. Using it is as simple as visiting
+        <a href="https://ipfs.io/ipns/QmSJ5B27yQe9bDLmwqF4FxJpBBcpxMnK9uJwX8qbQUyycN/#ipfs-chrome-extension">
+          https://ipfs.io/ipns/QmSJ5B27yQe9bDLmwqF4FxJpBBcpxMnK9uJwX8qbQUyycN
+        </a>.
+        This extension extends the user friendliness by enabling users of
+        IPFS to use it in a distributed fashion, like it is meant to be used,
+        while also providing backwards compatibility with the current web.
+        In direct terms, this extension redirects requests to
+        http://gateway.ipfs.io/ to a locally running IPFS daemon. For more
+        details, check out the source.
+      </p>
+      <p class="no-print">
+        Source:
+        <a href="https://github.com/dylanPowers/ipfs-chrome-extension" target="_blank">
+          https://github.com/dylanPowers/ipfs-chrome-extension
+        </a>
+      </p>
+      <ul class="print-only">
+        <li>Redirects urls into IPFS, a new P2P technology,
+          to a locally running IPFS daemon.</li>
+        <li>Built with Dart.</li>
+      </ul>
     </base-card>
   </template>
 </polymer-element>
@@ -4713,59 +4888,298 @@ paper-shadow {
 
 <polymer-element name="dkp-skills">
   <template>
-    <style>.chart {
-  margin-right: 8px;
-}
+    <style>a,
+a:link,
+a:visited,
+a:active {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: robotoregular, sans-serif;
+  outline: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0); }
+
+a,
+body,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: robotoregular, sans-serif; }
+
+p {
+  margin: 6px 16px 0 18px; }
+
+paper-shadow {
+  z-index: -1; }
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  text-align: center; }
+
+.fill {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 100%; }
+
+@media not print {
+  .print-only {
+    display: none; } }
+@media print {
+  a,
+  a:link,
+  a:visited,
+  a:active,
+  body,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; }
+
+  .no-print {
+    display: none; } }
+.chart {
+  margin-right: 8px; }
 
 #languages-chart {
-  height: 496px;
-}
+  height: 496px; }
 
 #platforms-chart {
-  height: 208px;
-}</style>
+  height: 208px; }
+
+@media print {
+  h3 {
+    display: inline-block; }
+
+  .major-skill {
+    width: 100%; }
+
+  #major-skills {
+    display: flex; }
+
+  #skills-printed {
+    text-align: center; }
+
+  #tools {
+    width: 100%; }
+
+  #tools > h3 {
+    display: inline-block;
+    margin-right: 0; }
+
+  #tools > ul {
+    display: inline-block; }
+
+  #skills-printed li {
+    display: inline-block;
+    list-style: none;
+    margin-left: 16px;
+    margin-top: 0;
+    width: 86px; }
+
+  #skills-printed ul {
+    margin-right: 0;
+    margin-top: 0;
+    padding-left: 0; }
+
+  #tools li {
+    width: auto; } }
+</style>
     <!--
       Highcharts dependencies would normally be included here,
       but they can't because of Firefox -->
     <base-card>
       <h1>Skills</h1>
+      <div id="skills-printed" class="print-only">
+        <div id="major-skills">
+          <div class="major-skill">
+            <h3>Broad Skill 1</h3>
+            <ul>
+              <li>Sub-skill 1</li>
+              <li>Sub-skill 2</li>
+              <li>Sub-skill 3</li>
+              <li>Sub-skill 4</li>
+              <li>Sub-skill 5</li>
+              <li>Sub-skill 6</li>
+            </ul>
+          </div>
+          <div class="major-skill">
+            <h3>Broad Skill 2</h3>
+            <ul>
+              <li>Sub-skill 1</li>
+              <li>Sub-skill 2</li>
+              <li>Sub-skill 3</li>
+              <li>Sub-skill 4</li>
+              <li>Sub-skill 5</li>
+              <li>Sub-skill 6</li>
+            </ul>
+          </div>
+        </div>
+      </div>
 
-      <h2>Languages</h2>
-      <div id="languages-chart" class="chart"></div>
+      <div class="no-print">
+        <h2>Languages</h2>
+        <div id="languages-chart" class="chart"></div>
 
-      <h2>Platforms</h2>
-      <div id="platforms-chart" class="chart"></div>
+        <h2>Platforms</h2>
+        <div id="platforms-chart" class="chart"></div>
+      </div>
 
     </base-card>
   </template>
   
 </polymer-element>
 
+
 <polymer-element name="dkp-volunteering" noscript="">
   <template>
+    <style>a,
+a:link,
+a:visited,
+a:active {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: robotoregular, sans-serif;
+  outline: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0); }
+
+a,
+body,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: robotoregular, sans-serif; }
+
+p {
+  margin: 6px 16px 0 18px; }
+
+paper-shadow {
+  z-index: -1; }
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  text-align: center; }
+
+.fill {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 100%; }
+
+@media not print {
+  .print-only {
+    display: none; } }
+@media print {
+  a,
+  a:link,
+  a:visited,
+  a:active,
+  body,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; }
+
+  .no-print {
+    display: none; } }
+.left {
+  float: left;
+  width: 50%; }
+
+.right {
+  float: right;
+  width: 50%; }
+</style>
     <base-card>
-      <h1>Volunteer Work</h1>
-      <p>
-        I feel that everyone has an obligation to give back to the communities
-        they live in because it's those communities that are what help us as
-        individuals prosper. For me, I do this through what I know best,
-        my knowledge of programming. Besides my open source software
-        contributions, and small bits of writing that can be found on
-        <a href="https://medium.com/@dylankpowers" target="_blank">Medium</a>
-        and my
-        <a href="https://plus.google.com/+DylanPowersz" target="_blank">Google+</a>
-        page, I also like to help others
-        by teaching. In the WSU spring 2013 semester I voluntarily instructed
-        a lab section for an
-        intro level computer science class and this past
-        academic year (2014 - 2015) I've
-        helped with ACM tutoring on weekends for computer science students that
-        need homework help.
-      </p>
-      <p>
-        Currently I'm the treasurer for the 2015-2016 WSU ACM chapter and will
-        be a lead organizer of the annual WSU Hackathon in the early spring.
-      </p>
+      <h1>Volunteer Work and Leadership</h1>
+      <div class="no-print">
+        <p>
+          I feel that everyone has an obligation to give back to the communities
+          they live in because it's those communities that are what help us as
+          individuals prosper. For me, I do this through what I know best,
+          my knowledge of programming. Besides my open source software
+          contributions, and small bits of writing that can be found on
+          <a href="https://medium.com/@dylankpowers" target="_blank">Medium</a>
+          and my
+          <a href="https://plus.google.com/+DylanPowersz" target="_blank">Google+</a>
+          page, I also like to help others
+          by teaching. In the WSU spring 2013 semester I voluntarily instructed
+          a lab section for an
+          intro level computer science class that teaches C. During that time
+          I learned a lot about how to think differently through seemingly
+          simple problems and debug some absolutely horrendous code.
+        </p>
+        <p>
+          Currently I help with ACM tutoring for 3 hours on Sundays. This
+          tutoring session is for
+          computer science students that need help with their coursework. I've
+          been doing this since fall of 2014.
+        </p>
+
+        <h2 class="org">WSU ACM Chapter</h2>
+        <h3 class="date">May 2015 - Present</h3>
+        <h3 class="position">Treasurer</h3>
+        <p>
+          This position carries a lot of responsibility. Currently I'm 1 of 3
+          officers. I'm not only in charge
+          of the finances of 3 different club accounts, I'm also in charge of
+          collaborating closely with the WSU school of EECS. This position also
+          carries the responsibility of taking on any other miscellaneous
+          challenges the WSU ACM organization might face.
+        </p>
+
+        <h2 class="org">WSU Hackathon</h2>
+        <h3 class="date">Fall 2014 - Present</h3>
+        <h3 class="position">Organizer</h3>
+        <p>
+          The 2nd annual hackathon was my first hackathon. That took place in
+          2013. For the 3rd annual hackathon I wanted to help out. For that
+          hackathon I provided
+          assistance on the website and day-of operations. For the 4th annual
+          WSU Hackathon, which will be renamed shortly, I am a lead organizer.
+          This means I'm in charge of everything that goes into a hackathon:
+          sponsors, participants, day-of operations, etc.
+        </p>
+      </div>
+      <div class="print-only left">
+        <h2>Treasurer. WSU ACM chapter. May 2015 - Present</h2>
+        <ul>
+          <li>1 of 3 officers. Currently in charge of 3 accounts.</li>
+        </ul>
+        <h2>Organizer. WSU Hackathon. Fall 2014 - Present</h2>
+        <ul>
+          <li>3rd annual hackathon web dev.</li>
+          <li>4th annual hackathon lead organizer.</li>
+        </ul>
+      </div>
+      <div class="print-only right">
+        <h2>Tutor. ACM weekend CS tutoring. Fall 2014 - Present</h2>
+        <ul>
+          <li>3 hours every Sunday helping CS students.</li>
+        </ul>
+        <h2>Lab TA. Intro to C course. Spring 2013</h2>
+        <ul>
+          <li>3 hours a week in lab providing instruction to students.</li>
+          <li>Discovered new ways to think through simple problems.</li>
+        </ul>
+      </div>
     </base-card>
   </template>
 </polymer-element>
@@ -4782,10 +5196,8 @@ a:active {
   outline: none;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0); }
 
-body {
-  font-family: robotoregular, sans-serif; }
-
 a,
+body,
 h2,
 h3,
 h4,
@@ -4818,20 +5230,39 @@ paper-shadow {
   .print-only {
     display: none; } }
 @media print {
+  a,
+  a:link,
+  a:visited,
+  a:active,
+  body,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; }
+
   .no-print {
     display: none; } }
-.date {
-  float: right; }
+@media not print {
+  .position.no-print {
+    display: inline-block; } }
+@media print {
+  h2 {
+    display: inline-block; }
 
-.position {
-  display: inline-block; }
+  #content-override a, #content-override a:visited {
+    text-decoration: none; } }
 </style>
-    <base-card>
+    <base-card id="content-override">
       <h1>Work Experience</h1>
-      <h2>Smart Environments Research Center</h2>
+
+      <h2><span class="position print-only">Software Developer;</span>
+        <span class="org">Smart Environments Research Center (WSU)</span>; Pullman, WA</h2>
       <h3 class="date">March 2015 - August 2015</h3>
-      <h3 class="position">Developer</h3>
-      <p class="summary">
+      <h3 class="position no-print">Software Developer</h3>
+      <p class="summary no-print">
         This was a contract based job that consisted of working on two
         applications: one being a website written in PHP and the other an
         Android app.
@@ -4847,11 +5278,19 @@ paper-shadow {
         previously implemented in Objective-C on iOS and I ported it to C++ so
         it can be platform agnostic and run on Android.
       </p>
+      <ul class="print-only">
+        <li>Modernized a PHP based website to be mobile friendly and visually appealing.</li>
+        <li>Created the Android version of Wumpus World, a game and educational
+          tool for a WSU CS AI class.</li>
+        <li>Wumpus World was ported from iOS using C++ and OpenGL ES to
+          increase cross platform compatibility.</li>
+      </ul>
 
-      <h2>Interplanetary Networks Inc</h2>
+      <h2><span class="position print-only">Community Advocate;</span>
+        <span class="org">Interplanetary Networks Inc</span></h2>
       <h3 class="date">March 2015 - May 2015</h3>
-      <h3 class="position">IPFS Community Advocate</h3>
-      <p class="summary">
+      <h3 class="position no-print">Community Advocate</h3>
+      <p class="summary no-print">
         This was a part time job with very light duties where my primary goal
         was to help foster
         an open and inclusive community that encourages people to engage in the
@@ -4859,11 +5298,16 @@ paper-shadow {
         That primarily meant working to improve
         documentation and aid in project management.
       </p>
+      <ul class="print-only">
+        <li>Improved documentation and aided in project management for the new
+          P2P open source project, IPFS.</li>
+      </ul>
 
-      <h2>Schweitzer Engineering Laboratories; Pullman, WA</h2>
+      <h2><span class="position print-only">Software Engineering Intern;</span>
+        <span class="org">Schweitzer Engineering Laboratories</span>; Pullman, WA</h2>
       <h3 class="date">Jan 2013 - Oct 2014</h3>
-      <h3 class="position">Software Engineering Intern</h3>
-      <p class="summary">
+      <h3 class="position no-print">Software Engineering Intern</h3>
+      <p class="summary no-print">
         During my time at SEL, while I did create a couple of shipping features,
         most of my work was done on prototypal applications that were centered
         around
@@ -4879,37 +5323,44 @@ paper-shadow {
         classes and I wanted to move on to working in Seattle for the next
         summer (2015).</span>
       </p>
-      <h4 class="roles">Notable creations:</h4>
+      <h4 class="roles no-print">Notable creations:</h4>
       <ul>
         <li>
-          A few prototype
+          Built two prototype
           mobile and HTML5 apps to investigate moving away from Silverlight.
           <span class="no-print">Our team got caught in the Silverlight end of
           life downfall, plus we
-          wanted to explore supporting more platforms.</span>
+          wanted to explore supporting more platforms.
           These prototypes included weighing various
           languages against each other and the incumbent C#, and
-          benchmarking the performance next to Silverlight.
+          benchmarking the performance next to Silverlight.</span>
         </li>
         <li>
-          A couple of new charts implemented in Silverlight for
+          Implemented two new charts in Silverlight for
           <a href="https://www.selinc.com/SEL-5601-2015/" target="_blank">
-            SynchroWAVe Event</a>.
-          If you know what
+            SynchroWAVe Event</a>: An FFT plot and Mho circle plot.
+          <span class="no-print">If you know what
           <a href="https://www.youtube.com/watch?v=iuIniFY07GY" target="_blank">
             Mho circle</a>
           and FFT plots are, then congrats! You'll have a better appreciation of
           the work I did. Otherwise know that I have the most beautiful and
-          intuitive mho circle in the industry.
+          intuitive mho circle in the industry.</span>
+        </li>
+        <li class="print-only">
+          Most beautiful and intuitive Mho circle plot in the industry.
         </li>
         <li>
+          <span class="no-print">
           A desperately needed redesign of the web API that fully leverages
           REST principals to increase
           multiplatform interoperability. The original API was .NET
           autogenerated gunk that was undocumented and incompatible with other
           languages/frameworks. I
           happily fixed it up while gaining a very deep understanding of
-          what it takes to architect a RESTful API.
+          what it takes to architect a RESTful API.</span>
+          <span class="print-only">
+          Rearchitected the SynchroWAVe web api to be RESTful and use JSON rather than SOAP.
+          </span>
         </li>
       </ul>
     </base-card>
@@ -4920,14 +5371,14 @@ paper-shadow {
   <div id="cards" class="center">
     <div class="left">
       <dkp-about-me class="no-print"></dkp-about-me>
-      <dkp-skills class="no-print"></dkp-skills>
       <dkp-dev-env-prefs class="no-print"></dkp-dev-env-prefs>
+      <dkp-skills></dkp-skills>
+      <dkp-education></dkp-education>
     </div>
     <div class="right">
       <dkp-work-experience></dkp-work-experience>
       <dkp-volunteering></dkp-volunteering>
       <dkp-projects></dkp-projects>
-      <dkp-education></dkp-education>
     </div>
   </div>
   
