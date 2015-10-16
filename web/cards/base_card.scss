@@ -79,6 +79,15 @@ h1,
   margin: 6px 16px 0 0;
 }
 
+::content .date {
+  float: right;
+}
+
+::content .org {
+  font-weight: bold;
+}
+
+
 @media (max-width: 758px) {
   #card {
     margin: 12px;
