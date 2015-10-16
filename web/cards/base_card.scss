@@ -116,10 +116,11 @@ h1,
     font-size: 15px;
     font-weight: normal;
     margin-top: 2px;
+    margin-right: 4px;
   }
 
   ::content h3 {
-    font-size: 15px;
+    font-size: 14px;
     font-weight: normal;
     margin-top: 0;
   }
@@ -130,7 +131,7 @@ h1,
 
   ::content li {
     font-size: 14px;
-    margin: 4px 0 0 0;
+    margin: 2px 0 0 0;
   }
 
   ::content p {
@@ -139,7 +140,7 @@ h1,
   }
 
   ::content ul {
-    margin: 0 16px 6px 0;
+    margin: 0 4px 6px 0;
     padding: 0 0 0 42px;
   }
 
