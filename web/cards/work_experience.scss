@@ -8,11 +8,17 @@
   float: right;
 }
 
-.position {
-  display: inline-block;
+@media not print {
+  .position.no-print {
+    display: inline-block;
+  }
 }
 
 @media print {
+  h2 {
+    display: inline-block;
+  }
+
   #content-override a, #content-override a:visited {
     text-decoration: none;
   }
