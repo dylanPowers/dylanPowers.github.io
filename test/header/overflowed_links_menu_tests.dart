@@ -37,6 +37,16 @@ void run() {
 
     _openClosedStateTests();
   });
+
+  describe('The OverflowedHeaderLink', () {
+    it('has the href set to the url when the user is null', () {
+      HtmlElement el = new DivElement();
+      var url = "a.url";
+      el.setAttribute("url", url);
+      var link = new OverflowedHeaderLink(el);
+      expect(link.href, ut.equals(url));
+    });
+  });
 }
 
 void _openClosedStateTests() {

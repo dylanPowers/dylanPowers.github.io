@@ -295,8 +295,11 @@ class OverflowedHeaderLink {
   OverflowedHeaderLink(HtmlElement headerLink) {
     var url = headerLink.getAttribute('url');
     var user = headerLink.getAttribute('user');
-    if (url != null && user != null) {
-      href =  url + user;
+    if (url != null) {
+      href = url;
+      if (user != null) {
+        href += user;
+      }
     }
 
     var imgEl = headerLink.querySelector('img');
