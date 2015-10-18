@@ -13,10 +13,6 @@
 }
 
 @media print {
-  h3 {
-    display: inline-block;
-  }
-
   .major-skill {
     width: 100%;
   }
@@ -47,13 +43,15 @@
     list-style: none;
     margin-left: 16px;
     margin-top: 0;
-    width: 86px;
+    min-width: 86px;
   }
 
   #skills-printed ul {
-    margin-right: 0;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 0;
     padding-left: 0;
+    width: 314px;
   }
 
   #tools li {
