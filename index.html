@@ -4799,7 +4799,7 @@ paper-shadow {
       </p>
       <ul class="print-only">
         <li>The central hub for all information about the WSU Hackathon.</li>
-        <li>Two person team effort built using Jekyll with a Node.js backend for various AJAX calls.</li>
+        <li>Two person team effort using Jekyll with a Node.js backend for various AJAX calls.</li>
       </ul>
 
       <h2 class="no-print">This website</h2>
@@ -4956,9 +4956,6 @@ paper-shadow {
   height: 208px; }
 
 @media print {
-  h3 {
-    display: inline-block; }
-
   .major-skill {
     width: 100%; }
 
@@ -4983,12 +4980,14 @@ paper-shadow {
     list-style: none;
     margin-left: 16px;
     margin-top: 0;
-    width: 86px; }
+    min-width: 86px; }
 
   #skills-printed ul {
-    margin-right: 0;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 0;
-    padding-left: 0; }
+    padding-left: 0;
+    width: 314px; }
 
   #tools li {
     width: auto; } }
@@ -5001,25 +5000,23 @@ paper-shadow {
       <div id="skills-printed" class="print-only">
         <div id="major-skills">
           <div class="major-skill">
-            <h3>Broad Skill 1</h3>
-            <ul>
-              <li>Sub-skill 1</li>
-              <li>Sub-skill 2</li>
-              <li>Sub-skill 3</li>
-              <li>Sub-skill 4</li>
-              <li>Sub-skill 5</li>
-              <li>Sub-skill 6</li>
+            <h2>HTML 5</h2>
+            <ul class="center">
+              <li>Dart</li>
+              <li>Angular.dart</li>
+              <li>Polymer.dart</li>
+              <li>Responsive Design</li>
+              <li>Javascript</li>
             </ul>
           </div>
           <div class="major-skill">
-            <h3>Broad Skill 2</h3>
-            <ul>
-              <li>Sub-skill 1</li>
-              <li>Sub-skill 2</li>
-              <li>Sub-skill 3</li>
-              <li>Sub-skill 4</li>
-              <li>Sub-skill 5</li>
-              <li>Sub-skill 6</li>
+            <h2>Android</h2>
+            <ul class="center">
+              <li>C/C++</li>
+              <li>Java</li>
+              <li>NDK</li>
+              <li>OpenGL ES</li>
+              <li>Android Studio/IntelliJ Idea</li>
             </ul>
           </div>
         </div>
