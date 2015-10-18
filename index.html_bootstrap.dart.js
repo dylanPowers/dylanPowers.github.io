@@ -7928,8 +7928,8 @@ DU:function(a){var z,y,x,w
 z=J.RE(a)
 y=z.GE(a,"url")
 x=z.GE(a,"user")
-if(y!=null&&x!=null){if(y==null)return y.g()
-this.Q=J.WB(y,x)}w=z.Wk(a,"img")
+if(y!=null){this.Q=y
+if(x!=null)this.Q=y+x}w=z.Wk(a,"img")
 if(w!=null)this.a=w.getAttribute("alt")},
 static:{lN:function(a){var z=new S.CO("","")
 z.DU(a)
