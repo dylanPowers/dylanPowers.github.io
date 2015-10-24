@@ -3557,13 +3557,20 @@ Media queries for reflow on smaller screens
     top: 0; }
 
   #printed-text {
-    display: block;
-    float: left;
+    display: inline-block;
     font-size: 14px;
     height: 14px;
-    margin: 2px 0 2px 108px;
+    margin: 2px 96px 2px 96px;
     position: relative;
-    width: 300px; }
+    width: 212px; }
+
+  .left /deep/ #printed-text {
+    float: left;
+    margin-left: 64px; }
+
+  .right /deep/ #printed-text {
+    float: right;
+    margin-right: 64px; }
 
   #website {
     margin-bottom: 4px;
@@ -3576,14 +3583,14 @@ Media queries for reflow on smaller screens
       <h1 id="name" class="center {{nameStyle}}">
         Dylan Powers
       </h1>
-      <p id="website" class="print-only center">Website: bits.dylankpowers.com</p>
+      <p id="website" class="print-only center">http://bits.dylankpowers.com</p>
 
       <div id="links-box" class="">
-        <header-link id="email" name="Email" url="mailto:" user="{{EMAIL_ADDRESS}}@gmail.com">
+        <header-link id="email" class="left" name="Email" url="mailto:" user="{{EMAIL_ADDRESS}}@gmail.com">
           <img class="link-logo" alt="Email" src="packages/about_me/header/images/email_icon_96px.png">
         </header-link>
 
-        <header-link name="Github" url="https://github.com/" user="dylanPowers">
+        <header-link class="right" name="Github" url="https://github.com/" user="dylanPowers">
           <img class="link-logo" alt="Github" src="packages/about_me/header/images/github_mark_120px.png">
         </header-link>
 
@@ -3591,7 +3598,7 @@ Media queries for reflow on smaller screens
           <img class="link-logo" alt="Resume" src="packages/about_me/header/images/print_icon_96px.png">
         </header-link>
 
-        <header-link name="Medium" url="https://medium.com/" user="@dylankpowers">
+        <header-link class="left" name="Medium" url="https://medium.com/" user="@dylankpowers">
           <img id="medium-logo" class="link-logo" alt="Medium" src="packages/about_me/header/images/medium_icon_100px.png">
         </header-link>
 
@@ -3603,7 +3610,7 @@ Media queries for reflow on smaller screens
           <img id="google-plus-logo" class="link-logo" alt="Google Plus" src="packages/about_me/header/images/g+_icon_64px.png">
         </header-link>
 
-        <header-link name="LinkedIn" url="https://www.linkedin.com/" user="in/dylankpowers">
+        <header-link class="right" name="LinkedIn" url="https://www.linkedin.com/" user="in/dylankpowers">
           <img id="linkedin-logo" class="link-logo" alt="LinkedIn" src="packages/about_me/header/images/linkedin_icon_128px.png">
         </header-link>
 
@@ -3859,19 +3866,32 @@ Media queries for reflow on smaller screens
     top: 0; }
 
   #printed-text {
-    display: block;
-    float: left;
+    display: inline-block;
     font-size: 14px;
     height: 14px;
-    margin: 2px 0 2px 108px;
+    margin: 2px 96px 2px 96px;
     position: relative;
-    width: 300px; }
+    width: 212px; }
+
+  .left /deep/ #printed-text {
+    float: left;
+    margin-left: 64px; }
+
+  .right /deep/ #printed-text {
+    float: right;
+    margin-right: 64px; }
 
   #website {
     margin-bottom: 4px;
     margin-top: 0; } }
 </style>
-    <p id="printed-text" class="print-only">{{name}}: {{user}}</p>
+    <template if="{{url != 'mailto:'}}">
+      <p id="printed-text" class="print-only">{{url}}{{user}}</p>
+    </template>
+    <template if="{{url == 'mailto:'}}">
+      <p id="printed-text" class="print-only">{{user}}</p>
+    </template>
+
     <a id="link-logo-box" _href="{{url}}{{user}}" target="_blank" class="no-print">
       <header-link-ripple></header-link-ripple>
       <content></content>
@@ -4130,13 +4150,20 @@ Media queries for reflow on smaller screens
     top: 0; }
 
   #printed-text {
-    display: block;
-    float: left;
+    display: inline-block;
     font-size: 14px;
     height: 14px;
-    margin: 2px 0 2px 108px;
+    margin: 2px 96px 2px 96px;
     position: relative;
-    width: 300px; }
+    width: 212px; }
+
+  .left /deep/ #printed-text {
+    float: left;
+    margin-left: 64px; }
+
+  .right /deep/ #printed-text {
+    float: right;
+    margin-right: 64px; }
 
   #website {
     margin-bottom: 4px;

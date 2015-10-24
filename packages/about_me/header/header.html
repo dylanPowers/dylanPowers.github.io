@@ -17,16 +17,16 @@
       <h1 id="name" class="center {{nameStyle}}">
         Dylan Powers
       </h1>
-      <p id="website" class="print-only center">Website: bits.dylankpowers.com</p>
+      <p id="website" class="print-only center">http://bits.dylankpowers.com</p>
 
       <div id="links-box" class="">
-        <header-link id="email" name="Email" url="mailto:" user="{{EMAIL_ADDRESS}}@gmail.com">
+        <header-link id="email" class="left" name="Email" url="mailto:" user="{{EMAIL_ADDRESS}}@gmail.com">
           <img class="link-logo"
                alt="Email"
                src="images/email_icon_96px.png" />
         </header-link>
 
-        <header-link name="Github" url="https://github.com/" user="dylanPowers">
+        <header-link class="right" name="Github" url="https://github.com/" user="dylanPowers">
           <img class="link-logo"
                alt="Github"
                src="images/github_mark_120px.png"/>
@@ -36,7 +36,7 @@
           <img class="link-logo" alt="Resume" src="images/print_icon_96px.png" />
         </header-link>
 
-        <header-link name="Medium" url="https://medium.com/" user="@dylankpowers">
+        <header-link class="left" name="Medium" url="https://medium.com/" user="@dylankpowers">
           <img id="medium-logo" class="link-logo"
                alt="Medium"
                src="images/medium_icon_100px.png"/>
@@ -54,7 +54,7 @@
                src="images/g+_icon_64px.png" />
         </header-link>
 
-        <header-link name="LinkedIn" url="https://www.linkedin.com/" user="in/dylankpowers">
+        <header-link class="right" name="LinkedIn" url="https://www.linkedin.com/" user="in/dylankpowers">
           <img id="linkedin-logo" class="link-logo"
                alt="LinkedIn"
                src="images/linkedin_icon_128px.png"/>
@@ -75,7 +75,13 @@
 <polymer-element name="header-link" noscript attributes="name url user">
   <template>
     <link rel="stylesheet" href="header.css" />
-    <p id="printed-text" class="print-only">{{name}}: {{user}}</p>
+    <template if="{{url != 'mailto:'}}">
+      <p id="printed-text" class="print-only">{{url}}{{user}}</p>
+    </template>
+    <template if="{{url == 'mailto:'}}">
+      <p id="printed-text" class="print-only">{{user}}</p>
+    </template>
+
     <a id="link-logo-box" _href="{{url}}{{user}}" target="_blank" class="no-print">
       <header-link-ripple></header-link-ripple>
       <content></content>
