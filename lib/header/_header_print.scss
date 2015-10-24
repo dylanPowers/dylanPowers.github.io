@@ -23,13 +23,22 @@
   }
 
   #printed-text {
-    display: block;
-    float: left;
+    display: inline-block;
     font-size: 14px;
     height: 14px;
-    margin: 2px 0 2px 108px;
+    margin: 2px 96px 2px 96px;
     position: relative;
-    width: 300px;
+    width: 212px;
+  }
+
+  .left /deep/ #printed-text {
+    float: left;
+    margin-left: 64px;
+  }
+
+  .right /deep/ #printed-text {
+    float: right;
+    margin-right: 64px;
   }
 
   #website {
