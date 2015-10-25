@@ -31,12 +31,12 @@
     width: 216px;
   }
 
-  .left /deep/ #printed-text {
+  .header-left /deep/ #printed-text {
     float: left;
     margin-left: 76px;
   }
 
-  .right /deep/ #printed-text {
+  .header-right /deep/ #printed-text {
     float: right;
     margin-right: 76px;
   }
