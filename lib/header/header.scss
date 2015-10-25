@@ -12,6 +12,12 @@ h1 {
   text-decoration: none;
 }
 
+h2 {
+  font-size: 14px;
+  font-weight: normal;
+  margin: 0;
+}
+
 @media not print {
   header-link.hide {
     display: none;
