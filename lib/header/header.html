@@ -82,10 +82,18 @@
       <p id="printed-text" class="print-only">{{user}}</p>
     </template>
 
-    <a id="link-logo-box" _href="{{url}}{{user}}" target="_blank" class="no-print">
-      <header-link-ripple></header-link-ripple>
-      <content></content>
-    </a>
+    <template if="{{name != 'Resume'}}">
+      <a id="link-logo-box" _href="{{url}}{{user}}" target="_blank" class="no-print">
+        <header-link-ripple></header-link-ripple>
+        <content></content>
+      </a>
+    </template>
+    <template if="{{name == 'Resume'}}">
+      <a id="link-logo-box" _href="{{url}}{{user}}" class="no-print">
+        <header-link-ripple></header-link-ripple>
+        <content></content>
+      </a>
+    </template>
   </template>
 </polymer-element>
 
@@ -110,7 +118,12 @@
                src="images/link_icon_black_72px.png" />
         </paper-item>
         <template repeat="{{link in overflowedLinks}}">
-          <a _href="{{link.href}}" target="_blank"><paper-item>{{link.name}}</paper-item></a>
+          <template if="{{link.name != 'Resume'}}">
+            <a _href="{{link.href}}" target="_blank"><paper-item>{{link.name}}</paper-item></a>
+          </template>
+          <template if="{{link.name == 'Resume'}}">
+            <a _href="{{link.href}}"><paper-item>{{link.name}}</paper-item></a>
+          </template>
         </template>
       </paper-dropdown>
     </paper-menu-button>

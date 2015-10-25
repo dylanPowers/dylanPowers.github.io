@@ -27,8 +27,9 @@
     font-size: 14px;
     height: 14px;
     margin: 2px 0 2px 0;
+    overflow-x: visible;
     position: relative;
-    width: 216px;
+    width: 260px;
   }
 
   .header-left /deep/ #printed-text {
@@ -38,11 +39,6 @@
 
   .header-right /deep/ #printed-text {
     float: right;
-    margin-right: 76px;
-  }
-
-  #website {
-    margin-bottom: 4px;
-    margin-top: 0;
+    margin-right: 32px;
   }
 }
