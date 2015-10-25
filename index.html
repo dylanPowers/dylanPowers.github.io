@@ -3382,6 +3382,11 @@ h1 {
   margin: 0;
   text-decoration: none; }
 
+h2 {
+  font-size: 14px;
+  font-weight: normal;
+  margin: 0; }
+
 @media not print {
   header-link.hide {
     display: none; } }
@@ -3561,8 +3566,9 @@ Media queries for reflow on smaller screens
     font-size: 14px;
     height: 14px;
     margin: 2px 0 2px 0;
+    overflow-x: visible;
     position: relative;
-    width: 216px; }
+    width: 260px; }
 
   .header-left /deep/ #printed-text {
     float: left;
@@ -3570,11 +3576,7 @@ Media queries for reflow on smaller screens
 
   .header-right /deep/ #printed-text {
     float: right;
-    margin-right: 76px; }
-
-  #website {
-    margin-bottom: 4px;
-    margin-top: 0; } }
+    margin-right: 32px; } }
 </style>
     <div id="hidden-panel" class="panel-expanded no-print"></div>
     <div id="panel" class="{{panelSizeStyle}} {{panelDisplayStyle}}">
@@ -3583,7 +3585,7 @@ Media queries for reflow on smaller screens
       <h1 id="name" class="center {{nameStyle}}">
         Dylan Powers
       </h1>
-      <p id="website" class="print-only center">http://bits.dylankpowers.com</p>
+      <h2 id="website" class="print-only center">http://bits.dylankpowers.com</h2>
 
       <div id="links-box" class="">
         <header-link id="email" class="header-left" name="Email" url="mailto:" user="{{EMAIL_ADDRESS}}@gmail.com">
@@ -3691,6 +3693,11 @@ h1 {
   margin: 0;
   text-decoration: none; }
 
+h2 {
+  font-size: 14px;
+  font-weight: normal;
+  margin: 0; }
+
 @media not print {
   header-link.hide {
     display: none; } }
@@ -3870,8 +3877,9 @@ Media queries for reflow on smaller screens
     font-size: 14px;
     height: 14px;
     margin: 2px 0 2px 0;
+    overflow-x: visible;
     position: relative;
-    width: 216px; }
+    width: 260px; }
 
   .header-left /deep/ #printed-text {
     float: left;
@@ -3879,11 +3887,7 @@ Media queries for reflow on smaller screens
 
   .header-right /deep/ #printed-text {
     float: right;
-    margin-right: 76px; }
-
-  #website {
-    margin-bottom: 4px;
-    margin-top: 0; } }
+    margin-right: 32px; } }
 </style>
     <template if="{{url != 'mailto:'}}">
       <p id="printed-text" class="print-only">{{url}}{{user}}</p>
@@ -3892,10 +3896,18 @@ Media queries for reflow on smaller screens
       <p id="printed-text" class="print-only">{{user}}</p>
     </template>
 
-    <a id="link-logo-box" _href="{{url}}{{user}}" target="_blank" class="no-print">
-      <header-link-ripple></header-link-ripple>
-      <content></content>
-    </a>
+    <template if="{{name != 'Resume'}}">
+      <a id="link-logo-box" _href="{{url}}{{user}}" target="_blank" class="no-print">
+        <header-link-ripple></header-link-ripple>
+        <content></content>
+      </a>
+    </template>
+    <template if="{{name == 'Resume'}}">
+      <a id="link-logo-box" _href="{{url}}{{user}}" class="no-print">
+        <header-link-ripple></header-link-ripple>
+        <content></content>
+      </a>
+    </template>
   </template>
 </polymer-element>
 
@@ -3975,6 +3987,11 @@ h1 {
   margin: 0;
   text-decoration: none; }
 
+h2 {
+  font-size: 14px;
+  font-weight: normal;
+  margin: 0; }
+
 @media not print {
   header-link.hide {
     display: none; } }
@@ -4154,8 +4171,9 @@ Media queries for reflow on smaller screens
     font-size: 14px;
     height: 14px;
     margin: 2px 0 2px 0;
+    overflow-x: visible;
     position: relative;
-    width: 216px; }
+    width: 260px; }
 
   .header-left /deep/ #printed-text {
     float: left;
@@ -4163,11 +4181,7 @@ Media queries for reflow on smaller screens
 
   .header-right /deep/ #printed-text {
     float: right;
-    margin-right: 76px; }
-
-  #website {
-    margin-bottom: 4px;
-    margin-top: 0; } }
+    margin-right: 32px; } }
 </style>
     <paper-menu-button id="links-menu-button" on-click="{{linksMenuButtonClicked}}">
       <header-link-ripple></header-link-ripple>
@@ -4177,7 +4191,12 @@ Media queries for reflow on smaller screens
           <img id="links-dropdown-icon" class="links-icon" src="packages/about_me/header/images/link_icon_black_72px.png">
         </paper-item>
         <template repeat="{{link in overflowedLinks}}">
-          <a _href="{{link.href}}" target="_blank"><paper-item>{{link.name}}</paper-item></a>
+          <template if="{{link.name != 'Resume'}}">
+            <a _href="{{link.href}}" target="_blank"><paper-item>{{link.name}}</paper-item></a>
+          </template>
+          <template if="{{link.name == 'Resume'}}">
+            <a _href="{{link.href}}"><paper-item>{{link.name}}</paper-item></a>
+          </template>
         </template>
       </paper-dropdown>
     </paper-menu-button>

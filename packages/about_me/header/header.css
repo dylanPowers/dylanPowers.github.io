@@ -64,6 +64,11 @@ h1 {
   margin: 0;
   text-decoration: none; }
 
+h2 {
+  font-size: 14px;
+  font-weight: normal;
+  margin: 0; }
+
 @media not print {
   header-link.hide {
     display: none; } }
@@ -243,8 +248,9 @@ Media queries for reflow on smaller screens
     font-size: 14px;
     height: 14px;
     margin: 2px 0 2px 0;
+    overflow-x: visible;
     position: relative;
-    width: 216px; }
+    width: 260px; }
 
   .header-left /deep/ #printed-text {
     float: left;
@@ -252,8 +258,4 @@ Media queries for reflow on smaller screens
 
   .header-right /deep/ #printed-text {
     float: right;
-    margin-right: 76px; }
-
-  #website {
-    margin-bottom: 4px;
-    margin-top: 0; } }
+    margin-right: 32px; } }
