@@ -116,7 +116,7 @@ class LangsChart extends SkillsChart {
   ];
 
   static const _YEARS = const [
-    2, 3, 3, 3, 2, 2, 1
+    3, 4, 3, 3, 2, 2, 1
   ];
 
   LangsChart() : super(_CATEGORIES, _RELATIVE_EXP, _YEARS);
