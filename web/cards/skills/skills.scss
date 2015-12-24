@@ -19,6 +19,7 @@
 
   #major-skills {
     display: flex;
+    margin-top: -16px;
   }
 
   #skills-printed {
@@ -39,20 +40,18 @@
   }
 
   #skills-printed li {
-    display: inline-block;
-    list-style: none;
+    float: left;
+    list-style: disc inside;
     margin-left: 16px;
-    margin-right: 16px;
     margin-top: 0;
-    min-width: 72px;
+    min-width: 104px;
+    text-align: left;
   }
 
   #skills-printed ul {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 0;
+    margin: 0 auto;
     padding-left: 0;
-    width: 340px;
+    width: 368px;
   }
 
   #tools li {
