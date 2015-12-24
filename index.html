@@ -3568,7 +3568,7 @@ Media queries for reflow on smaller screens
     margin: 2px 0 2px 0;
     overflow-x: visible;
     position: relative;
-    width: 260px; }
+    width: 272px; }
 
   .header-left /deep/ #printed-text {
     float: left;
@@ -3879,7 +3879,7 @@ Media queries for reflow on smaller screens
     margin: 2px 0 2px 0;
     overflow-x: visible;
     position: relative;
-    width: 260px; }
+    width: 272px; }
 
   .header-left /deep/ #printed-text {
     float: left;
@@ -4173,7 +4173,7 @@ Media queries for reflow on smaller screens
     margin: 2px 0 2px 0;
     overflow-x: visible;
     position: relative;
-    width: 260px; }
+    width: 272px; }
 
   .header-left /deep/ #printed-text {
     float: left;
@@ -4689,7 +4689,7 @@ paper-shadow {
       <h1>Education</h1>
       <h2 class="org">Washington State University</h2>
       <h3 class="date">Expected graduation: Spring 2017</h3>
-      <h3 id="position">BS Computer Science<span class="print-only">; GPA: 2.84</span></h3>
+      <h3 id="position">BS Computer Science<span class="print-only">; GPA: 3.01</span></h3>
     </base-card>
   </template>
 </polymer-element>
@@ -5010,7 +5010,8 @@ paper-shadow {
     width: 100%; }
 
   #major-skills {
-    display: flex; }
+    display: flex;
+    margin-top: -16px; }
 
   #skills-printed {
     text-align: center; }
@@ -5026,19 +5027,17 @@ paper-shadow {
     display: inline-block; }
 
   #skills-printed li {
-    display: inline-block;
-    list-style: none;
+    float: left;
+    list-style: disc inside;
     margin-left: 16px;
-    margin-right: 16px;
     margin-top: 0;
-    min-width: 72px; }
+    min-width: 104px;
+    text-align: left; }
 
   #skills-printed ul {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 0;
+    margin: 0 auto;
     padding-left: 0;
-    width: 340px; }
+    width: 368px; }
 
   #tools li {
     width: auto; } }
@@ -5051,23 +5050,30 @@ paper-shadow {
       <div id="skills-printed" class="print-only">
         <div id="major-skills">
           <div class="major-skill">
-            <h2>HTML 5</h2>
+            <h2>Most Experience</h2>
             <ul class="center">
-              <li>Dart</li>
-              <li>Angular.dart</li>
+              <li>C</li>
+              <li>CSS</li>
               <li>Polymer.dart</li>
-              <li>Responsive Design</li>
-              <li>Javascript</li>
+              <li>Dart</li>
+              <li>Linux</li>
+              <li>Unit Testing</li>
+              <li>Git</li>
+              <li>Agile Development</li>
             </ul>
           </div>
           <div class="major-skill">
-            <h2>Android</h2>
+            <h2>Some Experience</h2>
             <ul class="center">
-              <li>C/C++</li>
+              <li>C++</li>
               <li>Java</li>
-              <li>NDK</li>
-              <li>OpenGL ES</li>
-              <li>Android Studio/IntelliJ Idea</li>
+              <li>Javascript</li>
+              <li>Android</li>
+              <li>Go</li>
+              <li>C#</li>
+              <li>Ruby on Rails</li>
+              <li>Angular</li>
+              <li>PHP</li>
             </ul>
           </div>
         </div>
