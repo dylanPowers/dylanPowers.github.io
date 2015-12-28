@@ -5003,31 +5003,18 @@ paper-shadow {
   .major-skill {
     width: 100%; }
 
-  #h-1y {
-    text-align: right; }
-
-  #h-3y {
-    text-align: left; }
-
-  #major-skills {
-    display: flex;
-    margin-top: 0; }
-
   #major-skills h2 {
     margin-bottom: 0;
     margin-right: 12px;
     margin-top: 0; }
 
-  #skills-printed {
-    text-align: center; }
-
   #skills-printed li {
     float: left;
     list-style: disc inside;
-    margin-left: 16px;
-    margin-right: 12px;
+    margin-left: 0;
+    margin-right: 0;
     margin-top: 0;
-    min-width: 104px;
+    min-width: 126px;
     text-align: left; }
 
   #skills-printed ul {
@@ -5035,7 +5022,26 @@ paper-shadow {
     padding: 0; }
 
   #tools li {
-    width: auto; } }
+    width: auto; }
+
+  #i1y > h2 {
+    text-align: right; }
+
+  #i1y > ul {
+    margin-right: 16px; }
+
+  #i3y > h2 {
+    text-align: left; }
+
+  #i3y > ul {
+    margin-left: 16px; }
+
+  #major-skills {
+    display: flex;
+    margin-top: 0; }
+
+  #skills-printed {
+    text-align: center; } }
 </style>
     <!--
       Highcharts dependencies would normally be included here,
@@ -5044,8 +5050,8 @@ paper-shadow {
       <h1>Skills</h1>
       <div id="skills-printed" class="print-only">
         <div id="major-skills">
-          <div class="major-skill">
-            <h2 id="h-3y">~3 Years Experience</h2>
+          <div id="i3y" class="major-skill">
+            <h2>~3 Years Experience</h2>
             <ul>
               <li>C</li>
               <li>CSS</li>
@@ -5055,8 +5061,8 @@ paper-shadow {
               <li>Android</li>
             </ul>
           </div>
-          <div class="major-skill">
-            <h2 id="h-1y">~1 Year Experience</h2>
+          <div id="i1y" class="major-skill">
+            <h2>~1 Year Experience</h2>
             <ul>
               <li>Polymer.dart</li>
               <li>Java</li>
