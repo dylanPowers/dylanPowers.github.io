@@ -57,21 +57,22 @@ paper-shadow {
   .no-print {
     display: none; } }
 .chart {
-  margin-right: 8px; }
-
-#languages-chart {
-  height: 496px; }
-
-#platforms-chart {
-  height: 208px; }
+  margin-left: 10px;
+  margin-right: 10px; }
 
 @media print {
   .major-skill {
     width: 100%; }
 
+  #h-1y {
+    text-align: right; }
+
+  #h-3y {
+    text-align: left; }
+
   #major-skills {
     display: flex;
-    margin-top: -16px; }
+    margin-top: 0; }
 
   #skills-printed {
     text-align: center; }
@@ -91,7 +92,7 @@ paper-shadow {
     list-style: disc inside;
     margin-left: 16px;
     margin-top: 0;
-    min-width: 104px;
+    min-width: 106px;
     text-align: left; }
 
   #skills-printed ul {

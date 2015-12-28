@@ -56,3 +56,5 @@ paper-shadow {
 
   .no-print {
     display: none; } }
+.position {
+  display: inline-block; }
