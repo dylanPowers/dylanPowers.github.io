@@ -23,36 +23,29 @@
     margin-top: 0;
   }
 
+  #major-skills h2 {
+    margin-bottom: 0;
+    margin-right: 12px;
+    margin-top: 0;
+  }
+
   #skills-printed {
     text-align: center;
-  }
-
-  #tools {
-    width: 100%;
-  }
-
-  #tools > h3 {
-    display: inline-block;
-    margin-right: 0;
-  }
-
-  #tools > ul {
-    display: inline-block;
   }
 
   #skills-printed li {
     float: left;
     list-style: disc inside;
     margin-left: 16px;
+    margin-right: 12px;
     margin-top: 0;
-    min-width: 106px;
+    min-width: 104px;
     text-align: left;
   }
 
   #skills-printed ul {
-    margin: 0 auto;
-    padding-left: 0;
-    width: 368px;
+    margin: 0;
+    padding: 0;
   }
 
   #tools li {
