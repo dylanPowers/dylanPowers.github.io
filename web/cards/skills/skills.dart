@@ -122,7 +122,7 @@ class LangsChart extends SkillsChart {
     const Skill('C#', 3, 1.0),
     const Skill('JS', 2, 2.0),
     const Skill('Go', 2, 0.5),
-    const Skill('Ruby', 1, 1.0),
+    const Skill('Ruby', 2, 1.0),
     const Skill('PHP', 1, 1.0)
   ];
 
@@ -131,6 +131,7 @@ class LangsChart extends SkillsChart {
 
 class PlatformsChart extends SkillsChart {
   static const _SKILLS = const [
+    const Skill('HTML5', 5, 4.0),
     const Skill('Android SDK', 4, 2.0),
     const Skill('Android NDK', 4, 1.0),
     const Skill('Polymer.dart', 3, 2.0),
