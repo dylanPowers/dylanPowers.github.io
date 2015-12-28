@@ -1,15 +1,8 @@
 @import "packages/about_me/theme";
 
 .chart {
-  margin-right: 8px;
-}
-
-#languages-chart {
-  height: 496px;
-}
-
-#platforms-chart {
-  height: 208px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 @media print {
