@@ -136,7 +136,8 @@ class PlatformsChart extends SkillsChart {
     const Skill('Polymer.dart', 3, 2.0),
     const Skill('Ruby on Rails', 2, 2.0),
     const Skill('Chrome App/Ext', 2, 1.0),
-    const Skill('OpenGL', 1, 1.0)
+    const Skill('OpenGL', 1, 1.0),
+    const Skill('Angular.dart', 1, 0.5),
   ];
 
   PlatformsChart() : super(_SKILLS);
