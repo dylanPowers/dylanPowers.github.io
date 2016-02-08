@@ -15,6 +15,7 @@ $text-color: rgba(0, 0, 0, 0.87);
 }
 
 @mixin print-text-format {
+  color: #000;
   font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
 }
 
