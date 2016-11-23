@@ -28,8 +28,8 @@ build_rev_branch=`git rev-parse --abbrev-ref HEAD`
 
 if ! git branch | grep -q master; then git branch master origin/master; fi
 
-git checkout master && git pull origin master
-if [ $? -ne 0 ]; then 
+git pull origin master:master && git checkout master
+if [ $? -ne 0 ]; then
   echo "\n\nChecking out master failed"
   exit 1
 fi
