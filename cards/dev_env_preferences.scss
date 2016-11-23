@@ -1,0 +1,17 @@
+@import "packages/about_me/theme";
+
+#desktop-pic img {
+  border-radius: 4px;
+  display: block;
+  width: 100%;
+}
+
+#desktop-pic {
+  max-height: 300px;
+  max-width: 411px;
+  width: 100%;
+}
+
+#desktop-pic-shadow {
+  border-radius: 4px;
+}
