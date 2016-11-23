@@ -36,7 +36,7 @@ fi
 
 cleanup() {
   git checkout $build_rev_branch
-  pub get
+  pub get --packages-dir
 }
 
 # Clean the directory while ignoring build/ .git/ and any other hidden .* files/directories
