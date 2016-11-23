@@ -14,7 +14,85 @@
     font-weight: normal;
     font-style: normal;
 }</style>
-  <link rel="stylesheet" href="index.css">
+  <style>a,
+a:link,
+a:visited,
+a:active {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: robotoregular, sans-serif;
+  outline: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0); }
+
+a,
+body,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: robotoregular, sans-serif; }
+
+p {
+  margin: 6px 16px 0 18px; }
+
+paper-shadow {
+  z-index: -1; }
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  text-align: center; }
+
+.fill {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 100%; }
+
+@media not print {
+  .print-only {
+    display: none; } }
+@media print {
+  a,
+  a:link,
+  a:visited,
+  a:active,
+  body,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    color: #000;
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; }
+
+  .no-print {
+    display: none; } }
+body {
+  background-color: #EEE;
+  margin: 0; }
+
+#cards {
+  max-width: 1488px;
+  width: 100%; }
+
+@media (min-width: 1503px) {
+  .left {
+    clear: left;
+    float: left; }
+
+  .right {
+    clear: right;
+    float: right; } }
+@media print {
+  body {
+    background-color: #FFF; } }
+</style>
   <link rel="shortcut icon" sizes="65x65" href="cat_computer_65px.png">
   <meta name="theme-color" content="#1565C0"><!-- Cool Android trick -->
 
@@ -4136,7 +4214,202 @@ Media queries for reflow on smaller screens
 
 <polymer-element name="base-card" noscript="">
   <template>
-    <link rel="stylesheet" href="cards/base_card.css">
+    <style>a,
+a:link,
+a:visited,
+a:active {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: robotoregular, sans-serif;
+  outline: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0); }
+
+a,
+body,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: robotoregular, sans-serif; }
+
+p {
+  margin: 6px 16px 0 18px; }
+
+paper-shadow {
+  z-index: -1; }
+
+.center, :host {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  text-align: center; }
+
+.fill {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 100%; }
+
+@media not print {
+  .print-only {
+    display: none; } }
+@media print {
+  a,
+  a:link,
+  a:visited,
+  a:active,
+  body,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    color: #000;
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; }
+
+  .no-print {
+    display: none; } }
+:host {
+  clear: both;
+  max-width: 744px;
+  width: 100%; }
+
+#card {
+  background: #FFFFFF;
+  border-radius: 2px;
+  height: 100%;
+  margin: 24px 12px;
+  min-height: 128px;
+  position: relative; }
+
+#content {
+  font-family: robotoregular, sans-serif;
+  margin-top: 16px;
+  padding: 16px 0;
+  /* Hack to get around weird browser + Polymer behavior with margins */
+  page-break-inside: avoid;
+  text-align: left; }
+
+::content a,
+::content a:visited,
+::content h2,
+::content h3,
+::content h4,
+::content li,
+::content p {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: robotoregular, sans-serif;
+  line-height: 125%;
+  word-wrap: break-word; }
+
+::content a,
+::content a:visited {
+  text-decoration: underline; }
+
+h1,
+::content h1 {
+  color: #D50000;
+  font-size: 32px;
+  margin: 0 16px 8px 12px; }
+
+::content h2 {
+  font-size: 22px;
+  margin: 16px 16px 0 16px; }
+
+::content h3 {
+  font-size: 18px;
+  margin: 8px 16px 0 16px; }
+
+::content h4 {
+  margin: 8px 16px 0 16px; }
+
+::content li {
+  margin: 6px 16px 0 0; }
+
+::content p {
+  margin: 6px 16px 0 18px; }
+
+::content ul {
+  margin: 8px 16px 16px 0;
+  padding: 0 0 0 42px; }
+
+::content li > p {
+  margin: 6px 16px 0 0; }
+
+::content .date {
+  float: right; }
+
+::content .org {
+  font-weight: bold; }
+
+@media (max-width: 758px) {
+  #card {
+    margin: 12px; } }
+/** Printer friendly overrides **/
+@media print {
+  hr {
+    margin: 0 0 2px 0; }
+
+  :host {
+    max-width: 612pt; }
+
+  #card {
+    margin-bottom: 0;
+    margin-top: 0;
+    min-height: initial; }
+
+  #content {
+    margin-top: 0;
+    padding: 4px 0; }
+
+  ::content a,
+  ::content a:visited,
+  ::content h2,
+  ::content h3,
+  ::content h4,
+  ::content li,
+  ::content p {
+    color: #000;
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; }
+
+  ::content h1 {
+    font-size: 20px;
+    margin-bottom: 0;
+    margin-top: 4px; }
+
+  ::content h2 {
+    font-size: 15px;
+    font-weight: normal;
+    margin-top: 2px;
+    margin-right: 4px; }
+
+  ::content h3 {
+    font-size: 14px;
+    font-weight: normal;
+    margin-top: 2px; }
+
+  ::content h4 {
+    margin-top: 2px; }
+
+  ::content li {
+    font-size: 14px;
+    margin: 2px 0 0 0; }
+
+  ::content p {
+    font-size: 14px;
+    margin-top: 4px; }
+
+  ::content ul {
+    margin: 0 4px 4px 0;
+    padding: 0 0 0 42px; }
+
+  ::content li > p {
+    margin: 4px 0 0 0; } }
+</style>
 
     <div id="card">
       <hr class="print-only">
@@ -4178,7 +4451,78 @@ Media queries for reflow on smaller screens
 
 <polymer-element name="dkp-dev-env-prefs" noscript="">
   <template>
-    <link rel="stylesheet" href="cards/dev_env_preferences.css">
+    <style>a,
+a:link,
+a:visited,
+a:active {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: robotoregular, sans-serif;
+  outline: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0); }
+
+a,
+body,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: robotoregular, sans-serif; }
+
+p {
+  margin: 6px 16px 0 18px; }
+
+paper-shadow {
+  z-index: -1; }
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  text-align: center; }
+
+.fill {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 100%; }
+
+@media not print {
+  .print-only {
+    display: none; } }
+@media print {
+  a,
+  a:link,
+  a:visited,
+  a:active,
+  body,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    color: #000;
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; }
+
+  .no-print {
+    display: none; } }
+#desktop-pic img {
+  border-radius: 4px;
+  display: block;
+  width: 100%; }
+
+#desktop-pic {
+  max-height: 300px;
+  max-width: 411px;
+  width: 100%; }
+
+#desktop-pic-shadow {
+  border-radius: 4px; }
+</style>
     <base-card>
       <div id="other-content">
         <h1>Development Environment</h1>
@@ -4285,7 +4629,68 @@ Media queries for reflow on smaller screens
 
 <polymer-element name="dkp-education" noscript="">
   <template>
-    <link rel="stylesheet" href="cards/education.css">
+    <style>a,
+a:link,
+a:visited,
+a:active {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: robotoregular, sans-serif;
+  outline: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0); }
+
+a,
+body,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: robotoregular, sans-serif; }
+
+p {
+  margin: 6px 16px 0 18px; }
+
+paper-shadow {
+  z-index: -1; }
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  text-align: center; }
+
+.fill {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 100%; }
+
+@media not print {
+  .print-only {
+    display: none; } }
+@media print {
+  a,
+  a:link,
+  a:visited,
+  a:active,
+  body,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    color: #000;
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; }
+
+  .no-print {
+    display: none; } }
+.position {
+  display: inline-block; }
+</style>
     <base-card>
       <h1>Education</h1>
       <h2><span class="org">Washington State University</span>; Pullman, WA</h2>
@@ -4298,7 +4703,76 @@ Media queries for reflow on smaller screens
 
 <polymer-element name="dkp-projects" noscript="">
   <template>
-    <link rel="stylesheet" href="cards/projects.css">
+    <style>a,
+a:link,
+a:visited,
+a:active {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: robotoregular, sans-serif;
+  outline: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0); }
+
+a,
+body,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: robotoregular, sans-serif; }
+
+p {
+  margin: 6px 16px 0 18px; }
+
+paper-shadow {
+  z-index: -1; }
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  text-align: center; }
+
+.fill {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 100%; }
+
+@media not print {
+  .print-only {
+    display: none; } }
+@media print {
+  a,
+  a:link,
+  a:visited,
+  a:active,
+  body,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    color: #000;
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; }
+
+  .no-print {
+    display: none; } }
+@media print {
+  #snippets-list {
+    margin: 0;
+    padding: 0; }
+
+  #snippets-list > li {
+    list-style: none; }
+
+  #snippets-list ul > li {
+    list-style-type: disc; } }
+</style>
 
     <base-card>
       <h1>Projects</h1>
@@ -4471,7 +4945,113 @@ Media queries for reflow on smaller screens
 
 <polymer-element name="dkp-skills">
   <template>
-    <link rel="stylesheet" href="cards/skills/skills.css">
+    <style>a,
+a:link,
+a:visited,
+a:active {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: robotoregular, sans-serif;
+  outline: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0); }
+
+a,
+body,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: robotoregular, sans-serif; }
+
+p {
+  margin: 6px 16px 0 18px; }
+
+paper-shadow {
+  z-index: -1; }
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  text-align: center; }
+
+.fill {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 100%; }
+
+@media not print {
+  .print-only {
+    display: none; } }
+@media print {
+  a,
+  a:link,
+  a:visited,
+  a:active,
+  body,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    color: #000;
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; }
+
+  .no-print {
+    display: none; } }
+.chart {
+  margin-left: 10px;
+  margin-right: 10px; }
+
+@media print {
+  .major-skill {
+    width: 100%; }
+
+  #major-skills h2 {
+    margin-bottom: 0;
+    margin-right: 12px;
+    margin-top: 0; }
+
+  #skills-printed li {
+    float: left;
+    list-style: disc inside;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    min-width: 126px;
+    text-align: left; }
+
+  #skills-printed ul {
+    margin: 0;
+    padding: 0; }
+
+  #tools li {
+    width: auto; }
+
+  #i1y > h2 {
+    text-align: right; }
+
+  #i1y > ul {
+    margin-right: 16px; }
+
+  #i3y > h2 {
+    text-align: left; }
+
+  #i3y > ul {
+    margin-left: 16px; }
+
+  #major-skills {
+    display: flex;
+    margin-top: 0; }
+
+  #skills-printed {
+    text-align: center; } }
+</style>
     <!--
       Highcharts dependencies would normally be included here,
       but they can't because of Firefox -->
@@ -4523,7 +5103,73 @@ Media queries for reflow on smaller screens
 
 <polymer-element name="dkp-volunteering" noscript="">
   <template>
-    <link rel="stylesheet" href="cards/volunteering.css">
+    <style>a,
+a:link,
+a:visited,
+a:active {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: robotoregular, sans-serif;
+  outline: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0); }
+
+a,
+body,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: robotoregular, sans-serif; }
+
+p {
+  margin: 6px 16px 0 18px; }
+
+paper-shadow {
+  z-index: -1; }
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  text-align: center; }
+
+.fill {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 100%; }
+
+@media not print {
+  .print-only {
+    display: none; } }
+@media print {
+  a,
+  a:link,
+  a:visited,
+  a:active,
+  body,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    color: #000;
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; }
+
+  .no-print {
+    display: none; } }
+.left {
+  float: left;
+  width: 50%; }
+
+.right {
+  float: right;
+  width: 50%; }
+</style>
     <base-card>
       <h1><span class="no-print">Volunteering and </span>Leadership</h1>
       <div class="no-print">
@@ -4609,7 +5255,77 @@ Media queries for reflow on smaller screens
 
 <polymer-element name="dkp-work-experience" noscript="">
   <template>
-    <link rel="stylesheet" href="cards/work_experience.css">
+    <style>a,
+a:link,
+a:visited,
+a:active {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: robotoregular, sans-serif;
+  outline: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0); }
+
+a,
+body,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: robotoregular, sans-serif; }
+
+p {
+  margin: 6px 16px 0 18px; }
+
+paper-shadow {
+  z-index: -1; }
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  text-align: center; }
+
+.fill {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 100%; }
+
+@media not print {
+  .print-only {
+    display: none; } }
+@media print {
+  a,
+  a:link,
+  a:visited,
+  a:active,
+  body,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    color: #000;
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; }
+
+  .no-print {
+    display: none; } }
+@media not print {
+  .position.no-print {
+    display: inline-block; } }
+@media print {
+  h2,
+  h3 {
+    display: inline-block; }
+
+  #content-override a,
+  #content-override a:visited {
+    text-decoration: none; } }
+</style>
     <base-card id="content-override">
       <h1>Work Experience</h1>
 
