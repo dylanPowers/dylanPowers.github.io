@@ -19,12 +19,14 @@ if [ $? -ne 0 ]; then
 fi
 
 ## Include and run ipfs-deploy at this point
-. "tools/ipfs-deploy.sh"
+# . "tools/ipfs-deploy.sh"
 
 echo "\nAttempting to commit new build into master..."
 
 build_rev_hash=`git rev-parse HEAD`
 build_rev_branch=`git rev-parse --abbrev-ref HEAD`
+
+if ! git branch | grep -q master; then git branch master origin/master; fi
 
 git checkout master && git pull origin master
 if [ $? -ne 0 ]; then 
